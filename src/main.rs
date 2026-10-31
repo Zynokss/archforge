@@ -9,6 +9,8 @@ use jobs::Job;
 use std::{cell::RefCell, rc::Rc, sync::mpsc, time::Duration};
 use system::{Inventory, Metrics, Sampler};
 
+const APP_ID: &str = "io.github.zynokss.ArchForge";
+
 fn label(text: &str, class: &str) -> gtk::Label {
     let l = gtk::Label::new(Some(text));
     l.set_xalign(0.0);
@@ -504,6 +506,7 @@ fn show_setup(parent: &gtk::ApplicationWindow, name: &str, package: &str, instal
 }
 
 fn build(app: &gtk::Application) {
+    gtk::Window::set_default_icon_name(APP_ID);
     let provider = gtk::CssProvider::new();
     let chosen = Rc::new(RefCell::new(theme::selected()));
     theme::apply(&provider, &chosen.borrow());
@@ -513,6 +516,7 @@ fn build(app: &gtk::Application) {
     let window = gtk::ApplicationWindow::builder()
         .application(app)
         .title("Arch Forge")
+        .icon_name(APP_ID)
         .default_width(1640)
         .default_height(950)
         .build();
@@ -670,6 +674,7 @@ fn build(app: &gtk::Application) {
 }
 
 fn main() -> glib::ExitCode {
+    glib::set_application_name("Arch Forge");
     if !system::is_arch(&system::read("/etc/os-release")) {
         eprintln!("Arch Forge supports Arch Linux only (ID=arch).");
         return glib::ExitCode::FAILURE;
@@ -679,9 +684,7 @@ fn main() -> glib::ExitCode {
         eprintln!("Run Arch Forge as your regular desktop user, never as root.");
         return glib::ExitCode::FAILURE;
     }
-    let app = gtk::Application::builder()
-        .application_id("io.github.zynokss.ArchForge")
-        .build();
+    let app = gtk::Application::builder().application_id(APP_ID).build();
     app.connect_activate(build);
     app.run()
 }

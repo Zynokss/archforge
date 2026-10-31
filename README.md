@@ -1,4 +1,6 @@
-# Arch Forge
+<p align="center">
+  <img src="assets/readme-banner.svg" alt="Arch Forge — system tools for Arch Linux" width="100%">
+</p>
 
 A native desktop utility for Arch Linux, built with Rust and GTK4.
 
@@ -33,7 +35,7 @@ cd packaging
 makepkg -si
 ```
 
-The included `PKGBUILD` builds from the local source archive produced by `dist.sh`. It installs the binary, application launcher, and icon. This is a local build recipe, not an AUR package.
+The included `PKGBUILD` builds from the local source archive produced by `dist.sh`. It installs the binary, application launcher, and the red Arch Forge icon in scalable and standard desktop sizes. This is a local build recipe, not an AUR package.
 
 ### Optional tools
 

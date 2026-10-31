@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="400" viewBox="0 0 1440 400" role="img" aria-labelledby="title description">
+  <title id="title">Arch Forge</title>
+  <desc id="description">System tools for Arch Linux, with the red Arch Forge mark on a charcoal background.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#191d21"/><stop offset="1" stop-color="#0c0e11"/>
+    </linearGradient>
+    <radialGradient id="heat">
+      <stop stop-color="#ff6467" stop-opacity=".14"/><stop offset="1" stop-color="#ff6467" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#535158"/><stop offset="1" stop-color="#242930"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#a6adb8" stroke-opacity=".045"/>
+    </pattern>
+  </defs>
+  <rect width="1440" height="400" rx="22" fill="url(#background)"/>
+  <rect x="720" width="720" height="400" fill="url(#grid)"/>
+  <ellipse cx="1158" cy="202" rx="350" ry="290" fill="url(#heat)"/>
+  <g fill="none" stroke="#ff6467" stroke-width="1">
+    <path d="M827 400 1060 167h380" opacity=".16"/>
+    <path d="M927 400 1160 167h280" opacity=".10"/>
+    <path d="M727 400 960 167h480" opacity=".06"/>
+  </g>
+  <g font-family="DejaVu Sans,Arial,Helvetica,sans-serif">
+    <text x="72" y="89" fill="#ff8082" font-size="15" letter-spacing="3">ARCH LINUX</text>
+    <text x="68" y="192" fill="#f3f4f6" font-size="82" font-weight="600" letter-spacing="-3">Arch Forge</text>
+    <text x="74" y="242" fill="#b4bdc9" font-size="23">Your system. In focus.</text>
+    <path d="M74 279H556" stroke="#3a3f46"/>
+    <text x="74" y="322" fill="#bfc6d0" font-size="15">System</text>
+    <path d="M163 310v15" stroke="#4f3e43"/>
+    <text x="188" y="322" fill="#bfc6d0" font-size="15">Gaming</text>
+    <path d="M283 310v15" stroke="#4f3e43"/>
+    <text x="309" y="322" fill="#bfc6d0" font-size="15">Maintenance</text>
+  </g>
+  <g transform="translate(1044 64)">
+    <rect width="272" height="272" rx="64" fill="#111417" stroke="url(#edge)" stroke-width="2"/>
+    <rect x="10" y="10" width="252" height="252" rx="55" fill="none" stroke="#ff6467" stroke-opacity=".08"/>
+    <g transform="translate(28 28) scale(1.6875)"><path fill="#ff6467" d="M64 8 114 116 77 99V82c0-12-6-20-13-20s-13 8-13 20v17l-37 17L45 48l11 7-7-15 15-32Z"/></g>
+  </g>
+  <rect x="1" y="1" width="1438" height="398" rx="21" fill="none" stroke="#394049" stroke-opacity=".6"/>
+</svg>

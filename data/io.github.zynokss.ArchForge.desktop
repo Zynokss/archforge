@@ -8,4 +8,4 @@ Terminal=false
 Categories=System;Monitor;
 Keywords=Arch;Gaming;Cleanup;Packages;Diagnostics;
 StartupNotify=true
-StartupWMClass=io.github.zynokss.ArchForge
+StartupWMClass=arch-forge
