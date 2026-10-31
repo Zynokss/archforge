@@ -2,6 +2,7 @@ mod jobs;
 mod screens;
 mod system;
 mod theme;
+mod updater;
 use screens::{cleanup, diagnostics, gaming, overview, packages};
 
 use gtk::{glib, prelude::*};
@@ -603,6 +604,7 @@ fn build(app: &gtk::Application) {
     let spacer = column(0);
     spacer.set_vexpand(true);
     sidebar.append(&spacer);
+    sidebar.append(&updater::launcher(&window));
     sidebar.append(&appearance_menu(&provider, chosen));
     let foot = row(12);
     foot.add_css_class("sidebar-foot");

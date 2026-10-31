@@ -1,12 +1,12 @@
 # Local source package. Run ../scripts/dist.sh from this directory first.
 pkgname=arch-forge
-pkgver=0.3.0
-pkgrel=3
+pkgver=0.4.0
+pkgrel=1
 pkgdesc='Native Arch Linux system and gaming utility'
 url='https://github.com/Zynokss/arch-forge'
 arch=('x86_64' 'aarch64')
 license=('MIT')
-depends=('gtk4>=4.20' 'pacman' 'polkit' 'systemd' 'pciutils')
+depends=('gtk4>=4.20' 'pacman' 'polkit' 'systemd' 'pciutils' 'curl')
 makedepends=('rust' 'pkgconf')
 optdepends=(
   'pacman-contrib: package cache maintenance and update checks'

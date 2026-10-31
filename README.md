@@ -13,6 +13,7 @@ Arch Forge brings system readings, gaming tools, package information, and mainte
 - **Cleanup** — package-cache usage and previews, journal usage, orphan-package inspection, and reviewed cleanup actions.
 - **Packages** — search and sort installed packages, inspect foreign packages, and check repository updates.
 - **Diagnostics** — failed services, boot timing, Vulkan information, and a system report with copyable output.
+- **App updates** — automatic version checks and one-click installation of verified GitHub release packages.
 
 ## Screenshots
 
@@ -23,7 +24,7 @@ Arch Forge brings system readings, gaming tools, package information, and mainte
 Requires Arch Linux, a Rust toolchain, GTK4 4.20 or newer, and `pkgconf`.
 
 ```sh
-sudo pacman -Syu --needed rust gtk4 pkgconf pciutils polkit
+sudo pacman -Syu --needed rust gtk4 pkgconf pciutils polkit curl
 git clone https://github.com/Zynokss/arch-forge.git
 cd arch-forge
 cargo run --release --locked
@@ -40,6 +41,16 @@ makepkg -si
 ```
 
 The included `PKGBUILD` builds from the local source archive produced by `dist.sh`. It installs the binary, application launcher, and the red Arch Forge icon in scalable and standard desktop sizes. This is a local build recipe, not an AUR package.
+
+### GitHub releases and updates
+
+Prebuilt x86_64 Arch packages are available on the [releases page](https://github.com/Zynokss/arch-forge/releases). Download the `.pkg.tar.zst` file and install it with `sudo pacman -U /path/to/arch-forge-*.pkg.tar.zst`.
+
+Arch Forge checks for stable releases in the background when it opens. Choose **App updates** in the sidebar to see the installed app version, release notes, and a manual check. When a newer version is available, the sidebar shows **Update available**.
+
+Click **Update to …** to download and install it. The app checks the package's SHA-256 digest against GitHub's release metadata and verifies its name, version, and architecture before starting pacman. Your desktop asks for administrator authentication. Pacman handles dependencies and file ownership; an unsuccessful download or checksum check never starts installation. Reopen Arch Forge after the update completes.
+
+Updates require an internet connection, `curl`, and a desktop polkit agent. Downloaded packages come from this project's GitHub releases and are not separately signed. Automatic installation is available only when a package for your architecture is attached to the release; aarch64 users can build from source. Checking does not install anything until you click Update.
 
 ### Optional tools
 

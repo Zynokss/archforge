@@ -1,6 +1,6 @@
 [package]
 name = "arch-forge"
-version = "0.3.0"
+version = "0.4.0"
 edition = "2024"
 description = "Native Arch Linux system and gaming utility"
 authors = ["Zynokss"]
@@ -11,6 +11,8 @@ license = "MIT"
 gtk = { package = "gtk4", version = "0.11", features = ["v4_20"] }
 libc = "0.2"
 serde_json = "1"
+semver = "1"
+tempfile = "3"
 
 [profile.dev]
 debug = 0
