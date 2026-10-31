@@ -1,6 +1,6 @@
 # Local source package. Run ../scripts/dist.sh from this directory first.
 pkgname=archforge
-pkgver=0.5.0
+pkgver=0.5.1
 pkgrel=1
 pkgdesc='Native Arch Linux system and gaming utility'
 url='https://github.com/Zynokss/archforge'
@@ -39,7 +39,10 @@ package() {
   install -Dm755 target/release/archforge "$pkgdir/usr/bin/archforge"
   install -Dm644 data/io.github.zynokss.ArchForge.desktop "$pkgdir/usr/share/applications/io.github.zynokss.ArchForge.desktop"
   install -Dm644 data/io.github.zynokss.ArchForge.svg "$pkgdir/usr/share/icons/hicolor/scalable/apps/io.github.zynokss.ArchForge.svg"
+  install -Dm644 data/io.github.zynokss.ArchForge.svg "$pkgdir/usr/share/icons/hicolor/scalable/apps/archforge.svg"
+  install -Dm644 data/icons/256.png "$pkgdir/usr/share/pixmaps/archforge.png"
   for size in 16 24 32 48 64 128 256 512; do
+    install -Dm644 "data/icons/$size.png" "$pkgdir/usr/share/icons/hicolor/${size}x${size}/apps/archforge.png"
     install -Dm644 "data/icons/$size.png" "$pkgdir/usr/share/icons/hicolor/${size}x${size}/apps/io.github.zynokss.ArchForge.png"
   done
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"

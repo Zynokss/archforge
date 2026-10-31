@@ -507,7 +507,7 @@ fn show_setup(parent: &gtk::ApplicationWindow, name: &str, package: &str, instal
 }
 
 fn build(app: &gtk::Application) {
-    gtk::Window::set_default_icon_name(APP_ID);
+    gtk::Window::set_default_icon_name("archforge");
     let provider = gtk::CssProvider::new();
     let chosen = Rc::new(RefCell::new(theme::selected()));
     theme::apply(&provider, &chosen.borrow());
@@ -517,7 +517,7 @@ fn build(app: &gtk::Application) {
     let window = gtk::ApplicationWindow::builder()
         .application(app)
         .title("Arch Forge")
-        .icon_name(APP_ID)
+        .icon_name("archforge")
         .default_width(1640)
         .default_height(950)
         .build();
