@@ -14,6 +14,27 @@ Arch Forge brings system readings, gaming tools, package information, and mainte
 - **Packages** — search and sort installed packages, inspect foreign packages, and check repository updates.
 - **Diagnostics** — failed services, boot timing, Vulkan information, and a system report with copyable output.
 
+## Screenshots
+
+![System overview in the Crimson theme](assets/screenshots/overview.png)
+
+<details>
+<summary>Gaming, cleanup, and package views</summary>
+
+### Gaming
+
+![Gaming tools and Steam launch options](assets/screenshots/gaming.png)
+
+### Cleanup
+
+![Package-cache and journal maintenance](assets/screenshots/cleanup.png)
+
+### Packages
+
+![Installed-package search and versions](assets/screenshots/packages.png)
+
+</details>
+
 ## Build and run
 
 Requires Arch Linux, a Rust toolchain, GTK4 4.20 or newer, and `pkgconf`.
