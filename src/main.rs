@@ -1,6 +1,7 @@
 mod jobs;
 mod screens;
 mod system;
+mod terminal;
 mod theme;
 mod updater;
 use screens::{cleanup, diagnostics, gaming, overview, packages};
@@ -455,7 +456,7 @@ fn show_setup(parent: &gtk::ApplicationWindow, name: &str, package: &str, instal
         }
     } else {
         (
-            "Run this in your terminal. It performs a full system upgrade and installs the package. Review pacman's transaction before accepting.",
+            "Open a terminal with this command ready to review. Press Enter to perform a full system upgrade and install the package, then review pacman's transaction before accepting.",
             format!("sudo pacman -Syu --needed {package}"),
         )
     };
@@ -466,8 +467,56 @@ fn show_setup(parent: &gtk::ApplicationWindow, name: &str, package: &str, instal
     if package == "steam" {
         body.append(&wrapped("Steam requires the multilib repository and suitable 32-bit GPU drivers. Check the ArchWiki Steam installation guide before installing.", "notice"));
     }
+    let status = wrapped("", "muted");
+    status.set_visible(false);
+    body.append(&status);
     let buttons = row(12);
-    let copy = button("Copy command", true);
+    let launch_option = cmd.contains("%command%");
+    if !launch_option {
+        let open = button("Open terminal", true);
+        let proposed = cmd.clone();
+        let status = status.clone();
+        open.connect_clicked(move |b| {
+            b.set_sensitive(false);
+            status.set_visible(true);
+            status.set_text("Opening terminal…");
+            let (tx, rx) = mpsc::channel();
+            let proposed = proposed.clone();
+            std::thread::spawn(move || {
+                let _ = tx.send(terminal::open(&proposed));
+            });
+            let button = b.downgrade();
+            let status = status.downgrade();
+            glib::timeout_add_local(Duration::from_millis(100), move || {
+                let result = match rx.try_recv() {
+                    Ok(result) => result,
+                    Err(mpsc::TryRecvError::Empty) => return glib::ControlFlow::Continue,
+                    Err(_) => {
+                        Err("The terminal launcher stopped. You can still copy the command.".into())
+                    }
+                };
+                if let Some(button) = button.upgrade() {
+                    button.set_sensitive(true);
+                }
+                if let Some(status) = status.upgrade() {
+                    status.set_text(match &result {
+                        Ok(()) => "Terminal opened. Review the command and press Enter to run it.",
+                        Err(error) => error,
+                    });
+                }
+                glib::ControlFlow::Break
+            });
+        });
+        buttons.append(&open);
+    }
+    let copy = button(
+        if launch_option {
+            "Copy launch option"
+        } else {
+            "Copy command"
+        },
+        launch_option,
+    );
     copy.connect_clicked(move |b| {
         copy_text(&cmd);
         b.set_label("Copied");

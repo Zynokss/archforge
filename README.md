@@ -90,7 +90,7 @@ Cleanup always starts with a review. Package-cache cleanup keeps the latest thre
 
 Protected pacman download folders can prevent a complete unprivileged size check. Arch Forge marks that result as partial and offers an authenticated, read-only measurement.
 
-Package setup provides a terminal command so you can review pacman's transaction. Update checks cover configured repositories, not the AUR. Installed-package and service information is read at startup; restart the app after making changes to refresh it.
+Package setup offers **Open terminal**: the command appears at an editable prompt and waits for Enter before running. The terminal stays open afterward so you can read the output. Arch Forge uses `xdg-terminal-exec` when available, then supported installed terminals such as Kitty, Foot, Alacritty, Konsole, or GNOME Terminal. `TERMINAL` can specify a supported executable name or path, without extra arguments. If no terminal is found, the copy action remains available. Steam launch options are copied into Steam instead. Update checks cover configured repositories, not the AUR. Installed-package and service information is read at startup; restart the app after making changes to refresh it.
 
 ## Appearance
 

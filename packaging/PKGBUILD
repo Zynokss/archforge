@@ -1,6 +1,6 @@
 # Local source package. Run ../scripts/dist.sh from this directory first.
 pkgname=archforge
-pkgver=0.5.1
+pkgver=0.6.0
 pkgrel=1
 pkgdesc='Native Arch Linux system and gaming utility'
 url='https://github.com/Zynokss/archforge'
@@ -13,6 +13,7 @@ options=('!debug')
 depends=('gtk4>=4.20' 'pacman' 'polkit' 'systemd' 'pciutils' 'curl')
 makedepends=('rust' 'pkgconf')
 optdepends=(
+  'xdg-terminal-exec: use your preferred terminal for setup commands'
   'pacman-contrib: package cache maintenance and update checks'
   'vulkan-tools: Vulkan diagnostics'
   'gamemode: gaming performance requests and self-test'
