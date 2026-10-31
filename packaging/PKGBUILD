@@ -1,11 +1,15 @@
 # Local source package. Run ../scripts/dist.sh from this directory first.
-pkgname=arch-forge
-pkgver=0.4.0
+pkgname=archforge
+pkgver=0.5.0
 pkgrel=1
 pkgdesc='Native Arch Linux system and gaming utility'
-url='https://github.com/Zynokss/arch-forge'
+url='https://github.com/Zynokss/archforge'
 arch=('x86_64' 'aarch64')
 license=('MIT')
+provides=("arch-forge=$pkgver")
+conflicts=('arch-forge')
+replaces=('arch-forge')
+options=('!debug')
 depends=('gtk4>=4.20' 'pacman' 'polkit' 'systemd' 'pciutils' 'curl')
 makedepends=('rust' 'pkgconf')
 optdepends=(
@@ -32,7 +36,7 @@ build() {
 
 package() {
   cd "$pkgname-$pkgver"
-  install -Dm755 target/release/arch-forge "$pkgdir/usr/bin/arch-forge"
+  install -Dm755 target/release/archforge "$pkgdir/usr/bin/archforge"
   install -Dm644 data/io.github.zynokss.ArchForge.desktop "$pkgdir/usr/share/applications/io.github.zynokss.ArchForge.desktop"
   install -Dm644 data/io.github.zynokss.ArchForge.svg "$pkgdir/usr/share/icons/hicolor/scalable/apps/io.github.zynokss.ArchForge.svg"
   for size in 16 24 32 48 64 128 256 512; do

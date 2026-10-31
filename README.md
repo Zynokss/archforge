@@ -19,38 +19,57 @@ Arch Forge brings system readings, gaming tools, package information, and mainte
 
 ![System overview in the Crimson theme](assets/screenshots/overview.png)
 
-## Build and run
+## Install
 
-Requires Arch Linux, a Rust toolchain, GTK4 4.20 or newer, and `pkgconf`.
-
-```sh
-sudo pacman -Syu --needed rust gtk4 pkgconf pciutils polkit curl
-git clone https://github.com/Zynokss/arch-forge.git
-cd arch-forge
-cargo run --release --locked
-```
-
-Run the app as your regular desktop user. It refuses to run as root or on a distribution whose `/etc/os-release` does not identify it as Arch Linux.
-
-### Arch package
+On **Arch Linux x86_64**, install the latest prebuilt release with:
 
 ```sh
-./scripts/dist.sh
-cd packaging
-makepkg -si
+sudo pacman -U https://github.com/Zynokss/archforge/releases/latest/download/archforge-x86_64.pkg.tar.zst
 ```
 
-The included `PKGBUILD` builds from the local source archive produced by `dist.sh`. It installs the binary, application launcher, and the red Arch Forge icon in scalable and standard desktop sizes. This is a local build recipe, not an AUR package.
+This installs Arch Forge system-wide, including its **application-menu shortcut and red icon**. Open your application launcher, search for **Arch Forge**, and launch it. You only need the terminal for installation; Rust and a source checkout are not required.
 
-### GitHub releases and updates
+You can also download the `.pkg.tar.zst` from the [latest release](https://github.com/Zynokss/archforge/releases/latest) and install the downloaded file with `sudo pacman -U /path/to/package.pkg.tar.zst`. If your desktop has an Arch package installer, you can open the package with that instead.
 
-Prebuilt x86_64 Arch packages are available on the [releases page](https://github.com/Zynokss/arch-forge/releases). Download the `.pkg.tar.zst` file and install it with `sudo pacman -U /path/to/arch-forge-*.pkg.tar.zst`.
+Arch Forge requires GTK4 4.20 or newer and a desktop polkit authentication agent for administrator actions. Run the app as your regular desktop user. It refuses to run as root or on a distribution whose `/etc/os-release` does not identify it as Arch Linux.
 
-Arch Forge checks for stable releases in the background when it opens. Choose **App updates** in the sidebar to see the installed app version, release notes, and a manual check. When a newer version is available, the sidebar shows **Update available**.
+### Install from source
+
+For aarch64, or if you prefer to build locally:
+
+```sh
+sudo pacman -Syu --needed base-devel rust git
+git clone https://github.com/Zynokss/archforge.git
+cd archforge
+./scripts/install.sh
+```
+
+If you already cloned the repository, run `git pull --ff-only` followed by `./scripts/install.sh` inside it. The installer builds an Arch package and uses pacman to install the app, its runtime dependencies, launcher, and icons. Run it as your regular user; pacman will ask for administrator authentication when needed.
+
+### Updates
+
+Arch Forge checks for stable releases in the background when it opens. Choose **App updates** in the sidebar to see the running app version, release notes, and a manual check. When a newer version is available, the sidebar shows **Update available**.
 
 Click **Update to …** to download and install it. The app checks the package's SHA-256 digest against GitHub's release metadata and verifies its name, version, and architecture before starting pacman. Your desktop asks for administrator authentication. Pacman handles dependencies and file ownership; an unsuccessful download or checksum check never starts installation. Reopen Arch Forge after the update completes.
 
 Updates require an internet connection, `curl`, and a desktop polkit agent. Downloaded packages come from this project's GitHub releases and are not separately signed. Automatic installation is available only when a package for your architecture is attached to the release; aarch64 users can build from source. Checking does not install anything until you click Update.
+
+### Package availability
+
+Arch Forge is distributed through GitHub Releases. It is not currently published in the AUR or Arch's official repositories, so `pacman -S archforge` and AUR-helper installation are not available. The package installed above is tracked by pacman and can be removed with `sudo pacman -Rns archforge`.
+
+If you installed an older `arch-forge` package, run the installation command above once and accept pacman's replacement prompt. The package and executable are now named `archforge`; the application-menu name remains Arch Forge.
+
+### Development
+
+To run a checkout without installing it, install the build dependencies and use:
+
+```sh
+sudo pacman -Syu --needed rust gtk4 pkgconf pciutils polkit curl
+cargo run --release --locked
+```
+
+`cargo run` only builds and opens the app. It does not install an application-menu entry, icon, or system binary. Use one of the installation methods above for normal desktop use.
 
 ### Optional tools
 
@@ -74,7 +93,7 @@ Package setup provides a terminal command so you can review pacman's transaction
 
 ## Appearance
 
-Choose Crimson, Sage, Lavender, Sand, or Desktop colors from the sidebar. The selection is saved in `~/.config/arch-forge/appearance`, respecting `XDG_CONFIG_HOME`.
+Choose Crimson, Sage, Lavender, Sand, or Desktop colors from the sidebar. The selection is saved in `~/.config/archforge/appearance`, respecting `XDG_CONFIG_HOME`.
 
 Desktop colors can follow an existing end4/Quickshell palette at `~/.local/state/quickshell/user/generated/colors.json`, respecting `XDG_STATE_HOME`. If that palette is unavailable, the app uses Sage. Arch Forge does not modify the shell configuration.
 

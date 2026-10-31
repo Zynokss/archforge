@@ -40,12 +40,19 @@ fn preference_path() -> PathBuf {
     std::env::var_os("XDG_CONFIG_HOME")
         .map(PathBuf::from)
         .unwrap_or_else(|| home().join(".config"))
-        .join("arch-forge/appearance")
+        .join("archforge/appearance")
 }
 pub fn selected() -> String {
     let name = std::env::var("ARCH_FORGE_THEME")
         .ok()
         .or_else(|| fs::read_to_string(preference_path()).ok())
+        .or_else(|| {
+            let legacy = preference_path()
+                .parent()?
+                .parent()?
+                .join("arch-forge/appearance");
+            fs::read_to_string(legacy).ok()
+        })
         .unwrap_or_else(|| "crimson".into());
     if OPTIONS.iter().any(|(id, _)| *id == name.trim()) {
         name.trim().into()

@@ -25,7 +25,8 @@ jobs:
           chown -R builder:builder "$GITHUB_WORKSPACE"
           su builder -c 'cd "$GITHUB_WORKSPACE" && ./scripts/dist.sh && cd packaging && makepkg --noconfirm --cleanbuild'
           mkdir release
-          cp packaging/arch-forge-"$version"-*.pkg.tar.zst packaging/arch-forge-"$version".tar.gz release/
+          cp packaging/archforge-"$version"-*.pkg.tar.zst packaging/archforge-"$version".tar.gz release/
+          cp release/archforge-"$version"-*-x86_64.pkg.tar.zst release/archforge-x86_64.pkg.tar.zst
           cd release
           sha256sum *.pkg.tar.zst *.tar.gz > SHA256SUMS
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

@@ -2,10 +2,10 @@
 Type=Application
 Name=Arch Forge
 Comment=Your native Arch Linux system and gaming workbench
-Exec=arch-forge
+Exec=archforge
 Icon=io.github.zynokss.ArchForge
 Terminal=false
 Categories=System;Monitor;
 Keywords=Arch;Gaming;Cleanup;Packages;Diagnostics;
 StartupNotify=true
-StartupWMClass=arch-forge
+StartupWMClass=archforge

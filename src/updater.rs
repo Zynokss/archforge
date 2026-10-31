@@ -14,9 +14,9 @@ use std::{
     time::Duration,
 };
 
-const API: &str = "https://api.github.com/repos/Zynokss/arch-forge/releases/latest";
-const DOWNLOADS: &str = "https://github.com/Zynokss/arch-forge/releases/download";
-const RELEASES: &str = "https://github.com/Zynokss/arch-forge/releases";
+const API: &str = "https://api.github.com/repos/Zynokss/archforge/releases/latest";
+const DOWNLOADS: &str = "https://github.com/Zynokss/archforge/releases/download";
+const RELEASES: &str = "https://github.com/Zynokss/archforge/releases";
 const CURRENT: &str = env!("CARGO_PKG_VERSION");
 const MAX_PACKAGE: u64 = 64 * 1024 * 1024;
 
@@ -50,7 +50,7 @@ pub(crate) fn parse_release(json: &str, arch: &str) -> Result<Release, String> {
     if !version.pre.is_empty() || !version.build.is_empty() {
         return Err("Only stable version tags are supported.".into());
     }
-    let prefix = format!("arch-forge-{version}-");
+    let prefix = format!("archforge-{version}-");
     let suffix = format!("-{arch}.pkg.tar.zst");
     let mut asset = None;
     for item in data["assets"]
@@ -201,7 +201,7 @@ pub(crate) fn verify_metadata(
         }
         Ok(values[0])
     };
-    if field("Name")? != "arch-forge" || field("Architecture")? != arch {
+    if field("Name")? != "archforge" || field("Architecture")? != arch {
         return Err("The downloaded file is not an Arch Forge package for this computer.".into());
     }
     let package_version = field("Version")?;
@@ -225,7 +225,7 @@ pub(crate) struct Download {
 
 pub(crate) fn private_download_dir() -> Result<tempfile::TempDir, String> {
     tempfile::Builder::new()
-        .prefix("arch-forge-update-")
+        .prefix("archforge-update-")
         .permissions(std::fs::Permissions::from_mode(0o700))
         .tempdir()
         .map_err(|e| format!("Cannot create a private download folder: {e}"))
@@ -255,7 +255,7 @@ pub(crate) fn download(release: &Release) -> Result<Download, String> {
     verify_file(&path, asset)?;
     let metadata = system::run("/usr/bin/pacman", &["-Qip", path_text], 20)?;
     let candidate = verify_metadata(&metadata, &release.version, std::env::consts::ARCH)?;
-    if let Ok(installed) = system::run("/usr/bin/pacman", &["-Q", "arch-forge"], 10) {
+    if let Ok(installed) = system::run("/usr/bin/pacman", &["-Q", "archforge"], 10) {
         let installed = installed
             .split_whitespace()
             .nth(1)
@@ -515,7 +515,7 @@ fn create_view(parent: &gtk::ApplicationWindow) -> Rc<View> {
     body.append(&label(&format!("Current version  {CURRENT}"), "muted"));
     let status = wrapped("Ready to check", "row-title");
     body.append(&status);
-    let detail = wrapped("Updates come from Zynokss/arch-forge on GitHub.", "muted");
+    let detail = wrapped("Updates come from Zynokss/archforge on GitHub.", "muted");
     detail.set_selectable(true);
     body.append(&detail);
     let notes_view = gtk::TextView::builder()
