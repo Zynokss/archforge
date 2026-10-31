@@ -1,0 +1,91 @@
+/* Application styles. Color roles are supplied by theme.rs. */
+window { background: @forge_bg; color: @forge_fg; font-family: "Google Sans Flex", "Rubik", sans-serif; font-size: 14px; }
+headerbar { min-height: 26px; padding: 0 12px; background: @forge_bg; border: none; box-shadow: none; }
+headerbar button { min-width: 20px; min-height: 20px; padding: 3px; margin: 0 7px; background: transparent; border: none; border-radius: 5px; }
+headerbar button:hover { background: @forge_high; }
+.sidebar { background: linear-gradient(115deg, @forge_surface, @forge_bg); border: 1px solid alpha(@forge_muted, 0.14); border-radius: 12px; margin: 0 0 8px 8px; padding: 20px 10px 12px; }
+.brand { font-size: 21px; font-weight: 600; letter-spacing: -0.5px; }
+.brand-sub { color: @forge_muted; font-size: 12px; margin-top: 4px; }
+.brand-icon { margin-right: 4px; }
+button { background: linear-gradient(120deg, @forge_high, mix(@forge_high, @forge_surface, 0.5)); color: @forge_fg; border: 1px solid alpha(@forge_muted, 0.17); border-radius: 9px; padding: 9px 15px; min-height: 20px; font-weight: 500; box-shadow: none; transition: background 130ms ease, color 130ms ease; }
+button:hover { background: @forge_highest; border-color: alpha(@forge_muted, 0.35); }
+button:active { background: @forge_container; }
+button:focus-visible, entry:focus-within { outline: 2px solid @forge_primary; outline-offset: 2px; }
+button:disabled { opacity: 0.45; }
+button.primary { background: linear-gradient(115deg, @forge_primary, mix(@forge_primary, @forge_fg, 0.1)); color: @forge_on_primary; border-color: alpha(@forge_primary, 0.75); }
+button.primary:hover { background: mix(@forge_primary, @forge_fg, 0.17); }
+button.destructive { background: #713033; color: #ffdadb; border-color: #a24950; }
+button.destructive:hover { background: #8b474c; }
+button.nav { background: transparent; padding: 14px 16px; border: 1px solid transparent; color: @forge_muted; margin-bottom: 7px; }
+button.nav:hover { background: @forge_high; color: @forge_fg; }
+button.nav.active { background: linear-gradient(100deg, @forge_container, mix(@forge_container, @forge_bg, 0.35)); color: @forge_fg; border-left: 3px solid @forge_primary; padding-left: 14px; }
+.nav.active .material-symbol { color: @forge_primary; }
+.nav .material-symbol, .nav image { margin-right: 18px; }
+.sidebar-foot { background: alpha(@forge_high, 0.6); border: 1px solid alpha(@forge_muted, 0.07); border-radius: 10px; padding: 13px; margin-top: 14px; }
+.appearance-button { background: transparent; border: none; padding: 12px 15px; }
+.content { padding: 0 22px 10px 26px; }
+.eyebrow { color: @forge_muted; font-size: 12px; margin-bottom: 7px; }
+.page-title { font-size: 33px; font-weight: 650; letter-spacing: -0.8px; }
+.subtitle { color: @forge_muted; font-size: 13px; margin-top: 7px; margin-bottom: 5px; }
+.section-heading { margin-bottom: 13px; }
+.section-title { font-size: 18px; font-weight: 600; letter-spacing: -0.3px; }
+.muted, .row-sub { color: @forge_muted; font-size: 12px; }
+.tiny { color: @forge_muted; font-size: 11px; }
+.mono { font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace; font-size: 12px; color: @forge_muted; }
+.panel, .metric { background: linear-gradient(110deg, @forge_surface, mix(@forge_bg, @forge_surface, 0.65)); border: 1px solid alpha(@forge_muted, 0.15); border-radius: 12px; padding: 17px; }
+.metric-label { font-size: 15px; font-weight: 600; }
+.metric-value { font-size: 33px; font-weight: 650; letter-spacing: -0.8px; font-feature-settings: "tnum"; }
+.metric-detail { color: @forge_muted; font-size: 12px; }
+.metric-icon { color: @forge_muted; font-size: 28px; }
+.gauge, .chart { color: @forge_primary; }
+.axis-label { color: @forge_muted; font-size: 9px; }
+.info-row { padding: 15px 12px; min-height: 34px; border-bottom: 1px solid alpha(@forge_muted, 0.12); }
+.info-row:last-child { border-bottom: none; }
+.system-overview .info-row { min-height: 54px; }
+.gaming-stack .tool-row { min-height: 50px; }
+.info-row .material-symbol { color: @forge_muted; }
+.row-title { font-size: 14px; font-weight: 500; }
+.tool-row { background: linear-gradient(120deg, alpha(@forge_high, 0.62), alpha(@forge_high, 0.22)); border: 1px solid alpha(@forge_muted, 0.11); border-radius: 10px; padding: 11px 13px; margin-top: 4px; }
+.tool-row .material-symbol { color: @forge_muted; font-size: 26px; }
+.tool-icon { background: alpha(@forge_highest, 0.3); border-radius: 9px; padding: 8px; }
+.action-tile { padding: 15px 14px; margin-top: 10px; }
+.badge { background: @forge_high; color: @forge_fg; border-radius: 30px; padding: 5px 11px; font-size: 11px; }
+.installed { color: #79dc9c; font-size: 12px; }
+.warning { color: #f4c16f; font-size: 12px; }
+.notice { background: alpha(@forge_surface, 0.85); border: 1px solid alpha(@forge_muted, 0.13); border-radius: 10px; padding: 10px 14px; }
+.notice .material-symbol { color: #f4c16f; }
+.command { background: @forge_bg; border: 1px solid alpha(@forge_muted, 0.18); border-radius: 9px; padding: 13px 15px; font-family: "JetBrainsMono Nerd Font", monospace; font-size: 13px; }
+.path-label { color: @forge_muted; font-family: "JetBrainsMono Nerd Font", monospace; font-size: 11px; }
+.step-number { background: @forge_primary; color: @forge_on_primary; font-size: 13px; min-width: 25px; min-height: 25px; border-radius: 30px; }
+.footer { background: linear-gradient(110deg, @forge_surface, @forge_bg); border: 1px solid alpha(@forge_muted, 0.14); border-radius: 11px; padding: 9px; }
+.footer-item { padding: 0 13px; }
+.footer-item .material-symbol { color: @forge_muted; font-size: 25px; }
+.footer-value { color: @forge_fg; font-size: 13px; font-weight: 500; }
+.table-columns { padding: 12px 12px 9px; }
+.package-row { padding: 6px 12px; border-bottom: 1px solid alpha(@forge_muted, 0.1); }
+.package-row:hover { background: @forge_high; }
+.package-row .material-symbol { font-size: 21px; color: @forge_muted; }
+entry, searchentry, dropdown > button { background: @forge_high; color: @forge_fg; border: 1px solid alpha(@forge_muted, 0.2); border-radius: 9px; padding: 9px 12px; min-height: 20px; }
+entry placeholder, searchentry placeholder { color: @forge_muted; }
+textview, textview text { background: @forge_bg; color: @forge_fg; font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace; font-size: 12px; }
+.console { border: 1px solid alpha(@forge_muted, 0.18); border-radius: 9px; }
+selection { background: @forge_container; color: @forge_on_container; }
+scrolledwindow { border: none; }
+separator { background: alpha(@forge_muted, 0.18); }
+.material-symbol { font-family: "Material Symbols Rounded"; font-size: 23px; font-weight: 350; }
+popover > contents { background: @forge_surface; color: @forge_fg; border: 1px solid @forge_highest; border-radius: 14px; padding: 16px; }
+.palette-choice { border-radius: 9px; min-width: 175px; padding: 10px; }
+.palette-choice.chosen { background: @forge_container; color: @forge_on_container; }
+.swatch { min-width: 24px; min-height: 24px; border-radius: 30px; }
+.crimson-swatch { background: #ff6467; }
+.sage-swatch { background: #c1d0b5; }
+.lavender-swatch { background: #d5b7ee; }
+.sand-swatch { background: #dfc48c; }
+.desktop-swatch { background: @forge_primary; }
+.palette-description { margin-top: 10px; font-size: 12px; color: @forge_muted; }
+.compact .content { padding-left: 16px; padding-right: 16px; }
+.compact .page-title { font-size: 27px; }
+.compact .metric { padding: 12px; }
+.compact .metric-value { font-size: 26px; }
+.compact .metric-detail { font-size: 10px; }
+.compact .metric .gauge { min-width: 44px; }

@@ -1,0 +1,20 @@
+[package]
+name = "arch-forge"
+version = "0.3.0"
+edition = "2024"
+description = "Native Arch Linux system and gaming utility"
+authors = ["Zynokss"]
+repository = "https://github.com/Zynokss/arch-forge"
+license = "MIT"
+
+[dependencies]
+gtk = { package = "gtk4", version = "0.11", features = ["v4_20"] }
+libc = "0.2"
+serde_json = "1"
+
+[profile.dev]
+debug = 0
+
+[profile.release]
+lto = "thin"
+strip = true

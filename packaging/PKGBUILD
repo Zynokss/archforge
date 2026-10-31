@@ -1,0 +1,39 @@
+# Local source package. Run ../scripts/dist.sh from this directory first.
+pkgname=arch-forge
+pkgver=0.3.0
+pkgrel=2
+pkgdesc='Native Arch Linux system and gaming utility'
+url='https://github.com/Zynokss/arch-forge'
+arch=('x86_64' 'aarch64')
+license=('MIT')
+depends=('gtk4>=4.20' 'pacman' 'polkit' 'systemd' 'pciutils')
+makedepends=('rust' 'pkgconf')
+optdepends=(
+  'pacman-contrib: package cache maintenance and update checks'
+  'vulkan-tools: Vulkan diagnostics'
+  'gamemode: gaming performance requests and self-test'
+  'mangohud: in-game hardware overlay'
+  'ttf-material-symbols-variable: rounded Material icons'
+)
+source=("$pkgname-$pkgver.tar.gz")
+# This PKGBUILD consumes a locally generated development archive.
+sha256sums=('SKIP')
+
+prepare() {
+  cd "$pkgname-$pkgver"
+  cargo fetch --locked
+}
+
+build() {
+  cd "$pkgname-$pkgver"
+  cargo build --release --frozen
+}
+
+
+package() {
+  cd "$pkgname-$pkgver"
+  install -Dm755 target/release/arch-forge "$pkgdir/usr/bin/arch-forge"
+  install -Dm644 data/io.github.zynokss.ArchForge.desktop "$pkgdir/usr/share/applications/io.github.zynokss.ArchForge.desktop"
+  install -Dm644 data/io.github.zynokss.ArchForge.svg "$pkgdir/usr/share/icons/hicolor/scalable/apps/io.github.zynokss.ArchForge.svg"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
