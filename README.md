@@ -24,7 +24,8 @@ Arch Forge brings system readings, gaming tools, package information, and mainte
 On **Arch Linux x86_64**, install the latest prebuilt release with:
 
 ```sh
-sudo pacman -U https://github.com/Zynokss/archforge/releases/latest/download/archforge-x86_64.pkg.tar.zst
+curl -fLO https://github.com/Zynokss/archforge/releases/latest/download/archforge-x86_64.pkg.tar.zst
+sudo pacman -U ./archforge-x86_64.pkg.tar.zst
 ```
 
 This installs Arch Forge system-wide, including its **application-menu shortcut and red icon**. Open your application launcher, search for **Arch Forge**, and launch it. You only need the terminal for installation; Rust and a source checkout are not required.
