@@ -1,4 +1,8 @@
-use crate::{button, column, label, row, system, wrapped};
+use crate::{
+    button,
+    dialogs::{Status, Surface, Tone},
+    system,
+};
 use gtk::{glib, prelude::*};
 use semver::Version;
 use serde_json::Value;
@@ -7,6 +11,7 @@ use std::{
     fs::File,
     io::Read,
     os::unix::fs::PermissionsExt,
+    os::unix::process::CommandExt,
     path::Path,
     process::{Command, Stdio},
     rc::Rc,
@@ -308,12 +313,19 @@ pub(crate) fn install_result(output: std::process::Output) -> Result<(), String>
 struct View {
     launcher: gtk::Button,
     dialog: gtk::Window,
+    summary: Status,
+    version: gtk::Label,
+    notes_expander: gtk::Expander,
+    notes_title: gtk::Label,
+    notes_subtitle: gtk::Label,
+    close: gtk::Button,
     status: gtk::Label,
     detail: gtk::Label,
     notes: gtk::TextBuffer,
     spinner: gtk::Spinner,
     check: gtk::Button,
     update: gtk::Button,
+    restart: gtk::Button,
     release_link: gtk::LinkButton,
     busy: Rc<Cell<bool>>,
     installing: Rc<Cell<bool>>,
@@ -324,8 +336,7 @@ impl View {
     fn activity(&self, text: &str, detail: &str) {
         self.busy.set(true);
         self.spinner.start();
-        self.status.set_text(text);
-        self.detail.set_text(detail);
+        self.summary.set(Tone::Busy, text, detail, "Working…");
         self.check.set_sensitive(false);
         self.update.set_sensitive(false);
     }
@@ -344,7 +355,7 @@ impl View {
     }
 
     fn check(self: &Rc<Self>) {
-        if self.busy.get() {
+        if self.busy.get() || self.installing.get() {
             return;
         }
         self.activity(
@@ -370,11 +381,20 @@ impl View {
 
     fn checked(&self, result: Result<Option<Release>, String>) {
         *self.available.borrow_mut() = None;
+        self.restart.set_visible(false);
         self.update.set_visible(false);
         self.launcher.set_label("App updates");
         self.launcher.remove_css_class("primary");
         self.release_link.set_uri(RELEASES);
         self.notes.set_text("");
+        self.notes_title.set_text("Release notes");
+        self.notes_subtitle
+            .set_text("What's included in the available version");
+        self.notes_expander.set_expanded(false);
+        self.close.set_label("Close");
+        self.close.remove_css_class("primary");
+        self.check.remove_css_class("primary");
+        self.check.set_label("Check again");
         match result {
             Ok(Some(release))
                 if release.version > Version::parse(CURRENT).expect("Cargo version") =>
@@ -386,7 +406,15 @@ impl View {
                     } else {
                         "A new version is available, but there is no downloadable package for this architecture yet. See the release page for options."
                     });
+                self.summary.set(
+                    Tone::Ready,
+                    &self.status.text(),
+                    &self.detail.text(),
+                    "Update available",
+                );
+                self.version.set_text(&release.version.to_string());
                 self.notes.set_text(&release.notes);
+                self.notes_expander.set_expanded(true);
                 self.release_link.set_uri(&release.page);
                 self.launcher.set_label("Update available");
                 self.launcher.add_css_class("primary");
@@ -395,26 +423,47 @@ impl View {
                 self.update.set_visible(release.asset.is_some());
                 *self.available.borrow_mut() = Some(release);
             }
-            Ok(Some(_)) => {
-                self.status.set_text("You're up to date");
-                self.detail.set_text(&format!(
-                    "Arch Forge {CURRENT} is the latest version for this installation."
-                ));
+            Ok(Some(release)) => {
+                self.summary.set(
+                    Tone::Success,
+                    "You're up to date",
+                    &format!(
+                        "Arch Forge {CURRENT} is installed. No newer stable release is available."
+                    ),
+                    "No update needed",
+                );
+                self.version.set_text(&release.version.to_string());
+                self.close.set_label("Done");
+                self.close.add_css_class("primary");
             }
             Ok(None) => {
-                self.status.set_text("No releases published yet");
-                self.detail.set_text("Arch Forge will offer an update here when a stable GitHub release is published.");
+                self.summary.set(Tone::Ready, "No releases published yet", "Arch Forge will offer an update here when a stable GitHub release is published.", "No update needed");
+                self.version.set_text("Not published");
             }
             Err(error) => {
-                self.status.set_text("Could not check for updates");
-                self.detail.set_text(&error);
+                self.summary.set(
+                    Tone::Error,
+                    "Could not check for updates",
+                    error
+                        .lines()
+                        .next()
+                        .unwrap_or("The check returned an error. Please try again."),
+                    "Try checking again",
+                );
+                self.notes_title.set_text("Technical details");
+                self.notes_subtitle
+                    .set_text("Update check response and error");
+                self.notes.set_text(&error);
+                self.notes_expander.set_expanded(true);
+                self.version.set_text("Unavailable");
+                self.check.add_css_class("primary");
             }
         }
         self.idle();
     }
 
     fn update(self: &Rc<Self>) {
-        if self.busy.get() {
+        if self.busy.get() || self.installing.get() {
             return;
         }
         let Some(release) = self.available.borrow().clone() else {
@@ -444,16 +493,27 @@ impl View {
     }
 
     fn failed(&self, error: &str) {
-        self.status.set_text("Update not installed");
-        self.detail.set_text(error);
+        self.summary.set(
+            Tone::Error,
+            "Update not installed",
+            error
+                .lines()
+                .next()
+                .unwrap_or("The update could not finish. See the details below."),
+            "You can try again",
+        );
+        self.notes_title.set_text("Technical details");
+        self.notes_subtitle
+            .set_text("Download or installation output");
+        self.notes.set_text(error);
+        self.notes_expander.set_expanded(true);
         self.launcher.set_label("Update available");
         self.idle();
     }
 
     fn install(self: &Rc<Self>, download: Download, version: Version) {
         self.installing.set(true);
-        self.status.set_text("Installing update…");
-        self.detail.set_text("Complete your desktop's authentication prompt. Keep Arch Forge open until pacman finishes.");
+        self.summary.set(Tone::Busy, "Installing update…", "Complete your desktop's authentication prompt. Keep Arch Forge open until pacman finishes.", "Installing package");
         let (tx, rx) = mpsc::channel();
         std::thread::spawn(move || {
             let _ = tx.send(install(download));
@@ -472,93 +532,132 @@ impl View {
             glib::ControlFlow::Break
         });
     }
-    fn installed(&self, result: Result<(), String>, version: &Version) {
+    fn installed(self: &Rc<Self>, result: Result<(), String>, version: &Version) {
         match result {
             Ok(()) => {
                 *self.available.borrow_mut() = None;
-                self.status
-                    .set_text(&format!("Arch Forge {version} is installed"));
-                self.detail
-                    .set_text("Close and reopen Arch Forge to use the new version.");
-                self.launcher.set_label("Updated · reopen app");
+                self.summary.set(
+                    Tone::Busy,
+                    &format!("Arch Forge {version} is installed"),
+                    "The new version will open automatically when running operations finish.",
+                    "Restarting…",
+                );
+                self.launcher.set_label("Restarting…");
                 self.update.set_visible(false);
                 self.idle();
                 self.check.set_sensitive(false);
+                self.restart_when_idle();
             }
             Err(error) => self.failed(&error),
         }
     }
+    fn restart_when_idle(self: &Rc<Self>) {
+        self.restart.set_sensitive(false);
+        self.installing.set(true);
+        self.spinner.start();
+        let view = self.clone();
+        glib::timeout_add_local(Duration::from_millis(300), move || {
+            if crate::ACTIVE_JOBS.load(std::sync::atomic::Ordering::SeqCst) > 0 {
+                view.detail.set_text("Update installed. Waiting for running operations before restarting automatically…");
+                return glib::ControlFlow::Continue;
+            }
+            let error = restart();
+            view.installing.set(false);
+            view.summary.set(
+                Tone::Warning,
+                "Update installed · restart needed",
+                &format!("Automatic restart failed: {error}. You can retry or reopen Arch Forge."),
+                "Restart needed",
+            );
+            view.restart.set_visible(true);
+            view.restart.set_sensitive(true);
+            glib::ControlFlow::Break
+        });
+    }
+}
+
+pub(crate) fn restart_command() -> Command {
+    Command::new("/usr/bin/archforge")
+}
+fn restart() -> std::io::Error {
+    restart_command().exec()
 }
 
 fn create_view(parent: &gtk::ApplicationWindow) -> Rc<View> {
     let launcher = button("App updates", false);
     launcher.set_margin_top(8);
-    let dialog = gtk::Window::builder()
-        .title("Arch Forge updates")
-        .transient_for(parent)
-        .modal(true)
-        .hide_on_close(true)
-        .destroy_with_parent(true)
-        .default_width(600)
-        .default_height(500)
-        .build();
-    let body = column(16);
-    for set_margin in [
-        gtk::prelude::WidgetExt::set_margin_top,
-        gtk::prelude::WidgetExt::set_margin_bottom,
-        gtk::prelude::WidgetExt::set_margin_start,
-        gtk::prelude::WidgetExt::set_margin_end,
-    ] {
-        set_margin(body.upcast_ref::<gtk::Widget>(), 24);
-    }
-    body.append(&label("Arch Forge updates", "section-title"));
-    body.append(&label(&format!("Current version  {CURRENT}"), "muted"));
-    let status = wrapped("Ready to check", "row-title");
-    body.append(&status);
-    let detail = wrapped("Updates come from Zynokss/archforge on GitHub.", "muted");
-    detail.set_selectable(true);
-    body.append(&detail);
-    let notes_view = gtk::TextView::builder()
-        .editable(false)
-        .cursor_visible(false)
-        .wrap_mode(gtk::WrapMode::WordChar)
-        .top_margin(12)
-        .bottom_margin(12)
-        .left_margin(12)
-        .right_margin(12)
-        .build();
-    let notes = notes_view.buffer();
-    let scroll = gtk::ScrolledWindow::builder()
-        .child(&notes_view)
-        .vexpand(true)
-        .min_content_height(130)
-        .build();
-    scroll.add_css_class("console");
-    body.append(&scroll);
+    let (dialog, surface) = Surface::new(
+        parent,
+        "Arch Forge updates",
+        "Get the latest stable release directly from GitHub.",
+        "\u{e863}",
+        "software-update-available-symbolic",
+    );
+    dialog.set_hide_on_close(true);
+    surface.status.set(
+        Tone::Ready,
+        "Ready to check",
+        "Updates come from Zynokss/archforge on GitHub.",
+        "Stable release channel",
+    );
+    let [_, version] = surface
+        .stats(
+            ("Current version", CURRENT, "applications-system-symbolic"),
+            ("Latest stable", "—", "software-update-available-symbolic"),
+        )
+        .values;
+    let status = surface.status.title.clone();
+    let detail = surface.status.detail.clone();
+    let spinner = surface.status.spinner.clone();
+    let details = surface.details(
+        "Release notes",
+        "What's included in the available version",
+        None,
+    );
+    details.output.add_css_class("dialog-release-notes");
+    details.output.set_pixels_above_lines(3);
+    details.output.set_pixels_below_lines(3);
+    let notes = details.output.buffer();
     let release_link = gtk::LinkButton::with_label(RELEASES, "Release notes on GitHub");
-    release_link.set_halign(gtk::Align::Start);
-    body.append(&release_link);
-    let actions = row(10);
-    let spinner = gtk::Spinner::new();
-    actions.append(&spinner);
-    let check = button("Check again", false);
-    actions.append(&check);
+    let copy = button("Copy details", false);
+    copy.set_sensitive(false);
+    let weak = copy.downgrade();
+    notes.connect_changed(move |b| {
+        if let Some(copy) = weak.upgrade() {
+            copy.set_sensitive(b.char_count() > 0);
+        }
+    });
+    let buffer = notes.clone();
+    copy.connect_clicked(move |_| {
+        crate::copy_text(&buffer.text(&buffer.start_iter(), &buffer.end_iter(), false));
+    });
+    details.tools.append(&copy);
+    details.tools.append(&release_link);
+    let check = button("Check now", false);
+    surface.actions.append(&check);
+    let close = surface.close_button(&dialog, "Close", false);
     let update = button("Update", true);
     update.set_visible(false);
-    actions.append(&update);
-    let close = button("Close", false);
-    actions.append(&close);
-    body.append(&actions);
-    dialog.set_child(Some(&body));
+    surface.actions.append(&update);
+    let restart = button("Restart now", true);
+    restart.set_visible(false);
+    surface.actions.append(&restart);
     let view = Rc::new(View {
         launcher: launcher.clone(),
         dialog,
+        summary: surface.status,
+        version,
+        notes_expander: details.expander,
+        notes_title: details.title,
+        notes_subtitle: details.subtitle,
+        close: close.clone(),
         status,
         detail,
         notes,
         spinner,
         check,
         update,
+        restart,
         release_link,
         busy: Rc::new(Cell::new(false)),
         installing: Rc::new(Cell::new(false)),
@@ -599,6 +698,12 @@ fn create_view(parent: &gtk::ApplicationWindow) -> Rc<View> {
     view.update.connect_clicked(move |_| {
         if let Some(v) = weak.upgrade() {
             v.update();
+        }
+    });
+    let weak = Rc::downgrade(&view);
+    view.restart.connect_clicked(move |_| {
+        if let Some(v) = weak.upgrade() {
+            v.restart_when_idle();
         }
     });
     // The parent owns the view; callbacks use weak references to avoid cycles.

@@ -73,6 +73,21 @@ impl Inventory {
             .map(|s| s.lines().filter(|l| !l.trim().is_empty()).count()),
         }
     }
+    pub fn unmanaged_tool(&self, name: &str) -> bool {
+        use std::os::unix::fs::PermissionsExt;
+        let binary = match name {
+            "steam" => "steam",
+            "gamemode" => "gamemoderun",
+            "mangohud" => "mangohud",
+            "vulkan-tools" => "vulkaninfo",
+            "gamescope" => "gamescope",
+            "lutris" => "lutris",
+            _ => return false,
+        };
+        !self.installed(name)
+            && std::fs::metadata(format!("/usr/bin/{binary}"))
+                .is_ok_and(|m| m.is_file() && m.permissions().mode() & 0o111 != 0)
+    }
     pub fn installed(&self, name: &str) -> bool {
         self.packages.iter().any(|p| p.name == name)
     }
@@ -340,7 +355,9 @@ pub fn run(program: &str, args: &[&str], seconds: u64) -> Result<String, String>
         kill_command_group(&mut child);
         // Reap without blocking the result if a privileged helper or a process
         // in kernel I/O wait cannot be terminated by the desktop user.
+        let operation = (program == "/usr/bin/pkexec").then(crate::Operation::new);
         thread::spawn(move || {
+            let _operation = operation;
             let _ = child.wait();
         });
         return Err(format!(

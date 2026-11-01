@@ -1,8 +1,19 @@
+mod app_locations;
+mod app_storage;
+mod cleanups;
+mod diagnostic_results;
+mod dialogs;
 mod jobs;
+mod loadout_styles;
+mod loadout_ui;
+mod loadouts;
+mod package_cache;
 mod screens;
 mod system;
 mod terminal;
 mod theme;
+mod tool_icons;
+mod tools;
 mod updater;
 use screens::{cleanup, diagnostics, gaming, overview, packages};
 
@@ -10,6 +21,20 @@ use gtk::{glib, prelude::*};
 use jobs::Job;
 use std::{cell::RefCell, rc::Rc, sync::mpsc, time::Duration};
 use system::{Inventory, Metrics, Sampler};
+
+static ACTIVE_JOBS: std::sync::atomic::AtomicUsize = std::sync::atomic::AtomicUsize::new(0);
+struct Operation;
+impl Operation {
+    fn new() -> Self {
+        ACTIVE_JOBS.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
+        Self
+    }
+}
+impl Drop for Operation {
+    fn drop(&mut self) {
+        ACTIVE_JOBS.fetch_sub(1, std::sync::atomic::Ordering::SeqCst);
+    }
+}
 
 const APP_ID: &str = "io.github.zynokss.ArchForge";
 
@@ -98,6 +123,8 @@ fn adapt_layout(window: &gtk::ApplicationWindow) {
                 "metric-grid",
                 "page-header",
                 "command-toolbar",
+                "catalog-columns",
+                "loadout-columns",
                 "footer",
             ]
             .iter()
@@ -108,6 +135,23 @@ fn adapt_layout(window: &gtk::ApplicationWindow) {
             } else {
                 gtk::Orientation::Horizontal
             });
+            if b.has_css_class("loadout-columns") {
+                let mut child = b.first_child();
+                let mut index = 0;
+                while let Some(c) = child {
+                    c.set_width_request(if compact {
+                        -1
+                    } else {
+                        match index {
+                            0 => 180,
+                            2 => 265,
+                            _ => -1,
+                        }
+                    });
+                    index += 1;
+                    child = c.next_sibling();
+                }
+            }
             if b.has_css_class("split-layout")
                 && let Some(aside) = b.last_child()
             {
@@ -222,11 +266,7 @@ fn update_cache_summary(
             .as_ref()
             .map(String::as_str)
             .unwrap_or_else(|e| e.as_str());
-        let size = output.lines().find_map(|line| {
-            let mut words = line.split_whitespace();
-            let size = words.next()?;
-            (words.next()? == "/var/cache/pacman/pkg").then_some(size)
-        });
+        let size = package_cache::measured_size(output);
         match (result.is_ok(), size) {
             (true, Some(size)) => format!("{size} total"),
             (false, Some(size)) => format!("{size} partial · authentication needed"),
@@ -249,153 +289,7 @@ fn update_cache_summary(
 }
 
 fn show_job(parent: &gtk::ApplicationWindow, job: Job) {
-    let dialog = gtk::Window::builder()
-        .title(job.title())
-        .transient_for(parent)
-        .modal(true)
-        .default_width(780)
-        .default_height(520)
-        .build();
-    let body = column(16);
-    body.set_margin_top(24);
-    body.set_margin_bottom(24);
-    body.set_margin_start(24);
-    body.set_margin_end(24);
-    body.append(&label(job.title(), "section-title"));
-    let command = wrapped(&job.display_command(), "mono");
-    command.set_selectable(true);
-    body.append(&command);
-    let status = wrapped(
-        if job.privileged() {
-            job.confirmation()
-        } else {
-            "Running diagnostic…"
-        },
-        "notice",
-    );
-    body.append(&status);
-    let output = gtk::TextView::builder()
-        .editable(false)
-        .cursor_visible(false)
-        .wrap_mode(gtk::WrapMode::WordChar)
-        .left_margin(14)
-        .right_margin(14)
-        .top_margin(14)
-        .bottom_margin(14)
-        .build();
-    output.add_css_class("console");
-    let scroll = gtk::ScrolledWindow::builder()
-        .child(&output)
-        .vexpand(true)
-        .build();
-    body.append(&scroll);
-    let controls = row(10);
-    let copy = button("Copy output", false);
-    copy.set_sensitive(false);
-    controls.append(&copy);
-    let copy_cmd = button("Copy command", false);
-    copy_cmd.connect_clicked(move |_| copy_text(&job.display_command()));
-    controls.append(&copy_cmd);
-    let retry = button("Measure with authentication", true);
-    let retry_parent = parent.downgrade();
-    let previous_dialog = dialog.downgrade();
-    retry.connect_clicked(move |_| {
-        if let Some(previous) = previous_dialog.upgrade() {
-            previous.close();
-        }
-        if let Some(parent) = retry_parent.upgrade() {
-            show_job(&parent, Job::CacheSizeAdmin);
-        }
-    });
-    retry.set_visible(false);
-    controls.append(&retry);
-    let spacer = row(0);
-    spacer.set_hexpand(true);
-    controls.append(&spacer);
-    let execute = button("Authenticate & run", false);
-    execute.add_css_class(if job.destructive() {
-        "destructive"
-    } else {
-        "primary"
-    });
-    if job.privileged() {
-        controls.append(&execute);
-    }
-    let close = button("Close", false);
-    controls.append(&close);
-    body.append(&controls);
-    dialog.set_child(Some(&body));
-    let d = dialog.downgrade();
-    close.connect_clicked(move |_| {
-        if let Some(d) = d.upgrade() {
-            d.close();
-        }
-    });
-    let view = output.clone();
-    copy.connect_clicked(move |_| {
-        let buffer = view.buffer();
-        copy_text(&buffer.text(&buffer.start_iter(), &buffer.end_iter(), false));
-    });
-    let summary_parent = parent.downgrade();
-    let start: Rc<dyn Fn()> = Rc::new(move || {
-        status.set_text("Running… You can close this window; the operation will continue.");
-        output.buffer().set_text("");
-        copy.set_sensitive(false);
-        let (tx, rx) = mpsc::channel();
-        std::thread::spawn(move || {
-            let _ = tx.send(job.execute());
-        });
-        let status = status.clone();
-        let output = output.clone();
-        let copy = copy.clone();
-        let retry = retry.clone();
-        let summary_parent = summary_parent.clone();
-        glib::timeout_add_local(Duration::from_millis(100), move || match rx.try_recv() {
-            Ok(result) => {
-                if let Some(parent) = summary_parent.upgrade() {
-                    update_cache_summary(&parent, job, &result);
-                }
-                let (message, data) = match result {
-                    Ok(data) => (
-                        "Completed",
-                        if data.trim().is_empty() {
-                            "Command completed without output.".into()
-                        } else {
-                            data
-                        },
-                    ),
-                    Err(error) if job.cache_permission_error(&error) => {
-                        retry.set_visible(true);
-                        (
-                            "Incomplete size: some pacman folders are protected. Authenticate to measure the full cache.",
-                            format!(
-                                "PARTIAL MEASUREMENT: the size below excludes unreadable folders.\n\n{error}"
-                            ),
-                        )
-                    }
-                    Err(error) => ("Could not complete. See the details below.", error),
-                };
-                status.set_text(message);
-                output.buffer().set_text(&data);
-                copy.set_sensitive(true);
-                glib::ControlFlow::Break
-            }
-            Err(mpsc::TryRecvError::Empty) => glib::ControlFlow::Continue,
-            Err(_) => {
-                status.set_text("Worker disconnected.");
-                glib::ControlFlow::Break
-            }
-        });
-    });
-    if job.privileged() {
-        execute.connect_clicked(move |b| {
-            b.set_sensitive(false);
-            start();
-        });
-    } else {
-        start();
-    }
-    dialog.present();
+    dialogs::show_job(parent, job);
 }
 
 fn job_button(parent: &gtk::ApplicationWindow, text: &str, job: Job, primary: bool) -> gtk::Button {
@@ -411,22 +305,18 @@ fn job_button(parent: &gtk::ApplicationWindow, text: &str, job: Job, primary: bo
 
 fn show_setup(parent: &gtk::ApplicationWindow, name: &str, package: &str, installed: bool) {
     let title = format!("{} {name}", if installed { "Configure" } else { "Install" });
-    let d = gtk::Window::builder()
-        .title(&title)
-        .transient_for(parent)
-        .modal(true)
-        .default_width(600)
-        .build();
-    let body = column(18);
-    for setter in [
-        gtk::Widget::set_margin_top,
-        gtk::Widget::set_margin_bottom,
-        gtk::Widget::set_margin_start,
-        gtk::Widget::set_margin_end,
-    ] {
-        setter(body.upcast_ref(), 24);
-    }
-    body.append(&label(&title, "section-title"));
+    let (d, surface) = dialogs::Surface::new(
+        parent,
+        &title,
+        if installed {
+            "Set up your gaming tools for the way you play."
+        } else {
+            "Review the package and command before installing."
+        },
+        "\u{ea28}",
+        "applications-games-symbolic",
+    );
+    let body = surface.content.clone();
     let (description, cmd) = if installed {
         match package {
             "steam" => (
@@ -460,33 +350,77 @@ fn show_setup(parent: &gtk::ApplicationWindow, name: &str, package: &str, instal
             format!("sudo pacman -Syu --needed {package}"),
         )
     };
-    body.append(&wrapped(description, "subtitle"));
+    let launch_option = cmd.contains("%command%");
+    surface.status.set(
+        dialogs::Tone::Ready,
+        if !installed {
+            "Review before installing"
+        } else if launch_option {
+            "Ready for your Steam settings"
+        } else {
+            "Your tool is ready to launch"
+        },
+        description,
+        "No command has run",
+    );
+    surface.stats(
+        ("Package", package, "package-x-generic-symbolic"),
+        (
+            "Action",
+            if !installed {
+                "Install"
+            } else if launch_option {
+                "Steam launch option"
+            } else {
+                "Launch"
+            },
+            "applications-games-symbolic",
+        ),
+    );
+    let card = column(10);
+    card.add_css_class("dialog-command-card");
+    card.append(&label(
+        if launch_option {
+            "Steam launch option"
+        } else {
+            "Terminal command"
+        },
+        "dialog-stat-caption",
+    ));
     let l = wrapped(&cmd, "mono");
     l.set_selectable(true);
-    body.append(&l);
-    if package == "steam" {
+    card.append(&l);
+    let command_tools = row(10);
+    command_tools.add_css_class("dialog-command-tools");
+    card.append(&command_tools);
+    body.append(&card);
+    if package == "steam" && !installed {
         body.append(&wrapped("Steam requires the multilib repository and suitable 32-bit GPU drivers. Check the ArchWiki Steam installation guide before installing.", "notice"));
     }
-    let status = wrapped("", "muted");
-    status.set_visible(false);
-    body.append(&status);
-    let buttons = row(12);
-    let launch_option = cmd.contains("%command%");
+    let status = surface.status.clone();
+    let buttons = surface.actions.clone();
+    surface.close_button(&d, "Close", false);
     if !launch_option {
         let open = button("Open terminal", true);
         let proposed = cmd.clone();
         let status = status.clone();
+        let setup = d.downgrade();
         open.connect_clicked(move |b| {
             b.set_sensitive(false);
-            status.set_visible(true);
-            status.set_text("Opening terminal…");
+            status.set(
+                dialogs::Tone::Busy,
+                "Opening your terminal…",
+                "The command will wait for you to review it and press Enter.",
+                "Starting terminal",
+            );
             let (tx, rx) = mpsc::channel();
             let proposed = proposed.clone();
             std::thread::spawn(move || {
                 let _ = tx.send(terminal::open(&proposed));
             });
             let button = b.downgrade();
-            let status = status.downgrade();
+            let status = status.clone();
+            let setup = setup.clone();
             glib::timeout_add_local(Duration::from_millis(100), move || {
                 let result = match rx.try_recv() {
                     Ok(result) => result,
@@ -495,14 +429,22 @@ fn show_setup(parent: &gtk::ApplicationWindow, name: &str, package: &str, instal
                         Err("The terminal launcher stopped. You can still copy the command.".into())
                     }
                 };
+                if result.is_ok() {
+                    if let Some(setup) = setup.upgrade() {
+                        setup.close();
+                    }
+                    return glib::ControlFlow::Break;
+                }
                 if let Some(button) = button.upgrade() {
                     button.set_sensitive(true);
                 }
-                if let Some(status) = status.upgrade() {
-                    status.set_text(match &result {
-                        Ok(()) => "Terminal opened. Review the command and press Enter to run it.",
-                        Err(error) => error,
-                    });
+                if let Err(error) = &result {
+                    status.set(
+                        dialogs::Tone::Error,
+                        "Could not open your terminal",
+                        error,
+                        "Copy command is available",
+                    );
                 }
                 glib::ControlFlow::Break
             });
@@ -521,7 +463,7 @@ fn show_setup(parent: &gtk::ApplicationWindow, name: &str, package: &str, instal
         copy_text(&cmd);
         b.set_label("Copied");
     });
-    buttons.append(&copy);
+    command_tools.append(&copy);
     let wiki = gtk::LinkButton::with_label(
         &format!(
             "https://wiki.archlinux.org/title/{}",
@@ -541,18 +483,118 @@ fn show_setup(parent: &gtk::ApplicationWindow, name: &str, package: &str, instal
         ),
         "ArchWiki guide",
     );
-    buttons.append(&wiki);
-    let close = button("Close", false);
-    let dc = d.downgrade();
-    close.connect_clicked(move |_| {
-        if let Some(dc) = dc.upgrade() {
-            dc.close();
-        }
-    });
-    buttons.append(&close);
-    body.append(&buttons);
-    d.set_child(Some(&body));
+    command_tools.append(&wiki);
     d.present();
+}
+
+fn refresh_pages(
+    window: &gtk::ApplicationWindow,
+    stack: &gtk::Stack,
+    inv: &Inventory,
+    metrics: Rc<RefCell<Metrics>>,
+) {
+    fn search(widget: &gtk::Widget) -> Option<gtk::SearchEntry> {
+        if let Some(e) = widget.downcast_ref::<gtk::SearchEntry>() {
+            return Some(e.clone());
+        }
+        let mut child = widget.first_child();
+        while let Some(w) = child {
+            if let Some(e) = search(&w) {
+                return Some(e);
+            }
+            child = w.next_sibling();
+        }
+        None
+    }
+    fn sort(widget: &gtk::Widget) -> Option<gtk::DropDown> {
+        if let Some(e) = widget.downcast_ref::<gtk::DropDown>() {
+            return Some(e.clone());
+        }
+        let mut child = widget.first_child();
+        while let Some(w) = child {
+            if let Some(e) = sort(&w) {
+                return Some(e);
+            }
+            child = w.next_sibling();
+        }
+        None
+    }
+    let order = stack
+        .child_by_name("packages")
+        .and_then(|w| sort(&w))
+        .map(|e| e.selected());
+    let selected = stack
+        .visible_child_name()
+        .map(|s| s.to_string())
+        .filter(|s| s != "loading")
+        .unwrap_or_else(|| "overview".into());
+    let query = stack
+        .child_by_name("packages")
+        .and_then(|w| search(&w))
+        .map(|e| e.text());
+    let tool_selection = stack
+        .child_by_name("tools")
+        .map(|page| tools::selection(&page));
+    for (name, page) in [
+        ("overview", overview(window, inv, metrics)),
+        ("gaming", gaming(window, inv)),
+        ("cleanup", cleanup(window)),
+        ("packages", packages(window, inv)),
+        ("diagnostics", diagnostics(window, inv)),
+        ("tools", tools::page(window)),
+    ] {
+        let offset = stack
+            .child_by_name(name)
+            .and_then(|w| w.downcast::<gtk::ScrolledWindow>().ok())
+            .map(|w| w.vadjustment().value())
+            .unwrap_or(0.0);
+        if let Some(old) = stack.child_by_name(name) {
+            stack.remove(&old);
+        }
+        if let Some(error) = &inv.error {
+            page.append(&wrapped(
+                &format!("Package database could not be read: {error}"),
+                "notice",
+            ));
+        }
+        if name == "packages"
+            && let Some(query) = &query
+            && let Some(e) = search(page.upcast_ref())
+        {
+            e.set_text(query);
+        }
+        if name == "packages"
+            && let Some(order) = order
+            && let Some(e) = sort(page.upcast_ref())
+        {
+            e.set_selected(order);
+        }
+        if name == "tools"
+            && let Some(state) = &tool_selection
+        {
+            tools::restore(page.upcast_ref(), state);
+        }
+        let scroll = gtk::ScrolledWindow::builder()
+            .hscrollbar_policy(gtk::PolicyType::Never)
+            .child(&page)
+            .build();
+        stack.add_named(&scroll, Some(name));
+        let weak = scroll.downgrade();
+        glib::idle_add_local_once(move || {
+            if let Some(scroll) = weak.upgrade() {
+                scroll.vadjustment().set_value(offset);
+            }
+        });
+    }
+    if stack.child_by_name("loadouts").is_none() {
+        let page = loadout_ui::page(window);
+        let scroll = gtk::ScrolledWindow::builder()
+            .hscrollbar_policy(gtk::PolicyType::Never)
+            .child(&page)
+            .build();
+        stack.add_named(&scroll, Some("loadouts"));
+    }
+    stack.set_visible_child_name(&selected);
 }
 
 fn build(app: &gtk::Application) {
@@ -601,7 +643,7 @@ fn build(app: &gtk::Application) {
     brand_text.append(&label("System workbench", "brand-sub"));
     brand.append(&brand_text);
     sidebar.append(&brand);
-    brand.set_margin_bottom(42);
+    brand.set_margin_bottom(20);
     let stack = gtk::Stack::new();
     stack.set_hexpand(true);
     stack.set_vexpand(true);
@@ -611,6 +653,7 @@ fn build(app: &gtk::Application) {
     let navs = Rc::new(RefCell::new(Vec::<gtk::Button>::new()));
     for (name, title, glyph, icon) in [
         ("overview", "Overview", "\u{e871}", "view-grid-symbolic"),
+        ("tools", "Tools", "\u{e8b8}", "applications-system-symbolic"),
         (
             "gaming",
             "Gaming",
@@ -630,6 +673,7 @@ fn build(app: &gtk::Application) {
             "\u{eaa2}",
             "utilities-terminal-symbolic",
         ),
+        ("loadouts", "Loadouts", "\u{e161}", "document-save-symbolic"),
     ] {
         let b = gtk::Button::new();
         b.add_css_class("nav");
@@ -650,6 +694,48 @@ fn build(app: &gtk::Application) {
             stack.set_visible_child_name(name);
         });
     }
+    let find = button("Find a tool   Ctrl+K", false);
+    find.add_css_class("find-tool");
+    sidebar.insert_child_after(&find, Some(&brand));
+    let search_navs = navs.clone();
+    let search_stack = stack.clone();
+    find.connect_clicked(move |_| {
+        if search_stack.child_by_name("tools").is_some() {
+            search_navs.borrow()[1].emit_clicked();
+            if let Some(page) = search_stack.child_by_name("tools") {
+                tools::focus_search(&page);
+            }
+        }
+    });
+    let keys = gtk::EventControllerKey::new();
+    keys.set_propagation_phase(gtk::PropagationPhase::Capture);
+    let jump_navs = navs.clone();
+    let jump_stack = stack.clone();
+    keys.connect_key_pressed(move |_, key, _, state| {
+        if !state.contains(gtk::gdk::ModifierType::CONTROL_MASK) {
+            return glib::Propagation::Proceed;
+        }
+        if key == gtk::gdk::Key::k || key == gtk::gdk::Key::K {
+            if jump_stack.child_by_name("tools").is_some() {
+                jump_navs.borrow()[1].emit_clicked();
+                if let Some(page) = jump_stack.child_by_name("tools") {
+                    tools::focus_search(&page);
+                }
+            }
+            return glib::Propagation::Stop;
+        }
+        if let Some(digit) = key.to_unicode().and_then(|c| c.to_digit(10))
+            && (1..=7).contains(&digit)
+        {
+            let nav = jump_navs.borrow()[digit as usize - 1].clone();
+            if nav.is_sensitive() {
+                nav.emit_clicked();
+            }
+            return glib::Propagation::Stop;
+        }
+        glib::Propagation::Proceed
+    });
+    window.add_controller(keys);
     let spacer = column(0);
     spacer.set_vexpand(true);
     sidebar.append(&spacer);
@@ -683,43 +769,49 @@ fn build(app: &gtk::Application) {
         *mc.borrow_mut() = sampler.sample();
         glib::ControlFlow::Continue
     });
-    let (tx, rx) = mpsc::channel();
-    std::thread::spawn(move || {
-        let _ = tx.send(Inventory::load());
-    });
-    let w = window.clone();
-    glib::timeout_add_local(Duration::from_millis(100), move || {
-        if let Ok(inv) = rx.try_recv() {
-            let pages = [
-                ("overview", overview(&w, &inv, metrics.clone())),
-                ("gaming", gaming(&w, &inv)),
-                ("cleanup", cleanup(&w)),
-                ("packages", packages(&w, &inv)),
-                ("diagnostics", diagnostics(&w, &inv)),
-            ];
-            for (name, page) in pages {
-                if let Some(error) = &inv.error {
-                    page.append(&wrapped(
-                        &format!("Package database could not be read: {error}"),
-                        "notice",
-                    ));
-                }
-                let scroll = gtk::ScrolledWindow::builder()
-                    .hscrollbar_policy(gtk::PolicyType::Never)
-                    .child(&page)
-                    .build();
-                stack.add_named(&scroll, Some(name));
-            }
-            for b in navs.borrow().iter() {
-                b.set_sensitive(true);
-            }
-            navs.borrow()[0].add_css_class("active");
-            stack.set_visible_child_name("overview");
-            adapt_layout(&w);
-            glib::ControlFlow::Break
-        } else {
-            glib::ControlFlow::Continue
+    let w = window.downgrade();
+    let mut fingerprint = None;
+    let mut pending = None;
+    glib::timeout_add_local(Duration::from_millis(500), move || {
+        let Some(w) = w.upgrade() else {
+            return glib::ControlFlow::Break;
+        };
+        let stamp = std::fs::metadata("/var/lib/pacman/local")
+            .and_then(|m| m.modified())
+            .ok();
+        if pending.is_none()
+            && (fingerprint.is_none() || fingerprint != Some(stamp))
+            && !std::path::Path::new("/var/lib/pacman/db.lck").exists()
+        {
+            let (tx, rx) = mpsc::channel();
+            std::thread::spawn(move || {
+                let _ = tx.send(Inventory::load());
+            });
+            pending = Some(rx);
+            fingerprint = Some(stamp);
         }
+        let Some(rx) = pending.as_ref() else {
+            return glib::ControlFlow::Continue;
+        };
+        let inv = match rx.try_recv() {
+            Ok(inv) => inv,
+            Err(mpsc::TryRecvError::Empty) => return glib::ControlFlow::Continue,
+            Err(_) => {
+                pending = None;
+                fingerprint = None;
+                return glib::ControlFlow::Continue;
+            }
+        };
+        pending = None;
+        refresh_pages(&w, &stack, &inv, metrics.clone());
+        for b in navs.borrow().iter() {
+            b.set_sensitive(true);
+        }
+        if !navs.borrow().iter().any(|b| b.has_css_class("active")) {
+            navs.borrow()[0].add_css_class("active");
+        }
+        adapt_layout(&w);
+        glib::ControlFlow::Continue
     });
     window.present();
 }
@@ -729,6 +821,54 @@ fn main() -> glib::ExitCode {
     if !system::is_arch(&system::read("/etc/os-release")) {
         eprintln!("Arch Forge supports Arch Linux only (ID=arch).");
         return glib::ExitCode::FAILURE;
+    }
+    let args: Vec<String> = std::env::args().skip(1).collect();
+    if args
+        .first()
+        .is_some_and(|a| a == "--set-package-cache" || a == "--reset-package-cache")
+    {
+        let destination = match args.as_slice() {
+            [flag, path] if flag == "--set-package-cache" => Some(path.as_str()),
+            [flag] if flag == "--reset-package-cache" => None,
+            _ => {
+                eprintln!(
+                    "Usage: archforge --set-package-cache /absolute/path | --reset-package-cache"
+                );
+                return glib::ExitCode::FAILURE;
+            }
+        };
+        return match package_cache::apply(destination) {
+            Ok(message) => {
+                println!("{message}");
+                glib::ExitCode::SUCCESS
+            }
+            Err(error) => {
+                eprintln!("{error}");
+                glib::ExitCode::FAILURE
+            }
+        };
+    }
+    if args
+        .first()
+        .is_some_and(|a| a == "--add-app-drive" || a == "--check-app-drive")
+    {
+        let result = match args.as_slice() {
+            [flag, id, mount] if flag == "--add-app-drive" => app_storage::register(id, mount),
+            [flag, id] if flag == "--check-app-drive" => app_storage::check(id),
+            _ => Err(
+                "Usage: archforge --add-app-drive name /mount/path | --check-app-drive name".into(),
+            ),
+        };
+        return match result {
+            Ok(message) => {
+                println!("{message}");
+                glib::ExitCode::SUCCESS
+            }
+            Err(error) => {
+                eprintln!("{error}");
+                glib::ExitCode::FAILURE
+            }
+        };
     }
     // SAFETY: geteuid has no preconditions.
     if unsafe { libc::geteuid() } == 0 {

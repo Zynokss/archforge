@@ -1,7 +1,8 @@
 use std::{fs, path::PathBuf};
 
-pub const OPTIONS: [(&str, &str); 5] = [
+pub const OPTIONS: [(&str, &str); 6] = [
     ("crimson", "Crimson"),
+    ("amber", "Amber Night"),
     ("sage", "Sage"),
     ("lavender", "Lavender"),
     ("sand", "Sand"),
@@ -116,6 +117,10 @@ impl Palette {
                 "#101214", "#181b1e", "#21252a", "#30353c", "#f0f1f3", "#aeb7c3", "#ff6467",
                 "#26090c", "#452327", "#ffdadc",
             ],
+            "amber" => [
+                "#141719", "#1c2023", "#252a2e", "#343a40", "#eff1f3", "#b4bcc4", "#ffb454",
+                "#251905", "#493824", "#ffe2b8",
+            ],
             "lavender" => [
                 "#17141b", "#201c25", "#2b2531", "#39303f", "#eee6f2", "#c4b8c9", "#d5b7ee",
                 "#392448", "#493653", "#f0d9ff",
@@ -158,7 +163,11 @@ impl Palette {
         if name != "desktop" {
             return (
                 Self::preset(name),
-                "Material colors for your workbench.".into(),
+                if name == "amber" {
+                    "Amber accents on cool charcoal surfaces.".into()
+                } else {
+                    "Material colors for your workbench.".into()
+                },
             );
         }
         match fs::read_to_string(state_home().join("quickshell/user/generated/colors.json")) {

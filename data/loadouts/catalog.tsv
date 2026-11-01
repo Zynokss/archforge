@@ -1,0 +1,122 @@
+# category|package|title|description|icon|source
+Essentials|base-devel|Build tools|Compile packages and AUR builds.|applications-development|repo
+Essentials|git|Git|Version control and configuration repositories.|git|repo
+Essentials|curl|curl|Transfer data from URLs.|utilities-terminal|repo
+Essentials|wget|Wget|Download files from the terminal.|folder-download|repo
+Essentials|rsync|Rsync|Copy and synchronize files.|folder-sync|repo
+Essentials|unzip|Unzip|Extract ZIP archives.|package-x-generic|repo
+Essentials|7zip|7-Zip|Create and extract compressed archives.|package-x-generic|repo
+Essentials|zip|Zip|Create ZIP archives.|package-x-generic|repo
+Essentials|xdg-utils|Desktop integration|Open links and files with desktop applications.|preferences-desktop|repo
+Essentials|xdg-user-dirs|Home folders|Manage standard Desktop and Downloads folders.|user-home|repo
+Essentials|man-db|Manual pages|Read installed command documentation.|help-browser|repo
+Essentials|bash-completion|Bash completion|Complete command arguments in Bash.|utilities-terminal|repo
+Essentials|nano|Nano|A straightforward terminal text editor.|accessories-text-editor|repo
+Browsers|firefox|Firefox|Mozilla's web browser.|firefox|repo
+Browsers|chromium|Chromium|Open-source Chromium web browser.|chromium|repo
+Browsers|falkon|Falkon|A lightweight Qt web browser.|falkon|repo
+Browsers|qutebrowser|Qutebrowser|A keyboard-driven web browser.|qutebrowser|repo
+Browsers|torbrowser-launcher|Tor Browser Launcher|Download and launch Tor Browser.|torbrowser-launcher|repo
+Browsers|google-chrome|Google Chrome|Google's browser, packaged through the AUR.|google-chrome|aur
+Browsers|brave-bin|Brave|Brave browser binary package from the AUR.|brave-browser|aur
+Development|neovim|Neovim|An extensible terminal editor.|nvim|repo
+Development|vim|Vim|A modal terminal editor.|vim|repo
+Development|helix|Helix|A terminal editor with language support.|helix|repo
+Development|code|Code - OSS|The open-source build of Visual Studio Code.|visual-studio-code|repo
+Development|visual-studio-code-bin|Visual Studio Code|Microsoft's binary distribution, from the AUR.|visual-studio-code|aur
+Development|kate|Kate|KDE's graphical code editor.|kate|repo
+Development|python|Python|Python language runtime.|python|repo
+Development|python-pip|pip|Python package tooling; prefer virtual environments.|python|repo
+Development|nodejs|Node.js|JavaScript runtime for development tools.|nodejs|repo
+Development|npm|npm|Node.js package manager.|nodejs|repo
+Development|rust|Rust|Rust compiler and Cargo build tooling.|applications-development|repo
+Development|go|Go|Go compiler and toolchain.|applications-development|repo
+Development|jdk-openjdk|OpenJDK|Java development kit.|java|repo
+Development|cmake|CMake|Configure native software builds.|cmake|repo
+Development|ninja|Ninja|A fast build executor.|applications-development|repo
+Development|meson|Meson|Native software build configuration.|applications-development|repo
+Development|gcc|GCC|GNU C and C++ compilers.|applications-development|repo
+Development|gdb|GDB|Debug native programs.|applications-development|repo
+Development|clang|Clang|LLVM C and C++ tooling.|applications-development|repo
+Development|docker|Docker|Container tooling; service setup is separate.|docker|repo
+Development|podman|Podman|Container tooling without a central daemon.|applications-development|repo
+Development|distrobox|Distrobox|Use development containers integrated with your home.|utilities-terminal|repo
+Gaming|steam|Steam|Game library and Proton compatibility tooling.|steam|repo
+Gaming|lutris|Lutris|Manage games across multiple runners.|lutris|repo
+Gaming|gamemode|GameMode|Request performance adjustments while gaming.|applications-games|repo
+Gaming|mangohud|MangoHud|An in-game performance overlay.|applications-games|repo
+Gaming|gamescope|Gamescope|Game scaling and display control.|video-display|repo
+Gaming|wine|Wine|Run supported Windows applications.|wine|repo
+Gaming|winetricks|Winetricks|Manage common Wine runtime components.|wine|repo
+Gaming|protontricks|Protontricks|Configure dependencies for Proton game prefixes.|steam|repo
+Gaming|vulkan-tools|Vulkan tools|Inspect Vulkan graphics support; not a GPU driver.|video-display|repo
+Media|obs-studio|OBS Studio|Record and stream video.|com.obsproject.Studio|repo
+Media|vlc|VLC|Play video and audio.|vlc|repo
+Media|mpv|mpv|A lightweight media player.|mpv|repo
+Media|ffmpeg|FFmpeg|Convert and inspect media files.|applications-multimedia|repo
+Media|gimp|GIMP|Edit raster images.|gimp|repo
+Media|krita|Krita|Digital painting and illustration.|krita|repo
+Media|inkscape|Inkscape|Edit vector artwork.|org.inkscape.Inkscape|repo
+Media|blender|Blender|3D modeling, rendering, and animation.|blender|repo
+Media|audacity|Audacity|Record and edit audio.|audacity|repo
+Media|kdenlive|Kdenlive|Edit video projects.|kdenlive|repo
+Media|handbrake|HandBrake|Transcode video files.|fr.handbrake.ghb|repo
+Media|strawberry|Strawberry|Manage and play a music collection.|strawberry|repo
+Media|spotify|Spotify|Spotify client from the AUR.|spotify|aur
+Communication|discord|Discord|Chat, calls, and communities.|discord|repo
+Communication|vesktop-bin|Vesktop|A community Discord client from the AUR.|vesktop|aur
+Communication|telegram-desktop|Telegram|Telegram desktop messaging.|telegram|repo
+Communication|signal-desktop|Signal|Signal desktop messaging.|signal-desktop|repo
+Communication|element-desktop|Element|A Matrix messaging client.|element|repo
+Communication|thunderbird|Thunderbird|Email, calendars, and contacts.|thunderbird|repo
+System utilities|qbittorrent|qBittorrent|Manage BitTorrent transfers.|qbittorrent|repo
+System utilities|syncthing|Syncthing|Synchronize files between your devices.|syncthing|repo
+System utilities|keepassxc|KeePassXC|Store passwords in a local encrypted database.|keepassxc|repo
+System utilities|btop|btop|Interactive CPU, memory, disk, and process monitoring.|btop|repo
+System utilities|fastfetch|Fastfetch|Display a system information summary.|fastfetch|repo
+System utilities|htop|htop|Inspect and manage running processes.|htop|repo
+System utilities|ncdu|ncdu|Explore disk usage from the terminal.|drive-harddisk|repo
+System utilities|gparted|GParted|Partition editor; review disk changes carefully.|gparted|repo
+System utilities|gnome-disk-utility|Disks|Inspect drives, filesystems, and device health.|org.gnome.DiskUtility|repo
+System utilities|timeshift|Timeshift|System snapshot tooling; requires separate setup.|timeshift|repo
+System utilities|pacman-contrib|Pacman utilities|Cache maintenance and repository update checks.|package-x-generic|repo
+System utilities|reflector|Reflector|Generate mirror lists; no automatic changes here.|network-server|repo
+System utilities|smartmontools|SMART tools|Inspect supported drive health information.|drive-harddisk|repo
+System utilities|flatpak|Flatpak|Install supported desktop apps in named app locations.|flatpak|repo
+System utilities|networkmanager|NetworkManager|Network connection management; service setup is separate.|network-wireless|repo
+System utilities|bluez|Bluetooth stack|Bluetooth support; service setup is separate.|bluetooth|repo
+System utilities|pipewire|PipeWire|Audio and video routing infrastructure.|audio-card|repo
+System utilities|wireplumber|WirePlumber|Session management for PipeWire.|audio-card|repo
+System utilities|pavucontrol|Volume control|Graphical mixer for compatible audio servers.|multimedia-volume-control|repo
+Desktop & styling|hyprland|Hyprland|A dynamic Wayland compositor.|video-display|repo
+Desktop & styling|plasma-meta|KDE Plasma|The Plasma desktop meta-package.|kde|repo
+Desktop & styling|gnome-shell|GNOME Shell|GNOME's desktop shell.|org.gnome.Settings|repo
+Desktop & styling|xfce4-session|Xfce session|The Xfce session manager.|xfce4|repo
+Desktop & styling|cinnamon|Cinnamon|The Cinnamon desktop environment.|cinnamon|repo
+Desktop & styling|sway|Sway|An i3-compatible Wayland compositor.|sway|repo
+Desktop & styling|kitty|Kitty|A GPU-accelerated terminal.|kitty|repo
+Desktop & styling|alacritty|Alacritty|A lightweight GPU-accelerated terminal.|Alacritty|repo
+Desktop & styling|starship|Starship|A configurable shell prompt; shell integration is separate.|utilities-terminal|repo
+Desktop & styling|fish|Fish|An interactive shell; login-shell changes are separate.|utilities-terminal|repo
+Desktop & styling|zsh|Zsh|An extensible interactive shell.|utilities-terminal|repo
+Desktop & styling|waybar|Waybar|A configurable bar for Wayland sessions.|preferences-desktop|repo
+Desktop & styling|fuzzel|Fuzzel|A Wayland application launcher.|system-search|repo
+Desktop & styling|rofi|Rofi|An application and window launcher.|system-search|repo
+Desktop & styling|wl-clipboard|Wayland clipboard|Copy and paste tools for Wayland.|edit-paste|repo
+Desktop & styling|papirus-icon-theme|Papirus icons|An icon theme for compatible desktops.|preferences-desktop-icons|repo
+Desktop & styling|noto-fonts|Noto fonts|General-purpose text fonts.|preferences-desktop-font|repo
+Desktop & styling|noto-fonts-emoji|Noto emoji|Emoji font coverage.|preferences-desktop-font|repo
+Desktop & styling|ttf-jetbrains-mono-nerd|JetBrains Mono Nerd Font|A programming font with additional symbols.|preferences-desktop-font|repo
+System utilities|dolphin|Dolphin|KDE's file manager.|system-file-manager|repo
+System utilities|thunar|Thunar|A lightweight graphical file manager.|system-file-manager|repo
+System utilities|nautilus|Files|GNOME's file manager.|org.gnome.Nautilus|repo
+System utilities|ark|Ark|KDE's archive manager.|ark|repo
+System utilities|file-roller|Archive Manager|GNOME's archive manager.|org.gnome.FileRoller|repo
+System utilities|bluez-utils|Bluetooth utilities|Inspect and pair supported Bluetooth devices.|bluetooth|repo
+System utilities|pipewire-pulse|PipeWire PulseAudio support|PulseAudio compatibility for a PipeWire setup.|audio-card|repo
+System utilities|pipewire-alsa|PipeWire ALSA support|ALSA application integration for PipeWire.|audio-card|repo
+Desktop & styling|adwaita-icon-theme|Adwaita icons|A standard icon theme for GTK desktops.|preferences-desktop-icons|repo
+Desktop & styling|konsole|Konsole|KDE's terminal emulator.|utilities-terminal|repo
+Desktop & styling|gnome-console|Console|GNOME's terminal emulator.|org.gnome.Console|repo
+Desktop & styling|gdm|GDM|GNOME login manager; enabling it is a separate choice.|preferences-system-login|repo
+Desktop & styling|sddm|SDDM|Login manager commonly used with Plasma; enabling it is separate.|preferences-system-login|repo

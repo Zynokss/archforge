@@ -492,7 +492,7 @@ pub(super) fn gaming(parent: &gtk::ApplicationWindow, inv: &Inventory) -> gtk::B
     let top = title("One launch option. Your tools, together.", "");
     let missing: Vec<_> = [("gamemode", "GameMode"), ("mangohud", "MangoHud")]
         .into_iter()
-        .filter(|(pkg, _)| !inv.installed(pkg))
+        .filter(|(pkg, _)| !inv.installed(pkg) && !inv.unmanaged_tool(pkg))
         .map(|(_, name)| name)
         .collect();
     if !missing.is_empty() {
@@ -536,9 +536,9 @@ pub(super) fn gaming(parent: &gtk::ApplicationWindow, inv: &Inventory) -> gtk::B
         "lutris",
     ]
     .iter()
-    .filter(|pkg| inv.installed(pkg))
+    .filter(|pkg| inv.installed(pkg) || inv.unmanaged_tool(pkg))
     .count();
-    top.append(&label(&format!("{installed} of 6 installed"), "badge"));
+    top.append(&label(&format!("{installed} of 6 detected"), "badge"));
     stack.append(&top);
     for (name, pkg, glyph, description) in [
         (
@@ -586,10 +586,13 @@ pub(super) fn gaming(parent: &gtk::ApplicationWindow, inv: &Inventory) -> gtk::B
         text.append(&label(name, "row-title"));
         text.append(&wrapped(description, "row-sub"));
         r.append(&text);
-        let has = inv.installed(pkg);
+        let unmanaged = inv.unmanaged_tool(pkg);
+        let has = inv.installed(pkg) || unmanaged;
         let state = label(
             if inv.error.is_some() {
                 "Unknown"
+            } else if unmanaged {
+                "Executable found"
             } else if has {
                 "Installed"
             } else {
@@ -652,7 +655,7 @@ pub(super) fn gaming(parent: &gtk::ApplicationWindow, inv: &Inventory) -> gtk::B
         ("\u{ea28}", "Gaming environment", "Tools for Linux gaming"),
         (
             "\u{e8f1}",
-            "Installed tools",
+            "Detected tools",
             &format!("{installed} of 6 detected"),
         ),
         (
@@ -678,9 +681,12 @@ pub(super) fn cleanup(parent: &gtk::ApplicationWindow) -> gtk::Box {
     let main = column(16);
     let cache = panel("panel");
     let top = title("Package cache", "\u{e2c7}");
-    top.append(&label("Keeps latest 3 versions", "badge"));
+    top.append(&label("Keeps latest 2 versions", "badge"));
     cache.append(&top);
-    cache.append(&label("/var/cache/pacman/pkg", "path-label"));
+    cache.append(&label(
+        "Directories configured in pacman.conf",
+        "path-label",
+    ));
     cache.append(&wrapped(
         "Older package versions can be useful for downgrades.",
         "subtitle",
@@ -713,9 +719,19 @@ pub(super) fn cleanup(parent: &gtk::ApplicationWindow) -> gtk::Box {
     cache.append(&tool_row(
         parent,
         "Clean older versions",
-        "Remove older cached packages, keeping 3 versions.",
+        "Remove older cached packages, keeping 2 versions.",
         "\u{e872}",
         &[("Review & clean", Job::CacheClean)],
+    ));
+    cache.append(&tool_row(
+        parent,
+        "Uninstalled package archives",
+        "Remove every cached version of packages that are no longer installed.",
+        "\u{e872}",
+        &[
+            ("Preview", Job::UninstalledPreview),
+            ("Review & clean", Job::UninstalledClean),
+        ],
     ));
     main.append(&cache);
     let logs = panel("panel");
@@ -723,7 +739,7 @@ pub(super) fn cleanup(parent: &gtk::ApplicationWindow) -> gtk::Box {
     logs.append(&tool_row(
         parent,
         "System journal",
-        "Measure stored logs or remove archived files older than 14 days.",
+        "Measure stored logs or remove archived files older than 7 days.",
         "\u{e873}",
         &[
             ("Measure", Job::JournalSize),
@@ -737,14 +753,68 @@ pub(super) fn cleanup(parent: &gtk::ApplicationWindow) -> gtk::Box {
         "\u{e1a1}",
         &[("Inspect", Job::Orphans)],
     ));
+    fn cleanup_row(
+        parent: &gtk::ApplicationWindow,
+        action: cleanups::Action,
+        description: &str,
+    ) -> gtk::Box {
+        let r = row(12);
+        r.add_css_class("tool-row");
+        let text = column(3);
+        text.set_hexpand(true);
+        text.append(&label(action.title(), "row-title"));
+        text.append(&wrapped(description, "row-sub"));
+        r.append(&text);
+        let b = button("Review", false);
+        let parent = parent.downgrade();
+        b.connect_clicked(move |_| {
+            if let Some(parent) = parent.upgrade() {
+                cleanups::show(&parent, action);
+            }
+        });
+        r.append(&b);
+        r
+    }
+    logs.append(&cleanup_row(
+        parent,
+        cleanups::Action::Orphans,
+        "Preview orphan dependencies, then review pacman's removal transaction in a terminal.",
+    ));
     main.append(&logs);
+    let personal = panel("panel");
+    personal.append(&title("Personal caches & Trash", "\u{e2c7}"));
+    for (action, description) in [
+        (
+            cleanups::Action::Trash,
+            "Permanently empty your home Trash, including its metadata.",
+        ),
+        (
+            cleanups::Action::YayCache,
+            "Remove reviewed contents of your default yay build cache.",
+        ),
+        (
+            cleanups::Action::PipCache,
+            "Remove downloaded Python package cache files.",
+        ),
+        (
+            cleanups::Action::Thumbnails,
+            "Clear thumbnails; apps regenerate them when needed.",
+        ),
+        (
+            cleanups::Action::Aur,
+            "Let yay review AUR cache cleanup as your regular user.",
+        ),
+    ] {
+        personal.append(&cleanup_row(parent, action, description));
+    }
+    main.append(&personal);
     let aside = column(16);
     let policy = panel("panel");
     policy.append(&title("Cleanup policy", "\u{e8b8}"));
-    policy.append(&info_row("Packages", "3 latest versions", "\u{e53b}"));
-    policy.append(&info_row("Journals", "14 days", "\u{e873}"));
+    policy.append(&info_row("Packages", "2 latest versions", "\u{e53b}"));
+    policy.append(&info_row("Journals", "7 days", "\u{e873}"));
     policy.append(&wrapped(
-        "Only archived journal files older than 14 days are eligible for removal.",
+        "Only archived journal files older than 7 days are eligible for removal.",
         "subtitle",
     ));
     policy.append(&read_only_card(
@@ -773,11 +843,11 @@ pub(super) fn cleanup(parent: &gtk::ApplicationWindow) -> gtk::Box {
     p.append(&split(&main, &aside));
     p.append(&footer(&[
         ("\u{e869}", "Manual cleanup", "You choose what to remove"),
-        ("\u{e53b}", "Package retention", "3 latest versions"),
+        ("\u{e53b}", "Package retention", "2 latest versions"),
         (
             "\u{e873}",
             "Journal retention",
-            "14 days, archived files only",
+            "7 days, archived files only",
         ),
     ]));
     p
@@ -902,7 +972,17 @@ pub(super) fn packages(parent: &gtk::ApplicationWindow, inv: &Inventory) -> gtk:
         *descending.borrow_mut() = s.selected() == 1;
         draw();
     });
+    let controllers = parent.observe_controllers();
+    let old: Vec<_> = (0..controllers.n_items())
+        .filter_map(|i| controllers.item(i))
+        .filter_map(|w| w.downcast::<gtk::EventController>().ok())
+        .filter(|c| c.name().as_deref() == Some("archforge-package-search"))
+        .collect();
+    for controller in old {
+        parent.remove_controller(&controller);
+    }
     let controller = gtk::EventControllerKey::new();
+    controller.set_name(Some("archforge-package-search"));
     let entry = search.downgrade();
     let page = p.downgrade();
     controller.connect_key_pressed(move |_, key, _, mods| {
@@ -930,6 +1010,79 @@ pub(super) fn packages(parent: &gtk::ApplicationWindow, inv: &Inventory) -> gtk:
     p
 }
 
+#[derive(Clone)]
+struct DiagnosticFindings {
+    panel: gtk::Box,
+    badge: gtk::Label,
+    title: gtk::Label,
+    detail: gtk::Label,
+    facts: gtk::Box,
+}
+impl DiagnosticFindings {
+    fn clear(&self, busy: bool) {
+        while let Some(child) = self.facts.first_child() {
+            self.facts.remove(&child);
+        }
+        self.tone(if busy { "busy" } else { "ready" });
+        self.badge.set_text(if busy {
+            "READING SYSTEM"
+        } else {
+            "READY TO INSPECT"
+        });
+        self.title.set_text(if busy {
+            "Collecting findings…"
+        } else {
+            "Your key findings"
+        });
+        self.detail.set_text(if busy {
+            "Waiting for this check to finish. Previous results have been cleared."
+        } else {
+            "Run a check to see its main results here, alongside the full command output."
+        });
+    }
+    fn tone(&self, tone: &str) {
+        for name in ["busy", "ready", "success", "warning", "error"] {
+            self.panel.remove_css_class(name);
+        }
+        self.panel.add_css_class(tone);
+    }
+    fn show(&self, job: Job, result: &Result<String, String>) {
+        let findings = crate::diagnostic_results::summarize(job, result);
+        while let Some(child) = self.facts.first_child() {
+            self.facts.remove(&child);
+        }
+        self.tone(findings.tone);
+        self.badge.set_text(match findings.tone {
+            "error" => "COMMAND ERROR",
+            "warning" => "REVIEW FINDINGS",
+            _ => "CHECK COMPLETE",
+        });
+        self.title.set_text(findings.title);
+        self.detail.set_text(findings.detail);
+        for finding in findings.facts {
+            let card = row(12);
+            card.add_css_class("finding-card");
+            let icon = gtk::Image::from_icon_name(finding.icon);
+            icon.set_pixel_size(22);
+            card.append(&icon);
+            let text = column(5);
+            text.set_hexpand(true);
+            text.append(&label(finding.caption, "tiny"));
+            let value = wrapped(&finding.value, "finding-value");
+            value.set_max_width_chars(26);
+            value.set_selectable(true);
+            if finding.caption.starts_with("Failed")
+                && finding.value.parse::<usize>().is_ok_and(|count| count > 0)
+            {
+                value.add_css_class("finding-attention");
+            }
+            text.append(&value);
+            card.append(&text);
+            self.facts.append(&card);
+        }
+    }
+}
+
 fn diagnostic_action(
     parent: &gtk::ApplicationWindow,
     name: &str,
@@ -937,9 +1090,16 @@ fn diagnostic_action(
     glyph: &str,
     button_text: &str,
     job: Job,
-    output: (&gtk::TextView, &gtk::Label, &gtk::Button, &Rc<Cell<u64>>),
+    output: (
+        &gtk::TextView,
+        &gtk::Label,
+        &gtk::Button,
+        &Rc<Cell<u64>>,
+        &DiagnosticFindings,
+    ),
 ) -> gtk::Box {
-    let (view, status, copy, generation) = output;
+    let (view, status, copy, generation, findings) = output;
+    let findings = findings.clone();
     let r = row(14);
     r.add_css_class("tool-row");
     let icon = symbol(glyph, "utilities-terminal-symbolic");
@@ -959,6 +1119,7 @@ fn diagnostic_action(
     b.connect_clicked(move |b| {
         let request = generation.get().wrapping_add(1);
         generation.set(request);
+        findings.clear(true);
         status.set_text(&format!("Running {}…", job.title()));
         view.buffer()
             .set_text(&format!("$ {}\n\nRunning…", job.display_command()));
@@ -974,6 +1135,7 @@ fn diagnostic_action(
         let button = b.clone();
         let parent = busy_parent.clone();
         let generation = generation.clone();
+        let findings = findings.clone();
         glib::timeout_add_local(Duration::from_millis(100), move || {
             if parent.upgrade().is_none() {
                 return glib::ControlFlow::Break;
@@ -984,6 +1146,7 @@ fn diagnostic_action(
                     if generation.get() != request {
                         return glib::ControlFlow::Break;
                     }
+                    findings.show(job, &result);
                     let (message, text) = match result {
                         Ok(text) => ("Completed", text),
                         Err(e) => ("Could not complete", e),
@@ -999,6 +1162,10 @@ fn diagnostic_action(
                 Err(_) => {
                     if generation.get() == request {
                         status.set_text("Worker disconnected");
+                        let error = "The diagnostic worker stopped unexpectedly. Please run the check again.".to_string();
+                        findings.show(job, &Err(error.clone()));
+                        view.buffer().set_text(&error);
+                        copy.set_sensitive(true);
                     }
                     button.set_sensitive(true);
                     glib::ControlFlow::Break
@@ -1027,6 +1194,8 @@ pub(super) fn diagnostics(parent: &gtk::ApplicationWindow, inv: &Inventory) -> g
         .bottom_margin(14)
         .build();
     view.add_css_class("console");
+    view.add_css_class("diagnostic-console");
+    crate::dialogs::style_output(&view.buffer());
     view.buffer().set_text(
         "$\n\nReady when you are\n\nRun an inspection above to view readable results here.",
     );
@@ -1038,11 +1207,35 @@ pub(super) fn diagnostics(parent: &gtk::ApplicationWindow, inv: &Inventory) -> g
         copy_text(&b.text(&b.start_iter(), &b.end_iter(), false));
     });
     let status = label("Ready when you are", "muted");
+    let finding_panel = panel("panel");
+    finding_panel.add_css_class("diagnostic-findings");
+    let badge = label("", "finding-badge");
+    let finding_title = wrapped("", "finding-title");
+    let finding_detail = wrapped("", "muted");
+    finding_detail.set_max_width_chars(36);
+    let facts = column(9);
+    finding_panel.append(&badge);
+    finding_panel.append(&finding_title);
+    finding_panel.append(&finding_detail);
+    finding_panel.append(&facts);
+    let findings = DiagnosticFindings {
+        panel: finding_panel,
+        badge,
+        title: finding_title,
+        detail: finding_detail,
+        facts,
+    };
+    findings.clear(false);
     let generation = Rc::new(Cell::new(0_u64));
     let main = column(16);
     let checks = panel("panel");
     checks.append(&title("Inspect your system", "\u{e8b9}"));
-    for (name, desc, glyph, action, job) in [
+    let check_grid = gtk::Grid::builder()
+        .column_homogeneous(true)
+        .column_spacing(8)
+        .row_spacing(8)
+        .build();
+    for (index, (name, desc, glyph, action, job)) in [
         (
             "Failed services",
             "Inspect units that failed in the current boot.",
@@ -1071,24 +1264,32 @@ pub(super) fn diagnostics(parent: &gtk::ApplicationWindow, inv: &Inventory) -> g
             "Generate",
             Job::Report,
         ),
-    ] {
-        checks.append(&diagnostic_action(
+    ]
+    .into_iter()
+    .enumerate()
+    {
+        let action = diagnostic_action(
             parent,
             name,
             desc,
             glyph,
             action,
             job,
-            (&view, &status, &copy, &generation),
-        ));
+            (&view, &status, &copy, &generation, &findings),
+        );
+        check_grid.attach(&action, (index % 2) as i32, (index / 2) as i32, 1, 1);
     }
+    checks.append(&check_grid);
     main.append(&checks);
     let output = panel("panel");
-    let top = title("Diagnostic output", "\u{eb8e}");
+    output.add_css_class("diagnostic-output");
+    output.set_vexpand(true);
+    let top = title("Command output", "\u{eb8e}");
     top.append(&copy);
     output.append(&top);
     let scroll = gtk::ScrolledWindow::builder()
         .child(&view)
+        .hscrollbar_policy(gtk::PolicyType::Never)
         .min_content_height(160)
         .vexpand(true)
         .build();
@@ -1096,6 +1297,7 @@ pub(super) fn diagnostics(parent: &gtk::ApplicationWindow, inv: &Inventory) -> g
     output.append(&status);
     main.append(&output);
     let aside = column(16);
+    aside.append(&findings.panel);
     let install = panel("panel");
     install.append(&title("Installation", "\u{e161}"));
     for (name, value) in [
@@ -1114,25 +1316,10 @@ pub(super) fn diagnostics(parent: &gtk::ApplicationWindow, inv: &Inventory) -> g
         "Generate a system report, review its contents, then copy its output when asking for help.",
         "\u{e873}",
     ));
-    aside.append(&install);
-    let available = panel("panel");
-    available.append(&title("Available checks", "\u{e8ef}"));
-    available.append(&read_only_card(
-        "Services",
-        "Inspect units that failed in the current boot.",
-        "\u{e8b8}",
-    ));
-    available.append(&read_only_card(
-        "Boot timing",
-        "See how long system services took to start.",
-        "\u{e9e4}",
-    ));
-    available.append(&read_only_card(
-        "Graphics drivers",
-        "Inspect Vulkan implementations, drivers, and detected GPUs.",
-        "\u{e322}",
-    ));
-    aside.append(&available);
+    let installation = gtk::Expander::new(Some("Installation details"));
+    installation.add_css_class("diagnostic-installation");
+    installation.set_child(Some(&install));
+    aside.append(&installation);
     p.append(&split(&main, &aside));
     p.append(&footer(&[
         ("\u{eb8e}", "Readable output", "Diagnostics in plain text"),
