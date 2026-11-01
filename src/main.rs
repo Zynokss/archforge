@@ -10,6 +10,9 @@ mod loadout_styles;
 mod loadout_ui;
 mod loadouts;
 mod package_cache;
+mod ricing;
+mod ricing_document;
+mod ricing_ui;
 mod screens;
 mod system;
 mod terminal;
@@ -134,6 +137,8 @@ fn adapt_layout(window: &gtk::ApplicationWindow) {
                 "command-toolbar",
                 "catalog-columns",
                 "loadout-columns",
+                "ricing-discover-layout",
+                "ricing-detail-layout",
                 "footer",
             ]
             .iter()
@@ -596,7 +601,7 @@ fn refresh_pages(
         });
     }
     if stack.child_by_name("loadouts").is_none() {
-        let page = loadout_ui::page(window);
+        let page = loadout_ui::page(window, stack);
         let scroll = gtk::ScrolledWindow::builder()
             .hscrollbar_policy(gtk::PolicyType::Never)
             .child(&page)
@@ -683,6 +688,12 @@ fn build(app: &gtk::Application) {
             "utilities-terminal-symbolic",
         ),
         ("loadouts", "Loadouts", "\u{e161}", "document-save-symbolic"),
+        (
+            "ricing",
+            "Ricing",
+            "\u{e3ae}",
+            "applications-graphics-symbolic",
+        ),
     ] {
         let b = gtk::Button::new();
         b.add_css_class("nav");
@@ -734,7 +745,7 @@ fn build(app: &gtk::Application) {
             return glib::Propagation::Stop;
         }
         if let Some(digit) = key.to_unicode().and_then(|c| c.to_digit(10))
-            && (1..=7).contains(&digit)
+            && (1..=8).contains(&digit)
         {
             let nav = jump_navs.borrow()[digit as usize - 1].clone();
             if nav.is_sensitive() {
@@ -884,7 +895,13 @@ fn main() -> glib::ExitCode {
         eprintln!("Run Arch Forge as your regular desktop user, never as root.");
         return glib::ExitCode::FAILURE;
     }
-    let app = gtk::Application::builder().application_id(APP_ID).build();
+    let app = gtk::Application::builder()
+        .application_id(if std::env::var_os("ARCH_FORGE_PREVIEW").is_some() {
+            "io.github.archforge.Preview"
+        } else {
+            APP_ID
+        })
+        .build();
     app.connect_activate(build);
     app.run()
 }

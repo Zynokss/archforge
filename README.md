@@ -156,3 +156,7 @@ The image-inspired **Amber Night** app palette is available under **Appearance**
 ### Application artwork
 
 Loadouts ships with selected [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) and [Simple Icons](https://github.com/simple-icons/simple-icons) artwork, so app logos are available even before the apps are installed. A shared offline resolver uses a recognizable app logo first, then a package function symbol, a category symbol, and finally a generic package outline. Functional symbols are bundled local SVGs; no icon theme or runtime download is required. Source code and functional symbols are MIT licensed; application artwork licenses and attribution are listed in [the icon notices](data/app-icons/NOTICE.md).
+
+### Ricing
+
+Browse curated community desktop setups in the Ricing sidebar tab. Discover real repository screenshots, open a setup for its gallery and formatted README, and review documented installation methods before opening a terminal. Downloaded previews are cached locally. Installation instructions include upstream links and compatibility notes; opening a setup never runs its installer.

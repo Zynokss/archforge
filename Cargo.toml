@@ -1,6 +1,6 @@
 [package]
 name = "archforge"
-version = "0.7.0"
+version = "0.9.1"
 edition = "2024"
 description = "Native Arch Linux system and gaming utility"
 authors = ["Zynokss"]
@@ -13,6 +13,8 @@ libc = "0.2"
 serde_json = "1"
 semver = "1"
 tempfile = "3"
+pulldown-cmark = "0.13.6"
+scraper = "0.29.0"
 
 [profile.dev]
 debug = 0

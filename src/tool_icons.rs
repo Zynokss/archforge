@@ -11,6 +11,7 @@ pub(crate) enum Glyph {
     Search,
     History,
     Drive,
+    Monitor,
     Mount,
     Pie,
     Services,
@@ -168,6 +169,11 @@ pub(crate) fn icon(glyph: Glyph, size: i32) -> gtk::DrawingArea {
                 ]);
                 line(&[(3., 16.), (21., 16.)]);
                 circle(17., 18.5, 0.6);
+            }
+            Glyph::Monitor => {
+                rect(3., 4., 18., 13.);
+                line(&[(8., 21.), (16., 21.)]);
+                line(&[(12., 17.), (12., 21.)]);
             }
             Glyph::Mount => {
                 rect(3., 3., 18., 7.);

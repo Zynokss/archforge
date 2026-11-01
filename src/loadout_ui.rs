@@ -42,6 +42,7 @@ struct View {
     apply: gtk::Button,
     category_buttons: Vec<gtk::Button>,
     library_tab: gtk::Stack,
+    ricing: gtk::Box,
     packages: RefCell<crate::loadout_state::Snapshot>,
     scanning: Cell<bool>,
     status_filter: Cell<u32>,
@@ -1125,6 +1126,15 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
     top.append(&import);
     top.append(&capture);
     page.append(&top);
+    let workspace_tabs = gtk::Stack::new();
+    workspace_tabs.set_vhomogeneous(false);
+    workspace_tabs.set_vexpand(true);
+    let workspace_switcher = gtk::StackSwitcher::new();
+    workspace_switcher.set_stack(Some(&workspace_tabs));
+    workspace_switcher.set_visible(false);
+    page.append(&workspace_switcher);
+    let packages_workspace = column(14);
+    packages_workspace.set_vexpand(true);
     let profile_bar = row(12);
     profile_bar.add_css_class("loadout-profile");
     profile_bar.append(&crate::tool_icons::icon(
@@ -1140,7 +1150,7 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
     profile_bar.append(&profile_name);
     let save = button("Save selection", false);
     profile_bar.append(&save);
-    page.append(&profile_bar);
+    packages_workspace.append(&profile_bar);
     let body = row(14);
     body.add_css_class("loadout-columns");
     body.set_vexpand(true);
@@ -1175,13 +1185,6 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
     let center = column(10);
     center.set_hexpand(true);
     center.add_css_class("loadout-panel");
-    let library_tab = gtk::Stack::new();
-    library_tab.set_vhomogeneous(false);
-    library_tab.set_hhomogeneous(false);
-    library_tab.set_vexpand(true);
-    let switcher = gtk::StackSwitcher::new();
-    switcher.set_stack(Some(&library_tab));
-    center.append(&switcher);
     let packages = column(8);
     let scan_bar = row(8);
     scan_bar.add_css_class("loadout-scan-toolbar");
@@ -1288,7 +1291,7 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
     let add = button("Add", false);
     custom.append(&add);
     packages.append(&custom);
-    library_tab.add_titled(&packages, Some("packages"), "Packages");
+    center.append(&packages);
     let styling = column(10);
     styling.append(&label("Desktop kits & starter dotfiles", "section-title"));
     let kit_row = row(8);
@@ -1324,8 +1327,7 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
         .build();
     styling.append(&label("Checked dotfiles", "row-title"));
     styling.append(&file_scroll);
-    library_tab.add_titled(&styling, Some("dotfiles"), "Dotfiles & desktops");
-    center.append(&library_tab);
+    let ricing_page = crate::ricing_ui::page(parent, styling.upcast());
     body.append(&center);
     let side = column(8);
     side.add_css_class("loadout-panel");
@@ -1402,7 +1404,7 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
         .hexpand(false)
         .build();
     body.append(&side_scroll);
-    page.append(&body);
+    packages_workspace.append(&body);
     let command_panel = column(5);
     command_panel.add_css_class("loadout-command");
     let command_heading = row(10);
@@ -1424,12 +1426,15 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
         .propagate_natural_height(true)
         .build();
     command_panel.append(&command_scroll);
-    page.append(&command_panel);
+    packages_workspace.append(&command_panel);
     let status = wrapped(
         "Profiles cover packages and checked dotfiles. Personal data and system setup need their own backup; keep your loadout on another drive.",
         "tiny",
     );
-    page.append(&status);
+    packages_workspace.append(&status);
+    workspace_tabs.add_titled(&packages_workspace, Some("packages"), "Packages");
+
+    page.append(&workspace_tabs);
     let view = Rc::new(View {
         parent: parent.downgrade(),
         profile: RefCell::new(Profile::default()),
@@ -1458,7 +1463,8 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
         export: export.clone(),
         apply: apply.clone(),
         category_buttons,
-        library_tab: library_tab.clone(),
+        library_tab: workspace_tabs.clone(),
+        ricing: ricing_page,
         packages: RefCell::new(crate::loadout_state::Snapshot::default()),
         scanning: Cell::new(false),
         status_filter: Cell::new(0),
@@ -1756,6 +1762,12 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
     });
     (page, view)
 }
-pub(crate) fn page(parent: &gtk::ApplicationWindow) -> gtk::Box {
-    create(parent).0
+pub(crate) fn page(parent: &gtk::ApplicationWindow, stack: &gtk::Stack) -> gtk::Box {
+    let (page, view) = create(parent);
+    let scroll = gtk::ScrolledWindow::builder()
+        .hscrollbar_policy(gtk::PolicyType::Never)
+        .child(&view.ricing)
+        .build();
+    stack.add_named(&scroll, Some("ricing"));
+    page
 }
