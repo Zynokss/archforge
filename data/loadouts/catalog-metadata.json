@@ -1,0 +1,5358 @@
+{
+  "verified_at": "2026-11-01",
+  "architecture_checked": "x86_64",
+  "pkgstats_month": "2026-10",
+  "pkgstats_reports": 34496,
+  "pkgstats_source": "https://pkgstats.archlinux.de/api/packages?startMonth=202610&endMonth=202610",
+  "methodology": "https://pkgstats.archlinux.de/methodology",
+  "packages": {
+    "0ad": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://play0ad.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/0ad/",
+      "version": "0.28.0-3",
+      "pkgstats_percent": 2.12
+    },
+    "7zip": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.7-zip.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/7zip/",
+      "version": "26.05-1",
+      "pkgstats_percent": 75.54
+    },
+    "abiword": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.gnome.org/World/AbiWord",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/abiword/",
+      "version": "3.0.8-2",
+      "pkgstats_percent": 2.01
+    },
+    "adw-gtk-theme": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/lassekongo83/adw-gtk3",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/adw-gtk-theme/",
+      "version": "6.5-1",
+      "pkgstats_percent": 15.13
+    },
+    "adwaita-fonts": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.gnome.org/GNOME/adwaita-fonts",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/adwaita-fonts/",
+      "version": "51.0-2",
+      "pkgstats_percent": 91.89
+    },
+    "adwaita-icon-theme": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.gnome.org/GNOME/adwaita-icon-theme",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/adwaita-icon-theme/",
+      "version": "51.0-1",
+      "pkgstats_percent": 92.11
+    },
+    "age": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/FiloSottile/age",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/age/",
+      "version": "1.3.2-1",
+      "pkgstats_percent": 4.41
+    },
+    "aichat": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/sigoden/aichat",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/aichat/",
+      "version": "0.30.0-4",
+      "pkgstats_percent": 1.42
+    },
+    "aider-chat": {
+      "source": "aur",
+      "upstream": "https://github.com/Aider-AI/aider",
+      "package_page": "https://aur.archlinux.org/packages/aider-chat",
+      "version": "0.86.2-3",
+      "maintainer": "Auerhuhn",
+      "votes": 6,
+      "recipe_sha256": "d66b635d19223719e213493bd052f6d2e4d5b1b0529a7c1cf291aec9a2c9d929",
+      "pkgstats_percent": 0.05
+    },
+    "alacritty": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/alacritty/alacritty",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/alacritty/",
+      "version": "0.17.0-1",
+      "pkgstats_percent": 26.69
+    },
+    "alsa-utils": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.alsa-project.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/alsa-utils/",
+      "version": "1.2.16-1",
+      "pkgstats_percent": 59.1
+    },
+    "android-studio": {
+      "source": "aur",
+      "upstream": "https://developer.android.com/",
+      "package_page": "https://aur.archlinux.org/packages/android-studio",
+      "version": "2026.2.2.8-1",
+      "maintainer": "kordianbruck",
+      "votes": 1146,
+      "recipe_sha256": "03b678c214cb9b5ef771bc9b4153a78a87ae14cc18138b0ad06664f22380b7b2",
+      "pkgstats_percent": 6.93
+    },
+    "android-tools": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://developer.android.com/tools",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/android-tools/",
+      "version": "37.0.0.p1-1",
+      "pkgstats_percent": 39.19
+    },
+    "anki": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.ankiweb.net/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/anki/",
+      "version": "26.09.3-1",
+      "pkgstats_percent": 6.69
+    },
+    "antimicrox": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/AntiMicroX/antimicrox",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/antimicrox/",
+      "version": "3.6.1-1",
+      "pkgstats_percent": 2.43
+    },
+    "apostrophe": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.gnome.org/Apostrophe/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/apostrophe/",
+      "version": "3.5-1",
+      "pkgstats_percent": 1.24
+    },
+    "apparmor": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.com/apparmor/apparmor",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/apparmor/",
+      "version": "4.1.8-2",
+      "pkgstats_percent": 23.05
+    },
+    "ardour": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://ardour.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ardour/",
+      "version": "9.8-1",
+      "pkgstats_percent": 8.37
+    },
+    "aria2": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://aria2.github.io",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/aria2/",
+      "version": "1.37.0-3",
+      "pkgstats_percent": 26.16
+    },
+    "ark": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/ark/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ark/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 39.39
+    },
+    "arp-scan": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/royhills/arp-scan",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/arp-scan/",
+      "version": "1.10.0-5",
+      "pkgstats_percent": 7.47
+    },
+    "asciinema": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://asciinema.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/asciinema/",
+      "version": "3.2.1-1",
+      "pkgstats_percent": 6.68
+    },
+    "atuin": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/atuinsh/atuin",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/atuin/",
+      "version": "18.24.4-1",
+      "pkgstats_percent": 4.66
+    },
+    "audacity": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://audacityteam.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/audacity/",
+      "version": "1:3.7.9-1",
+      "pkgstats_percent": 28.55
+    },
+    "autokey-gtk": {
+      "source": "aur",
+      "upstream": "https://github.com/autokey/autokey",
+      "package_page": "https://aur.archlinux.org/packages/autokey-gtk",
+      "version": "0.96.0-10",
+      "maintainer": "yochananmarqos",
+      "votes": 70,
+      "recipe_sha256": "c5187e10b123fb2dbb35822fa243fbf8783c932d134660f945c45cbb4612b0a3",
+      "pkgstats_percent": 0.38
+    },
+    "avidemux-qt": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://fixounet.free.fr/avidemux/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/avidemux-qt/",
+      "version": "2.8.1-13",
+      "pkgstats_percent": 5.24
+    },
+    "awesome": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://awesomewm.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/awesome/",
+      "version": "4.3-7",
+      "pkgstats_percent": 2.65
+    },
+    "backintime": {
+      "source": "aur",
+      "upstream": "https://github.com/bit-team/backintime",
+      "package_page": "https://aur.archlinux.org/packages/backintime",
+      "version": "1.6.2-1",
+      "maintainer": "graysky",
+      "votes": 303,
+      "recipe_sha256": "8f9029baeb8eee6b72ca27bcc6ac686a7b87163bba7c1044468f5227e6b71953",
+      "pkgstats_percent": 0.75
+    },
+    "bandwhich": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/imsnif/bandwhich",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/bandwhich/",
+      "version": "0.23.1-3",
+      "pkgstats_percent": 3.91
+    },
+    "baobab": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.gnome.org/Baobab",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/baobab/",
+      "version": "50.0-1",
+      "pkgstats_percent": 20.45
+    },
+    "base-devel": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://www.archlinux.org",
+      "package_page": "https://archlinux.org/packages/core/x86_64/base-devel/",
+      "version": "1-2",
+      "pkgstats_percent": 83.39
+    },
+    "bash-completion": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/scop/bash-completion",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/bash-completion/",
+      "version": "2.18.0-1",
+      "pkgstats_percent": 57.78
+    },
+    "bat": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/sharkdp/bat",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/bat/",
+      "version": "0.26.1-3",
+      "pkgstats_percent": 46.78
+    },
+    "beekeeper-studio-bin": {
+      "source": "aur",
+      "upstream": "https://github.com/beekeeper-studio/beekeeper-studio",
+      "package_page": "https://aur.archlinux.org/packages/beekeeper-studio-bin",
+      "version": "6.2.0-1",
+      "maintainer": "notnightbut",
+      "votes": 33,
+      "recipe_sha256": "ab3386ec7b20aaae5bb0ba631b78c22ad4ef6f4b481c17f5853f6312eac1e3bf",
+      "pkgstats_percent": 0.52
+    },
+    "bemenu": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/Cloudef/bemenu",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/bemenu/",
+      "version": "0.6.23-1",
+      "pkgstats_percent": 4.49
+    },
+    "bind": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.isc.org/software/bind/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/bind/",
+      "version": "9.20.30-1",
+      "pkgstats_percent": 56.24
+    },
+    "bitwarden": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/bitwarden/clients/tree/main/apps/desktop",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/bitwarden/",
+      "version": "2026.3.1-2",
+      "pkgstats_percent": 8.59
+    },
+    "bitwarden-cli": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/bitwarden/clients",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/bitwarden-cli/",
+      "version": "2026.2.0-1",
+      "pkgstats_percent": 2.17
+    },
+    "bleachbit": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.bleachbit.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/bleachbit/",
+      "version": "6.0.6-1",
+      "pkgstats_percent": 6.97
+    },
+    "blender": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.blender.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/blender/",
+      "version": "17:5.2.3-5",
+      "pkgstats_percent": 19.07
+    },
+    "blueman": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/blueman-project/blueman",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/blueman/",
+      "version": "2.4.6-2",
+      "pkgstats_percent": 26.31
+    },
+    "bluetuith": {
+      "source": "aur",
+      "upstream": "https://github.com/bluetuith-org/bluetuith",
+      "package_page": "https://aur.archlinux.org/packages/bluetuith",
+      "version": "1:0.2.7-1",
+      "maintainer": "dpeukert",
+      "votes": 15,
+      "recipe_sha256": "8feb83e19b6784565a6a8594724a235a7546c178c43e212a6d4481e23647c3d3",
+      "pkgstats_percent": 0.82
+    },
+    "bluez": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.bluez.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/bluez/",
+      "version": "5.87-2",
+      "pkgstats_percent": 81.93
+    },
+    "bluez-utils": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.bluez.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/bluez-utils/",
+      "version": "5.87-2",
+      "pkgstats_percent": 64.65
+    },
+    "borg": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://borgbackup.github.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/borg/",
+      "version": "1.4.5-1",
+      "pkgstats_percent": 10.29
+    },
+    "borgmatic": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://torsion.org/borgmatic",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/borgmatic/",
+      "version": "2.1.10-1",
+      "pkgstats_percent": 2.07
+    },
+    "bottom": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ClementTsang/bottom",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/bottom/",
+      "version": "0.15.0-1",
+      "pkgstats_percent": 6.39
+    },
+    "brave-bin": {
+      "source": "aur",
+      "upstream": "https://brave.com",
+      "package_page": "https://aur.archlinux.org/packages/brave-bin",
+      "version": "1:1.98.63-1",
+      "maintainer": "brave",
+      "votes": 1034,
+      "recipe_sha256": "cff76d62e87193fb9edfc71e12af94789cad178136213f0c7444be8a9023d9f1",
+      "pkgstats_percent": 12.55
+    },
+    "breeze-gtk": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://kde.org/plasma-desktop/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/breeze-gtk/",
+      "version": "6.8.2-1",
+      "pkgstats_percent": 42.08
+    },
+    "bspwm": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/baskerville/bspwm",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/bspwm/",
+      "version": "0.9.12-1",
+      "pkgstats_percent": 1.41
+    },
+    "btop": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/aristocratos/btop",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/btop/",
+      "version": "1.4.7-1",
+      "pkgstats_percent": 46.25
+    },
+    "btrfs-assistant": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.com/btrfs-assistant/btrfs-assistant",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/btrfs-assistant/",
+      "version": "3.0.0-1",
+      "pkgstats_percent": 9.53
+    },
+    "btrfs-progs": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://btrfs.readthedocs.io",
+      "package_page": "https://archlinux.org/packages/core/x86_64/btrfs-progs/",
+      "version": "7.3-1",
+      "pkgstats_percent": 69.05
+    },
+    "bubblewrap": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/containers/bubblewrap",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/bubblewrap/",
+      "version": "0.13.1-1",
+      "pkgstats_percent": 94.23
+    },
+    "budgie-desktop": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/BuddiesOfBudgie/budgie-desktop",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/budgie-desktop/",
+      "version": "10.10.2-3",
+      "pkgstats_percent": 0.42
+    },
+    "buildah": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/podman-container-tools/buildah",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/buildah/",
+      "version": "1:1.45.2-1",
+      "pkgstats_percent": 2.65
+    },
+    "bun": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/oven-sh/bun",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/bun/",
+      "version": "1.4.4-1",
+      "pkgstats_percent": 8.34
+    },
+    "calf": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://calf-studio-gear.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/calf/",
+      "version": "0.90.9-2",
+      "pkgstats_percent": 13.71
+    },
+    "calibre": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://calibre-ebook.com",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/calibre/",
+      "version": "9.14.0-5",
+      "pkgstats_percent": 17.99
+    },
+    "calligra": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.calligra-suite.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/calligra/",
+      "version": "26.08.2-2",
+      "pkgstats_percent": 6.47
+    },
+    "cherrytree": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.giuspen.com/cherrytree/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/cherrytree/",
+      "version": "1.7.2-1",
+      "pkgstats_percent": 1.05
+    },
+    "chezmoi": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.chezmoi.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/chezmoi/",
+      "version": "2.73.3-1",
+      "pkgstats_percent": 5.01
+    },
+    "chromium": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.chromium.org/Home",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/chromium/",
+      "version": "156.0.8078.79-1",
+      "pkgstats_percent": 39.65
+    },
+    "cinnamon": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/linuxmint/cinnamon",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/cinnamon/",
+      "version": "6.6.9-1",
+      "pkgstats_percent": 2.59
+    },
+    "clamav": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.clamav.net/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/clamav/",
+      "version": "1.5.4-1",
+      "pkgstats_percent": 13.33
+    },
+    "clang": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://llvm.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/clang/",
+      "version": "23.1.4-1",
+      "pkgstats_percent": 75.23
+    },
+    "claude-code": {
+      "source": "aur",
+      "upstream": "https://github.com/anthropics/claude-code",
+      "package_page": "https://aur.archlinux.org/packages/claude-code",
+      "version": "2.1.316-1",
+      "maintainer": "cg505",
+      "votes": 99,
+      "recipe_sha256": "bd80c26815a435b1cfd0b0091cd0cc3646262b5f0f11878591a2c33bd6b8d9e3",
+      "pkgstats_percent": 7.89
+    },
+    "claws-mail": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.claws-mail.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/claws-mail/",
+      "version": "4.4.0-7",
+      "pkgstats_percent": 1.4
+    },
+    "cliphist": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/sentriz/cliphist",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/cliphist/",
+      "version": "1:0.7.0-2",
+      "pkgstats_percent": 16.67
+    },
+    "cmake": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.cmake.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/cmake/",
+      "version": "4.4.5-1",
+      "pkgstats_percent": 74.03
+    },
+    "cmatrix": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.asty.org/cmatrix/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/cmatrix/",
+      "version": "2.0-4",
+      "pkgstats_percent": 14.63
+    },
+    "cmus": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://cmus.github.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/cmus/",
+      "version": "2.12.0-7",
+      "pkgstats_percent": 4.47
+    },
+    "code": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/microsoft/vscode",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/code/",
+      "version": "1.138.0-1",
+      "pkgstats_percent": 15.34
+    },
+    "composer": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://getcomposer.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/composer/",
+      "version": "2.11.1-1",
+      "pkgstats_percent": 6.41
+    },
+    "copyq": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/hluk/copyq",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/copyq/",
+      "version": "16.0.0-1",
+      "pkgstats_percent": 3.34
+    },
+    "corectrl": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.com/corectrl/corectrl",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/corectrl/",
+      "version": "1.5.2-9",
+      "pkgstats_percent": 5.48
+    },
+    "cpu-x": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://thetumultuousunicornofdarkness.github.io/CPU-X",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/cpu-x/",
+      "version": "5.4.1-1",
+      "pkgstats_percent": 5.34
+    },
+    "cpupower": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.kernel.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/cpupower/",
+      "version": "7.3.1-1",
+      "pkgstats_percent": 33.84
+    },
+    "cryptsetup": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://gitlab.com/cryptsetup/cryptsetup/",
+      "package_page": "https://archlinux.org/packages/core/x86_64/cryptsetup/",
+      "version": "2.8.8-1",
+      "pkgstats_percent": 100
+    },
+    "cups": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://openprinting.github.io/cups/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/cups/",
+      "version": "2:2.4.20-1",
+      "pkgstats_percent": 56.42
+    },
+    "curl": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://curl.se/",
+      "package_page": "https://archlinux.org/packages/core/x86_64/curl/",
+      "version": "8.23.0-1",
+      "pkgstats_percent": 99.98
+    },
+    "curlie": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://rs.github.io/curlie",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/curlie/",
+      "version": "1.8.2-1",
+      "pkgstats_percent": 0.98
+    },
+    "curtail": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.gnome.org/Curtail/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/curtail/",
+      "version": "1.17.0-1",
+      "pkgstats_percent": 1.12
+    },
+    "darktable": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://darktable.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/darktable/",
+      "version": "2:5.6.2-1",
+      "pkgstats_percent": 9.79
+    },
+    "dbeaver": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://dbeaver.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/dbeaver/",
+      "version": "26.2.2-1",
+      "pkgstats_percent": 7.48
+    },
+    "ddrescue": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.gnu.org/software/ddrescue/ddrescue.html",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ddrescue/",
+      "version": "1.30-2",
+      "pkgstats_percent": 12.78
+    },
+    "deja-dup": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.gnome.org/DejaDup/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/deja-dup/",
+      "version": "50.2-1",
+      "pkgstats_percent": 2.06
+    },
+    "deluge-gtk": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://deluge-torrent.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/deluge-gtk/",
+      "version": "1:2.2.0-8",
+      "pkgstats_percent": 3.75
+    },
+    "deno": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://deno.com",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/deno/",
+      "version": "2.9.8-1",
+      "pkgstats_percent": 59.02
+    },
+    "desmume": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://desmume.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/desmume/",
+      "version": "0.9.13-2",
+      "pkgstats_percent": 1.87
+    },
+    "digikam": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.digikam.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/digikam/",
+      "version": "9.1.0-7",
+      "pkgstats_percent": 7.12
+    },
+    "direnv": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://direnv.net",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/direnv/",
+      "version": "2.38.2-1",
+      "pkgstats_percent": 5.48
+    },
+    "discord": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://discord.com",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/discord/",
+      "version": "1:1.0.168-1",
+      "pkgstats_percent": 30.81
+    },
+    "distrobox": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://distrobox.it",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/distrobox/",
+      "version": "1.8.2.5-1",
+      "pkgstats_percent": 6.48
+    },
+    "docker": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.docker.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/docker/",
+      "version": "1:29.9.2-1",
+      "pkgstats_percent": 45.36
+    },
+    "docker-compose": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.docker.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/docker-compose/",
+      "version": "5.6.1-1",
+      "pkgstats_percent": 36.21
+    },
+    "dolphin": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/dolphin/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/dolphin/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 44.46
+    },
+    "dolphin-emu": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://dolphin-emu.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/dolphin-emu/",
+      "version": "1:2609-1",
+      "pkgstats_percent": 6
+    },
+    "dosbox-staging": {
+      "source": "aur",
+      "upstream": "https://github.com/dosbox-staging/dosbox-staging",
+      "package_page": "https://aur.archlinux.org/packages/dosbox-staging",
+      "version": "1:0.83.0-1",
+      "maintainer": "silverhikari",
+      "votes": 61,
+      "recipe_sha256": "6a3b0ae39ab18aa0abb99fa2a95890ac84564faa9f898e8f754dabbe19480b5d",
+      "pkgstats_percent": 0.65
+    },
+    "drawio-desktop": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.drawio.com",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/drawio-desktop/",
+      "version": "31.7.0-1",
+      "pkgstats_percent": 3.37
+    },
+    "duf": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/muesli/duf",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/duf/",
+      "version": "0.9.1-1",
+      "pkgstats_percent": 18.71
+    },
+    "dunst": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://dunst-project.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/dunst/",
+      "version": "1.13.2-3",
+      "pkgstats_percent": 14.2
+    },
+    "duplicity": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://duplicity.gitlab.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/duplicity/",
+      "version": "3.2.2-1",
+      "pkgstats_percent": 3.29
+    },
+    "dust": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/bootandy/dust",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/dust/",
+      "version": "1.2.6-1",
+      "pkgstats_percent": 14.74
+    },
+    "easyeffects": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/wwmm/easyeffects",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/easyeffects/",
+      "version": "8.3.2-1",
+      "pkgstats_percent": 18.5
+    },
+    "element-desktop": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://element.io",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/element-desktop/",
+      "version": "1.12.25-1",
+      "pkgstats_percent": 9.38
+    },
+    "elisa": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/elisa/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/elisa/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 11.89
+    },
+    "emacs": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.gnu.org/software/emacs/emacs.html",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/emacs/",
+      "version": "31.1-2",
+      "pkgstats_percent": 8.65
+    },
+    "entr": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://eradman.com/entrproject",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/entr/",
+      "version": "5.9-1",
+      "pkgstats_percent": 3.77
+    },
+    "eog": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.gnome.org/GNOME/eog",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/eog/",
+      "version": "50.4-1",
+      "pkgstats_percent": 9.84
+    },
+    "espeak-ng": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/espeak-ng/espeak-ng",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/espeak-ng/",
+      "version": "1.52.0-1",
+      "pkgstats_percent": 43.29
+    },
+    "evince": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.gnome.org/GNOME/evince",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/evince/",
+      "version": "1:48.4-2",
+      "pkgstats_percent": 23.76
+    },
+    "evolution": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.gnome.org/GNOME/evolution/-/wikis/home",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/evolution/",
+      "version": "3.62.1-1",
+      "pkgstats_percent": 5.94
+    },
+    "evtest": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://cgit.freedesktop.org/evtest/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/evtest/",
+      "version": "1.36-1",
+      "pkgstats_percent": 18.93
+    },
+    "exfatprogs": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/exfatprogs/exfatprogs",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/exfatprogs/",
+      "version": "1.4.3-1",
+      "pkgstats_percent": 38.35
+    },
+    "expac": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/falconindy/expac",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/expac/",
+      "version": "10-13",
+      "pkgstats_percent": 46.81
+    },
+    "eza": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/eza-community/eza",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/eza/",
+      "version": "0.23.5-2",
+      "pkgstats_percent": 34.93
+    },
+    "falkon": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.falkon.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/falkon/",
+      "version": "26.08.2-5",
+      "pkgstats_percent": 9.89
+    },
+    "fastfetch": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/fastfetch-cli/fastfetch",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/fastfetch/",
+      "version": "2.70.0-1",
+      "pkgstats_percent": 48.17
+    },
+    "fcitx5": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/fcitx/fcitx5",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/fcitx5/",
+      "version": "5.1.23-1",
+      "pkgstats_percent": 14.35
+    },
+    "fcitx5-chinese-addons": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/fcitx/fcitx5-chinese-addons",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/fcitx5-chinese-addons/",
+      "version": "5.1.15-2",
+      "pkgstats_percent": 4.29
+    },
+    "fcitx5-configtool": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/fcitx/fcitx5-configtool",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/fcitx5-configtool/",
+      "version": "5.1.16-3",
+      "pkgstats_percent": 11.8
+    },
+    "fcitx5-gtk": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/fcitx/fcitx5-gtk",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/fcitx5-gtk/",
+      "version": "5.1.7-1",
+      "pkgstats_percent": 10.08
+    },
+    "fcitx5-mozc": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/google/mozc",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/fcitx5-mozc/",
+      "version": "3.35.6354.2-1",
+      "pkgstats_percent": 3.84
+    },
+    "fcitx5-qt": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/fcitx/fcitx5-qt",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/fcitx5-qt/",
+      "version": "5.1.16-2",
+      "pkgstats_percent": 12.43
+    },
+    "fd": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/sharkdp/fd",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/fd/",
+      "version": "10.5.0-3",
+      "pkgstats_percent": 51.26
+    },
+    "feh": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://feh.finalrewind.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/feh/",
+      "version": "3.13.1-1",
+      "pkgstats_percent": 21.81
+    },
+    "ffmpeg": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://ffmpeg.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ffmpeg/",
+      "version": "2:9.0.2-2",
+      "pkgstats_percent": 92.99
+    },
+    "figlet": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.figlet.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/figlet/",
+      "version": "2.2.5-6",
+      "pkgstats_percent": 10.67
+    },
+    "file-roller": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://wiki.gnome.org/Apps/FileRoller",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/file-roller/",
+      "version": "44.7-1",
+      "pkgstats_percent": 23.61
+    },
+    "filelight": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/filelight/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/filelight/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 29.49
+    },
+    "firefox": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.firefox.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/firefox/",
+      "version": "159.0-1",
+      "pkgstats_percent": 69.78
+    },
+    "firejail": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/netblue30/firejail",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/firejail/",
+      "version": "0.9.80-1",
+      "pkgstats_percent": 7.89
+    },
+    "firewalld": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://firewalld.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/firewalld/",
+      "version": "2.5.2-1",
+      "pkgstats_percent": 14.81
+    },
+    "fish": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://fishshell.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/fish/",
+      "version": "4.9.3-1",
+      "pkgstats_percent": 29.05
+    },
+    "flameshot": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/flameshot-org/flameshot",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/flameshot/",
+      "version": "14.0.0-1",
+      "pkgstats_percent": 10.96
+    },
+    "flatpak": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://flatpak.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/flatpak/",
+      "version": "1:1.18.4-2",
+      "pkgstats_percent": 58.13
+    },
+    "foliate": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://johnfactotum.github.io/foliate/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/foliate/",
+      "version": "3.3.0-3",
+      "pkgstats_percent": 5.37
+    },
+    "fontforge": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://fontforge.github.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/fontforge/",
+      "version": "20251009-5",
+      "pkgstats_percent": 13.76
+    },
+    "foot": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://codeberg.org/dnkl/foot",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/foot/",
+      "version": "1.28.0-2",
+      "pkgstats_percent": 17.62
+    },
+    "fractal": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.gnome.org/World/fractal",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/fractal/",
+      "version": "14.3-1",
+      "pkgstats_percent": 1.86
+    },
+    "freecad": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.freecad.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/freecad/",
+      "version": "1.1.4-3",
+      "pkgstats_percent": 11.21
+    },
+    "freerdp": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.freerdp.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/freerdp/",
+      "version": "2:3.32.2-1",
+      "pkgstats_percent": 48.42
+    },
+    "fuzzel": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://codeberg.org/dnkl/fuzzel",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/fuzzel/",
+      "version": "1.15.0-2",
+      "pkgstats_percent": 11.05
+    },
+    "fzf": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/junegunn/fzf",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/fzf/",
+      "version": "0.74.5-1",
+      "pkgstats_percent": 58.35
+    },
+    "gajim": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gajim.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gajim/",
+      "version": "2.6.0-4",
+      "pkgstats_percent": 2.05
+    },
+    "game-devices-udev": {
+      "source": "aur",
+      "upstream": "https://codeberg.org/fabiscafe/game-devices-udev",
+      "package_page": "https://aur.archlinux.org/packages/game-devices-udev",
+      "version": "1.1-1",
+      "maintainer": "fabiscafe",
+      "votes": 47,
+      "recipe_sha256": "53d51dbff0929f4e1149ac898214e6c7bde85938f9d4f87fe913fd3e02cd4e90",
+      "pkgstats_percent": 4.49
+    },
+    "gamemode": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/FeralInteractive/gamemode",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gamemode/",
+      "version": "1.8.2-3",
+      "pkgstats_percent": 24.61
+    },
+    "gamescope": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ValveSoftware/gamescope",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gamescope/",
+      "version": "3.17.0-1",
+      "pkgstats_percent": 21.99
+    },
+    "gcc": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://gcc.gnu.org",
+      "package_page": "https://archlinux.org/packages/core/x86_64/gcc/",
+      "version": "16.2.1+r23+gd564253eb6c8-1",
+      "pkgstats_percent": 94.39
+    },
+    "gdb": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.gnu.org/software/gdb/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gdb/",
+      "version": "18.1-1",
+      "pkgstats_percent": 90.98
+    },
+    "gdm": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.gnome.org/GNOME/gdm",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gdm/",
+      "version": "51.1.1-1",
+      "pkgstats_percent": 14.8
+    },
+    "geany": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.geany.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/geany/",
+      "version": "2.1-2",
+      "pkgstats_percent": 5.33
+    },
+    "geary": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://wiki.gnome.org/Apps/Geary",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/geary/",
+      "version": "1:46.0-9",
+      "pkgstats_percent": 2.72
+    },
+    "gemini-cli": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/google-gemini/gemini-cli",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gemini-cli/",
+      "version": "1:0.66.0-1",
+      "pkgstats_percent": 2.84
+    },
+    "ghostty": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ghostty-org/ghostty",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ghostty/",
+      "version": "1.4.0-1",
+      "pkgstats_percent": 12.52
+    },
+    "gimp": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.gimp.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gimp/",
+      "version": "3.2.6-2",
+      "pkgstats_percent": 50.95
+    },
+    "git": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://git-scm.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/git/",
+      "version": "2.56.0-1",
+      "pkgstats_percent": 95.54
+    },
+    "git-delta": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://dandavison.github.io/delta/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/git-delta/",
+      "version": "0.20.1-1",
+      "pkgstats_percent": 17.17
+    },
+    "git-filter-repo": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/newren/git-filter-repo",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/git-filter-repo/",
+      "version": "2.47.0-3",
+      "pkgstats_percent": 7.28
+    },
+    "git-lfs": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://git-lfs.github.com",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/git-lfs/",
+      "version": "3.8.1-1",
+      "pkgstats_percent": 20.81
+    },
+    "github-cli": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/cli/cli",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/github-cli/",
+      "version": "2.102.1-1",
+      "pkgstats_percent": 23.72
+    },
+    "gitui": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/extrawurst/gitui",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gitui/",
+      "version": "0.28.1-2",
+      "pkgstats_percent": 3.17
+    },
+    "glab": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.com/gitlab-org/cli",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/glab/",
+      "version": "1.126.0-1",
+      "pkgstats_percent": 3.7
+    },
+    "glances": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://nicolargo.github.io/glances",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/glances/",
+      "version": "4.5.8-1",
+      "pkgstats_percent": 15.48
+    },
+    "gnome-boxes": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.gnome.org/Boxes/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gnome-boxes/",
+      "version": "50.0-1",
+      "pkgstats_percent": 7.18
+    },
+    "gnome-calculator": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.gnome.org/Calculator",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gnome-calculator/",
+      "version": "51.1-1",
+      "pkgstats_percent": 22.9
+    },
+    "gnome-console": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.gnome.org/Console/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gnome-console/",
+      "version": "51.0-1",
+      "pkgstats_percent": 9.16
+    },
+    "gnome-disk-utility": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.gnome.org/DiskUtility/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gnome-disk-utility/",
+      "version": "46.1-3",
+      "pkgstats_percent": 31.8
+    },
+    "gnome-screenshot": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.gnome.org/Archive/gnome-screenshot",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gnome-screenshot/",
+      "version": "1:41.0-2",
+      "pkgstats_percent": 8.08
+    },
+    "gnome-shell": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.gnome.org/GNOME/gnome-shell",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gnome-shell/",
+      "version": "1:51.1-1",
+      "pkgstats_percent": 16.5
+    },
+    "gnome-system-monitor": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.gnome.org/SystemMonitor",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gnome-system-monitor/",
+      "version": "51.1-1",
+      "pkgstats_percent": 15.41
+    },
+    "gnome-terminal": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://wiki.gnome.org/Apps/Terminal",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gnome-terminal/",
+      "version": "3.60.0-1",
+      "pkgstats_percent": 10.3
+    },
+    "gnome-text-editor": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.gnome.org/TextEditor/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gnome-text-editor/",
+      "version": "51.0-1",
+      "pkgstats_percent": 13.33
+    },
+    "gnucash": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://code.gnucash.org/website/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gnucash/",
+      "version": "5.17-1",
+      "pkgstats_percent": 3.65
+    },
+    "gnumeric": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.gnumeric.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gnumeric/",
+      "version": "1.12.62-2",
+      "pkgstats_percent": 3.04
+    },
+    "gnupg": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://www.gnupg.org/",
+      "package_page": "https://archlinux.org/packages/core/x86_64/gnupg/",
+      "version": "2.4.9-4",
+      "pkgstats_percent": 99.97
+    },
+    "go": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://go.dev/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/go/",
+      "version": "2:1.27.3-1",
+      "pkgstats_percent": 58.79
+    },
+    "google-chrome": {
+      "source": "aur",
+      "upstream": "https://www.google.com/chrome",
+      "package_page": "https://aur.archlinux.org/packages/google-chrome",
+      "version": "156.0.8078.79-1",
+      "maintainer": "gromit",
+      "votes": 2376,
+      "recipe_sha256": "71a72b69e6ba30ff210aede123d3d679d38ef75703715ea85c6d82d350ba2252",
+      "pkgstats_percent": 17.26
+    },
+    "gopls": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/golang/tools/tree/master/gopls",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gopls/",
+      "version": "0.24.0-1",
+      "pkgstats_percent": 4.93
+    },
+    "goverlay": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/benjamimgois/goverlay",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/goverlay/",
+      "version": "1.9.4-1",
+      "pkgstats_percent": 8.49
+    },
+    "gparted": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gparted.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gparted/",
+      "version": "1.8.1-2",
+      "pkgstats_percent": 37.04
+    },
+    "gradle": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gradle.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gradle/",
+      "version": "9.8.2-1",
+      "pkgstats_percent": 12.15
+    },
+    "graphicsmagick": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.graphicsmagick.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/graphicsmagick/",
+      "version": "1.3.49-3",
+      "pkgstats_percent": 54.38
+    },
+    "graphviz": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.graphviz.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/graphviz/",
+      "version": "16.1.0-2",
+      "pkgstats_percent": 63.12
+    },
+    "greetd": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://git.sr.ht/~kennylevinsen/greetd",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/greetd/",
+      "version": "0.10.3-2",
+      "pkgstats_percent": 14.82
+    },
+    "greetd-tuigreet": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/tuigreet/tuigreet",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/greetd-tuigreet/",
+      "version": "0.11.1-2",
+      "pkgstats_percent": 7.77
+    },
+    "grim": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.freedesktop.org/emersion/grim",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/grim/",
+      "version": "1.5.0-2",
+      "pkgstats_percent": 35.2
+    },
+    "grub-btrfs": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/Antynea/grub-btrfs",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/grub-btrfs/",
+      "version": "4.14-1",
+      "pkgstats_percent": 6.24
+    },
+    "gufw": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://costales.github.io/projects/gufw/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gufw/",
+      "version": "26.04-2",
+      "pkgstats_percent": 5.12
+    },
+    "gum": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/charmbracelet/gum",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gum/",
+      "version": "2.0.2-1",
+      "pkgstats_percent": 33.05
+    },
+    "gwenview": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/gwenview/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/gwenview/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 33.37
+    },
+    "handbrake": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://handbrake.fr/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/handbrake/",
+      "version": "1.11.2-1",
+      "pkgstats_percent": 16.81
+    },
+    "hardinfo2": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.hardinfo2.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/hardinfo2/",
+      "version": "2.3.1-1",
+      "pkgstats_percent": 3.39
+    },
+    "hdparm": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://sourceforge.net/projects/hdparm/",
+      "package_page": "https://archlinux.org/packages/core/x86_64/hdparm/",
+      "version": "9.65-3",
+      "pkgstats_percent": 52.32
+    },
+    "helix": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://helix-editor.com",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/helix/",
+      "version": "25.07.1-2",
+      "pkgstats_percent": 8.29
+    },
+    "helm": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/helm/helm",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/helm/",
+      "version": "4.3.0-1",
+      "pkgstats_percent": 4.54
+    },
+    "helvum": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.freedesktop.org/pipewire/helvum",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/helvum/",
+      "version": "0.6.2-2",
+      "pkgstats_percent": 9.98
+    },
+    "heroic-games-launcher": {
+      "source": "aur",
+      "upstream": "https://heroicgameslauncher.com/",
+      "package_page": "https://aur.archlinux.org/packages/heroic-games-launcher",
+      "version": "2.22.4-1",
+      "maintainer": "FabioLolix",
+      "votes": 41,
+      "recipe_sha256": "6b78475863babe612f88434796eac22d3127b79653a0bb5631842417e670174b",
+      "pkgstats_percent": 4.8
+    },
+    "homebank": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.gethomebank.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/homebank/",
+      "version": "5.10.3-1",
+      "pkgstats_percent": 1.22
+    },
+    "htop": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://htop.dev/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/htop/",
+      "version": "3.5.3-1",
+      "pkgstats_percent": 69.63
+    },
+    "httpie": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/httpie/cli",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/httpie/",
+      "version": "3.2.4-2",
+      "pkgstats_percent": 4.27
+    },
+    "hydrogen": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.hydrogen-music.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/hydrogen/",
+      "version": "1.2.7-1",
+      "pkgstats_percent": 2.28
+    },
+    "hyperfine": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/sharkdp/hyperfine",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/hyperfine/",
+      "version": "2.0.0-1",
+      "pkgstats_percent": 6.73
+    },
+    "hypridle": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/hyprwm/hypridle",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/hypridle/",
+      "version": "0.1.8-2",
+      "pkgstats_percent": 14.57
+    },
+    "hyprland": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/hyprwm/Hyprland",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/hyprland/",
+      "version": "0.57.0-1",
+      "pkgstats_percent": 21.39
+    },
+    "hyprlock": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/hyprwm/hyprlock",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/hyprlock/",
+      "version": "0.9.6-3",
+      "pkgstats_percent": 15.58
+    },
+    "hyprpaper": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/hyprwm/hyprpaper",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/hyprpaper/",
+      "version": "0.8.4-9",
+      "pkgstats_percent": 9.51
+    },
+    "hyprpicker": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/hyprwm/hyprpicker",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/hyprpicker/",
+      "version": "0.4.7-4",
+      "pkgstats_percent": 14.83
+    },
+    "hyprshot": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/Gustash/Hyprshot",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/hyprshot/",
+      "version": "1.3.0-4",
+      "pkgstats_percent": 6.01
+    },
+    "hyprsunset": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/hyprwm/hyprsunset",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/hyprsunset/",
+      "version": "0.4.0-3",
+      "pkgstats_percent": 10.93
+    },
+    "i3-wm": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://i3wm.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/i3-wm/",
+      "version": "4.25.1-1",
+      "pkgstats_percent": 9.54
+    },
+    "ibus": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ibus/ibus/wiki",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ibus/",
+      "version": "1.5.34-2",
+      "pkgstats_percent": 27.9
+    },
+    "ibus-libpinyin": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/libpinyin/ibus-libpinyin",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ibus-libpinyin/",
+      "version": "1.16.5-5",
+      "pkgstats_percent": 0.63
+    },
+    "iftop": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.ex-parrot.com/~pdw/iftop/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/iftop/",
+      "version": "1.0pre4-6",
+      "pkgstats_percent": 21.36
+    },
+    "imagemagick": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.imagemagick.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/imagemagick/",
+      "version": "7.1.2.35-1",
+      "pkgstats_percent": 81.85
+    },
+    "imv": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://sr.ht/~exec64/imv/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/imv/",
+      "version": "5.0.1-2",
+      "pkgstats_percent": 8.22
+    },
+    "incus": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://linuxcontainers.org/incus/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/incus/",
+      "version": "7.5.1-1",
+      "pkgstats_percent": 1.35
+    },
+    "inetutils": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://www.gnu.org/software/inetutils/",
+      "package_page": "https://archlinux.org/packages/core/x86_64/inetutils/",
+      "version": "2.8-1",
+      "pkgstats_percent": 63.56
+    },
+    "inkscape": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://inkscape.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/inkscape/",
+      "version": "1.4.4-7",
+      "pkgstats_percent": 32.8
+    },
+    "inotify-tools": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/inotify-tools/inotify-tools",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/inotify-tools/",
+      "version": "4.26.270-1",
+      "pkgstats_percent": 26.2
+    },
+    "inter-font": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/rsms/inter",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/inter-font/",
+      "version": "4.1-1",
+      "pkgstats_percent": 6.97
+    },
+    "inxi": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://smxi.org/docs/inxi.htm",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/inxi/",
+      "version": "3.3.41.1-1",
+      "pkgstats_percent": 31.92
+    },
+    "iperf3": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/esnet/iperf",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/iperf3/",
+      "version": "3.22-1",
+      "pkgstats_percent": 29.71
+    },
+    "iproute2": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://git.kernel.org/pub/scm/network/iproute2/iproute2.git",
+      "package_page": "https://archlinux.org/packages/core/x86_64/iproute2/",
+      "version": "7.3.0-1",
+      "pkgstats_percent": 99.93
+    },
+    "ipython": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://ipython.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ipython/",
+      "version": "9.18.0-1",
+      "pkgstats_percent": 22.17
+    },
+    "irssi": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://irssi.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/irssi/",
+      "version": "1.4.5-6",
+      "pkgstats_percent": 6.77
+    },
+    "iwd": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://git.kernel.org/cgit/network/wireless/iwd.git/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/iwd/",
+      "version": "3.12-2",
+      "pkgstats_percent": 41.51
+    },
+    "jdk-openjdk": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://openjdk.java.net/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/jdk-openjdk/",
+      "version": "27.0.1.0.3.u1-1",
+      "pkgstats_percent": 44.31
+    },
+    "jdk17-openjdk": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://openjdk.java.net/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/jdk17-openjdk/",
+      "version": "17.0.21.0.3.u1-1",
+      "pkgstats_percent": 19.48
+    },
+    "joplin-desktop": {
+      "source": "aur",
+      "upstream": "https://joplinapp.org/",
+      "package_page": "https://aur.archlinux.org/packages/joplin-desktop",
+      "version": "3.7.22-1",
+      "maintainer": "cuihao",
+      "votes": 289,
+      "recipe_sha256": "6c0d10f5575883712682439c3c787dc35b31ffd62ace35be92fe3d5deca7ce89",
+      "pkgstats_percent": 1.1
+    },
+    "jpegoptim": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/tjko/jpegoptim",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/jpegoptim/",
+      "version": "1.5.6-1",
+      "pkgstats_percent": 5.91
+    },
+    "jq": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://jqlang.github.io/jq/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/jq/",
+      "version": "1.8.2-1",
+      "pkgstats_percent": 76.91
+    },
+    "julia": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://julialang.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/julia/",
+      "version": "2:1.13.3-1",
+      "pkgstats_percent": 3.18
+    },
+    "jupyter-notebook": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/jupyter/notebook",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/jupyter-notebook/",
+      "version": "7.6.4-1",
+      "pkgstats_percent": 6.97
+    },
+    "jupyterlab": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/jupyterlab/jupyterlab",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/jupyterlab/",
+      "version": "4.6.5-1",
+      "pkgstats_percent": 10.27
+    },
+    "just": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/casey/just",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/just/",
+      "version": "1.59.0-1",
+      "pkgstats_percent": 8.58
+    },
+    "kanshi": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.freedesktop.org/emersion/kanshi",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kanshi/",
+      "version": "1.9.0-1",
+      "pkgstats_percent": 3.51
+    },
+    "kate": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/kate/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kate/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 36.24
+    },
+    "kcalc": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/kcalc/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kcalc/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 25.18
+    },
+    "kdeconnect": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://kdeconnect.kde.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kdeconnect/",
+      "version": "26.08.2-3",
+      "pkgstats_percent": 35.76
+    },
+    "kdenlive": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/kdenlive/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kdenlive/",
+      "version": "26.08.2-3",
+      "pkgstats_percent": 26.41
+    },
+    "kdiff3": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/kdiff3/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kdiff3/",
+      "version": "1.12.6-1",
+      "pkgstats_percent": 5.76
+    },
+    "keepassxc": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://keepassxc.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/keepassxc/",
+      "version": "2.8.0-3",
+      "pkgstats_percent": 24.78
+    },
+    "kicad": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://kicad.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kicad/",
+      "version": "10.0.7-2",
+      "pkgstats_percent": 8.59
+    },
+    "kid3-qt": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://kid3.kde.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kid3-qt/",
+      "version": "3.10.2-1",
+      "pkgstats_percent": 1.78
+    },
+    "kitty": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/kovidgoyal/kitty",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kitty/",
+      "version": "0.49.2-1",
+      "pkgstats_percent": 32.83
+    },
+    "kleopatra": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/kleopatra/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kleopatra/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 12.35
+    },
+    "kmag": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/kmag/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kmag/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 9.49
+    },
+    "kmail": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/kmail2/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kmail/",
+      "version": "26.08.2-2",
+      "pkgstats_percent": 9.46
+    },
+    "kmousetool": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/kmousetool/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kmousetool/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 10.36
+    },
+    "kmymoney": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://kmymoney.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kmymoney/",
+      "version": "5.2.2-8",
+      "pkgstats_percent": 1.65
+    },
+    "kodi": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://kodi.tv",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kodi/",
+      "version": "21.3-12",
+      "pkgstats_percent": 4.27
+    },
+    "kolourpaint": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/kolourpaint/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kolourpaint/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 15.48
+    },
+    "konsole": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/konsole/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/konsole/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 39.05
+    },
+    "kooha": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/SeaDve/Kooha",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kooha/",
+      "version": "2.3.2-3",
+      "pkgstats_percent": 2.26
+    },
+    "kotlin": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://kotlinlang.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kotlin/",
+      "version": "2.4.21-1",
+      "pkgstats_percent": 3.12
+    },
+    "krdc": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/krdc/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/krdc/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 15.76
+    },
+    "krita": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://krita.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/krita/",
+      "version": "6.0.4.1-3",
+      "pkgstats_percent": 22.31
+    },
+    "krusader": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://krusader.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/krusader/",
+      "version": "2.9.0-2",
+      "pkgstats_percent": 3.44
+    },
+    "ksystemstats": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://kde.org/plasma-desktop/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ksystemstats/",
+      "version": "6.8.2-1",
+      "pkgstats_percent": 44.95
+    },
+    "kubectl": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://kubernetes.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kubectl/",
+      "version": "1.37.2-1",
+      "pkgstats_percent": 8.07
+    },
+    "kvantum": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/tsujan/Kvantum",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/kvantum/",
+      "version": "1.1.8-1",
+      "pkgstats_percent": 16.32
+    },
+    "labwc": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/labwc/labwc",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/labwc/",
+      "version": "0.20.2-1",
+      "pkgstats_percent": 2.79
+    },
+    "lact": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ilya-zlobintsev/LACT",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lact/",
+      "version": "0.10.1-1",
+      "pkgstats_percent": 8.74
+    },
+    "lapce": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://lapce.dev",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lapce/",
+      "version": "0.4.6-4",
+      "pkgstats_percent": 1.63
+    },
+    "lazygit": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/jesseduffield/lazygit",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lazygit/",
+      "version": "0.66.2-1",
+      "pkgstats_percent": 17.52
+    },
+    "less": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://www.greenwoodsoftware.com/less/",
+      "package_page": "https://archlinux.org/packages/core/x86_64/less/",
+      "version": "1:710-1",
+      "pkgstats_percent": 96.55
+    },
+    "lf": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/gokcehan/lf",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lf/",
+      "version": "42-1",
+      "pkgstats_percent": 4.04
+    },
+    "lib32-gamemode": {
+      "source": "repo",
+      "repository": "multilib",
+      "upstream": "https://github.com/FeralInteractive/gamemode",
+      "package_page": "https://archlinux.org/packages/multilib/x86_64/lib32-gamemode/",
+      "version": "1.8.2-1",
+      "pkgstats_percent": 12.6
+    },
+    "lib32-mangohud": {
+      "source": "repo",
+      "repository": "multilib",
+      "upstream": "https://github.com/flightlessmango/MangoHud",
+      "package_page": "https://archlinux.org/packages/multilib/x86_64/lib32-mangohud/",
+      "version": "0.8.4-1",
+      "pkgstats_percent": 10.44
+    },
+    "libguestfs": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://libguestfs.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/libguestfs/",
+      "version": "1.60.1-2",
+      "pkgstats_percent": 7.5
+    },
+    "librecad": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.librecad.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/librecad/",
+      "version": "2.2.1.6-1",
+      "pkgstats_percent": 3.4
+    },
+    "libreoffice-fresh": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.libreoffice.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/libreoffice-fresh/",
+      "version": "26.8.1-2",
+      "pkgstats_percent": 47.11
+    },
+    "libreoffice-still": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.libreoffice.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/libreoffice-still/",
+      "version": "26.2.6-3",
+      "pkgstats_percent": 14.15
+    },
+    "librewolf": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://librewolf.net/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/librewolf/",
+      "version": "159.0.0_1-1",
+      "pkgstats_percent": 5.23
+    },
+    "libvirt": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://libvirt.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/libvirt/",
+      "version": "1:12.8.0-1",
+      "pkgstats_percent": 37.54
+    },
+    "lite-xl": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://lite-xl.com",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lite-xl/",
+      "version": "2.1.8-5",
+      "pkgstats_percent": 0.72
+    },
+    "llama-cpp": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ggml-org/llama.cpp",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/llama-cpp/",
+      "version": "0.6.0-1",
+      "pkgstats_percent": 3.09
+    },
+    "lldb": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://llvm.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lldb/",
+      "version": "23.1.4-1",
+      "pkgstats_percent": 13.57
+    },
+    "lm_sensors": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://hwmon.wiki.kernel.org/lm_sensors",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lm_sensors/",
+      "version": "1:3.6.2-1",
+      "pkgstats_percent": 97.05
+    },
+    "lmms": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://lmms.io",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lmms/",
+      "version": "1.2.2-29",
+      "pkgstats_percent": 5.01
+    },
+    "lmstudio-bin": {
+      "source": "aur",
+      "upstream": "https://lmstudio.ai",
+      "package_page": "https://aur.archlinux.org/packages/lmstudio-bin",
+      "version": "0.4.28-2",
+      "maintainer": "noureddinex",
+      "votes": 70,
+      "recipe_sha256": "57029114e9da6ef8b5221c716f5891c5dae6126c3c9de685ca79dc0a97991a10",
+      "pkgstats_percent": 2.02
+    },
+    "localsend": {
+      "source": "aur",
+      "upstream": "https://github.com/localsend/localsend",
+      "package_page": "https://aur.archlinux.org/packages/localsend",
+      "version": "1.18.2-2",
+      "maintainer": "xiota",
+      "votes": 59,
+      "recipe_sha256": "bccbe6b8945c46c40fc7e46ac1491e5d43adf08b3a0d7f57cb2a71c9626717bf",
+      "pkgstats_percent": 5.95
+    },
+    "lollypop": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.gnome.org/World/lollypop",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lollypop/",
+      "version": "1.4.48-1",
+      "pkgstats_percent": 1.81
+    },
+    "losslesscut-bin": {
+      "source": "aur",
+      "upstream": "https://github.com/mifi/lossless-cut",
+      "package_page": "https://aur.archlinux.org/packages/losslesscut-bin",
+      "version": "3.70.2-1",
+      "maintainer": "dmp1ce",
+      "votes": 89,
+      "recipe_sha256": "4c32376efd04e2090620125d742453e295ecf03764db46d4d82d3afca08e2b3f",
+      "pkgstats_percent": 2.57
+    },
+    "loupe": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.gnome.org/Loupe/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/loupe/",
+      "version": "51.1-1",
+      "pkgstats_percent": 17.32
+    },
+    "lsof": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/lsof-org/lsof",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lsof/",
+      "version": "4.99.7-1",
+      "pkgstats_percent": 80.53
+    },
+    "lsp-plugins-lv2": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://lsp-plug.in",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lsp-plugins-lv2/",
+      "version": "1.2.35-1",
+      "pkgstats_percent": 15.57
+    },
+    "lsscsi": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://sg.danny.cz/scsi/lsscsi.html",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lsscsi/",
+      "version": "0.32-2",
+      "pkgstats_percent": 23.26
+    },
+    "ltrace": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.ltrace.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ltrace/",
+      "version": "0.8.1-1",
+      "pkgstats_percent": 5.65
+    },
+    "lua": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.lua.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lua/",
+      "version": "5.5.1-1",
+      "pkgstats_percent": 95.46
+    },
+    "luanti": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.luanti.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/luanti/",
+      "version": "5.17.0-2",
+      "pkgstats_percent": 3.63
+    },
+    "luarocks": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://luarocks.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/luarocks/",
+      "version": "3.13.0-5",
+      "pkgstats_percent": 15.34
+    },
+    "lutris": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://lutris.net",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lutris/",
+      "version": "0.5.22-3",
+      "pkgstats_percent": 22.92
+    },
+    "lxappearance": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/lxde/lxappearance",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lxappearance/",
+      "version": "0.6.4-3",
+      "pkgstats_percent": 11.08
+    },
+    "lxc": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://linuxcontainers.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lxc/",
+      "version": "1:7.0.0-2",
+      "pkgstats_percent": 15.12
+    },
+    "lxd": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://ubuntu.com/lxd",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lxd/",
+      "version": "6.9-1",
+      "pkgstats_percent": 0.73
+    },
+    "lxqt-session": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/lxqt/lxqt-session",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lxqt-session/",
+      "version": "2.4.0-2",
+      "pkgstats_percent": 2.1
+    },
+    "lynx": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://lynx.invisible-island.net/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/lynx/",
+      "version": "2.9.3-1",
+      "pkgstats_percent": 18.69
+    },
+    "make": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://www.gnu.org/software/make",
+      "package_page": "https://archlinux.org/packages/core/x86_64/make/",
+      "version": "4.4.1-3",
+      "pkgstats_percent": 95.14
+    },
+    "mako": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://mako-project.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mako/",
+      "version": "1.11.0-1",
+      "pkgstats_percent": 14.87
+    },
+    "mame": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://mamedev.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mame/",
+      "version": "0.289-1",
+      "pkgstats_percent": 2.02
+    },
+    "man-db": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://gitlab.com/man-db/man-db",
+      "package_page": "https://archlinux.org/packages/core/x86_64/man-db/",
+      "version": "2.13.1-2",
+      "pkgstats_percent": 90.02
+    },
+    "man-pages": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://www.kernel.org/doc/man-pages/",
+      "package_page": "https://archlinux.org/packages/core/x86_64/man-pages/",
+      "version": "6.19-1",
+      "pkgstats_percent": 63.04
+    },
+    "mangohud": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/flightlessmango/MangoHud",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mangohud/",
+      "version": "0.8.4-1",
+      "pkgstats_percent": 22.04
+    },
+    "mariadb": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://mariadb.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mariadb/",
+      "version": "13.0.2-2",
+      "pkgstats_percent": 22.12
+    },
+    "mate-desktop": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/mate-desktop/mate-desktop",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mate-desktop/",
+      "version": "1.28.2-3",
+      "pkgstats_percent": 5.03
+    },
+    "maven": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://maven.apache.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/maven/",
+      "version": "3.10.0-1",
+      "pkgstats_percent": 12.28
+    },
+    "mc": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://midnight-commander.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mc/",
+      "version": "4.8.33-1",
+      "pkgstats_percent": 15.26
+    },
+    "mediainfo": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://mediaarea.net",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mediainfo/",
+      "version": "26.10-1",
+      "pkgstats_percent": 17.22
+    },
+    "mediainfo-gui": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://mediaarea.net",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mediainfo-gui/",
+      "version": "26.10-1",
+      "pkgstats_percent": 3.91
+    },
+    "meld": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://meldmerge.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/meld/",
+      "version": "3.24.1-1",
+      "pkgstats_percent": 27.93
+    },
+    "meson": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://mesonbuild.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/meson/",
+      "version": "1.12.1-2",
+      "pkgstats_percent": 55.39
+    },
+    "mgba-qt": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://mgba.io",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mgba-qt/",
+      "version": "0.10.5-5",
+      "pkgstats_percent": 2.75
+    },
+    "minecraft-launcher": {
+      "source": "aur",
+      "upstream": "https://mojang.com/",
+      "package_page": "https://aur.archlinux.org/packages/minecraft-launcher",
+      "version": "1:2.1.3-3",
+      "maintainer": "pschichtel",
+      "votes": 1144,
+      "recipe_sha256": "7b8a72e8ef40d9ae029ce44051d7e847d00c88158af9692c64ad047a5e61d723",
+      "pkgstats_percent": 8.82
+    },
+    "minikube": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/kubernetes/minikube",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/minikube/",
+      "version": "1.38.1-2",
+      "pkgstats_percent": 3.04
+    },
+    "mission-center": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://missioncenter.io",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mission-center/",
+      "version": "1.2.0-1",
+      "pkgstats_percent": 6.01
+    },
+    "moonlight-qt": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://moonlight-stream.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/moonlight-qt/",
+      "version": "6.2.0-1",
+      "pkgstats_percent": 3.9
+    },
+    "moreutils": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://joeyh.name/code/moreutils/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/moreutils/",
+      "version": "0.70-1",
+      "pkgstats_percent": 18.89
+    },
+    "mosh": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://mosh.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mosh/",
+      "version": "1.4.0-35",
+      "pkgstats_percent": 8.32
+    },
+    "mousepad": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://docs.xfce.org/apps/mousepad/start",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mousepad/",
+      "version": "0.7.0-1",
+      "pkgstats_percent": 13.87
+    },
+    "mpd": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.musicpd.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mpd/",
+      "version": "0.24.18-1",
+      "pkgstats_percent": 9.82
+    },
+    "mpv": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://mpv.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mpv/",
+      "version": "1:0.41.0-6",
+      "pkgstats_percent": 67.37
+    },
+    "mpvpaper": {
+      "source": "aur",
+      "upstream": "https://github.com/GhostNaN/mpvpaper",
+      "package_page": "https://aur.archlinux.org/packages/mpvpaper",
+      "version": "1.9-1",
+      "maintainer": "TrialnError",
+      "votes": 19,
+      "recipe_sha256": "b94d7fbd3fd3ee7b9a1d8680c40fd231d669afce60796e443de2452aec143e04",
+      "pkgstats_percent": 2.12
+    },
+    "mtr": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.bitwizard.nl/mtr/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mtr/",
+      "version": "0.96-1",
+      "pkgstats_percent": 17.42
+    },
+    "mumble": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.mumble.info/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mumble/",
+      "version": "1.5.939-1",
+      "pkgstats_percent": 4.75
+    },
+    "musescore": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://musescore.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/musescore/",
+      "version": "4.7.5-1",
+      "pkgstats_percent": 5.7
+    },
+    "mypaint": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.mypaint.app/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mypaint/",
+      "version": "2.0.1-8",
+      "pkgstats_percent": 1.81
+    },
+    "mypy": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.mypy-lang.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/mypy/",
+      "version": "2.4.0-1",
+      "pkgstats_percent": 8.18
+    },
+    "namcap": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.archlinux.org/pacman/namcap",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/namcap/",
+      "version": "3.6.0-3",
+      "pkgstats_percent": 18.25
+    },
+    "nano": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://www.nano-editor.org",
+      "package_page": "https://archlinux.org/packages/core/x86_64/nano/",
+      "version": "9.2-1",
+      "pkgstats_percent": 68.14
+    },
+    "nautilus": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.gnome.org/Nautilus/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/nautilus/",
+      "version": "51.1-1",
+      "pkgstats_percent": 27.37
+    },
+    "navi": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/denisidoro/navi",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/navi/",
+      "version": "2.24.0-1",
+      "pkgstats_percent": 1.7
+    },
+    "ncdu": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://dev.yorhel.nl/ncdu",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ncdu/",
+      "version": "2.9.2-1",
+      "pkgstats_percent": 29.42
+    },
+    "ncmpcpp": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ncmpcpp/ncmpcpp",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ncmpcpp/",
+      "version": "0.10.1-9",
+      "pkgstats_percent": 5.62
+    },
+    "nemo": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/linuxmint/nemo",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/nemo/",
+      "version": "6.6.4-1",
+      "pkgstats_percent": 9
+    },
+    "neochat": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/neochat/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/neochat/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 8.86
+    },
+    "neovim": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://neovim.io",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/neovim/",
+      "version": "0.12.6-1",
+      "pkgstats_percent": 44.14
+    },
+    "nethogs": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/raboof/nethogs",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/nethogs/",
+      "version": "0.8.8-2",
+      "pkgstats_percent": 11.44
+    },
+    "network-manager-applet": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.gnome.org/GNOME/network-manager-applet",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/network-manager-applet/",
+      "version": "1.36.0-2",
+      "pkgstats_percent": 31.41
+    },
+    "networkmanager": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://networkmanager.dev/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/networkmanager/",
+      "version": "1.58.1-2",
+      "pkgstats_percent": 79.78
+    },
+    "networkmanager-openvpn": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://networkmanager.dev/docs/vpn/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/networkmanager-openvpn/",
+      "version": "1.12.5-2",
+      "pkgstats_percent": 31.83
+    },
+    "networkmanager-vpnc": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://networkmanager.dev/docs/vpn/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/networkmanager-vpnc/",
+      "version": "1.4.0-3",
+      "pkgstats_percent": 5.1
+    },
+    "nextcloud-client": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://nextcloud.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/nextcloud-client/",
+      "version": "2:35.0.0-2",
+      "pkgstats_percent": 8.14
+    },
+    "nftables": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://netfilter.org/projects/nftables/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/nftables/",
+      "version": "1:1.1.7-3",
+      "pkgstats_percent": 99.02
+    },
+    "ninja": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://ninja-build.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ninja/",
+      "version": "1.13.2-3",
+      "pkgstats_percent": 70.45
+    },
+    "niri": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/YaLTeR/niri",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/niri/",
+      "version": "26.04-1",
+      "pkgstats_percent": 8.22
+    },
+    "nload": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.roland-riegel.de/nload",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/nload/",
+      "version": "0.7.4-9",
+      "pkgstats_percent": 3.71
+    },
+    "nm-connection-editor": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.gnome.org/GNOME/network-manager-applet",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/nm-connection-editor/",
+      "version": "1.36.0-2",
+      "pkgstats_percent": 42.63
+    },
+    "nmap": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://nmap.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/nmap/",
+      "version": "7.993-1",
+      "pkgstats_percent": 50.75
+    },
+    "nnn": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/jarun/nnn",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/nnn/",
+      "version": "5.3-1",
+      "pkgstats_percent": 4.82
+    },
+    "nodejs": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://nodejs.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/nodejs/",
+      "version": "26.13.0-1",
+      "pkgstats_percent": 58.46
+    },
+    "noto-fonts": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://fonts.google.com/noto",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/noto-fonts/",
+      "version": "1:2026.11.01-1",
+      "pkgstats_percent": 74.7
+    },
+    "noto-fonts-cjk": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.google.com/get/noto/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/noto-fonts-cjk/",
+      "version": "20240730-1",
+      "pkgstats_percent": 44.87
+    },
+    "noto-fonts-emoji": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.google.com/get/noto/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/noto-fonts-emoji/",
+      "version": "1:20260924-1",
+      "pkgstats_percent": 75.1
+    },
+    "npm": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.npmjs.com",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/npm/",
+      "version": "12.2.1-1",
+      "pkgstats_percent": 62.58
+    },
+    "ntfs-3g": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.tuxera.com/community/open-source-ntfs-3g/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ntfs-3g/",
+      "version": "2026.9.28-1",
+      "pkgstats_percent": 57.72
+    },
+    "numlockx": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/rg3/numlockx",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/numlockx/",
+      "version": "1.2-6",
+      "pkgstats_percent": 7.68
+    },
+    "nvme-cli": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/linux-nvme/nvme-cli",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/nvme-cli/",
+      "version": "3.2-1",
+      "pkgstats_percent": 23.02
+    },
+    "nvtop": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/Syllo/nvtop",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/nvtop/",
+      "version": "3.3.2-1",
+      "pkgstats_percent": 32.92
+    },
+    "nwg-displays": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/nwg-piotr/nwg-displays",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/nwg-displays/",
+      "version": "0.5.0-1",
+      "pkgstats_percent": 4.67
+    },
+    "nwg-look": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/nwg-piotr/nwg-look",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/nwg-look/",
+      "version": "1.2.1-1",
+      "pkgstats_percent": 15.61
+    },
+    "nyxt": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://nyxt.atlas.engineer",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/nyxt/",
+      "version": "3.12.0-1",
+      "pkgstats_percent": 1.02
+    },
+    "obs-studio": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://obsproject.com",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/obs-studio/",
+      "version": "33.0.1-1",
+      "pkgstats_percent": 33.95
+    },
+    "obsidian": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://obsidian.md",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/obsidian/",
+      "version": "1.14.5-1",
+      "pkgstats_percent": 21.84
+    },
+    "ocrmypdf": {
+      "source": "aur",
+      "upstream": "https://github.com/ocrmypdf/OCRmyPDF",
+      "package_page": "https://aur.archlinux.org/packages/ocrmypdf",
+      "version": "17.13.0-1",
+      "maintainer": "fbrennan",
+      "votes": 160,
+      "recipe_sha256": "02b09285a67337584bca8a4e8d1e93ff2f3a36c960ae34bfb877ba7961684b0f",
+      "pkgstats_percent": 3.38
+    },
+    "okular": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/okular/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/okular/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 36.75
+    },
+    "ollama": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ollama/ollama",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ollama/",
+      "version": "0.40.13-1",
+      "pkgstats_percent": 15.16
+    },
+    "ollama-cuda": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ollama/ollama",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ollama-cuda/",
+      "version": "0.40.13-1",
+      "pkgstats_percent": 3.71
+    },
+    "ollama-rocm": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ollama/ollama",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ollama-rocm/",
+      "version": "0.40.13-1",
+      "pkgstats_percent": 2.55
+    },
+    "ollama-vulkan": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ollama/ollama",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ollama-vulkan/",
+      "version": "0.40.13-1",
+      "pkgstats_percent": 2.55
+    },
+    "onboard": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://launchpad.net/onboard",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/onboard/",
+      "version": "1.4.1-14",
+      "pkgstats_percent": 3.83
+    },
+    "onlyoffice-bin": {
+      "source": "aur",
+      "upstream": "https://www.onlyoffice.com/",
+      "package_page": "https://aur.archlinux.org/packages/onlyoffice-bin",
+      "version": "10.0.0-1",
+      "maintainer": "dbermond",
+      "votes": 304,
+      "recipe_sha256": "38e184329ae3fdc43625afb442a71d1d22a979cf9c6dd294896b45d0e01edaaa",
+      "pkgstats_percent": 6.23
+    },
+    "openai-codex": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/openai/codex",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/openai-codex/",
+      "version": "0.166.0-1",
+      "pkgstats_percent": 5.81
+    },
+    "openbsd-netcat": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://salsa.debian.org/debian/netcat-openbsd",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/openbsd-netcat/",
+      "version": "1.239_1-1",
+      "pkgstats_percent": 34.98
+    },
+    "opencode": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/anomalyco/opencode",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/opencode/",
+      "version": "2.2.5-1",
+      "pkgstats_percent": 11.87
+    },
+    "opencv": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://opencv.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/opencv/",
+      "version": "5.0.0-13",
+      "pkgstats_percent": 65.5
+    },
+    "openmw": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.openmw.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/openmw/",
+      "version": "0.51.0-3",
+      "pkgstats_percent": 1.79
+    },
+    "openrazer-daemon": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://openrazer.github.io",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/openrazer-daemon/",
+      "version": "3.12.4-1",
+      "pkgstats_percent": 3.36
+    },
+    "openrct2": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://openrct2.io",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/openrct2/",
+      "version": "0.5.6-1",
+      "pkgstats_percent": 1.73
+    },
+    "openrgb": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.com/CalcProgrammer1/OpenRGB",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/openrgb/",
+      "version": "1.1-1",
+      "pkgstats_percent": 9.38
+    },
+    "openscad": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://openscad.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/openscad/",
+      "version": "2021.01-23",
+      "pkgstats_percent": 6.68
+    },
+    "openssh": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://www.openssh.com/portable.html",
+      "package_page": "https://archlinux.org/packages/core/x86_64/openssh/",
+      "version": "10.6p1-2",
+      "pkgstats_percent": 99.12
+    },
+    "openttd": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.openttd.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/openttd/",
+      "version": "15.3-1",
+      "pkgstats_percent": 3.26
+    },
+    "openvpn": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://openvpn.net/index.php/open-source.html",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/openvpn/",
+      "version": "2.7.8-1",
+      "pkgstats_percent": 44.37
+    },
+    "optipng": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://optipng.sourceforge.net/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/optipng/",
+      "version": "7.9.1-1",
+      "pkgstats_percent": 23.52
+    },
+    "orca": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://orca.gnome.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/orca/",
+      "version": "51.1-1",
+      "pkgstats_percent": 13.07
+    },
+    "oxipng": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/shssoichiro/oxipng",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/oxipng/",
+      "version": "10.2.1-1",
+      "pkgstats_percent": 4.02
+    },
+    "pacman-contrib": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.archlinux.org/pacman/pacman-contrib",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pacman-contrib/",
+      "version": "1.13.1-1",
+      "pkgstats_percent": 84.87
+    },
+    "pacutils": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/andrewgregory/pacutils",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pacutils/",
+      "version": "0.15.0-2",
+      "pkgstats_percent": 36.34
+    },
+    "pamixer": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/cdemoulins/pamixer",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pamixer/",
+      "version": "1.6-4",
+      "pkgstats_percent": 10.5
+    },
+    "pandoc-cli": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pandoc.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pandoc-cli/",
+      "version": "3.11-52",
+      "pkgstats_percent": 16.31
+    },
+    "papers": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.gnome.org/Papers/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/papers/",
+      "version": "51.1-1",
+      "pkgstats_percent": 11.57
+    },
+    "papirus-icon-theme": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/papirus-icon-theme/",
+      "version": "20260801-1",
+      "pkgstats_percent": 21.2
+    },
+    "parallel": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.gnu.org/software/parallel/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/parallel/",
+      "version": "20260922-1",
+      "pkgstats_percent": 49.69
+    },
+    "partitionmanager": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/partitionmanager/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/partitionmanager/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 26.76
+    },
+    "paru": {
+      "source": "aur",
+      "upstream": "https://github.com/morganamilo/paru",
+      "package_page": "https://aur.archlinux.org/packages/paru",
+      "version": "2.2.0-1",
+      "maintainer": "Morganamilo",
+      "votes": 1270,
+      "recipe_sha256": "9a8a245f9ce110699fd050de45c81b97b3fe5e6ae61a5e2dd1abd663769f927f",
+      "pkgstats_percent": 32.51
+    },
+    "pass": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.passwordstore.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pass/",
+      "version": "1.7.4-7",
+      "pkgstats_percent": 12.58
+    },
+    "pavucontrol": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://freedesktop.org/software/pulseaudio/pavucontrol/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pavucontrol/",
+      "version": "1:6.2-2",
+      "pkgstats_percent": 52.91
+    },
+    "pciutils": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://mj.ucw.cz/sw/pciutils/",
+      "package_page": "https://archlinux.org/packages/core/x86_64/pciutils/",
+      "version": "3.15.0-1",
+      "pkgstats_percent": 99.84
+    },
+    "pcmanfm": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/lxde/pcmanfm",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pcmanfm/",
+      "version": "1.4.0-2",
+      "pkgstats_percent": 6.3
+    },
+    "pcmanfm-qt": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/lxqt/pcmanfm-qt",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pcmanfm-qt/",
+      "version": "2.4.1-1",
+      "pkgstats_percent": 3.77
+    },
+    "pcsx2": {
+      "source": "aur",
+      "upstream": "https://github.com/PCSX2/pcsx2",
+      "package_page": "https://aur.archlinux.org/packages/pcsx2",
+      "version": "2.8.2-1",
+      "maintainer": "xiota",
+      "votes": 45,
+      "recipe_sha256": "8f4b2369aaae2bcd828fdc5c37a05078d1ea54fa7669da7d998a25b439a965bb",
+      "pkgstats_percent": 1.05
+    },
+    "pdfarranger": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/pdfarranger/pdfarranger",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pdfarranger/",
+      "version": "1.14.0-1",
+      "pkgstats_percent": 6.87
+    },
+    "peazip": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://peazip.github.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/peazip/",
+      "version": "11.4.0-1",
+      "pkgstats_percent": 1.74
+    },
+    "peek": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/phw/peek",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/peek/",
+      "version": "1.5.1-5",
+      "pkgstats_percent": 3.66
+    },
+    "perl": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://www.perl.org",
+      "package_page": "https://archlinux.org/packages/core/x86_64/perl/",
+      "version": "5.44.0-1",
+      "pkgstats_percent": 99.95
+    },
+    "php": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.php.net/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/php/",
+      "version": "8.5.12-1",
+      "pkgstats_percent": 22.03
+    },
+    "picard": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/metabrainz/picard",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/picard/",
+      "version": "3.0.2-1",
+      "pkgstats_percent": 8.29
+    },
+    "pika-backup": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.gnome.org/PikaBackup/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pika-backup/",
+      "version": "0.8.4-1",
+      "pkgstats_percent": 1.68
+    },
+    "pinta": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pinta-project.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pinta/",
+      "version": "3.1.2-2",
+      "pkgstats_percent": 6.06
+    },
+    "piper": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/libratbag/piper",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/piper/",
+      "version": "0.8-5",
+      "pkgstats_percent": 8.96
+    },
+    "pipewire": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pipewire.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pipewire/",
+      "version": "1:1.6.10-1",
+      "pkgstats_percent": 89.8
+    },
+    "pipewire-alsa": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pipewire.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pipewire-alsa/",
+      "version": "1:1.6.10-1",
+      "pkgstats_percent": 60.21
+    },
+    "pipewire-pulse": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pipewire.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pipewire-pulse/",
+      "version": "1:1.6.10-1",
+      "pkgstats_percent": 77.58
+    },
+    "plantuml": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://plantuml.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/plantuml/",
+      "version": "1.2026.8-1",
+      "pkgstats_percent": 2.73
+    },
+    "plasma-meta": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://kde.org/plasma-desktop/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/plasma-meta/",
+      "version": "6.8-1",
+      "pkgstats_percent": 17.41
+    },
+    "pnpm": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pnpm.io",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pnpm/",
+      "version": "12.16.1-1",
+      "pkgstats_percent": 20.99
+    },
+    "podman": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/podman-container-tools/podman",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/podman/",
+      "version": "6.1.4-1",
+      "pkgstats_percent": 19.1
+    },
+    "podman-compose": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/containers/podman-compose",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/podman-compose/",
+      "version": "1.6.0-1",
+      "pkgstats_percent": 8.96
+    },
+    "polychromatic": {
+      "source": "aur",
+      "upstream": "https://github.com/polychromatic/polychromatic",
+      "package_page": "https://aur.archlinux.org/packages/polychromatic",
+      "version": "0.9.8-1",
+      "maintainer": "z3ntu",
+      "votes": 70,
+      "recipe_sha256": "21e4632df729342afca73d0672cf17caaf4c23b303078afffcf4e6175ef4eb1e",
+      "pkgstats_percent": 2.12
+    },
+    "postgresql": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.postgresql.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/postgresql/",
+      "version": "18.6-4",
+      "pkgstats_percent": 16.34
+    },
+    "postman-bin": {
+      "source": "aur",
+      "upstream": "https://www.getpostman.com",
+      "package_page": "https://aur.archlinux.org/packages/postman-bin",
+      "version": "12.33.4-1",
+      "maintainer": "Dominiquini",
+      "votes": 315,
+      "recipe_sha256": "8dcd5c066139b639c1e2ccfb87c7ad4e520622eadbcf33289846e7f23eef4d58",
+      "pkgstats_percent": 3.44
+    },
+    "power-profiles-daemon": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.freedesktop.org/upower/power-profiles-daemon",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/power-profiles-daemon/",
+      "version": "0.30-1",
+      "pkgstats_percent": 33.21
+    },
+    "powertop": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/fenrus75/powertop/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/powertop/",
+      "version": "2.16.1-1",
+      "pkgstats_percent": 28.84
+    },
+    "ppsspp": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.ppsspp.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ppsspp/",
+      "version": "1.20.4-4",
+      "pkgstats_percent": 1.97
+    },
+    "pre-commit": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/pre-commit/pre-commit",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pre-commit/",
+      "version": "4.7.0-1",
+      "pkgstats_percent": 4.02
+    },
+    "prismlauncher": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://prismlauncher.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/prismlauncher/",
+      "version": "11.1.1-1",
+      "pkgstats_percent": 13.85
+    },
+    "procs": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/dalance/procs",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/procs/",
+      "version": "0.14.12-1",
+      "pkgstats_percent": 3.86
+    },
+    "protontricks": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/Matoking/protontricks",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/protontricks/",
+      "version": "1.14.1-1",
+      "pkgstats_percent": 16.33
+    },
+    "protonup-qt": {
+      "source": "aur",
+      "upstream": "https://davidotek.github.io/protonup-qt",
+      "package_page": "https://aur.archlinux.org/packages/protonup-qt",
+      "version": "2.16.0-1",
+      "maintainer": "yochananmarqos",
+      "votes": 119,
+      "recipe_sha256": "69563f6a055e40e82f552f82c31801cd7a55f8ebaa92debfd2770e3f7a097056",
+      "pkgstats_percent": 6.28
+    },
+    "psensor": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.com/jeanfi/psensor",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/psensor/",
+      "version": "1.2.1-5",
+      "pkgstats_percent": 5.48
+    },
+    "psmisc": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://gitlab.com/psmisc/psmisc",
+      "package_page": "https://archlinux.org/packages/core/x86_64/psmisc/",
+      "version": "23.7-2",
+      "pkgstats_percent": 99.82
+    },
+    "pv": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.ivarch.com/programs/pv.shtml",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pv/",
+      "version": "1.12.0-1",
+      "pkgstats_percent": 32.21
+    },
+    "pwgen": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://sourceforge.net/projects/pwgen/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/pwgen/",
+      "version": "2.08-4",
+      "pkgstats_percent": 12.6
+    },
+    "pwvucontrol": {
+      "source": "aur",
+      "upstream": "https://github.com/saivert/pwvucontrol",
+      "package_page": "https://aur.archlinux.org/packages/pwvucontrol",
+      "version": "0.5.3-2",
+      "maintainer": "moabeat",
+      "votes": 49,
+      "recipe_sha256": "159651a866174bd36b7d0a66585b9b4440f5ceac86c85180f7e3776c9cb86bd8",
+      "pkgstats_percent": 3.55
+    },
+    "python": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://www.python.org/",
+      "package_page": "https://archlinux.org/packages/core/x86_64/python/",
+      "version": "3.14.9-1",
+      "pkgstats_percent": 99.88
+    },
+    "python-black": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/psf/black",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-black/",
+      "version": "26.10.1-1",
+      "pkgstats_percent": 19.85
+    },
+    "python-ipykernel": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pypi.org/project/ipykernel/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-ipykernel/",
+      "version": "7.4.0-1",
+      "pkgstats_percent": 13.41
+    },
+    "python-matplotlib": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://matplotlib.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-matplotlib/",
+      "version": "3.11.2-1",
+      "pkgstats_percent": 48.57
+    },
+    "python-numpy": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.numpy.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-numpy/",
+      "version": "2.5.4-1",
+      "pkgstats_percent": 73.62
+    },
+    "python-opencv": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://opencv.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-opencv/",
+      "version": "5.0.0-13",
+      "pkgstats_percent": 7.75
+    },
+    "python-pandas": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pandas.pydata.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-pandas/",
+      "version": "2.3.3-7",
+      "pkgstats_percent": 23.51
+    },
+    "python-pip": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pip.pypa.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-pip/",
+      "version": "26.2.2-1",
+      "pkgstats_percent": 62.28
+    },
+    "python-pipx": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/pypa/pipx",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-pipx/",
+      "version": "1.18.4-2",
+      "pkgstats_percent": 25.49
+    },
+    "python-pytest": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://docs.pytest.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-pytest/",
+      "version": "1:9.2.0-1",
+      "pkgstats_percent": 37.62
+    },
+    "python-pytorch": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pytorch.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-pytorch/",
+      "version": "2.15.0-1",
+      "pkgstats_percent": 3.59
+    },
+    "python-pytorch-cuda": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pytorch.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-pytorch-cuda/",
+      "version": "2.15.0-1",
+      "pkgstats_percent": 1.06
+    },
+    "python-pytorch-rocm": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pytorch.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-pytorch-rocm/",
+      "version": "2.15.0-1",
+      "pkgstats_percent": 0.7
+    },
+    "python-scikit-learn": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://scikit-learn.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-scikit-learn/",
+      "version": "1.9.1-1",
+      "pkgstats_percent": 8.27
+    },
+    "python-scipy": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.scipy.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-scipy/",
+      "version": "1.18.1-1",
+      "pkgstats_percent": 28.68
+    },
+    "python-seaborn": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://seaborn.pydata.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-seaborn/",
+      "version": "0.13.2-3",
+      "pkgstats_percent": 4.01
+    },
+    "python-sympy": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://sympy.org/en/index.html",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-sympy/",
+      "version": "1.14.0-6",
+      "pkgstats_percent": 16.54
+    },
+    "python-tensorflow": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.tensorflow.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-tensorflow/",
+      "version": "2.21.0-1",
+      "pkgstats_percent": 1.93
+    },
+    "python-tensorflow-cuda": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.tensorflow.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-tensorflow-cuda/",
+      "version": "2.21.0-1",
+      "pkgstats_percent": 0.23
+    },
+    "python-virtualenv": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://virtualenv.pypa.io",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/python-virtualenv/",
+      "version": "21.14.7-1",
+      "pkgstats_percent": 32.66
+    },
+    "qalculate-gtk": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://qalculate.github.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/qalculate-gtk/",
+      "version": "5.13.0-1",
+      "pkgstats_percent": 5.3
+    },
+    "qalculate-qt": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://qalculate.github.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/qalculate-qt/",
+      "version": "5.13.0-1",
+      "pkgstats_percent": 5.03
+    },
+    "qbittorrent": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.qbittorrent.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/qbittorrent/",
+      "version": "5.3.0-1",
+      "pkgstats_percent": 28
+    },
+    "qemu-desktop": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.qemu.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/qemu-desktop/",
+      "version": "11.1.3-1",
+      "pkgstats_percent": 35.91
+    },
+    "qemu-full": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.qemu.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/qemu-full/",
+      "version": "11.1.3-1",
+      "pkgstats_percent": 14.41
+    },
+    "qjackctl": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://qjackctl.sourceforge.io",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/qjackctl/",
+      "version": "1.0.6-1",
+      "pkgstats_percent": 5.71
+    },
+    "qpwgraph": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.freedesktop.org/rncbc/qpwgraph",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/qpwgraph/",
+      "version": "1.0.4-1",
+      "pkgstats_percent": 14.99
+    },
+    "qt5ct": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://qt5ct.sourceforge.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/qt5ct/",
+      "version": "1.9-2",
+      "pkgstats_percent": 19.36
+    },
+    "qt6ct": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.opencode.net/trialuser/qt6ct",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/qt6ct/",
+      "version": "0.11-9",
+      "pkgstats_percent": 20.77
+    },
+    "qtcreator": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.qt.io",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/qtcreator/",
+      "version": "20.0.2-3",
+      "pkgstats_percent": 7
+    },
+    "qtile": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://qtile.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/qtile/",
+      "version": "0.37.1-1",
+      "pkgstats_percent": 1.03
+    },
+    "qtractor": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://qtractor.sourceforge.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/qtractor/",
+      "version": "1.6.4-1",
+      "pkgstats_percent": 9.77
+    },
+    "quassel-monolithic": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://quassel-irc.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/quassel-monolithic/",
+      "version": "0.14.0-4",
+      "pkgstats_percent": 0.24
+    },
+    "quickshell": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://git.outfoxxed.me/quickshell/quickshell",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/quickshell/",
+      "version": "0.3.2-1",
+      "pkgstats_percent": 7.01
+    },
+    "qutebrowser": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.qutebrowser.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/qutebrowser/",
+      "version": "3.7.0-1",
+      "pkgstats_percent": 4.61
+    },
+    "qwen-code": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/QwenLM/qwen-code",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/qwen-code/",
+      "version": "0.23.1-1",
+      "pkgstats_percent": 0.64
+    },
+    "r": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.r-project.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/r/",
+      "version": "4.6.2-1",
+      "pkgstats_percent": 10.04
+    },
+    "ranger": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://ranger.github.io",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ranger/",
+      "version": "1.9.4-5",
+      "pkgstats_percent": 10.85
+    },
+    "rawtherapee": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.rawtherapee.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/rawtherapee/",
+      "version": "1:5.13-1",
+      "pkgstats_percent": 4.69
+    },
+    "rclone": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/rclone/rclone",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/rclone/",
+      "version": "1.75.2-1",
+      "pkgstats_percent": 21.03
+    },
+    "rebuild-detector": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/maximbaz/rebuild-detector",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/rebuild-detector/",
+      "version": "4.4.5-1",
+      "pkgstats_percent": 21.08
+    },
+    "reflector": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://xyne.dev/projects/reflector",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/reflector/",
+      "version": "2023-5",
+      "pkgstats_percent": 63.73
+    },
+    "remmina": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.remmina.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/remmina/",
+      "version": "1:1.4.43-4",
+      "pkgstats_percent": 13.65
+    },
+    "restic": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/restic/restic",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/restic/",
+      "version": "0.19.1-1",
+      "pkgstats_percent": 9.13
+    },
+    "retroarch": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.libretro.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/retroarch/",
+      "version": "1.22.2-5",
+      "pkgstats_percent": 7.66
+    },
+    "rhythmbox": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.gnome.org/GNOME/rhythmbox",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/rhythmbox/",
+      "version": "3.5.1-1",
+      "pkgstats_percent": 3.24
+    },
+    "ripgrep": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/BurntSushi/ripgrep",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ripgrep/",
+      "version": "15.2.0-1",
+      "pkgstats_percent": 79.99
+    },
+    "ristretto": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://docs.xfce.org/apps/ristretto/start",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ristretto/",
+      "version": "0.14.0-1",
+      "pkgstats_percent": 7.7
+    },
+    "river": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://isaacfreund.com/software/river/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/river/",
+      "version": "0.5.0-1",
+      "pkgstats_percent": 0.57
+    },
+    "rnote": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/flxzt/rnote",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/rnote/",
+      "version": "0.14.2-2",
+      "pkgstats_percent": 1.93
+    },
+    "rocm-hip-sdk": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://rocm.docs.amd.com/en/latest/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/rocm-hip-sdk/",
+      "version": "7.2.4-1",
+      "pkgstats_percent": 5.77
+    },
+    "rofi": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://davatorium.github.io/rofi",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/rofi/",
+      "version": "2.0.0-1",
+      "pkgstats_percent": 23.9
+    },
+    "rpcs3-git": {
+      "source": "aur",
+      "upstream": "https://github.com/RPCS3/rpcs3",
+      "package_page": "https://aur.archlinux.org/packages/rpcs3-git",
+      "version": "0.0.42.r19985.6ba56a52a4-1",
+      "maintainer": "hcorion",
+      "votes": 93,
+      "recipe_sha256": "a22841c79f7ee1b8c125a68b90c653d0075d3a1097a3fb98a7b815a6f65aca4e",
+      "pkgstats_percent": 0.86
+    },
+    "rsync": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://rsync.samba.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/rsync/",
+      "version": "3.5.1-3",
+      "pkgstats_percent": 88.04
+    },
+    "ruby": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.ruby-lang.org/en/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ruby/",
+      "version": "3.4.12-1",
+      "pkgstats_percent": 45.1
+    },
+    "ruff": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/astral-sh/ruff",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ruff/",
+      "version": "0.17.3-1",
+      "pkgstats_percent": 9.84
+    },
+    "rust": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.rust-lang.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/rust/",
+      "version": "1:1.99.1-1",
+      "pkgstats_percent": 36.94
+    },
+    "rust-analyzer": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://rust-analyzer.github.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/rust-analyzer/",
+      "version": "20260907-1",
+      "pkgstats_percent": 7.17
+    },
+    "sane": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.com/sane-project/backends",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/sane/",
+      "version": "1.4.0-4",
+      "pkgstats_percent": 50.03
+    },
+    "satty": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/gabm/satty",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/satty/",
+      "version": "0.22.0-1",
+      "pkgstats_percent": 9.32
+    },
+    "sc-controller": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/C0rn3j/sc-controller",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/sc-controller/",
+      "version": "1.0.8-1",
+      "pkgstats_percent": 1.26
+    },
+    "scrcpy": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/Genymobile/scrcpy",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/scrcpy/",
+      "version": "5.0.1-1",
+      "pkgstats_percent": 16.07
+    },
+    "screen": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.gnu.org/software/screen/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/screen/",
+      "version": "5.0.2-2",
+      "pkgstats_percent": 24.95
+    },
+    "scribus": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.scribus.net/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/scribus/",
+      "version": "1.6.6-8",
+      "pkgstats_percent": 4.49
+    },
+    "scrot": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/resurrecting-open-source-projects/scrot",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/scrot/",
+      "version": "2.0.0-1",
+      "pkgstats_percent": 11.17
+    },
+    "scummvm": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.scummvm.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/scummvm/",
+      "version": "2026.4.0-1",
+      "pkgstats_percent": 2.94
+    },
+    "sddm": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/sddm/sddm",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/sddm/",
+      "version": "0.21.0-7",
+      "pkgstats_percent": 40.36
+    },
+    "seahorse": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://wiki.gnome.org/Apps/Seahorse",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/seahorse/",
+      "version": "1:47.0.1-7",
+      "pkgstats_percent": 21.99
+    },
+    "shellcheck": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.shellcheck.net",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/shellcheck/",
+      "version": "0.11.0-163",
+      "pkgstats_percent": 19.72
+    },
+    "shfmt": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/mvdan/sh",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/shfmt/",
+      "version": "3.14.1-1",
+      "pkgstats_percent": 13.22
+    },
+    "shotcut": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.shotcut.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/shotcut/",
+      "version": "26.9.27-1",
+      "pkgstats_percent": 6.46
+    },
+    "shotwell": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.gnome.org/GNOME/shotwell",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/shotwell/",
+      "version": "2:33.0-2",
+      "pkgstats_percent": 3.49
+    },
+    "signal-desktop": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://signal.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/signal-desktop/",
+      "version": "8.33.0-1",
+      "pkgstats_percent": 19.67
+    },
+    "simple-scan": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.gnome.org/SimpleScan/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/simple-scan/",
+      "version": "50.0-1",
+      "pkgstats_percent": 18.25
+    },
+    "skanlite": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://apps.kde.org/skanlite/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/skanlite/",
+      "version": "26.08.2-1",
+      "pkgstats_percent": 14.39
+    },
+    "skopeo": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/containers/skopeo",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/skopeo/",
+      "version": "1.24.1-1",
+      "pkgstats_percent": 4.09
+    },
+    "slurp": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/emersion/slurp",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/slurp/",
+      "version": "1.5.0-2",
+      "pkgstats_percent": 32.49
+    },
+    "smartmontools": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.smartmontools.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/smartmontools/",
+      "version": "7.5-2",
+      "pkgstats_percent": 76.12
+    },
+    "snapper": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://snapper.io",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/snapper/",
+      "version": "0.13.2-1",
+      "pkgstats_percent": 19.27
+    },
+    "socat": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.dest-unreach.org/socat/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/socat/",
+      "version": "1.8.1.3-1",
+      "pkgstats_percent": 58.69
+    },
+    "solaar": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pwr-solaar.github.io/Solaar/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/solaar/",
+      "version": "1.1.20-2",
+      "pkgstats_percent": 10.6
+    },
+    "spectacle": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://kde.org/plasma-desktop/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/spectacle/",
+      "version": "1:6.8.2-1",
+      "pkgstats_percent": 40.24
+    },
+    "speech-dispatcher": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.freebsoft.org/speechd",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/speech-dispatcher/",
+      "version": "0.12.1-3",
+      "pkgstats_percent": 27.64
+    },
+    "speedcrunch": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://speedcrunch.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/speedcrunch/",
+      "version": "1.1.0-1",
+      "pkgstats_percent": 3.64
+    },
+    "speedtest-cli": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/sivel/speedtest-cli",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/speedtest-cli/",
+      "version": "2.1.3-11",
+      "pkgstats_percent": 15.42
+    },
+    "spicetify-cli": {
+      "source": "aur",
+      "upstream": "https://github.com/spicetify/cli",
+      "package_page": "https://aur.archlinux.org/packages/spicetify-cli",
+      "version": "2.46.4-1",
+      "maintainer": "khanhas",
+      "votes": 96,
+      "recipe_sha256": "247747eea0397117e9dd51dc525e6c51ea936268d55a9f4864f5b48d9ea80f62",
+      "pkgstats_percent": 4.27
+    },
+    "spotify": {
+      "source": "aur",
+      "upstream": "https://www.spotify.com",
+      "package_page": "https://aur.archlinux.org/packages/spotify",
+      "version": "1:1.3.4.258-2",
+      "maintainer": "gromit",
+      "votes": 275,
+      "recipe_sha256": "b5fb8995d64d92cabefa6a13315951bf37f09bac69a1fc39ad1840311f26875b",
+      "pkgstats_percent": 13.69
+    },
+    "sqlite": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://www.sqlite.org/",
+      "package_page": "https://archlinux.org/packages/core/x86_64/sqlite/",
+      "version": "3.54.0-1",
+      "pkgstats_percent": 100
+    },
+    "sqlitebrowser": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://sqlitebrowser.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/sqlitebrowser/",
+      "version": "3.13.1-3",
+      "pkgstats_percent": 13.69
+    },
+    "starship": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://starship.rs/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/starship/",
+      "version": "1.27.0-1",
+      "pkgstats_percent": 21.65
+    },
+    "steam": {
+      "source": "repo",
+      "repository": "multilib",
+      "upstream": "https://steampowered.com/",
+      "package_page": "https://archlinux.org/packages/multilib/x86_64/steam/",
+      "version": "1.0.0.87-3",
+      "pkgstats_percent": 51.63
+    },
+    "stow": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.gnu.org/software/stow/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/stow/",
+      "version": "2.4.1-1",
+      "pkgstats_percent": 8.6
+    },
+    "strace": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://strace.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/strace/",
+      "version": "7.3-1",
+      "pkgstats_percent": 40.87
+    },
+    "strawberry": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.strawberrymusicplayer.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/strawberry/",
+      "version": "1.2.31-1",
+      "pkgstats_percent": 6
+    },
+    "streamlink": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://streamlink.github.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/streamlink/",
+      "version": "8.6.3-1",
+      "pkgstats_percent": 4.26
+    },
+    "sudo": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://www.sudo.ws/sudo/",
+      "package_page": "https://archlinux.org/packages/core/x86_64/sudo/",
+      "version": "1.9.17.p2-6",
+      "pkgstats_percent": 97.68
+    },
+    "sunshine": {
+      "source": "aur",
+      "upstream": "https://app.lizardbyte.dev/Sunshine",
+      "package_page": "https://aur.archlinux.org/packages/sunshine",
+      "version": "2026.914.233613-1",
+      "maintainer": "LizardByte",
+      "votes": 84,
+      "recipe_sha256": "1b54216c41f8bc3877bc7a69d06595259143f9b64939b6b832a348093cab447f",
+      "pkgstats_percent": 4.35
+    },
+    "supertux": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/supertux/supertux",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/supertux/",
+      "version": "0.7.0-1",
+      "pkgstats_percent": 2.49
+    },
+    "supertuxkart": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://supertuxkart-evolution.com",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/supertuxkart/",
+      "version": "1.5-1",
+      "pkgstats_percent": 5.16
+    },
+    "swappy": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/jtheoof/swappy",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/swappy/",
+      "version": "1.8.0-1",
+      "pkgstats_percent": 8.19
+    },
+    "sway": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://swaywm.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/sway/",
+      "version": "1:1.12-4",
+      "pkgstats_percent": 12
+    },
+    "swaybg": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/swaywm/swaybg",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/swaybg/",
+      "version": "1.2.2-1",
+      "pkgstats_percent": 15.58
+    },
+    "swayidle": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/swaywm/swayidle",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/swayidle/",
+      "version": "1.9.1-1",
+      "pkgstats_percent": 12.25
+    },
+    "swaylock": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/swaywm/swaylock",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/swaylock/",
+      "version": "1.8.6-1",
+      "pkgstats_percent": 11.18
+    },
+    "swaync": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ErikReider/SwayNotificationCenter",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/swaync/",
+      "version": "0.12.6-1",
+      "pkgstats_percent": 6.79
+    },
+    "syncthing": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://syncthing.net/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/syncthing/",
+      "version": "2.1.7-1",
+      "pkgstats_percent": 21.17
+    },
+    "system-config-printer": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/OpenPrinting/system-config-printer",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/system-config-printer/",
+      "version": "1.5.18-7",
+      "pkgstats_percent": 32.91
+    },
+    "tailscale": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://tailscale.com",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/tailscale/",
+      "version": "1.104.4-1",
+      "pkgstats_percent": 16.77
+    },
+    "tcpdump": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.tcpdump.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/tcpdump/",
+      "version": "4.99.7-1",
+      "pkgstats_percent": 28.07
+    },
+    "tealdeer": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/tealdeer-rs/tealdeer",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/tealdeer/",
+      "version": "1.9.1-1",
+      "pkgstats_percent": 13.37
+    },
+    "teamspeak3": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.teamspeak.com",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/teamspeak3/",
+      "version": "3.6.2-6",
+      "pkgstats_percent": 2.94
+    },
+    "telegram-desktop": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://desktop.telegram.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/telegram-desktop/",
+      "version": "7.3.3-1",
+      "pkgstats_percent": 21.16
+    },
+    "tesseract": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/tesseract-ocr/tesseract",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/tesseract/",
+      "version": "5.5.4-1",
+      "pkgstats_percent": 65.76
+    },
+    "testdisk": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.cgsecurity.org/index.html?testdisk.html",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/testdisk/",
+      "version": "7.2-5",
+      "pkgstats_percent": 17.53
+    },
+    "texlive-meta": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://tug.org/texlive/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/texlive-meta/",
+      "version": "2026.1-1",
+      "pkgstats_percent": 3
+    },
+    "texstudio": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://texstudio.sourceforge.net/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/texstudio/",
+      "version": "4.9.9-1",
+      "pkgstats_percent": 4.42
+    },
+    "thunar": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://docs.xfce.org/xfce/thunar/start",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/thunar/",
+      "version": "4.20.10-1",
+      "pkgstats_percent": 26.15
+    },
+    "thunderbird": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.thunderbird.net/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/thunderbird/",
+      "version": "158.0.1-1",
+      "pkgstats_percent": 31.01
+    },
+    "tigervnc": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.tigervnc.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/tigervnc/",
+      "version": "1.16.2-5",
+      "pkgstats_percent": 13.52
+    },
+    "timeshift": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/linuxmint/timeshift",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/timeshift/",
+      "version": "26.09.0-1",
+      "pkgstats_percent": 10.01
+    },
+    "tldr": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/tldr-pages/tldr-python-client",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/tldr/",
+      "version": "3.4.4-1",
+      "pkgstats_percent": 16.74
+    },
+    "tlp": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://linrunner.de/en/tlp/tlp.html",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/tlp/",
+      "version": "1.10.2-1",
+      "pkgstats_percent": 17.27
+    },
+    "tmux": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/tmux/tmux/wiki",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/tmux/",
+      "version": "3.8-1",
+      "pkgstats_percent": 46.42
+    },
+    "toolbox": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/containers/toolbox",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/toolbox/",
+      "version": "0.3-2",
+      "pkgstats_percent": 0.59
+    },
+    "torbrowser-launcher": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/torproject/torbrowser-launcher",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/torbrowser-launcher/",
+      "version": "0.3.9-1",
+      "pkgstats_percent": 14.98
+    },
+    "traceroute": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://traceroute.sourceforge.net",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/traceroute/",
+      "version": "2.1.6-1",
+      "pkgstats_percent": 33.06
+    },
+    "transmission-gtk": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.transmissionbt.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/transmission-gtk/",
+      "version": "4.1.4-1",
+      "pkgstats_percent": 8.31
+    },
+    "trash-cli": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/andreafrancia/trash-cli",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/trash-cli/",
+      "version": "0.24.5.26-3",
+      "pkgstats_percent": 17.9
+    },
+    "tree": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.com/OldManProgrammer/unix-tree",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/tree/",
+      "version": "2.3.2-1",
+      "pkgstats_percent": 51.59
+    },
+    "ttf-fira-code": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/tonsky/FiraCode",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ttf-fira-code/",
+      "version": "6.2-4",
+      "pkgstats_percent": 14.58
+    },
+    "ttf-hack-nerd": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ryanoasis/nerd-fonts",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ttf-hack-nerd/",
+      "version": "3.5.1-2",
+      "pkgstats_percent": 11.92
+    },
+    "ttf-jetbrains-mono-nerd": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ryanoasis/nerd-fonts",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ttf-jetbrains-mono-nerd/",
+      "version": "3.5.1-2",
+      "pkgstats_percent": 25.54
+    },
+    "ttf-liberation": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/liberationfonts/liberation-fonts",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ttf-liberation/",
+      "version": "2.1.5-2",
+      "pkgstats_percent": 80.8
+    },
+    "udiskie": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pypi.python.org/pypi/udiskie",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/udiskie/",
+      "version": "2.7.0-2",
+      "pkgstats_percent": 17.75
+    },
+    "ufw": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://launchpad.net/ufw",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/ufw/",
+      "version": "0.36.2-7",
+      "pkgstats_percent": 31.77
+    },
+    "umu-launcher": {
+      "source": "repo",
+      "repository": "multilib",
+      "upstream": "https://github.com/Open-Wine-Components/umu-launcher",
+      "package_page": "https://archlinux.org/packages/multilib/x86_64/umu-launcher/",
+      "version": "1.4.4-1",
+      "pkgstats_percent": 11.88
+    },
+    "unrar": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.rarlab.com/rar_add.htm",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/unrar/",
+      "version": "1:7.3.2-1",
+      "pkgstats_percent": 59.14
+    },
+    "unzip": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://infozip.sourceforge.net/UnZip.html",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/unzip/",
+      "version": "6.0-23",
+      "pkgstats_percent": 90.46
+    },
+    "upscayl-bin": {
+      "source": "aur",
+      "upstream": "https://github.com/upscayl/upscayl",
+      "package_page": "https://aur.archlinux.org/packages/upscayl-bin",
+      "version": "2.15.0-10",
+      "maintainer": "prurigro",
+      "votes": 66,
+      "recipe_sha256": "644f94f8483f72d4d68c0400aab8f84f0114460dae66bcd6fbfe1af7b4508fe1",
+      "pkgstats_percent": 1.92
+    },
+    "usbutils": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usbutils.git/",
+      "package_page": "https://archlinux.org/packages/core/x86_64/usbutils/",
+      "version": "020-1",
+      "pkgstats_percent": 88.03
+    },
+    "uv": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/astral-sh/uv",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/uv/",
+      "version": "0.13.6-1",
+      "pkgstats_percent": 34.17
+    },
+    "uwsm": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/Vladimir-csp/uwsm",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/uwsm/",
+      "version": "0.27.1-1",
+      "pkgstats_percent": 12.57
+    },
+    "valgrind": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://valgrind.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/valgrind/",
+      "version": "3.25.1-9",
+      "pkgstats_percent": 22.4
+    },
+    "valkey": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://valkey.io/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/valkey/",
+      "version": "9.1.2-1",
+      "pkgstats_percent": 5.44
+    },
+    "veracrypt": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.veracrypt.fr/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/veracrypt/",
+      "version": "1.26.29-1",
+      "pkgstats_percent": 5.84
+    },
+    "vesktop-bin": {
+      "source": "aur",
+      "upstream": "https://vesktop.dev/",
+      "package_page": "https://aur.archlinux.org/packages/vesktop-bin",
+      "version": "1.6.8-1",
+      "maintainer": "Vendicated",
+      "votes": 170,
+      "recipe_sha256": "55e5348735c2c69d47dc3d6e00ef03cdac8fce0f032c62d360520d966739ffaa",
+      "pkgstats_percent": 5.1
+    },
+    "vifm": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://vifm.info/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/vifm/",
+      "version": "0.14.4-1",
+      "pkgstats_percent": 4.55
+    },
+    "vim": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.vim.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/vim/",
+      "version": "9.2.1178-1",
+      "pkgstats_percent": 65.89
+    },
+    "virt-install": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://virt-manager.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/virt-install/",
+      "version": "5.1.0-4",
+      "pkgstats_percent": 29.21
+    },
+    "virt-manager": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://virt-manager.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/virt-manager/",
+      "version": "5.1.0-4",
+      "pkgstats_percent": 28.33
+    },
+    "virt-viewer": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.com/virt-viewer/virt-viewer",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/virt-viewer/",
+      "version": "11.0-4",
+      "pkgstats_percent": 11.76
+    },
+    "virtualbox": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://virtualbox.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/virtualbox/",
+      "version": "7.2.22-1",
+      "pkgstats_percent": 18.14
+    },
+    "virtualbox-host-dkms": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://virtualbox.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/virtualbox-host-dkms/",
+      "version": "7.2.22-1",
+      "pkgstats_percent": 18.59
+    },
+    "visual-studio-code-bin": {
+      "source": "aur",
+      "upstream": "https://code.visualstudio.com/",
+      "package_page": "https://aur.archlinux.org/packages/visual-studio-code-bin",
+      "version": "1.144.0-1",
+      "maintainer": "dcelasun",
+      "votes": 1712,
+      "recipe_sha256": "08e4bf9efde6cef1d6ff3c32e8e8f40218251b1bbda56bd90740b60c4f61dc98",
+      "pkgstats_percent": 19.36
+    },
+    "vkbasalt": {
+      "source": "aur",
+      "upstream": "https://github.com/DadSchoorse/vkBasalt",
+      "package_page": "https://aur.archlinux.org/packages/vkbasalt",
+      "version": "0.3.2.10-1",
+      "maintainer": "gee",
+      "votes": 68,
+      "recipe_sha256": "6c1856d3da6eedf834f8f2a275dc20d74da822d46427f5e2aa507cb9e2df29d3",
+      "pkgstats_percent": 3.05
+    },
+    "vlc": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.videolan.org/vlc/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/vlc/",
+      "version": "3.0.24-1",
+      "pkgstats_percent": 52.96
+    },
+    "vnstat": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://humdi.net/vnstat/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/vnstat/",
+      "version": "2.14-1",
+      "pkgstats_percent": 8.02
+    },
+    "vokoscreen": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://linuxecke.volkoh.de/vokoscreen/vokoscreen.html",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/vokoscreen/",
+      "version": "4.11.1-1",
+      "pkgstats_percent": 1.33
+    },
+    "vorta": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://vorta.borgbase.com",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/vorta/",
+      "version": "0.11.6-1",
+      "pkgstats_percent": 1.83
+    },
+    "vulkan-tools": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.vulkan.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/vulkan-tools/",
+      "version": "1.4.363.0-1",
+      "pkgstats_percent": 66.76
+    },
+    "w3m": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://git.sr.ht/~rkta/w3m",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/w3m/",
+      "version": "0.5.6-1",
+      "pkgstats_percent": 19.05
+    },
+    "warpinator": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/linuxmint/warpinator",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/warpinator/",
+      "version": "2.0.5-1",
+      "pkgstats_percent": 1.28
+    },
+    "warzone2100": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://wz2100.net",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/warzone2100/",
+      "version": "4.7.0-10",
+      "pkgstats_percent": 0.55
+    },
+    "watchexec": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/watchexec/watchexec",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/watchexec/",
+      "version": "2.8.0-1",
+      "pkgstats_percent": 1.59
+    },
+    "waybar": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/Alexays/Waybar/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/waybar/",
+      "version": "0.15.0-3",
+      "pkgstats_percent": 23.41
+    },
+    "waydroid": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://waydro.id/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/waydroid/",
+      "version": "1.6.3-1",
+      "pkgstats_percent": 9.71
+    },
+    "waypaper": {
+      "source": "aur",
+      "upstream": "https://github.com/anufrievroman/waypaper",
+      "package_page": "https://aur.archlinux.org/packages/waypaper",
+      "version": "2.9-1",
+      "maintainer": "metak",
+      "votes": 32,
+      "recipe_sha256": "17bfc1657bc488e4249faee420e03f12bf60190b7d67d72690beed20135a46cd",
+      "pkgstats_percent": 4.24
+    },
+    "wayvnc": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/any1/wayvnc",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wayvnc/",
+      "version": "0.10.2-1",
+      "pkgstats_percent": 7.2
+    },
+    "weechat": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.weechat.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/weechat/",
+      "version": "4.10.2-1",
+      "pkgstats_percent": 4.18
+    },
+    "wesnoth": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.wesnoth.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wesnoth/",
+      "version": "1:1.18.8-2",
+      "pkgstats_percent": 1.26
+    },
+    "wev": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://git.sr.ht/~sircmpwn/wev",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wev/",
+      "version": "1.1.0-1",
+      "pkgstats_percent": 20.01
+    },
+    "wezterm": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/wezterm/wezterm",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wezterm/",
+      "version": "20240203.110809.5046fc22.r869.g76b606ec5-3",
+      "pkgstats_percent": 4.06
+    },
+    "wf-recorder": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ammen99/wf-recorder",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wf-recorder/",
+      "version": "0.6.0-2",
+      "pkgstats_percent": 7.74
+    },
+    "wget": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.gnu.org/software/wget/wget.html",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wget/",
+      "version": "1.25.0-6",
+      "pkgstats_percent": 87.47
+    },
+    "which": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://savannah.gnu.org/projects/which/",
+      "package_page": "https://archlinux.org/packages/core/x86_64/which/",
+      "version": "2.25-1",
+      "pkgstats_percent": 98.1
+    },
+    "whisper-cpp": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ggerganov/whisper.cpp",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/whisper-cpp/",
+      "version": "1.9.5-1",
+      "pkgstats_percent": 0.83
+    },
+    "wine": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.winehq.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wine/",
+      "version": "11.21-1",
+      "pkgstats_percent": 38.87
+    },
+    "wine-staging": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.wine-staging.com",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wine-staging/",
+      "version": "11.21-1",
+      "pkgstats_percent": 8.72
+    },
+    "winetricks": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://wiki.winehq.org/winetricks",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/winetricks/",
+      "version": "20260125-2",
+      "pkgstats_percent": 36.08
+    },
+    "wireguard-tools": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.wireguard.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wireguard-tools/",
+      "version": "1.0.20260223-1",
+      "pkgstats_percent": 37.9
+    },
+    "wireplumber": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pipewire.pages.freedesktop.org/wireplumber/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wireplumber/",
+      "version": "0.5.18-1",
+      "pkgstats_percent": 80.08
+    },
+    "wireshark-qt": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.wireshark.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wireshark-qt/",
+      "version": "4.7.4-1",
+      "pkgstats_percent": 25.23
+    },
+    "wl-clip-persist": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/Linus789/wl-clip-persist",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wl-clip-persist/",
+      "version": "0.5.0-2",
+      "pkgstats_percent": 8.88
+    },
+    "wl-clipboard": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/bugaevc/wl-clipboard",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wl-clipboard/",
+      "version": "1:2.3.0-1",
+      "pkgstats_percent": 49.26
+    },
+    "wl-mirror": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/Ferdi265/wl-mirror",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wl-mirror/",
+      "version": "0.18.5-1",
+      "pkgstats_percent": 1.75
+    },
+    "wlr-randr": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.freedesktop.org/emersion/wlr-randr",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wlr-randr/",
+      "version": "0.5.0-1",
+      "pkgstats_percent": 8.47
+    },
+    "wlsunset": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://sr.ht/~kennylevinsen/wlsunset",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wlsunset/",
+      "version": "0.4.0-1",
+      "pkgstats_percent": 4.38
+    },
+    "wofi": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://hg.sr.ht/~scoopta/wofi",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/wofi/",
+      "version": "1.5.3-1",
+      "pkgstats_percent": 12.45
+    },
+    "xarchiver": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ib/xarchiver",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/xarchiver/",
+      "version": "0.5.4.27-1",
+      "pkgstats_percent": 8.98
+    },
+    "xdg-desktop-portal-gnome": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/xdg-desktop-portal-gnome/",
+      "version": "51.0-1",
+      "pkgstats_percent": 22.19
+    },
+    "xdg-desktop-portal-gtk": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/flatpak/xdg-desktop-portal-gtk",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/xdg-desktop-portal-gtk/",
+      "version": "1.15.3-2",
+      "pkgstats_percent": 86.6
+    },
+    "xdg-desktop-portal-hyprland": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/hyprwm/xdg-desktop-portal-hyprland",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/xdg-desktop-portal-hyprland/",
+      "version": "1.4.1-2",
+      "pkgstats_percent": 19.23
+    },
+    "xdg-desktop-portal-kde": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://kde.org/plasma-desktop/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/xdg-desktop-portal-kde/",
+      "version": "6.8.2-1",
+      "pkgstats_percent": 44.38
+    },
+    "xdg-desktop-portal-wlr": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/emersion/xdg-desktop-portal-wlr",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/xdg-desktop-portal-wlr/",
+      "version": "0.8.4-1",
+      "pkgstats_percent": 12.43
+    },
+    "xdg-user-dirs": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.freedesktop.org/wiki/Software/xdg-user-dirs",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/xdg-user-dirs/",
+      "version": "0.20-1",
+      "pkgstats_percent": 82.63
+    },
+    "xdg-utils": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://gitlab.freedesktop.org/xdg/xdg-utils",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/xdg-utils/",
+      "version": "1.2.1-2",
+      "pkgstats_percent": 92.38
+    },
+    "xed": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/linuxmint/xed",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/xed/",
+      "version": "3.9.0-1",
+      "pkgstats_percent": 2.44
+    },
+    "xfce4-session": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://docs.xfce.org/xfce/xfce4-session/start",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/xfce4-session/",
+      "version": "4.20.4-1",
+      "pkgstats_percent": 9.64
+    },
+    "xfce4-terminal": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://docs.xfce.org/apps/terminal/start",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/xfce4-terminal/",
+      "version": "1.2.0-1",
+      "pkgstats_percent": 11.36
+    },
+    "xfsprogs": {
+      "source": "repo",
+      "repository": "core",
+      "upstream": "https://xfs.wiki.kernel.org",
+      "package_page": "https://archlinux.org/packages/core/x86_64/xfsprogs/",
+      "version": "7.2.1-1",
+      "pkgstats_percent": 52.18
+    },
+    "xonotic": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://xonotic.org",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/xonotic/",
+      "version": "0.8.6-3",
+      "pkgstats_percent": 1.54
+    },
+    "xournalpp": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/xournalpp/xournalpp",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/xournalpp/",
+      "version": "1.3.8-1",
+      "pkgstats_percent": 11.6
+    },
+    "yarn": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://classic.yarnpkg.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/yarn/",
+      "version": "1.22.22-2",
+      "pkgstats_percent": 21.47
+    },
+    "yay": {
+      "source": "aur",
+      "upstream": "https://github.com/Jguer/yay",
+      "package_page": "https://aur.archlinux.org/packages/yay",
+      "version": "13.1.0-1",
+      "maintainer": "jguer",
+      "votes": 2649,
+      "recipe_sha256": "fd8cce3f2980887d170c828ccf0a657002c3259687f5e6a876e6031cd912e631",
+      "pkgstats_percent": 47.01
+    },
+    "yazi": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/sxyazi/yazi",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/yazi/",
+      "version": "26.9.1-2",
+      "pkgstats_percent": 20.75
+    },
+    "yq": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/kislyuk/yq",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/yq/",
+      "version": "4.4.5-1",
+      "pkgstats_percent": 8.4
+    },
+    "yt-dlp": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/yt-dlp/yt-dlp",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/yt-dlp/",
+      "version": "2026.10.26-1",
+      "pkgstats_percent": 56.62
+    },
+    "zam-plugins-lv2": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/zamaudio/zam-plugins",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/zam-plugins-lv2/",
+      "version": "4.5-1",
+      "pkgstats_percent": 7.02
+    },
+    "zathura": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pwmt.org/projects/zathura/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/zathura/",
+      "version": "2026.10.23-2",
+      "pkgstats_percent": 20.23
+    },
+    "zathura-pdf-mupdf": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://pwmt.org/projects/zathura-pdf-mupdf/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/zathura-pdf-mupdf/",
+      "version": "2026.07.18-6",
+      "pkgstats_percent": 15.48
+    },
+    "zed": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://zed.dev",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/zed/",
+      "version": "1.26.2-1",
+      "pkgstats_percent": 11.56
+    },
+    "zellij": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://zellij.dev",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/zellij/",
+      "version": "0.45.1-1",
+      "pkgstats_percent": 7.75
+    },
+    "zen-browser-bin": {
+      "source": "aur",
+      "upstream": "https://github.com/zen-browser/desktop",
+      "package_page": "https://aur.archlinux.org/packages/zen-browser-bin",
+      "version": "1.24b-1",
+      "maintainer": "Larvey",
+      "votes": 342,
+      "recipe_sha256": "0a1cdc21d21f5a64373cbe9d3dd81bc20d460c89325fed52220f6288eca252d2",
+      "pkgstats_percent": 9.26
+    },
+    "zerotier-one": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.zerotier.com/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/zerotier-one/",
+      "version": "1.16.2-1",
+      "pkgstats_percent": 3.26
+    },
+    "zim": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://zim-wiki.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/zim/",
+      "version": "0.77.2-2",
+      "pkgstats_percent": 1.97
+    },
+    "zip": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "http://www.info-zip.org/Zip.html",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/zip/",
+      "version": "3.0-14",
+      "pkgstats_percent": 71.74
+    },
+    "zotero": {
+      "source": "aur",
+      "upstream": "https://github.com/zotero/zotero",
+      "package_page": "https://aur.archlinux.org/packages/zotero",
+      "version": "10.0.7-1",
+      "maintainer": "agkphysics",
+      "votes": 58,
+      "recipe_sha256": "8f2d9d4afc69002e608da0be8814758bf222fdd329cbdcc87be397b370310459",
+      "pkgstats_percent": 1.98
+    },
+    "zoxide": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/ajeetdsouza/zoxide",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/zoxide/",
+      "version": "0.10.0-1",
+      "pkgstats_percent": 23.19
+    },
+    "zram-generator": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/systemd/zram-generator",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/zram-generator/",
+      "version": "1.2.1-1",
+      "pkgstats_percent": 32.54
+    },
+    "zsh": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://www.zsh.org/",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/zsh/",
+      "version": "5.9.2-1",
+      "pkgstats_percent": 52.76
+    },
+    "zsh-autosuggestions": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/zsh-users/zsh-autosuggestions",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/zsh-autosuggestions/",
+      "version": "0.7.1-1",
+      "pkgstats_percent": 22.22
+    },
+    "zsh-syntax-highlighting": {
+      "source": "repo",
+      "repository": "extra",
+      "upstream": "https://github.com/zsh-users/zsh-syntax-highlighting",
+      "package_page": "https://archlinux.org/packages/extra/x86_64/zsh-syntax-highlighting/",
+      "version": "0.8.0-2",
+      "pkgstats_percent": 23.92
+    }
+  }
+}

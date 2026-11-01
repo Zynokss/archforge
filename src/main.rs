@@ -1,9 +1,11 @@
+mod app_icons;
 mod app_locations;
 mod app_storage;
 mod cleanups;
 mod diagnostic_results;
 mod dialogs;
 mod jobs;
+mod loadout_state;
 mod loadout_styles;
 mod loadout_ui;
 mod loadouts;
@@ -117,6 +119,13 @@ fn adapt_layout(window: &gtk::ApplicationWindow) {
         window.remove_css_class("compact");
     }
     fn visit(w: &gtk::Widget, compact: bool) {
+        if w.has_css_class("loadout-category-picker") {
+            w.set_visible(compact);
+        }
+        if w.has_css_class("loadout-category-scroll") {
+            w.set_visible(!compact);
+        }
+
         if let Some(b) = w.downcast_ref::<gtk::Box>()
             && [
                 "split-layout",
@@ -143,8 +152,8 @@ fn adapt_layout(window: &gtk::ApplicationWindow) {
                         -1
                     } else {
                         match index {
-                            0 => 180,
-                            2 => 265,
+                            0 => 160,
+                            2 => 236,
                             _ => -1,
                         }
                     });

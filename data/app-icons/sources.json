@@ -1,0 +1,2728 @@
+{
+  "sources": {
+    "papirus": {
+      "repository": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme",
+      "commit": "bf539287ef5dc18529424a02cccee76175920a6f",
+      "archive": "https://codeload.github.com/PapirusDevelopmentTeam/papirus-icon-theme/tar.gz/bf539287ef5dc18529424a02cccee76175920a6f"
+    },
+    "simple-icons": {
+      "repository": "https://github.com/simple-icons/simple-icons",
+      "commit": "90646e4bf7f3b89df6c37e65baf3e7bc759a517c",
+      "archive": "https://codeload.github.com/simple-icons/simple-icons/tar.gz/90646e4bf7f3b89df6c37e65baf3e7bc759a517c"
+    }
+  },
+  "packages": {
+    "0ad": {
+      "provider": "papirus",
+      "upstream_icon": "0ad",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/0ad.svg",
+      "file": "svg/papirus-0ad.svg",
+      "sha256": "a876056d3361c4e1a9eac6c1f9e6f5a81a4c85cbe4ab7f37bc65eaa12a9b3abd"
+    },
+    "7zip": {
+      "provider": "papirus",
+      "upstream_icon": "7zip",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/ark.svg",
+      "file": "svg/papirus-7zip.svg",
+      "sha256": "d7c8dcbd854c7bd2186b94060eb3b17322576bd083f9c3d0c1fc24ef89c2542d"
+    },
+    "abiword": {
+      "provider": "papirus",
+      "upstream_icon": "abiword",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/abiword.svg",
+      "file": "svg/papirus-abiword.svg",
+      "sha256": "49f4b3e0239b128fac3746e49e4e16c9d0c98fa26436421c344f07ec48aef6c3"
+    },
+    "android-studio": {
+      "provider": "simple-icons",
+      "upstream_icon": "androidstudio",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/androidstudio.svg",
+      "file": "svg/simple-icons-androidstudio.svg",
+      "sha256": "ab51c7308f9115c6fde14a4d5c1c78073615b46bd7d80f160487202bd43f74a1",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "anki": {
+      "provider": "papirus",
+      "upstream_icon": "anki",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/anki.svg",
+      "file": "svg/papirus-anki.svg",
+      "sha256": "54bfd474935c2f463c435e9ebc0442963bdf75e2ab44db29f3bb4ab991e05478"
+    },
+    "antimicrox": {
+      "provider": "papirus",
+      "upstream_icon": "io.github.antimicrox.antimicrox",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/preferences-desktop-gaming.svg",
+      "file": "svg/papirus-io.github.antimicrox.antimicrox.svg",
+      "sha256": "40434e60b348738bab78cbeba34de4a96601e25959d1c7075b34ecbfb45d6002"
+    },
+    "apostrophe": {
+      "provider": "papirus",
+      "upstream_icon": "org.gnome.gitlab.somas.Apostrophe",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/org.gnome.gitlab.somas.Apostrophe.svg",
+      "file": "svg/papirus-org.gnome.gitlab.somas.Apostrophe.svg",
+      "sha256": "adc21c642d1090b77e9100f1f5dc78c469a621fa57f7c7b28928dfc5892e7360"
+    },
+    "ardour": {
+      "provider": "papirus",
+      "upstream_icon": "ardour",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/ardour.svg",
+      "file": "svg/papirus-ardour.svg",
+      "sha256": "93efc4d1b8893f43aac74a696ecfa8a2ee5718140366f8a4c6db34b55bf2aaae"
+    },
+    "ark": {
+      "provider": "papirus",
+      "upstream_icon": "ark",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/ark.svg",
+      "file": "svg/papirus-7zip.svg",
+      "sha256": "d7c8dcbd854c7bd2186b94060eb3b17322576bd083f9c3d0c1fc24ef89c2542d"
+    },
+    "asciinema": {
+      "provider": "simple-icons",
+      "upstream_icon": "asciinema",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/asciinema.svg",
+      "file": "svg/simple-icons-asciinema.svg",
+      "sha256": "f569efd2e53b5f45a4450e804f9733f3f8b5ca1b6351a2b76e5e32513807d948",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "audacity": {
+      "provider": "papirus",
+      "upstream_icon": "audacity",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/audacity.svg",
+      "file": "svg/papirus-audacity.svg",
+      "sha256": "b33d8d113b980e0e028ef3e6c18eaf9fb81f687971bc82ff3c7b99ec4918659a"
+    },
+    "baobab": {
+      "provider": "papirus",
+      "upstream_icon": "baobab",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/org.gnome.baobab.svg",
+      "file": "svg/papirus-baobab.svg",
+      "sha256": "38951aad73c1689bc59adbff534a6ede60b7319663c9b22de47ce58cae4b4bc6"
+    },
+    "bat": {
+      "provider": "simple-icons",
+      "upstream_icon": "bat",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/bat.svg",
+      "file": "svg/simple-icons-bat.svg",
+      "sha256": "67b4bf10527498d158a006a252b94347051a0bbd2a7c72839d8f50bb3a6e480b",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "beekeeper-studio-bin": {
+      "provider": "simple-icons",
+      "upstream_icon": "beekeeperstudio",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/beekeeperstudio.svg",
+      "file": "svg/simple-icons-beekeeperstudio.svg",
+      "sha256": "f2fba1ccf5e155fcddfc18dc5849922ca67b4c4bcfff29716065289f235c4b59",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "bitwarden": {
+      "provider": "papirus",
+      "upstream_icon": "bitwarden",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/bitwarden.svg",
+      "file": "svg/papirus-bitwarden.svg",
+      "sha256": "af127257f9b5561db0b35ab1a23eba6c135466f58ed49897011ad62ea12f5b77"
+    },
+    "bitwarden-cli": {
+      "provider": "papirus",
+      "upstream_icon": "bitwarden",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/bitwarden.svg",
+      "file": "svg/papirus-bitwarden.svg",
+      "sha256": "af127257f9b5561db0b35ab1a23eba6c135466f58ed49897011ad62ea12f5b77"
+    },
+    "bleachbit": {
+      "provider": "papirus",
+      "upstream_icon": "bleachbit",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/computerjanitor.svg",
+      "file": "svg/papirus-bleachbit.svg",
+      "sha256": "c73bf44e16ff18ce8bc72eee752f3dd8ac0a5976777d05e5b75a4b580c7a0830"
+    },
+    "blender": {
+      "provider": "papirus",
+      "upstream_icon": "blender",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/blender.svg",
+      "file": "svg/papirus-blender.svg",
+      "sha256": "3e9238248f2e5b68105360bfe7b5b5636cb1afb017b974d5788f551d8f7236c9"
+    },
+    "blueman": {
+      "provider": "papirus",
+      "upstream_icon": "blueman",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/preferences-system-bluetooth.svg",
+      "file": "svg/papirus-blueman.svg",
+      "sha256": "658400d448e14521b745250a83ecf0b8a4adb4dbc84052326055c54f491d86b9"
+    },
+    "bluez": {
+      "provider": "simple-icons",
+      "upstream_icon": "bluetooth",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/bluetooth.svg",
+      "file": "svg/simple-icons-bluetooth.svg",
+      "sha256": "1cf08f44005b7076501a28fbb76200269695e2d838084e78b1b0f937e401426a",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "bluez-utils": {
+      "provider": "simple-icons",
+      "upstream_icon": "bluetooth",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/bluetooth.svg",
+      "file": "svg/simple-icons-bluetooth.svg",
+      "sha256": "1cf08f44005b7076501a28fbb76200269695e2d838084e78b1b0f937e401426a",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "borg": {
+      "provider": "simple-icons",
+      "upstream_icon": "borgbackup",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/borgbackup.svg",
+      "file": "svg/simple-icons-borgbackup.svg",
+      "sha256": "dba748f2822448d6147f9dee84bbc26c324b1c5a8e539ab25043bdefa3f178bf",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "brave-bin": {
+      "provider": "papirus",
+      "upstream_icon": "brave",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/brave.svg",
+      "file": "svg/papirus-brave.svg",
+      "sha256": "b4c7455242830e87aae29b8634b0c5d0b1eb68429ecb9cd6d1465fa4809218b8"
+    },
+    "bspwm": {
+      "provider": "simple-icons",
+      "upstream_icon": "bspwm",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/bspwm.svg",
+      "file": "svg/simple-icons-bspwm.svg",
+      "sha256": "3f55331fc641d3818d6e389beb889b86e1ab9cfc81cc4028c8863d350a46fbf1",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "btop": {
+      "provider": "papirus",
+      "upstream_icon": "btop",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/btop.svg",
+      "file": "svg/papirus-btop.svg",
+      "sha256": "4346beeef7a7d4ecc245e3542e2bdf7ea2d12a4b4e86e79540ade165b30dbc3a"
+    },
+    "btrfs-assistant": {
+      "provider": "papirus",
+      "upstream_icon": "btrfs-assistant",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/btrfs-assistant.svg",
+      "file": "svg/papirus-btrfs-assistant.svg",
+      "sha256": "373da93eb3fbd03db5b28faf7811130e4649fc9a37fea098edddadfd780dd8e1"
+    },
+    "bun": {
+      "provider": "simple-icons",
+      "upstream_icon": "bun",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/bun.svg",
+      "file": "svg/simple-icons-bun.svg",
+      "sha256": "852272ce4d3ceb2a4aa07d95f0796cd55612d3426cfd41ef438a25bd895b1a6a",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "calf": {
+      "provider": "papirus",
+      "upstream_icon": "calf",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/calf.svg",
+      "file": "svg/papirus-calf.svg",
+      "sha256": "fa623180fa3ab781fe8c3c00d9ca162a2ad03c247fbeebdec9a96c6ff02efb14"
+    },
+    "calibre": {
+      "provider": "papirus",
+      "upstream_icon": "calibre",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/accessories-ebook-reader.svg",
+      "file": "svg/papirus-calibre.svg",
+      "sha256": "491f56cb6f13ab3e1ea54160932594068258b77729c5c8106b8f246dfee90bc2"
+    },
+    "cherrytree": {
+      "provider": "papirus",
+      "upstream_icon": "cherrytree",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/cherrytree.svg",
+      "file": "svg/papirus-cherrytree.svg",
+      "sha256": "b1dab816a1c0de3d33491ad92b386fd765bdaf412282cbd08dea9425ba0cfcf9"
+    },
+    "chromium": {
+      "provider": "papirus",
+      "upstream_icon": "chromium-browser",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/chromium-browser.svg",
+      "file": "svg/papirus-chromium-browser.svg",
+      "sha256": "d0433ddd1454f1699462efe963ed4f6bcbc070071a3341e8c6a708f1fe7f3915"
+    },
+    "cinnamon": {
+      "provider": "simple-icons",
+      "upstream_icon": "cinnamon",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/cinnamon.svg",
+      "file": "svg/simple-icons-cinnamon.svg",
+      "sha256": "4328b3e9c3c722863263dccd65147647dadfc082fa1dd667e410dd8b96a348ea",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "clamav": {
+      "provider": "papirus",
+      "upstream_icon": "clamav",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/clamav.svg",
+      "file": "svg/papirus-clamav.svg",
+      "sha256": "7c6dc91c1c3046056015676b9f29a9c32cff9f4535c02a5e7df3d9ba66e5cbfc"
+    },
+    "claude-code": {
+      "provider": "simple-icons",
+      "upstream_icon": "claude",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/claude.svg",
+      "file": "svg/simple-icons-claude.svg",
+      "sha256": "a94332dc8ea0a3d701be9f6f66380b7b0b1b1917719af579a8c4f4b1d0a6cf8b",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "claws-mail": {
+      "provider": "papirus",
+      "upstream_icon": "claws-mail",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/internet-mail.svg",
+      "file": "svg/papirus-geary.svg",
+      "sha256": "47ab312b66c3d7cec2545c53d6fe63790e4fa2aa4d4e1884f3d4b60400e2588d"
+    },
+    "cmake": {
+      "provider": "simple-icons",
+      "upstream_icon": "cmake",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/cmake.svg",
+      "file": "svg/simple-icons-cmake.svg",
+      "sha256": "0badacc33aaf9bf5ba0fb42372b78ac7493c5be86678445ff3cc26ba93ac43a6",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "code": {
+      "provider": "papirus",
+      "upstream_icon": "code",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/vscode.svg",
+      "file": "svg/papirus-code.svg",
+      "sha256": "b0c9c235e175259d4faf5a0e53e779e082efa5f7a94500e1998bd7e009236888"
+    },
+    "composer": {
+      "provider": "simple-icons",
+      "upstream_icon": "composer",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/composer.svg",
+      "file": "svg/simple-icons-composer.svg",
+      "sha256": "054d45a70fd0b25dfc20f826ada9180036721f1d61d809a0d43fd69e8ff4bdbd",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "copyq": {
+      "provider": "papirus",
+      "upstream_icon": "copyq",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/copyq.svg",
+      "file": "svg/papirus-copyq.svg",
+      "sha256": "5e2342dabaf08fb5b4dbc8d06eb39652b9fc77d7e150801f976ad67ddcee0c90"
+    },
+    "corectrl": {
+      "provider": "papirus",
+      "upstream_icon": "corectrl",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/corectrl.svg",
+      "file": "svg/papirus-corectrl.svg",
+      "sha256": "4d0f7da7a60f7d9c4cb7859ef92db769bd9e287153dd68338c3faf3efd2e0fde"
+    },
+    "cpu-x": {
+      "provider": "papirus",
+      "upstream_icon": "cpu-x",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/cpu-x.svg",
+      "file": "svg/papirus-cpu-x.svg",
+      "sha256": "da9819f4c857216660786a40285a1a0f7eb8f1700e7a7f63e2ab562ed26f173a"
+    },
+    "cups": {
+      "provider": "papirus",
+      "upstream_icon": "cups",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/cups.svg",
+      "file": "svg/papirus-cups.svg",
+      "sha256": "340eed71a75362d470ec938d5c1e521c38855911d9d3744d8001f0701de362b2"
+    },
+    "curl": {
+      "provider": "simple-icons",
+      "upstream_icon": "curl",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/curl.svg",
+      "file": "svg/simple-icons-curl.svg",
+      "sha256": "85a459d54d039d9660cf47e8546de5eb45bae4d22b24fad2128d7c0f0d8c3380",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "curtail": {
+      "provider": "papirus",
+      "upstream_icon": "com.github.huluti.Curtail",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/com.github.huluti.Curtail.svg",
+      "file": "svg/papirus-com.github.huluti.Curtail.svg",
+      "sha256": "a02726ff9d85835b3253a4a1af71360dc50a592738314605817dcca113579f1e"
+    },
+    "darktable": {
+      "provider": "papirus",
+      "upstream_icon": "darktable",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/darktable.svg",
+      "file": "svg/papirus-darktable.svg",
+      "sha256": "405cf864fabbfd1fee28b346cfebdd1714e16b982fd204eda4e56e8f9fa96204"
+    },
+    "dbeaver": {
+      "provider": "simple-icons",
+      "upstream_icon": "dbeaver",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/dbeaver.svg",
+      "file": "svg/simple-icons-dbeaver.svg",
+      "sha256": "7c850de76821523614c652c3c38b198cb444e42d4040763aa06c4ad0c07f7d3b",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "deja-dup": {
+      "provider": "papirus",
+      "upstream_icon": "deja-dup",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/deja-dup.svg",
+      "file": "svg/papirus-deja-dup.svg",
+      "sha256": "70074842856d5e99348bcdabab566efbae3c4852bab8952c51e754b13c3d8c9e"
+    },
+    "desmume": {
+      "provider": "papirus",
+      "upstream_icon": "desmume",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/desmume.svg",
+      "file": "svg/papirus-desmume.svg",
+      "sha256": "8d068f73c1258ec8654d4d22cf3c81d4928509a78db6469354a12b26460c8155"
+    },
+    "digikam": {
+      "provider": "papirus",
+      "upstream_icon": "digikam",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/digikam.svg",
+      "file": "svg/papirus-digikam.svg",
+      "sha256": "5d9fb7e6f2e79d0e7351007dd35e67f0e6fb4939aa9503ffde34cda09e34b0ae"
+    },
+    "discord": {
+      "provider": "papirus",
+      "upstream_icon": "discord",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/discord.svg",
+      "file": "svg/papirus-discord.svg",
+      "sha256": "82f0b5141eae9f4a66ae6fe9de989f4c653aa424f4bc9f629d1966205af0dd91"
+    },
+    "distrobox": {
+      "provider": "simple-icons",
+      "upstream_icon": "distrobox",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/distrobox.svg",
+      "file": "svg/simple-icons-distrobox.svg",
+      "sha256": "adaa9732f12dcf7a0dbca450b63ce85b6172998126ce9fdae64f10965ffe735a",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "docker": {
+      "provider": "simple-icons",
+      "upstream_icon": "docker",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/docker.svg",
+      "file": "svg/simple-icons-docker.svg",
+      "sha256": "93fcfddd26fbad9f1a8889e2beeb0b58defbc9637ee7b9e307891c120798a5aa",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "docker-compose": {
+      "provider": "simple-icons",
+      "upstream_icon": "docker",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/docker.svg",
+      "file": "svg/simple-icons-docker.svg",
+      "sha256": "93fcfddd26fbad9f1a8889e2beeb0b58defbc9637ee7b9e307891c120798a5aa",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "dolphin": {
+      "provider": "papirus",
+      "upstream_icon": "org.kde.dolphin",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/org.kde.dolphin.svg",
+      "file": "svg/papirus-org.kde.dolphin.svg",
+      "sha256": "298d03ffc58076d13deea0635e69348780efcbdf32aa7426ca5fcf62a6aa73d3"
+    },
+    "dolphin-emu": {
+      "provider": "papirus",
+      "upstream_icon": "dolphin-emu",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/dolphin-emu.svg",
+      "file": "svg/papirus-dolphin-emu.svg",
+      "sha256": "f2ab757b5f65233d936a45855bd0171191add3a2366ccb4df1f046c8af3f460e"
+    },
+    "dosbox-staging": {
+      "provider": "papirus",
+      "upstream_icon": "dosbox-staging",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/dosbox-staging.svg",
+      "file": "svg/papirus-dosbox-staging.svg",
+      "sha256": "84a777b4906d02da24814c0e0dea0fe9cf7328791799c7239a5e5e49df9f3bf1"
+    },
+    "drawio-desktop": {
+      "provider": "papirus",
+      "upstream_icon": "drawio",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/draw.io.svg",
+      "file": "svg/papirus-drawio.svg",
+      "sha256": "35bd50f66816482392c60332e59873c0f9cc1ade4c01a478ecb233bd4d934fb8"
+    },
+    "easyeffects": {
+      "provider": "papirus",
+      "upstream_icon": "easyeffects",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/pulseeffects.svg",
+      "file": "svg/papirus-easyeffects.svg",
+      "sha256": "7ba9840a886670e2d69b2e06c223bd74139261bee0601e962b95a4bc74a0f87f"
+    },
+    "element-desktop": {
+      "provider": "papirus",
+      "upstream_icon": "element-desktop",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/element-desktop.svg",
+      "file": "svg/papirus-element-desktop.svg",
+      "sha256": "a9c80622036b368ecc25e61d1a56666f4cc79fc070f812ab09accc969b2b157c"
+    },
+    "elisa": {
+      "provider": "papirus",
+      "upstream_icon": "elisa",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/elisa.svg",
+      "file": "svg/papirus-elisa.svg",
+      "sha256": "7c3c2e1857f18010b1a9118bbd6e813b0f9c6141ea2d89d74c10aafa44ca213d"
+    },
+    "emacs": {
+      "provider": "papirus",
+      "upstream_icon": "emacs",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/emacs.svg",
+      "file": "svg/papirus-emacs.svg",
+      "sha256": "65febd7144ffc45e814475d2567075e8778a079aa578ce95a487aba1be5bca89"
+    },
+    "eog": {
+      "provider": "papirus",
+      "upstream_icon": "org.gnome.eog",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/eog.svg",
+      "file": "svg/papirus-org.gnome.eog.svg",
+      "sha256": "fbc773d38961ae72f464a109fb3e57b0fbc7dac280128e7455a103d7dcd75890"
+    },
+    "evince": {
+      "provider": "papirus",
+      "upstream_icon": "evince",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/evince.svg",
+      "file": "svg/papirus-evince.svg",
+      "sha256": "2f4b6939d2cc1380dc8495a181908d2aec9511a331f0e2d0f0cdfd6f301bfc56"
+    },
+    "evolution": {
+      "provider": "papirus",
+      "upstream_icon": "evolution",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/evolution.svg",
+      "file": "svg/papirus-evolution.svg",
+      "sha256": "b97d79db3bb01d2d649494985b2982f77983cfebe20c6dc97e374e2eb3f34ca5"
+    },
+    "falkon": {
+      "provider": "papirus",
+      "upstream_icon": "falkon",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/falkon.svg",
+      "file": "svg/papirus-falkon.svg",
+      "sha256": "6fbbd4048dc735c690638f9d023070788a3a04805105021aef9074a644076bf2"
+    },
+    "fcitx5": {
+      "provider": "papirus",
+      "upstream_icon": "fcitx",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/preferences-desktop-keyboard.svg",
+      "file": "svg/papirus-fcitx.svg",
+      "sha256": "b79e98167ebb90b347b68d65d49d2e161a71110ad6e8d6f401620747c118cd58"
+    },
+    "fcitx5-gtk": {
+      "provider": "papirus",
+      "upstream_icon": "fcitx",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/preferences-desktop-keyboard.svg",
+      "file": "svg/papirus-fcitx.svg",
+      "sha256": "b79e98167ebb90b347b68d65d49d2e161a71110ad6e8d6f401620747c118cd58"
+    },
+    "fcitx5-qt": {
+      "provider": "papirus",
+      "upstream_icon": "fcitx",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/preferences-desktop-keyboard.svg",
+      "file": "svg/papirus-fcitx.svg",
+      "sha256": "b79e98167ebb90b347b68d65d49d2e161a71110ad6e8d6f401620747c118cd58"
+    },
+    "feh": {
+      "provider": "papirus",
+      "upstream_icon": "feh",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/feh.svg",
+      "file": "svg/papirus-feh.svg",
+      "sha256": "47bab4ebc683c23422a6a089befc94301506a17da1622acc633128d6ad31238f"
+    },
+    "ffmpeg": {
+      "provider": "papirus",
+      "upstream_icon": "ffmpeg",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/ffmpeg.svg",
+      "file": "svg/papirus-ffmpeg.svg",
+      "sha256": "a0ddda6f45ffa999d06418755ae59fce23cba70311888772056b99e154405e8d"
+    },
+    "file-roller": {
+      "provider": "papirus",
+      "upstream_icon": "org.gnome.FileRoller",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/ark.svg",
+      "file": "svg/papirus-7zip.svg",
+      "sha256": "d7c8dcbd854c7bd2186b94060eb3b17322576bd083f9c3d0c1fc24ef89c2542d"
+    },
+    "filelight": {
+      "provider": "papirus",
+      "upstream_icon": "filelight",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/filelight.svg",
+      "file": "svg/papirus-filelight.svg",
+      "sha256": "3b99583d82a2c33f0205ef6db86a036e5049e9026872ad595fb3fd8ad8d71a55"
+    },
+    "firefox": {
+      "provider": "papirus",
+      "upstream_icon": "firefox",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/firefox.svg",
+      "file": "svg/papirus-firefox.svg",
+      "sha256": "662f712b309a615f6ffb388d37ecda0ce789bb0bc54e6c4d5b0cc1169495666e"
+    },
+    "fish": {
+      "provider": "papirus",
+      "upstream_icon": "fish",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/fish.svg",
+      "file": "svg/papirus-fish.svg",
+      "sha256": "e79059b316d8f30decd18023698658793924754ff2097582a8cfba1fbebeee64"
+    },
+    "flameshot": {
+      "provider": "papirus",
+      "upstream_icon": "flameshot",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/flameshot.svg",
+      "file": "svg/papirus-flameshot.svg",
+      "sha256": "db5597bc800f6e03aeb2341e972e2f58f486d1269d08b8489fd6f7112a442750"
+    },
+    "foliate": {
+      "provider": "papirus",
+      "upstream_icon": "com.github.johnfactotum.Foliate",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/com.github.johnfactotum.Foliate.svg",
+      "file": "svg/papirus-com.github.johnfactotum.Foliate.svg",
+      "sha256": "d95946b03de96052462c8974dbfd9c864d4a7e34b7d2a7b095f0bc42b947de59"
+    },
+    "fontforge": {
+      "provider": "papirus",
+      "upstream_icon": "fontforge",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/fontforge.svg",
+      "file": "svg/papirus-fontforge.svg",
+      "sha256": "639ecf38b0577a6c4f858bc1c5ee3ad58052138ca20b45e053ca8f0f976463cd"
+    },
+    "foot": {
+      "provider": "papirus",
+      "upstream_icon": "foot",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/foot.svg",
+      "file": "svg/papirus-foot.svg",
+      "sha256": "36db22572e70c7a8456ada9e3e6444a3bc95455281297e028c0e30bc931e6870"
+    },
+    "fractal": {
+      "provider": "papirus",
+      "upstream_icon": "org.gnome.Fractal",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/org.gnome.Fractal.svg",
+      "file": "svg/papirus-org.gnome.Fractal.svg",
+      "sha256": "a9b181a046b247efd600aa80549362fbd89e6e1532d4eed83a46a401ea9c3353"
+    },
+    "freecad": {
+      "provider": "papirus",
+      "upstream_icon": "freecad",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/freecad.svg",
+      "file": "svg/papirus-freecad.svg",
+      "sha256": "5b9488964e7cd2906fcd3ea10fe96584611072db54c7af38e57b3fe74aaee68f"
+    },
+    "gajim": {
+      "provider": "papirus",
+      "upstream_icon": "gajim",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/gajim.svg",
+      "file": "svg/papirus-gajim.svg",
+      "sha256": "3fd460983ff7a7fcdd97b07cfb6879dbc466570468a59f59cb5f8f74580f6816"
+    },
+    "geany": {
+      "provider": "papirus",
+      "upstream_icon": "geany",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/geany.svg",
+      "file": "svg/papirus-geany.svg",
+      "sha256": "420effef1e502972996b443babeb7be3a630feacb0221281c7bd1abc3e403b32"
+    },
+    "geary": {
+      "provider": "papirus",
+      "upstream_icon": "geary",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/internet-mail.svg",
+      "file": "svg/papirus-geary.svg",
+      "sha256": "47ab312b66c3d7cec2545c53d6fe63790e4fa2aa4d4e1884f3d4b60400e2588d"
+    },
+    "gemini-cli": {
+      "provider": "simple-icons",
+      "upstream_icon": "googlegemini",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/googlegemini.svg",
+      "file": "svg/simple-icons-googlegemini.svg",
+      "sha256": "1eec990cbc47b9af0f5f4f4371118d7051f751c39c869a0a1e5f2a653b1f4eba",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "ghostty": {
+      "provider": "papirus",
+      "upstream_icon": "com.mitchellh.ghostty",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/com.mitchellh.ghostty.svg",
+      "file": "svg/papirus-com.mitchellh.ghostty.svg",
+      "sha256": "a347e713aff0b8ba77ec0004b9b6a7941d077ccbf196b805343bac338b3cffac"
+    },
+    "gimp": {
+      "provider": "papirus",
+      "upstream_icon": "gimp",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/gimp.svg",
+      "file": "svg/papirus-gimp.svg",
+      "sha256": "48e2d8935568c2ec56184c25ba165fbc50e6153fc8d87520e7e68c48d17e8b22"
+    },
+    "git": {
+      "provider": "papirus",
+      "upstream_icon": "git",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/git.svg",
+      "file": "svg/papirus-git.svg",
+      "sha256": "cbf6ca6adfc1e6cc67706bd3837969d2e2afe56fc325275988eed6adb7059b24"
+    },
+    "git-lfs": {
+      "provider": "simple-icons",
+      "upstream_icon": "gitlfs",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/gitlfs.svg",
+      "file": "svg/simple-icons-gitlfs.svg",
+      "sha256": "2750a7521d9fac0d2782614e5b2baa5684b407ce35de9f1200c6a398f7871afe",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "github-cli": {
+      "provider": "simple-icons",
+      "upstream_icon": "github",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/github.svg",
+      "file": "svg/simple-icons-github.svg",
+      "sha256": "9fd719ee05cbe4bb54f50acb3335b9ccad30aa3981683c94dbcec2e455f1594d",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "glab": {
+      "provider": "simple-icons",
+      "upstream_icon": "gitlab",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/gitlab.svg",
+      "file": "svg/simple-icons-gitlab.svg",
+      "sha256": "a8e6f3339a082f530c5a013f79606a8a5f7975ae1497aed9b7cbfa21bfae55d8",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "gnome-boxes": {
+      "provider": "papirus",
+      "upstream_icon": "gnome-boxes",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/gnome-boxes.svg",
+      "file": "svg/papirus-gnome-boxes.svg",
+      "sha256": "18d84ae547f23fb6536c5c685c9f59658e9b81fea118bad4a18eeeceb7fd7ed9"
+    },
+    "gnome-calculator": {
+      "provider": "papirus",
+      "upstream_icon": "org.gnome.Calculator",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/gnome-calculator.svg",
+      "file": "svg/papirus-org.gnome.Calculator.svg",
+      "sha256": "0127f056353b910a0da6487d04eab7e2064e9b267600cfa9ca6add4119a67f3e"
+    },
+    "gnome-console": {
+      "provider": "papirus",
+      "upstream_icon": "org.gnome.Console",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/org.gnome.Console.svg",
+      "file": "svg/papirus-org.gnome.Console.svg",
+      "sha256": "2451f27f5c18ae54c0bbb5e75a734330c310f595c521588f2445b2fe7b927a60"
+    },
+    "gnome-disk-utility": {
+      "provider": "papirus",
+      "upstream_icon": "org.gnome.DiskUtility",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/org.gnome.DiskUtility.svg",
+      "file": "svg/papirus-org.gnome.DiskUtility.svg",
+      "sha256": "590c1cdc987d4086945bb45acb51973e3703d3c06b410b89417417ce1492606d"
+    },
+    "gnome-screenshot": {
+      "provider": "papirus",
+      "upstream_icon": "org.gnome.Screenshot",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/applets-screenshooter.svg",
+      "file": "svg/papirus-spectacle.svg",
+      "sha256": "7c266f4ba89d4706748c34cafed66e5a05210c75fc42d3f2c9a701fcfd5ef4f4"
+    },
+    "gnome-system-monitor": {
+      "provider": "papirus",
+      "upstream_icon": "org.gnome.SystemMonitor",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/utilities-system-monitor.svg",
+      "file": "svg/papirus-org.gnome.SystemMonitor.svg",
+      "sha256": "c73b0d8ad4daf2821813b0a7220cf6ddfde35fbf6ee9072e36a7fdec8be4cb7d"
+    },
+    "gnome-terminal": {
+      "provider": "papirus",
+      "upstream_icon": "gnome-terminal",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/utilities-terminal.svg",
+      "file": "svg/papirus-konsole.svg",
+      "sha256": "e012085d169034e338c2c143a803b30d32fe1923783503e33adb81d58e30ee6c"
+    },
+    "gnome-text-editor": {
+      "provider": "papirus",
+      "upstream_icon": "org.gnome.TextEditor",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/org.gnome.TextEditor.svg",
+      "file": "svg/papirus-org.gnome.TextEditor.svg",
+      "sha256": "e5b0348aeaf03a1fbab05797481895014b6e18bd61444dbaac22f80c3dcfc2b0"
+    },
+    "gnucash": {
+      "provider": "papirus",
+      "upstream_icon": "gnucash",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/skrooge.svg",
+      "file": "svg/papirus-gnucash.svg",
+      "sha256": "5ac4cb9bfb3633c5860c1e4a2f7630f85ccf3cc74b6b7652b6d2b8a0293933ae"
+    },
+    "gnumeric": {
+      "provider": "papirus",
+      "upstream_icon": "gnumeric",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/gnumeric.svg",
+      "file": "svg/papirus-gnumeric.svg",
+      "sha256": "d8037ec40f70508943163238821563871619a27617b9a90be45e1184513f4eec"
+    },
+    "gnupg": {
+      "provider": "papirus",
+      "upstream_icon": "gnupg",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/preferences-desktop-user-password.svg",
+      "file": "svg/papirus-gnupg.svg",
+      "sha256": "d57c5c816dfa240cbfe197bf0d3d80e4aea22954623b521a4b534a6d478f8b61"
+    },
+    "go": {
+      "provider": "simple-icons",
+      "upstream_icon": "go",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/go.svg",
+      "file": "svg/simple-icons-go.svg",
+      "sha256": "47cbc7f56df934ae147546bcb8af1d049a87a2515da0efeb7a677292d3ca3595",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "google-chrome": {
+      "provider": "papirus",
+      "upstream_icon": "google-chrome",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/google-chrome.svg",
+      "file": "svg/papirus-google-chrome.svg",
+      "sha256": "0d968753e6165567bbcf0bf0f381dc2e9de8335a13230d6d23f886749082f39c"
+    },
+    "gopls": {
+      "provider": "simple-icons",
+      "upstream_icon": "go",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/go.svg",
+      "file": "svg/simple-icons-go.svg",
+      "sha256": "47cbc7f56df934ae147546bcb8af1d049a87a2515da0efeb7a677292d3ca3595",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "goverlay": {
+      "provider": "papirus",
+      "upstream_icon": "goverlay",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/goverlay.svg",
+      "file": "svg/papirus-goverlay.svg",
+      "sha256": "73bee20f2e599901647b3091a850560af1575d5b6257b997d28813d154130281"
+    },
+    "gparted": {
+      "provider": "papirus",
+      "upstream_icon": "gparted",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/gparted.svg",
+      "file": "svg/papirus-gparted.svg",
+      "sha256": "c47673defb177baafded1a5e867cca2eae29935431a395e95db3bdbc8436f9e9"
+    },
+    "gradle": {
+      "provider": "simple-icons",
+      "upstream_icon": "gradle",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/gradle.svg",
+      "file": "svg/simple-icons-gradle.svg",
+      "sha256": "50a050d0c771bbdd253f5e2a53ff8995aefc072f20763fd5169484b336b8d0ae",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "gufw": {
+      "provider": "papirus",
+      "upstream_icon": "gufw",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/gufw.svg",
+      "file": "svg/papirus-gufw.svg",
+      "sha256": "6e821a5ef5e997ea30738b7b02bae69517f81a8fa60588545ec539b95a50ba53"
+    },
+    "gwenview": {
+      "provider": "papirus",
+      "upstream_icon": "gwenview",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/gwenview.svg",
+      "file": "svg/papirus-gwenview.svg",
+      "sha256": "d67d660ea81c343fdc62fc20d4f0d327602c8893082698d4e41fb4424c790544"
+    },
+    "handbrake": {
+      "provider": "papirus",
+      "upstream_icon": "fr.handbrake.ghb",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/hb-icon.svg",
+      "file": "svg/papirus-fr.handbrake.ghb.svg",
+      "sha256": "6c4d70ad8b66a64b3910f818e254ff98494e75f26645283e5b9929c9d4ee8e83"
+    },
+    "hardinfo2": {
+      "provider": "papirus",
+      "upstream_icon": "hardinfo2",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/hardinfo2.svg",
+      "file": "svg/papirus-hardinfo2.svg",
+      "sha256": "d8f5169391f78a7477506757aa18bbf1a663c4f6a063b4bfaf8a5658db579a6f"
+    },
+    "helix": {
+      "provider": "simple-icons",
+      "upstream_icon": "helix",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/helix.svg",
+      "file": "svg/simple-icons-helix.svg",
+      "sha256": "45d608daaf5fd64d9529ee6f0cca6e934e4cf3abed8f2bec91b1c2b5a454c280",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "helm": {
+      "provider": "simple-icons",
+      "upstream_icon": "helm",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/helm.svg",
+      "file": "svg/simple-icons-helm.svg",
+      "sha256": "d250db07c0cb79de2b349b236e865775b84b2b62ec844d56ccae20b40062eae3",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "helvum": {
+      "provider": "papirus",
+      "upstream_icon": "org.pipewire.Helvum",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/org.pipewire.Helvum.svg",
+      "file": "svg/papirus-org.pipewire.Helvum.svg",
+      "sha256": "9e30ee3685fda04f8efcd3b457ee54567091ea92becb53a487c9236e967379d6"
+    },
+    "heroic-games-launcher": {
+      "provider": "simple-icons",
+      "upstream_icon": "heroicgameslauncher",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/heroicgameslauncher.svg",
+      "file": "svg/simple-icons-heroicgameslauncher.svg",
+      "sha256": "c89fee298404ca02eb208b1abb424b3d18fef83493294ba764a794e2966ac1be",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "homebank": {
+      "provider": "papirus",
+      "upstream_icon": "homebank",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/homebank.svg",
+      "file": "svg/papirus-homebank.svg",
+      "sha256": "a97cb3cff5a8c2c5bfc06e7972f78e97012f0959ea19abb7bbefee9f234c5628"
+    },
+    "htop": {
+      "provider": "simple-icons",
+      "upstream_icon": "htop",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/htop.svg",
+      "file": "svg/simple-icons-htop.svg",
+      "sha256": "1bca40d1b1661ce9e5543d6c68d0f953eb8d7845dd587f4e65c3905f63583f04",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "httpie": {
+      "provider": "simple-icons",
+      "upstream_icon": "httpie",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/httpie.svg",
+      "file": "svg/simple-icons-httpie.svg",
+      "sha256": "f02af35cc79b1a24931ebdaa588d3b3e8d7e3170c133b2a6f10e3c9f3e41bea9",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "hydrogen": {
+      "provider": "papirus",
+      "upstream_icon": "hydrogen",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/hydrogen.svg",
+      "file": "svg/papirus-hydrogen.svg",
+      "sha256": "cea88b3c235c29656a50ab7ff14e5e54da53299ce87ac84653b296c0133d71bf"
+    },
+    "hyprland": {
+      "provider": "simple-icons",
+      "upstream_icon": "hyprland",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/hyprland.svg",
+      "file": "svg/simple-icons-hyprland.svg",
+      "sha256": "94ccd4e7e5b68d189f047d1ef26f1a5995fb401e0bc9a30c617755a4281dd41d",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "i3-wm": {
+      "provider": "simple-icons",
+      "upstream_icon": "i3",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/i3.svg",
+      "file": "svg/simple-icons-i3.svg",
+      "sha256": "cfdeeca921b779d3d46a24926b2d98a7674f72c7d039216bf4b730e871fe3cee",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "ibus": {
+      "provider": "papirus",
+      "upstream_icon": "ibus",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/ibus.svg",
+      "file": "svg/papirus-ibus.svg",
+      "sha256": "3e4dc02bcc6f6e3742ce0f0cad08e23a3e4244c14e6921d6fefaa78a67e81a63"
+    },
+    "inkscape": {
+      "provider": "papirus",
+      "upstream_icon": "inkscape",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/inkscape.svg",
+      "file": "svg/papirus-inkscape.svg",
+      "sha256": "ef92e21a4c8dc2b13142530697f2e6fc28490188868e286a08879017a5bbf61c"
+    },
+    "ipython": {
+      "provider": "papirus",
+      "upstream_icon": "ipython",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/ipython.svg",
+      "file": "svg/papirus-ipython.svg",
+      "sha256": "0deeaa90ab216eab8d54c272bee9053cc4a2bf19fa17f879fda9724dbc36acf1"
+    },
+    "joplin-desktop": {
+      "provider": "papirus",
+      "upstream_icon": "joplin-desktop",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/joplin.svg",
+      "file": "svg/papirus-joplin-desktop.svg",
+      "sha256": "e2dd9d66bfcdf256b516e1a3ffbd5ba532fe83d45238bb5e7b3c3c7a8eb5831f"
+    },
+    "julia": {
+      "provider": "simple-icons",
+      "upstream_icon": "julia",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/julia.svg",
+      "file": "svg/simple-icons-julia.svg",
+      "sha256": "d7ebbdb65374381e4779ec5cc7ae840283f59149a9188fcdf8845510a0574043",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "jupyter-notebook": {
+      "provider": "simple-icons",
+      "upstream_icon": "jupyter",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/jupyter.svg",
+      "file": "svg/simple-icons-jupyter.svg",
+      "sha256": "59119758a5653234f8db617a80128267a447404773557a2255d42523df4b7eff",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "jupyterlab": {
+      "provider": "simple-icons",
+      "upstream_icon": "jupyter",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/jupyter.svg",
+      "file": "svg/simple-icons-jupyter.svg",
+      "sha256": "59119758a5653234f8db617a80128267a447404773557a2255d42523df4b7eff",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "just": {
+      "provider": "simple-icons",
+      "upstream_icon": "just",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/just.svg",
+      "file": "svg/simple-icons-just.svg",
+      "sha256": "2e7d19de677a0e9502621b77e5432ade00b294fb2bf58f211d5d5efe63c9581f",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "kate": {
+      "provider": "papirus",
+      "upstream_icon": "kate",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/kate.svg",
+      "file": "svg/papirus-kate.svg",
+      "sha256": "8e0934cac47921a877a22eda7d2cff4220f711716fb582d5dc90b68e18436f06"
+    },
+    "kcalc": {
+      "provider": "papirus",
+      "upstream_icon": "accessories-calculator",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/accessories-calculator.svg",
+      "file": "svg/papirus-accessories-calculator.svg",
+      "sha256": "25d2aa7e4b15fbe0b5d6a8e2377b845deb339877b3575d68928128344b58a391"
+    },
+    "kdeconnect": {
+      "provider": "papirus",
+      "upstream_icon": "kdeconnect",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/kdeconnect.svg",
+      "file": "svg/papirus-kdeconnect.svg",
+      "sha256": "bfa4a11ab22912bfabeeaca2861a6f28acf0c4db4b338debc826e05eb86bf2bb"
+    },
+    "kdenlive": {
+      "provider": "papirus",
+      "upstream_icon": "kdenlive",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/kdenlive.svg",
+      "file": "svg/papirus-kdenlive.svg",
+      "sha256": "0978b11d0efcfd0d5d148b4f02e3d0a45357da43e118e5c722317b0026937bb8"
+    },
+    "kdiff3": {
+      "provider": "papirus",
+      "upstream_icon": "kdiff3",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/kdiff3.svg",
+      "file": "svg/papirus-kdiff3.svg",
+      "sha256": "4437ba847403ace53d0d6b5a337161d6f60e5a1bc8070fca4fa759c6f18749ed"
+    },
+    "keepassxc": {
+      "provider": "papirus",
+      "upstream_icon": "keepassxc",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/keepassxc.svg",
+      "file": "svg/papirus-keepassxc.svg",
+      "sha256": "b903120129410f838695a0546bd69d68b6d3608bb91ad1d82e08ce265b1995ed"
+    },
+    "kicad": {
+      "provider": "papirus",
+      "upstream_icon": "kicad",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/kicad.svg",
+      "file": "svg/papirus-kicad.svg",
+      "sha256": "ce9de7f75e11b81a671d5b200bdd1a5bdb4262b0cdb77d69e44396c50c6803f7"
+    },
+    "kid3-qt": {
+      "provider": "papirus",
+      "upstream_icon": "kid3-qt",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/kid3.svg",
+      "file": "svg/papirus-kid3-qt.svg",
+      "sha256": "9dc76f1ee1a3e588f4c6cc5488c254c8cc77c8599304653bdef21a33daa6530e"
+    },
+    "kitty": {
+      "provider": "papirus",
+      "upstream_icon": "kitty",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/kitty.svg",
+      "file": "svg/papirus-kitty.svg",
+      "sha256": "a8edab405afb1f6c42689737557d19f39462245c63225f7199079ef46e6701b7"
+    },
+    "kleopatra": {
+      "provider": "papirus",
+      "upstream_icon": "kleopatra",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/kleopatra.svg",
+      "file": "svg/papirus-kleopatra.svg",
+      "sha256": "c9dd1024a08828474438633db3e948adf9242e432c72c0830ee5fbdce9818f1d"
+    },
+    "kmag": {
+      "provider": "papirus",
+      "upstream_icon": "kmag",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/preferences-system-search.svg",
+      "file": "svg/papirus-kmag.svg",
+      "sha256": "a7fa4c1f256141e9eef4a768f47860b883d9a53107ce613ab2777030fada07a6"
+    },
+    "kmail": {
+      "provider": "papirus",
+      "upstream_icon": "kmail",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/internet-mail.svg",
+      "file": "svg/papirus-geary.svg",
+      "sha256": "47ab312b66c3d7cec2545c53d6fe63790e4fa2aa4d4e1884f3d4b60400e2588d"
+    },
+    "kmousetool": {
+      "provider": "papirus",
+      "upstream_icon": "kmousetool",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/preferences-desktop-peripherals.svg",
+      "file": "svg/papirus-kmousetool.svg",
+      "sha256": "04af9838ede4157d3a943e75fb589889c23a1e74915e0b81c30bc78c3fbed780"
+    },
+    "kmymoney": {
+      "provider": "papirus",
+      "upstream_icon": "kmymoney",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/kmymoney.svg",
+      "file": "svg/papirus-kmymoney.svg",
+      "sha256": "1b16c04ed89644afb7a51305812a01c055796fff9cb1dd5b2f15d068b388e70b"
+    },
+    "kodi": {
+      "provider": "papirus",
+      "upstream_icon": "kodi",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/kodi.svg",
+      "file": "svg/papirus-kodi.svg",
+      "sha256": "d90d004b8097ba5c35dc2056112ac1853ee966efcdba1682c49abe86571db450"
+    },
+    "kolourpaint": {
+      "provider": "papirus",
+      "upstream_icon": "kolourpaint",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/kolourpaint.svg",
+      "file": "svg/papirus-kolourpaint.svg",
+      "sha256": "132c89f2df170cafd9d2117595c018bcbcbd5e8b7c02a067c56429fa0aeab126"
+    },
+    "konsole": {
+      "provider": "papirus",
+      "upstream_icon": "konsole",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/utilities-terminal.svg",
+      "file": "svg/papirus-konsole.svg",
+      "sha256": "e012085d169034e338c2c143a803b30d32fe1923783503e33adb81d58e30ee6c"
+    },
+    "kooha": {
+      "provider": "papirus",
+      "upstream_icon": "io.github.seadve.Kooha",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/io.github.seadve.Kooha.svg",
+      "file": "svg/papirus-io.github.seadve.Kooha.svg",
+      "sha256": "7742a774c75d4592adf391c8386d6819c56066967b1041fc153096517e78096b"
+    },
+    "kotlin": {
+      "provider": "simple-icons",
+      "upstream_icon": "kotlin",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/kotlin.svg",
+      "file": "svg/simple-icons-kotlin.svg",
+      "sha256": "60f67ab54197f83812affc57451774d99700471f11b99c3663733e3bde0366f3",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "krdc": {
+      "provider": "papirus",
+      "upstream_icon": "krdc",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/krdc.svg",
+      "file": "svg/papirus-krdc.svg",
+      "sha256": "1e9e122c72d9bf7b8e25b6c302bbda364d7f1947e84d577783535e9ededfc4f1"
+    },
+    "krita": {
+      "provider": "papirus",
+      "upstream_icon": "krita",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/krita.svg",
+      "file": "svg/papirus-krita.svg",
+      "sha256": "1eace35f50b371ff0f875550a1e86ed1f62430a8c1f1937b29f5c8ef0a746a40"
+    },
+    "kubectl": {
+      "provider": "simple-icons",
+      "upstream_icon": "kubernetes",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/kubernetes.svg",
+      "file": "svg/simple-icons-kubernetes.svg",
+      "sha256": "7605dd15363fe98b6ff04f8d052583a63b2141356c5b6ff7e092a129b34f2dde",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "kvantum": {
+      "provider": "papirus",
+      "upstream_icon": "kvantum",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/kvantum.svg",
+      "file": "svg/papirus-kvantum.svg",
+      "sha256": "86bc88cafb7e339eabd63134cd392330cd96c9bca1cd3ee252971fe23599c8b0"
+    },
+    "lapce": {
+      "provider": "simple-icons",
+      "upstream_icon": "lapce",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/lapce.svg",
+      "file": "svg/simple-icons-lapce.svg",
+      "sha256": "1db6e85020df9754ad81cff33c73ec74819e26286bb87f3ccbe8bd9d640a9331",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "librecad": {
+      "provider": "papirus",
+      "upstream_icon": "librecad",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/librecad.svg",
+      "file": "svg/papirus-librecad.svg",
+      "sha256": "6fba0a039c70c13aa324d6aa3f4a4cfced3a703197c54c7eac17f930085fcfb3"
+    },
+    "libreoffice-fresh": {
+      "provider": "simple-icons",
+      "upstream_icon": "libreoffice",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/libreoffice.svg",
+      "file": "svg/simple-icons-libreoffice.svg",
+      "sha256": "b25324a544876c861580dd145efe73361a5c2379b6238a76da8743f817b91f3a",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "libreoffice-still": {
+      "provider": "simple-icons",
+      "upstream_icon": "libreoffice",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/libreoffice.svg",
+      "file": "svg/simple-icons-libreoffice.svg",
+      "sha256": "b25324a544876c861580dd145efe73361a5c2379b6238a76da8743f817b91f3a",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "librewolf": {
+      "provider": "papirus",
+      "upstream_icon": "librewolf",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/librewolf.svg",
+      "file": "svg/papirus-librewolf.svg",
+      "sha256": "559746fc5eab13234252536664de21e1db58aa5265300c0698b87cc660626537"
+    },
+    "lmms": {
+      "provider": "papirus",
+      "upstream_icon": "lmms",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/lmms.svg",
+      "file": "svg/papirus-lmms.svg",
+      "sha256": "d59d4e970a6cd6b00e6450dafd7cd2dbe8b60014285922742a61d215a5c3a1b4"
+    },
+    "lmstudio-bin": {
+      "provider": "simple-icons",
+      "upstream_icon": "lmstudio",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/lmstudio.svg",
+      "file": "svg/simple-icons-lmstudio.svg",
+      "sha256": "eb77ea256d937aa13dfffdf40a4796400f7033a92ad4d00e197c56c99b75a35d",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "localsend": {
+      "provider": "papirus",
+      "upstream_icon": "localsend",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/localsend_app.svg",
+      "file": "svg/papirus-localsend.svg",
+      "sha256": "10354aec9c0d3732c426c2af645b3380a04d9d74e2a761e84313ca9de310d225"
+    },
+    "lollypop": {
+      "provider": "papirus",
+      "upstream_icon": "lollypop",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/lollypop.svg",
+      "file": "svg/papirus-lollypop.svg",
+      "sha256": "d130d32fa18de7a2546ca231e197949ca110a2eb05a607815da6c2bc1fd8110b"
+    },
+    "losslesscut-bin": {
+      "provider": "papirus",
+      "upstream_icon": "losslesscut",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/losslesscut.svg",
+      "file": "svg/papirus-losslesscut.svg",
+      "sha256": "e7166cc53714c02d3e14e2a01efabb89e8f7103e9c919212c3540c60467826b5"
+    },
+    "loupe": {
+      "provider": "papirus",
+      "upstream_icon": "org.gnome.Loupe",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/org.gnome.Loupe.svg",
+      "file": "svg/papirus-org.gnome.Loupe.svg",
+      "sha256": "bafb7b6e3a04f7ef1537ae182067f806bdfad249f749b7d693b04d4706ea9d88"
+    },
+    "lua": {
+      "provider": "simple-icons",
+      "upstream_icon": "lua",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/lua.svg",
+      "file": "svg/simple-icons-lua.svg",
+      "sha256": "7b4f7a37f5f8759d1a60c4b41a5121755b97c6d0f8296659f26d027cc0fd09a4",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "lutris": {
+      "provider": "papirus",
+      "upstream_icon": "lutris",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/lutris.svg",
+      "file": "svg/papirus-lutris.svg",
+      "sha256": "58e97420b72d6cd887c3016a66f7d4d5141ce7d12a0d721f45ba61d758ed5ed9"
+    },
+    "lynx": {
+      "provider": "papirus",
+      "upstream_icon": "lynx",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/lynx.svg",
+      "file": "svg/papirus-lynx.svg",
+      "sha256": "a2aed42c2d83aeb8b0d770120aa0aa6b3f6ed65a5f019a9fa326f8d4ae877265"
+    },
+    "mame": {
+      "provider": "papirus",
+      "upstream_icon": "mame",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/mame.svg",
+      "file": "svg/papirus-mame.svg",
+      "sha256": "e76e23f96443bdf97d0275809b684db59b23ef72ee9c87441b2859f125224a30"
+    },
+    "mariadb": {
+      "provider": "simple-icons",
+      "upstream_icon": "mariadb",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/mariadb.svg",
+      "file": "svg/simple-icons-mariadb.svg",
+      "sha256": "7549862680f47c2ce3f1ef88570c5925cfdd99b7a697b5f6343e61d21b589f39",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "mate-desktop": {
+      "provider": "papirus",
+      "upstream_icon": "mate-desktop",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/mate.svg",
+      "file": "svg/papirus-mate-desktop.svg",
+      "sha256": "47cd3d0418f2de7a06b9eb418625d1c3b099e111cef4b1fbde60dba841b87852"
+    },
+    "mc": {
+      "provider": "papirus",
+      "upstream_icon": "mc",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/mc.svg",
+      "file": "svg/papirus-mc.svg",
+      "sha256": "8f07fa7ab0d788b845f0cb0e879f059ea30173705cbcb38fa4e0992fa869df36"
+    },
+    "mediainfo": {
+      "provider": "papirus",
+      "upstream_icon": "mediainfo",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/mkvinfo.svg",
+      "file": "svg/papirus-mediainfo.svg",
+      "sha256": "428b8c48d66fed9740016e5f3431f383c222acda2e0c42b42311313df1fb8a12"
+    },
+    "mediainfo-gui": {
+      "provider": "papirus",
+      "upstream_icon": "mediainfo",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/mkvinfo.svg",
+      "file": "svg/papirus-mediainfo.svg",
+      "sha256": "428b8c48d66fed9740016e5f3431f383c222acda2e0c42b42311313df1fb8a12"
+    },
+    "meld": {
+      "provider": "papirus",
+      "upstream_icon": "meld",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/meld.svg",
+      "file": "svg/papirus-meld.svg",
+      "sha256": "c1f6e61361418e74dd6c074a89241712bb3402d71cad5805a38bbfc875b102ce"
+    },
+    "minecraft-launcher": {
+      "provider": "papirus",
+      "upstream_icon": "minecraft-launcher",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/minecraft.svg",
+      "file": "svg/papirus-minecraft-launcher.svg",
+      "sha256": "f4adfc15096abf4fc6e0c6b7e912490ba8a0f6930051f3dff7188a75691b0c18"
+    },
+    "minikube": {
+      "provider": "simple-icons",
+      "upstream_icon": "kubernetes",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/kubernetes.svg",
+      "file": "svg/simple-icons-kubernetes.svg",
+      "sha256": "7605dd15363fe98b6ff04f8d052583a63b2141356c5b6ff7e092a129b34f2dde",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "mission-center": {
+      "provider": "papirus",
+      "upstream_icon": "io.missioncenter.MissionCenter",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/io.missioncenter.MissionCenter.svg",
+      "file": "svg/papirus-io.missioncenter.MissionCenter.svg",
+      "sha256": "86eb972ba32c7491b496f1b3646ad7bfbc9df0ce773148d8b80a40fee1b47614"
+    },
+    "mousepad": {
+      "provider": "papirus",
+      "upstream_icon": "mousepad",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/mousepad.svg",
+      "file": "svg/papirus-mousepad.svg",
+      "sha256": "261fc625d00cbb60f68878eb40180ee739841ca3c1f56af3fe52c7c44d9c6da8"
+    },
+    "mpd": {
+      "provider": "papirus",
+      "upstream_icon": "mpd",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/mpd.svg",
+      "file": "svg/papirus-mpd.svg",
+      "sha256": "2184b5831e1b0dffd12e7e9cdb6e6f150adb7e8f8ee1211d5216a0803f6807be"
+    },
+    "mpv": {
+      "provider": "papirus",
+      "upstream_icon": "mpv",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/mpv.svg",
+      "file": "svg/papirus-mpv.svg",
+      "sha256": "2940dc08a66af81829ff0c1c43621c46c7b3a05a64b3aafa370bb5df6c5362cd"
+    },
+    "mumble": {
+      "provider": "papirus",
+      "upstream_icon": "mumble",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/mumble.svg",
+      "file": "svg/papirus-mumble.svg",
+      "sha256": "273e2cff5978b535d9d3cf54e1057dec7cec102317ce6854766fcae0d8ab0e4b"
+    },
+    "musescore": {
+      "provider": "papirus",
+      "upstream_icon": "musescore",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/musescore.svg",
+      "file": "svg/papirus-musescore.svg",
+      "sha256": "96e4a34d0650564297623ef6e547794d5c7347089cac1f2165dd582a50ea6757"
+    },
+    "mypaint": {
+      "provider": "papirus",
+      "upstream_icon": "mypaint",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/kipi-logo.svg",
+      "file": "svg/papirus-mypaint.svg",
+      "sha256": "83ae5b545ccc315188d4e44e7727ce16fe74069916ac3423b4ac78f396c88b68"
+    },
+    "nautilus": {
+      "provider": "papirus",
+      "upstream_icon": "nautilus",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/nautilus.svg",
+      "file": "svg/papirus-nautilus.svg",
+      "sha256": "98c49a1b5716aae4c3a42c1ec2b751e54c51ac0310a8f5168fa951a5833ace1b"
+    },
+    "nemo": {
+      "provider": "papirus",
+      "upstream_icon": "nemo",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/system-file-manager.svg",
+      "file": "svg/papirus-nemo.svg",
+      "sha256": "389963ce9dcd2ed4945c62a16b2ff277b978d51d2dff50a9b76ac03967ed4fd1"
+    },
+    "neochat": {
+      "provider": "papirus",
+      "upstream_icon": "org.kde.neochat",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/org.kde.neochat.svg",
+      "file": "svg/papirus-org.kde.neochat.svg",
+      "sha256": "eb519c76564961c61b61784fe7b5bc4bc5b627e3e0df0f6a07d30e2580ce2dbf"
+    },
+    "networkmanager": {
+      "provider": "papirus",
+      "upstream_icon": "preferences-system-network",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/preferences-system-network.svg",
+      "file": "svg/papirus-preferences-system-network.svg",
+      "sha256": "85fd06b3959918dd8ee28094ad25e53f2485836684413ff08a2de95f403ea5a0"
+    },
+    "nextcloud-client": {
+      "provider": "papirus",
+      "upstream_icon": "Nextcloud",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/nextcloud.svg",
+      "file": "svg/papirus-Nextcloud.svg",
+      "sha256": "5b783876d553b2837936041825606b7a4782d9d29b543b3c32ce824aef632bf5"
+    },
+    "nmap": {
+      "provider": "papirus",
+      "upstream_icon": "nmap",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/nmap.svg",
+      "file": "svg/papirus-nmap.svg",
+      "sha256": "5af4077454e322f87661f4b26ee52574aac0dbaac33e73a525424e6e74f16cf5"
+    },
+    "nnn": {
+      "provider": "papirus",
+      "upstream_icon": "nnn",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/nnn.svg",
+      "file": "svg/papirus-nnn.svg",
+      "sha256": "4449a22d93ab33e18d2ed4f7e59681f7da0979157f87c5cf544ca07cdef2e048"
+    },
+    "nodejs": {
+      "provider": "simple-icons",
+      "upstream_icon": "nodedotjs",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/nodedotjs.svg",
+      "file": "svg/simple-icons-nodedotjs.svg",
+      "sha256": "cbb840940cb3ed95b4bfb748804e39bd474156fb61b38b2b6beaf3cfeaf2af2f",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "npm": {
+      "provider": "simple-icons",
+      "upstream_icon": "npm",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/npm.svg",
+      "file": "svg/simple-icons-npm.svg",
+      "sha256": "6207d1f89dc70005cd15a27782e8b0ad3f9317910c028d779a0938a26cc068a8",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "nvtop": {
+      "provider": "papirus",
+      "upstream_icon": "nvtop",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/nvtop.svg",
+      "file": "svg/papirus-nvtop.svg",
+      "sha256": "4c44aaef6bb287165854f9950a2f8842cd481caa6320609f947ad799c3cc998f"
+    },
+    "nwg-displays": {
+      "provider": "papirus",
+      "upstream_icon": "nwg-displays",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/preferences-desktop-display.svg",
+      "file": "svg/papirus-nwg-displays.svg",
+      "sha256": "25b9735e50c827e3967244bb56de4b2e8283246f37945df4d54ff46e43d72768"
+    },
+    "nwg-look": {
+      "provider": "papirus",
+      "upstream_icon": "nwg-look",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/preferences-desktop-animations.svg",
+      "file": "svg/papirus-nwg-look.svg",
+      "sha256": "09f16fd1b3aea3a82be8309dbfa01aaccb924439c7a71886152aaed59c6b4129"
+    },
+    "obs-studio": {
+      "provider": "papirus",
+      "upstream_icon": "com.obsproject.Studio",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/obs.svg",
+      "file": "svg/papirus-com.obsproject.Studio.svg",
+      "sha256": "1cb4eb287bdeeb58fc42f0c7282b010402ce0b211111a8755be8b35baa7ca3b6"
+    },
+    "obsidian": {
+      "provider": "papirus",
+      "upstream_icon": "obsidian",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/obsidian.svg",
+      "file": "svg/papirus-obsidian.svg",
+      "sha256": "7d73ecdf45ad0321bcf622f56e476d2c40afe9a1d8c81d51fe4aa8e806b4da4f"
+    },
+    "okular": {
+      "provider": "papirus",
+      "upstream_icon": "okular",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/okular.svg",
+      "file": "svg/papirus-okular.svg",
+      "sha256": "c11673254373b22e4f44d69a1715c9c37a06581d7ffea0146dccbccd50febfa1"
+    },
+    "ollama": {
+      "provider": "simple-icons",
+      "upstream_icon": "ollama",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/ollama.svg",
+      "file": "svg/simple-icons-ollama.svg",
+      "sha256": "e03f48136cf99aa8b555bfb3b3e755f1ee43b3ffef1b2da54c653f6a0ef36f2b",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "ollama-cuda": {
+      "provider": "simple-icons",
+      "upstream_icon": "ollama",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/ollama.svg",
+      "file": "svg/simple-icons-ollama.svg",
+      "sha256": "e03f48136cf99aa8b555bfb3b3e755f1ee43b3ffef1b2da54c653f6a0ef36f2b",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "ollama-rocm": {
+      "provider": "simple-icons",
+      "upstream_icon": "ollama",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/ollama.svg",
+      "file": "svg/simple-icons-ollama.svg",
+      "sha256": "e03f48136cf99aa8b555bfb3b3e755f1ee43b3ffef1b2da54c653f6a0ef36f2b",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "ollama-vulkan": {
+      "provider": "simple-icons",
+      "upstream_icon": "ollama",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/ollama.svg",
+      "file": "svg/simple-icons-ollama.svg",
+      "sha256": "e03f48136cf99aa8b555bfb3b3e755f1ee43b3ffef1b2da54c653f6a0ef36f2b",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "onboard": {
+      "provider": "papirus",
+      "upstream_icon": "onboard",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/onboard.svg",
+      "file": "svg/papirus-onboard.svg",
+      "sha256": "b5bbb8456c03964782e44a9ac0341e214db04a8397b11bde19f9f2011ccfc98b"
+    },
+    "onlyoffice-bin": {
+      "provider": "papirus",
+      "upstream_icon": "onlyoffice-desktopeditors",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/asc-de.svg",
+      "file": "svg/papirus-onlyoffice-desktopeditors.svg",
+      "sha256": "742c95c2b3337c63c730168bac659845d2c2abd785881f6767b1cd03173acfbc"
+    },
+    "opencode": {
+      "provider": "simple-icons",
+      "upstream_icon": "opencode",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/opencode.svg",
+      "file": "svg/simple-icons-opencode.svg",
+      "sha256": "5f54532c4f693206895eee0baf5c876d49831ee1b59dd2fe707933c08ff21183",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "opencv": {
+      "provider": "simple-icons",
+      "upstream_icon": "opencv",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/opencv.svg",
+      "file": "svg/simple-icons-opencv.svg",
+      "sha256": "c572f2f999d7a47abc17a6823298cb2ada9d9c2b7978a2b6a1def856a7926477",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "openmw": {
+      "provider": "papirus",
+      "upstream_icon": "openmw",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/openmw.svg",
+      "file": "svg/papirus-openmw.svg",
+      "sha256": "c16866f7305dea012cc9377c85957c6f5a35572966d513b924a7266cfb9d02fc"
+    },
+    "openrct2": {
+      "provider": "papirus",
+      "upstream_icon": "openrct2",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/openrct2.svg",
+      "file": "svg/papirus-openrct2.svg",
+      "sha256": "b9254aa6ac787eb0a1a2828868c265e43463f13a468156f523bfd703c5c0518a"
+    },
+    "openrgb": {
+      "provider": "papirus",
+      "upstream_icon": "openrgb",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/openrgb.svg",
+      "file": "svg/papirus-openrgb.svg",
+      "sha256": "14a2e31bb4daa14b24f05c0e250ac1804053d695158820dc10d806c5c5d05f70"
+    },
+    "openscad": {
+      "provider": "papirus",
+      "upstream_icon": "openscad",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/openscad.svg",
+      "file": "svg/papirus-openscad.svg",
+      "sha256": "ac1a1507a2ea31b472c702ff8979cebc90fbbfbf2cf8869368f997a9bd4c23c6"
+    },
+    "openttd": {
+      "provider": "papirus",
+      "upstream_icon": "openttd",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/openttd.svg",
+      "file": "svg/papirus-openttd.svg",
+      "sha256": "e7be67f4a4e51a59f4c047708e987946a04fbf35df37fa1a0b84481bdba01862"
+    },
+    "openvpn": {
+      "provider": "papirus",
+      "upstream_icon": "openvpn",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/openvpn.svg",
+      "file": "svg/papirus-openvpn.svg",
+      "sha256": "24b172d900d8e55de09430866b05b83be3a7a3f3d6901551c5c27d815a4b27e4"
+    },
+    "orca": {
+      "provider": "papirus",
+      "upstream_icon": "orca",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/preferences-desktop-accessibility.svg",
+      "file": "svg/papirus-orca.svg",
+      "sha256": "74c4896f8b2a5ecc3b01b70f8be428d9c924454e53c4ad9b0f408f0144caa6e1"
+    },
+    "papers": {
+      "provider": "papirus",
+      "upstream_icon": "org.gnome.Papers",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/org.gnome.Papers.svg",
+      "file": "svg/papirus-org.gnome.Papers.svg",
+      "sha256": "9844cad5972299c060a5274f84d4031d6b9f6b8b1cc0cd0915f1b9d337ed8900"
+    },
+    "partitionmanager": {
+      "provider": "papirus",
+      "upstream_icon": "partitionmanager",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/partitionmanager.svg",
+      "file": "svg/papirus-partitionmanager.svg",
+      "sha256": "66d1e93a6d9644dd3b4e15361e6d2b2569177528d9c22afdf422d943d91d79a3"
+    },
+    "pavucontrol": {
+      "provider": "papirus",
+      "upstream_icon": "pavucontrol",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/kmix.svg",
+      "file": "svg/papirus-pavucontrol.svg",
+      "sha256": "26bc3a3fd97b840701c1f29bc6c1c9c3d8e8043543942212f6190747c133aea6"
+    },
+    "pcmanfm-qt": {
+      "provider": "papirus",
+      "upstream_icon": "pcmanfm-qt",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/system-file-manager.svg",
+      "file": "svg/papirus-nemo.svg",
+      "sha256": "389963ce9dcd2ed4945c62a16b2ff277b978d51d2dff50a9b76ac03967ed4fd1"
+    },
+    "pcsx2": {
+      "provider": "papirus",
+      "upstream_icon": "pcsx2",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/PCSX2.svg",
+      "file": "svg/papirus-pcsx2.svg",
+      "sha256": "93fba5dd29e5a045b3eced1e2b0e03a8638b86f67f9ddf3afa5cc57bdb5b3911"
+    },
+    "pdfarranger": {
+      "provider": "papirus",
+      "upstream_icon": "pdfarranger",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/pdfarranger.svg",
+      "file": "svg/papirus-pdfarranger.svg",
+      "sha256": "0785c04e807f4c41a6e84610d582748466d603cd071f2ad48b16c73fdcc87d1a"
+    },
+    "peazip": {
+      "provider": "papirus",
+      "upstream_icon": "peazip",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/peazip.svg",
+      "file": "svg/papirus-peazip.svg",
+      "sha256": "ff5a058a41fb6d3cf2eb8a81fdb84e2e4b38933d2343fcaff79031993eaa7bbc"
+    },
+    "peek": {
+      "provider": "papirus",
+      "upstream_icon": "peek",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/peek.svg",
+      "file": "svg/papirus-peek.svg",
+      "sha256": "e1a5c6bb6d6fe41ae5c6d8ecec8ebe923e83e8c4bf2be88b0a490d6bb7809185"
+    },
+    "perl": {
+      "provider": "simple-icons",
+      "upstream_icon": "perl",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/perl.svg",
+      "file": "svg/simple-icons-perl.svg",
+      "sha256": "02baf135d7ece40ab9a24f3fe481b3a6af471c9b48fc37ce5eca69f9f5973a40",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "picard": {
+      "provider": "papirus",
+      "upstream_icon": "picard",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/picard.svg",
+      "file": "svg/papirus-picard.svg",
+      "sha256": "29f87eb114f88e42131afed2967ad30c91531be838e6f591024bafbd00c05e50"
+    },
+    "pika-backup": {
+      "provider": "papirus",
+      "upstream_icon": "org.gnome.World.PikaBackup",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/org.gnome.World.PikaBackup.svg",
+      "file": "svg/papirus-org.gnome.World.PikaBackup.svg",
+      "sha256": "39177fa8aca283c03d61bf9591e2d7379ab7321b6f95f49bc8d63a5748c0c76c"
+    },
+    "pinta": {
+      "provider": "papirus",
+      "upstream_icon": "pinta",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/pinta.svg",
+      "file": "svg/papirus-pinta.svg",
+      "sha256": "4343657dbd300ae08a4c77e02227e2ee3dc6f6cf9dcb8471b14c8015fdb12800"
+    },
+    "piper": {
+      "provider": "papirus",
+      "upstream_icon": "org.freedesktop.Piper",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/org.freedesktop.Piper.svg",
+      "file": "svg/papirus-org.freedesktop.Piper.svg",
+      "sha256": "349b75a3d9b9102d052788dff4fdf71458ca0ac6d9b15880c22c75d3ae329937"
+    },
+    "plasma-meta": {
+      "provider": "papirus",
+      "upstream_icon": "kde",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/desktop-environment-kde.svg",
+      "file": "svg/papirus-kde.svg",
+      "sha256": "3d5ad6c9cb73816055e1e5591ea2e958d164a38d1f8a7a398a90b342c421566a"
+    },
+    "pnpm": {
+      "provider": "simple-icons",
+      "upstream_icon": "pnpm",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/pnpm.svg",
+      "file": "svg/simple-icons-pnpm.svg",
+      "sha256": "329ae86f60d45f2e448574a4a542f1b647db734e775d6f2fae6e33c9e9e27445",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "podman": {
+      "provider": "simple-icons",
+      "upstream_icon": "podman",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/podman.svg",
+      "file": "svg/simple-icons-podman.svg",
+      "sha256": "5a6dd52133a6226d7f3f6f915d809d0d449ad2aff798da80eb38df532d509e1b",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "polychromatic": {
+      "provider": "papirus",
+      "upstream_icon": "polychromatic",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/polychromatic.svg",
+      "file": "svg/papirus-polychromatic.svg",
+      "sha256": "51445926c499f8d10feabb5dc379aeef526c42983774c51a6481413a56b7e37e"
+    },
+    "postgresql": {
+      "provider": "simple-icons",
+      "upstream_icon": "postgresql",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/postgresql.svg",
+      "file": "svg/simple-icons-postgresql.svg",
+      "sha256": "79ad54c59c91364708f69476bc912fe1a6fe6998950759af6d3a2e23463521f7",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "postman-bin": {
+      "provider": "simple-icons",
+      "upstream_icon": "postman",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/postman.svg",
+      "file": "svg/simple-icons-postman.svg",
+      "sha256": "b2d5cc0dfc4c9b0f43694cd7265c18ef783ebb7d2aabd05f04bb7a44cd4488a0",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "ppsspp": {
+      "provider": "papirus",
+      "upstream_icon": "ppsspp",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/ppsspp.svg",
+      "file": "svg/papirus-ppsspp.svg",
+      "sha256": "ef244e0cc69f8839a70405db5f61c01fbe4db2cda62801af4e3b3888744b5bd0"
+    },
+    "pre-commit": {
+      "provider": "simple-icons",
+      "upstream_icon": "precommit",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/precommit.svg",
+      "file": "svg/simple-icons-precommit.svg",
+      "sha256": "0325e018d21b2844c762ff28edad903e1250d11e1ab0a21daa61941488eeef15",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "prismlauncher": {
+      "provider": "papirus",
+      "upstream_icon": "org.prismlauncher.PrismLauncher",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/org.prismlauncher.PrismLauncher.svg",
+      "file": "svg/papirus-org.prismlauncher.PrismLauncher.svg",
+      "sha256": "7d1d22bc6820515b4e28708bbfb215a357bb18207565ecd5fac86034a589e6c0"
+    },
+    "protontricks": {
+      "provider": "papirus",
+      "upstream_icon": "com.github.Matoking.protontricks",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/winetricks.svg",
+      "file": "svg/papirus-com.github.Matoking.protontricks.svg",
+      "sha256": "e2ebf777f74b8089f4e6b1698d36759445e34c35f628d8b8d0efc90d4ef7c288"
+    },
+    "protonup-qt": {
+      "provider": "papirus",
+      "upstream_icon": "protonup-qt",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/net.davidotek.pupgui2.svg",
+      "file": "svg/papirus-protonup-qt.svg",
+      "sha256": "f1973bb007b348ce72cc35b64004ab326ab90eaf63195ab318b47876d7f66967"
+    },
+    "psensor": {
+      "provider": "papirus",
+      "upstream_icon": "psensor",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/thermal-monitor.svg",
+      "file": "svg/papirus-psensor.svg",
+      "sha256": "635862e12b209ec3bbbbec955ea5458051a3b93c13df8fb27ca0d91f178de9e0"
+    },
+    "pwvucontrol": {
+      "provider": "papirus",
+      "upstream_icon": "com.saivert.pwvucontrol",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/kmix.svg",
+      "file": "svg/papirus-pavucontrol.svg",
+      "sha256": "26bc3a3fd97b840701c1f29bc6c1c9c3d8e8043543942212f6190747c133aea6"
+    },
+    "python": {
+      "provider": "simple-icons",
+      "upstream_icon": "python",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/python.svg",
+      "file": "svg/simple-icons-python.svg",
+      "sha256": "c0cfe82a79da14658a783a3bcabb45b6663215c571b003adac9bc96a359a3930",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "python-black": {
+      "provider": "simple-icons",
+      "upstream_icon": "black",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/black.svg",
+      "file": "svg/simple-icons-black.svg",
+      "sha256": "d33435a848c92c1318b7f3ce19633133980b7ab761de847a00f5d201b1db5c9e",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "python-ipykernel": {
+      "provider": "simple-icons",
+      "upstream_icon": "jupyter",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/jupyter.svg",
+      "file": "svg/simple-icons-jupyter.svg",
+      "sha256": "59119758a5653234f8db617a80128267a447404773557a2255d42523df4b7eff",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "python-numpy": {
+      "provider": "simple-icons",
+      "upstream_icon": "numpy",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/numpy.svg",
+      "file": "svg/simple-icons-numpy.svg",
+      "sha256": "8c870fc5877f58e936b7c486c64f0e2dd7f6898a4b3f71651abf93e1a0c30492",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "python-opencv": {
+      "provider": "simple-icons",
+      "upstream_icon": "opencv",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/opencv.svg",
+      "file": "svg/simple-icons-opencv.svg",
+      "sha256": "c572f2f999d7a47abc17a6823298cb2ada9d9c2b7978a2b6a1def856a7926477",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "python-pandas": {
+      "provider": "simple-icons",
+      "upstream_icon": "pandas",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/pandas.svg",
+      "file": "svg/simple-icons-pandas.svg",
+      "sha256": "f59f77283e9546dea632c87851765c0ec3ac192bd42798f493d6679574e1d2e7",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "python-pip": {
+      "provider": "simple-icons",
+      "upstream_icon": "pypi",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/pypi.svg",
+      "file": "svg/simple-icons-pypi.svg",
+      "sha256": "6004af25bbe6c5d08783c43558dd67ff01b518515bf8049e1356a45e1d1d9640",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "python-pipx": {
+      "provider": "simple-icons",
+      "upstream_icon": "pipx",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/pipx.svg",
+      "file": "svg/simple-icons-pipx.svg",
+      "sha256": "1090443ad6fc545f0906a352748240ba4add4e83505901e6dca8d9e43d186444",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "python-pytest": {
+      "provider": "simple-icons",
+      "upstream_icon": "pytest",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/pytest.svg",
+      "file": "svg/simple-icons-pytest.svg",
+      "sha256": "b876771ba36208908b7894cae74a6f7f4a6da3ee78b7f1b1a5131ff25d364f5e",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "python-pytorch": {
+      "provider": "simple-icons",
+      "upstream_icon": "pytorch",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/pytorch.svg",
+      "file": "svg/simple-icons-pytorch.svg",
+      "sha256": "2d4ec1760d48be9d76cc16987f63408ed0d37aba8b9ffa48748fbc1d3b6de46a",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "python-pytorch-cuda": {
+      "provider": "simple-icons",
+      "upstream_icon": "pytorch",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/pytorch.svg",
+      "file": "svg/simple-icons-pytorch.svg",
+      "sha256": "2d4ec1760d48be9d76cc16987f63408ed0d37aba8b9ffa48748fbc1d3b6de46a",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "python-pytorch-rocm": {
+      "provider": "simple-icons",
+      "upstream_icon": "pytorch",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/pytorch.svg",
+      "file": "svg/simple-icons-pytorch.svg",
+      "sha256": "2d4ec1760d48be9d76cc16987f63408ed0d37aba8b9ffa48748fbc1d3b6de46a",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "python-scikit-learn": {
+      "provider": "simple-icons",
+      "upstream_icon": "scikitlearn",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/scikitlearn.svg",
+      "file": "svg/simple-icons-scikitlearn.svg",
+      "sha256": "c4030c14103b3ce939975840b2fcf14e54b2c9151c266fd3216ce00b99e4543c",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "python-scipy": {
+      "provider": "simple-icons",
+      "upstream_icon": "scipy",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/scipy.svg",
+      "file": "svg/simple-icons-scipy.svg",
+      "sha256": "db2051f06dd48e847ded3c45e1c32d5e6aab445eb22b4dbae08fd4b5d2514b71",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "python-sympy": {
+      "provider": "simple-icons",
+      "upstream_icon": "sympy",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/sympy.svg",
+      "file": "svg/simple-icons-sympy.svg",
+      "sha256": "6ef78fe989fadb6250bab63336c55a79f9ad8cd7f2903bea9cd3badaa6131e6a",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "python-tensorflow": {
+      "provider": "simple-icons",
+      "upstream_icon": "tensorflow",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/tensorflow.svg",
+      "file": "svg/simple-icons-tensorflow.svg",
+      "sha256": "625e3a7461b77b8ebe28e8c2ea74cc2d61bd4da4e661db0409fe56bfa09462f1",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "python-tensorflow-cuda": {
+      "provider": "simple-icons",
+      "upstream_icon": "tensorflow",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/tensorflow.svg",
+      "file": "svg/simple-icons-tensorflow.svg",
+      "sha256": "625e3a7461b77b8ebe28e8c2ea74cc2d61bd4da4e661db0409fe56bfa09462f1",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "qalculate-qt": {
+      "provider": "papirus",
+      "upstream_icon": "qalculate-qt",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/qalculate.svg",
+      "file": "svg/papirus-qalculate-qt.svg",
+      "sha256": "a4da5d257336b40254da70065ace5df00941b3405281c394a04c5d253dae1d7e"
+    },
+    "qbittorrent": {
+      "provider": "papirus",
+      "upstream_icon": "qbittorrent",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/qbittorrent.svg",
+      "file": "svg/papirus-qbittorrent.svg",
+      "sha256": "91ff846ce1ee3f43a6b2de9eaf446e7fa400cea18924bedd592e8d09309850c6"
+    },
+    "qemu-desktop": {
+      "provider": "papirus",
+      "upstream_icon": "qemu",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/qemu.svg",
+      "file": "svg/papirus-qemu.svg",
+      "sha256": "a7f2f927a1963471b7a6848e159f6fc42fa229b01119d353f176dd14555b47aa"
+    },
+    "qemu-full": {
+      "provider": "papirus",
+      "upstream_icon": "qemu",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/qemu.svg",
+      "file": "svg/papirus-qemu.svg",
+      "sha256": "a7f2f927a1963471b7a6848e159f6fc42fa229b01119d353f176dd14555b47aa"
+    },
+    "qjackctl": {
+      "provider": "papirus",
+      "upstream_icon": "qjackctl",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/qjackctl.svg",
+      "file": "svg/papirus-qjackctl.svg",
+      "sha256": "ab7fdd537c9f51832516e11846ffb8f705a18ab50725ffb4c185a479ff0a1277"
+    },
+    "qt5ct": {
+      "provider": "papirus",
+      "upstream_icon": "qt5ct",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/qtconfig.svg",
+      "file": "svg/papirus-qt5ct.svg",
+      "sha256": "e5d0d40fb1078656a231a54b4cfe09608e22c77811a37ff8e4f190bcca6c05de"
+    },
+    "qt6ct": {
+      "provider": "papirus",
+      "upstream_icon": "qt6ct",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/qtconfig.svg",
+      "file": "svg/papirus-qt5ct.svg",
+      "sha256": "e5d0d40fb1078656a231a54b4cfe09608e22c77811a37ff8e4f190bcca6c05de"
+    },
+    "qtcreator": {
+      "provider": "papirus",
+      "upstream_icon": "qtcreator",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/qtcreator.svg",
+      "file": "svg/papirus-qtcreator.svg",
+      "sha256": "7aa59fd18694f59a739efea5c92a11ab6d8b90d666f3d93bdbd166aaee3d031c"
+    },
+    "qtractor": {
+      "provider": "papirus",
+      "upstream_icon": "qtractor",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/qtractor.svg",
+      "file": "svg/papirus-qtractor.svg",
+      "sha256": "0476a6eedc9546973579162625e620f08208539400602023e56e580ff97108d4"
+    },
+    "qutebrowser": {
+      "provider": "papirus",
+      "upstream_icon": "qutebrowser",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/qutebrowser.svg",
+      "file": "svg/papirus-qutebrowser.svg",
+      "sha256": "dd550e86b3dada18c41278ca7dbd5042f964522a16b92357431755af07ab291c"
+    },
+    "qwen-code": {
+      "provider": "simple-icons",
+      "upstream_icon": "qwen",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/qwen.svg",
+      "file": "svg/simple-icons-qwen.svg",
+      "sha256": "6438555cd3f8caef20af35bd17c204c23c618085462303369fb3795741c550ec",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "rawtherapee": {
+      "provider": "papirus",
+      "upstream_icon": "rawtherapee",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/rawtherapee.svg",
+      "file": "svg/papirus-rawtherapee.svg",
+      "sha256": "b3a366857f5d80f62cd12feb06ed8ac855017bfe8143159e251448eef2ad50f6"
+    },
+    "rclone": {
+      "provider": "simple-icons",
+      "upstream_icon": "rclone",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/rclone.svg",
+      "file": "svg/simple-icons-rclone.svg",
+      "sha256": "8fe5a2eb2be875b39c36cb15add1711f0b68d1e5d9c2f92663ebf5e5b068f383",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "remmina": {
+      "provider": "papirus",
+      "upstream_icon": "remmina",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/remmina.svg",
+      "file": "svg/papirus-remmina.svg",
+      "sha256": "445d4f6ec908fd37fbbebbfff14755b94a2032af2119b05d25e02f9246b63fa0"
+    },
+    "restic": {
+      "provider": "papirus",
+      "upstream_icon": "restic",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/restic.svg",
+      "file": "svg/papirus-restic.svg",
+      "sha256": "816446ab0cfce4c8d6258b24e264dfc12adab652e114beeb57dcc11a437c2fc7"
+    },
+    "retroarch": {
+      "provider": "papirus",
+      "upstream_icon": "retroarch",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/retroarch.svg",
+      "file": "svg/papirus-retroarch.svg",
+      "sha256": "dfabf54e28f01133659c8607887b23cf7b7d15dd088c5ce66fa13a32abc1ca78"
+    },
+    "rhythmbox": {
+      "provider": "papirus",
+      "upstream_icon": "rhythmbox",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/rhythmbox.svg",
+      "file": "svg/papirus-rhythmbox.svg",
+      "sha256": "205bb17af84b7b9a22b5218e34c98c4474c29de4ac317a8bdba7a22a5beb9bb3"
+    },
+    "ristretto": {
+      "provider": "papirus",
+      "upstream_icon": "ristretto",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/ristretto.svg",
+      "file": "svg/papirus-ristretto.svg",
+      "sha256": "f2107944f0284315115581730ab056607b38715bc4060f413fdeb8aabf432a36"
+    },
+    "rnote": {
+      "provider": "papirus",
+      "upstream_icon": "rnote",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/rnote.svg",
+      "file": "svg/papirus-rnote.svg",
+      "sha256": "6799086684e70abb202f05bf85406a0aa0fe95b9b2e650f9971ae284662e946c"
+    },
+    "rocm-hip-sdk": {
+      "provider": "simple-icons",
+      "upstream_icon": "amd",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/amd.svg",
+      "file": "svg/simple-icons-amd.svg",
+      "sha256": "207c1c7a23c76b5f9bb75a9b788324424e1317024a479388042ae6ee789993d5",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "rpcs3-git": {
+      "provider": "papirus",
+      "upstream_icon": "rpcs3",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/rpcs3.svg",
+      "file": "svg/papirus-rpcs3.svg",
+      "sha256": "d71eacbbeba019784032e2a470360cb86683738a5376c2a5023de65990d17367"
+    },
+    "ruff": {
+      "provider": "simple-icons",
+      "upstream_icon": "ruff",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/ruff.svg",
+      "file": "svg/simple-icons-ruff.svg",
+      "sha256": "913b6cdcabe551e0fe63325f25fdb0ed15fe3c0a1f82d1dfb2c233994a42ab85",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "sc-controller": {
+      "provider": "papirus",
+      "upstream_icon": "sc-controller",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/preferences-desktop-gaming.svg",
+      "file": "svg/papirus-io.github.antimicrox.antimicrox.svg",
+      "sha256": "40434e60b348738bab78cbeba34de4a96601e25959d1c7075b34ecbfb45d6002"
+    },
+    "scribus": {
+      "provider": "papirus",
+      "upstream_icon": "scribus",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/scribus.svg",
+      "file": "svg/papirus-scribus.svg",
+      "sha256": "2e0966ac0c687316e6493894df4cf74baa7a28133914603cdcf90db193326b85"
+    },
+    "scummvm": {
+      "provider": "papirus",
+      "upstream_icon": "scummvm",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/scummvm.svg",
+      "file": "svg/papirus-scummvm.svg",
+      "sha256": "3b4e2b2936c662380092e8e47a16082bba8e8b4d70980053905b14cddfbf3b89"
+    },
+    "seahorse": {
+      "provider": "papirus",
+      "upstream_icon": "seahorse",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/seahorse.svg",
+      "file": "svg/papirus-seahorse.svg",
+      "sha256": "0305fb2ec9b451fb1fff90062313d5c78284dbbb0503dda8951a94b06f04476e"
+    },
+    "shotcut": {
+      "provider": "papirus",
+      "upstream_icon": "shotcut",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/shotcut.svg",
+      "file": "svg/papirus-shotcut.svg",
+      "sha256": "4620745a0b13c3881753adb9a058b0d1992b346c9eb9db2264efcc71973c819d"
+    },
+    "shotwell": {
+      "provider": "papirus",
+      "upstream_icon": "shotwell",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/multimedia-photo-manager.svg",
+      "file": "svg/papirus-shotwell.svg",
+      "sha256": "794068c03986f68b68fb07d3088ed950c9f5391a803ac91b445ac4c31a1f731c"
+    },
+    "signal-desktop": {
+      "provider": "papirus",
+      "upstream_icon": "signal-desktop",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/signal-desktop.svg",
+      "file": "svg/papirus-signal-desktop.svg",
+      "sha256": "3699f5e186f723f9fc89171b4804e05ffdeacbab0cad542bd3a72b2da69fd4ec"
+    },
+    "simple-scan": {
+      "provider": "papirus",
+      "upstream_icon": "org.gnome.SimpleScan",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/org.gnome.SimpleScan.svg",
+      "file": "svg/papirus-org.gnome.SimpleScan.svg",
+      "sha256": "398399c116c7ba5cc027adb8f053240bcddf1448e612ba0b6ad04a128dc216fe"
+    },
+    "skanlite": {
+      "provider": "papirus",
+      "upstream_icon": "skanlite",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/skanlite.svg",
+      "file": "svg/papirus-skanlite.svg",
+      "sha256": "cf8eee98e86615783914365a8e7a30caa0a6ea4926c6b075dfb3db316b3e05fe"
+    },
+    "solaar": {
+      "provider": "papirus",
+      "upstream_icon": "solaar",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/solaar.svg",
+      "file": "svg/papirus-solaar.svg",
+      "sha256": "3eb91ba1b0b82aadaaa61aeecda75456bcf4da25590730736caa4074517907bf"
+    },
+    "spectacle": {
+      "provider": "papirus",
+      "upstream_icon": "spectacle",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/applets-screenshooter.svg",
+      "file": "svg/papirus-spectacle.svg",
+      "sha256": "7c266f4ba89d4706748c34cafed66e5a05210c75fc42d3f2c9a701fcfd5ef4f4"
+    },
+    "speedcrunch": {
+      "provider": "papirus",
+      "upstream_icon": "speedcrunch",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/speedcrunch.svg",
+      "file": "svg/papirus-speedcrunch.svg",
+      "sha256": "15a008ae73255296c4bc83e6a58cabe468f1d5cb87fb3e914840a1d042902dd6"
+    },
+    "spotify": {
+      "provider": "papirus",
+      "upstream_icon": "spotify",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/spotify-client.svg",
+      "file": "svg/papirus-spotify.svg",
+      "sha256": "328be659b667559b47ecf47ed03b0444c0cd1fd902b1b6a640b20e48d2fbf2ee"
+    },
+    "sqlite": {
+      "provider": "simple-icons",
+      "upstream_icon": "sqlite",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/sqlite.svg",
+      "file": "svg/simple-icons-sqlite.svg",
+      "sha256": "3aaadb5e89e79718546ed1e17b14c39d699e7188c0dc3a0ae9d2b7c25d6a86f7",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "sqlitebrowser": {
+      "provider": "papirus",
+      "upstream_icon": "sqlitebrowser",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/sqlitebrowser.svg",
+      "file": "svg/papirus-sqlitebrowser.svg",
+      "sha256": "72b383fce121e740e1c7ac184030efdec964673e45fa5785a3e1f5cf6829c54e"
+    },
+    "starship": {
+      "provider": "simple-icons",
+      "upstream_icon": "starship",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/starship.svg",
+      "file": "svg/simple-icons-starship.svg",
+      "sha256": "00cdf7ce70640c52993dc7b7fdcc5641277385cc825698e410a77cc67059db45",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "steam": {
+      "provider": "papirus",
+      "upstream_icon": "steam",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/steam.svg",
+      "file": "svg/papirus-steam.svg",
+      "sha256": "3d6f80eea3007176ac15184ca9223092e9b5a2ded6d6f5f6bc0783b93f7c88d7"
+    },
+    "strawberry": {
+      "provider": "papirus",
+      "upstream_icon": "strawberry",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/strawberry.svg",
+      "file": "svg/papirus-strawberry.svg",
+      "sha256": "d6a20c2d99b7dd3c5ef9e9fda733fad78d72ef15430684964f8db781fe693474"
+    },
+    "supertux": {
+      "provider": "papirus",
+      "upstream_icon": "supertux",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/supertux.svg",
+      "file": "svg/papirus-supertux.svg",
+      "sha256": "21e2d0038ddfd14a59930e72789c14d6746c1f5f6120aae2577b0c35e3c63de1"
+    },
+    "supertuxkart": {
+      "provider": "papirus",
+      "upstream_icon": "supertuxkart",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/supertuxkart.svg",
+      "file": "svg/papirus-supertuxkart.svg",
+      "sha256": "cd77a2b2cffbd8cbc90f5508e3421e0de598d53a56da012f1431e970ae9a3a33"
+    },
+    "sway": {
+      "provider": "simple-icons",
+      "upstream_icon": "sway",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/sway.svg",
+      "file": "svg/simple-icons-sway.svg",
+      "sha256": "0456479415e4e5d5daeb0f13545a0ae0f081ed7c32a1ac0916984516c65c1731",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "syncthing": {
+      "provider": "papirus",
+      "upstream_icon": "syncthing",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/syncthing-gtk.svg",
+      "file": "svg/papirus-syncthing.svg",
+      "sha256": "9783de695bdaf89e513a33bccba9b048ec44b0d5586d2fdb636f1bb2ee50bb23"
+    },
+    "system-config-printer": {
+      "provider": "papirus",
+      "upstream_icon": "system-config-printer",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/cups.svg",
+      "file": "svg/papirus-cups.svg",
+      "sha256": "340eed71a75362d470ec938d5c1e521c38855911d9d3744d8001f0701de362b2"
+    },
+    "tailscale": {
+      "provider": "simple-icons",
+      "upstream_icon": "tailscale",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/tailscale.svg",
+      "file": "svg/simple-icons-tailscale.svg",
+      "sha256": "dba114917bd4c6758f3221b4d1ed9aa5ee536f6193e6d4000e80619dfba8eb9d",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "teamspeak3": {
+      "provider": "papirus",
+      "upstream_icon": "teamspeak3",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/teamspeak3.svg",
+      "file": "svg/papirus-teamspeak3.svg",
+      "sha256": "61cb18d776be69cc0c260aa578fb874dc093e9e1b874b4358d87d504b98dedfc"
+    },
+    "telegram-desktop": {
+      "provider": "papirus",
+      "upstream_icon": "telegram-desktop",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/telegram.svg",
+      "file": "svg/papirus-telegram-desktop.svg",
+      "sha256": "75cc864e3332930c34824facb041b34eedd5341b295eed0e7390fcf204831a70"
+    },
+    "texstudio": {
+      "provider": "papirus",
+      "upstream_icon": "texstudio",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/texstudio.svg",
+      "file": "svg/papirus-texstudio.svg",
+      "sha256": "6443cdb83d6c308937ac19015d86ad9b544bc0f4edf297f8f8031d37f80eee00"
+    },
+    "thunar": {
+      "provider": "papirus",
+      "upstream_icon": "thunar",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/thunar.svg",
+      "file": "svg/papirus-thunar.svg",
+      "sha256": "f97297921b70cc614c523fa225b9b2ca30b819ba5a479b0ec5296672cfe93574"
+    },
+    "thunderbird": {
+      "provider": "papirus",
+      "upstream_icon": "thunderbird",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/thunderbird.svg",
+      "file": "svg/papirus-thunderbird.svg",
+      "sha256": "2038ba661ce8fa8c2fc6e229a94ee4afa26226d010dff0301cab6571addcf359"
+    },
+    "tigervnc": {
+      "provider": "papirus",
+      "upstream_icon": "tigervnc",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/tigervnc.svg",
+      "file": "svg/papirus-tigervnc.svg",
+      "sha256": "5ed020c5229f12e0ee6cc2b9d94d9c31f59a8bd4d9fcdb79c43f0229baab0c72"
+    },
+    "timeshift": {
+      "provider": "papirus",
+      "upstream_icon": "timeshift",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/timeshift.svg",
+      "file": "svg/papirus-timeshift.svg",
+      "sha256": "8f8ce2bebf487f981f599330eeeb34c42a690e1ec0860cd285011bf68e383355"
+    },
+    "tmux": {
+      "provider": "simple-icons",
+      "upstream_icon": "tmux",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/tmux.svg",
+      "file": "svg/simple-icons-tmux.svg",
+      "sha256": "db25e477fa3f51649c8fdfd1634f08ac639bf1761debe035062ec4fbdc0f9cc5",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "torbrowser-launcher": {
+      "provider": "papirus",
+      "upstream_icon": "tor-browser",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/tor.svg",
+      "file": "svg/papirus-tor-browser.svg",
+      "sha256": "3691dc1275eab422445f6da804f82566a47923d5beb375039991bb4446cead56"
+    },
+    "transmission-gtk": {
+      "provider": "papirus",
+      "upstream_icon": "transmission-gtk",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/transmission.svg",
+      "file": "svg/papirus-transmission-gtk.svg",
+      "sha256": "0582d2d545d1657bbff0321230f1bd90fc6eb4f54489e8edd15e0114bf5b0d49"
+    },
+    "upscayl-bin": {
+      "provider": "papirus",
+      "upstream_icon": "upscayl",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/upscayl.svg",
+      "file": "svg/papirus-upscayl.svg",
+      "sha256": "7a14efdc96a4f4fd036492d92f68e47a4309d8b248137e22b9d8cbcd2acd10c1"
+    },
+    "uv": {
+      "provider": "simple-icons",
+      "upstream_icon": "uv",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/uv.svg",
+      "file": "svg/simple-icons-uv.svg",
+      "sha256": "d12be7d0f0928b857cc61296565a8e09b3e48e7138843ba956bd7b79309df51f",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "veracrypt": {
+      "provider": "papirus",
+      "upstream_icon": "veracrypt",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/veracrypt.svg",
+      "file": "svg/papirus-veracrypt.svg",
+      "sha256": "fabb1d2527608ac74eb02ec458e27a616bef01826af24684b6c0427bb67bf6c4"
+    },
+    "vesktop-bin": {
+      "provider": "papirus",
+      "upstream_icon": "vesktop",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/vesktop.svg",
+      "file": "svg/papirus-vesktop.svg",
+      "sha256": "09fd9aabba45bb558c16a11bc46b84713c19ca7096aac60e1fe4cac749b5b440"
+    },
+    "vifm": {
+      "provider": "papirus",
+      "upstream_icon": "vifm",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/vifm.svg",
+      "file": "svg/papirus-vifm.svg",
+      "sha256": "178d526d4ece9b4e4bfd47ccf49f3c1a6e0062348ccfb5e433986c62a1915710"
+    },
+    "vim": {
+      "provider": "simple-icons",
+      "upstream_icon": "vim",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/vim.svg",
+      "file": "svg/simple-icons-vim.svg",
+      "sha256": "42eb354ad583d0509b0536116bb9a3c6db3eb5df1340bd7b981126ca95e00ab2",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "virt-manager": {
+      "provider": "papirus",
+      "upstream_icon": "virt-manager",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/virt-manager.svg",
+      "file": "svg/papirus-virt-manager.svg",
+      "sha256": "36ef8b94fcedd1a55e9632a30322f7192a5e6b0710de1640b15087efc3b78c67"
+    },
+    "virt-viewer": {
+      "provider": "papirus",
+      "upstream_icon": "virt-viewer",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/krdc.svg",
+      "file": "svg/papirus-krdc.svg",
+      "sha256": "1e9e122c72d9bf7b8e25b6c302bbda364d7f1947e84d577783535e9ededfc4f1"
+    },
+    "virtualbox": {
+      "provider": "papirus",
+      "upstream_icon": "virtualbox",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/virtualbox.svg",
+      "file": "svg/papirus-virtualbox.svg",
+      "sha256": "6908ff87c8c3ee150599ffbec24f68ddf51445fb59bb7dfa794c74876f71e764"
+    },
+    "visual-studio-code-bin": {
+      "provider": "papirus",
+      "upstream_icon": "visual-studio-code",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/vscode.svg",
+      "file": "svg/papirus-code.svg",
+      "sha256": "b0c9c235e175259d4faf5a0e53e779e082efa5f7a94500e1998bd7e009236888"
+    },
+    "vlc": {
+      "provider": "papirus",
+      "upstream_icon": "vlc",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/vlc.svg",
+      "file": "svg/papirus-vlc.svg",
+      "sha256": "971548982067966c0ffe7fb8acd09f620fecb76bc8434551b266a2379087cae2"
+    },
+    "vokoscreen": {
+      "provider": "papirus",
+      "upstream_icon": "vokoscreen",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/vokoscreen.svg",
+      "file": "svg/papirus-vokoscreen.svg",
+      "sha256": "63f569a2ebf2b14de762a3249c9c5f8a9acbeaec399a9beb8e32e9dfc82f2370"
+    },
+    "vorta": {
+      "provider": "papirus",
+      "upstream_icon": "vorta",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/vorta.svg",
+      "file": "svg/papirus-vorta.svg",
+      "sha256": "7a8ef5f0ab68c489d6f1ecfe45a62be267eac7ab8b5aea56027ba600f618ea2f"
+    },
+    "warpinator": {
+      "provider": "papirus",
+      "upstream_icon": "warpinator",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/warpinator.svg",
+      "file": "svg/papirus-warpinator.svg",
+      "sha256": "1f800c78ca9b29a015d362d4c399c86cf643ded61ea65e5119a71511b084497d"
+    },
+    "warzone2100": {
+      "provider": "papirus",
+      "upstream_icon": "warzone2100",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/warzone2100.svg",
+      "file": "svg/papirus-warzone2100.svg",
+      "sha256": "aa6b0ad56d789961302aa48ef0b6153a7329a6fd015ce982ba8e2b780ec6425d"
+    },
+    "waydroid": {
+      "provider": "papirus",
+      "upstream_icon": "waydroid",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/waydroid.svg",
+      "file": "svg/papirus-waydroid.svg",
+      "sha256": "368c725a7a3d8a1f54628d651902b36ebfd1ae226d2275235f0b77507ddcbca5"
+    },
+    "weechat": {
+      "provider": "papirus",
+      "upstream_icon": "weechat",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/irc-chat.svg",
+      "file": "svg/papirus-weechat.svg",
+      "sha256": "1d7e1abc44f618a54f7336fdd1eca9355699b0e645e32804a279321054c06534"
+    },
+    "wesnoth": {
+      "provider": "papirus",
+      "upstream_icon": "wesnoth",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/wesnoth.svg",
+      "file": "svg/papirus-wesnoth.svg",
+      "sha256": "fc423f54a4d195d5d2a2ee54bf91cac9fe263acd9fdd865a91be9c1abdc78256"
+    },
+    "wezterm": {
+      "provider": "simple-icons",
+      "upstream_icon": "wezterm",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/wezterm.svg",
+      "file": "svg/simple-icons-wezterm.svg",
+      "sha256": "901d2d67b50899f46ae7d68eb2d8dba437ee15b13f1a0cd6538b9a46d0e196a9",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "wine": {
+      "provider": "papirus",
+      "upstream_icon": "wine",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/wine.svg",
+      "file": "svg/papirus-wine.svg",
+      "sha256": "7e86110a7949b8ec23189ed026dc612f51e7ff793e52f1836fe453d015150e88"
+    },
+    "wine-staging": {
+      "provider": "papirus",
+      "upstream_icon": "wine",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/wine.svg",
+      "file": "svg/papirus-wine.svg",
+      "sha256": "7e86110a7949b8ec23189ed026dc612f51e7ff793e52f1836fe453d015150e88"
+    },
+    "winetricks": {
+      "provider": "papirus",
+      "upstream_icon": "winetricks",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/winetricks.svg",
+      "file": "svg/papirus-com.github.Matoking.protontricks.svg",
+      "sha256": "e2ebf777f74b8089f4e6b1698d36759445e34c35f628d8b8d0efc90d4ef7c288"
+    },
+    "wireguard-tools": {
+      "provider": "simple-icons",
+      "upstream_icon": "wireguard",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/wireguard.svg",
+      "file": "svg/simple-icons-wireguard.svg",
+      "sha256": "86361936bda996c3f0b334e14c7c6198a925ebd95507865972568d48975917d1",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "wireshark-qt": {
+      "provider": "simple-icons",
+      "upstream_icon": "wireshark",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/wireshark.svg",
+      "file": "svg/simple-icons-wireshark.svg",
+      "sha256": "45f4f93cd33e3f8f6f9c12b624c0aeb17dd9b38d735487a731f0a7499e408eea",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "xarchiver": {
+      "provider": "papirus",
+      "upstream_icon": "xarchiver",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/ark.svg",
+      "file": "svg/papirus-7zip.svg",
+      "sha256": "d7c8dcbd854c7bd2186b94060eb3b17322576bd083f9c3d0c1fc24ef89c2542d"
+    },
+    "xed": {
+      "provider": "papirus",
+      "upstream_icon": "xed",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/accessories-text-editor.svg",
+      "file": "svg/papirus-xed.svg",
+      "sha256": "f526936aa29dcd0fd48e7f08a5ebe25e0a29ec03a6ac249017f84911dbc515f3"
+    },
+    "xfce4-session": {
+      "provider": "papirus",
+      "upstream_icon": "xfce4-session",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/xfce4-session.svg",
+      "file": "svg/papirus-xfce4-session.svg",
+      "sha256": "0afd81a8f8b0deb9f837d2741e80e741c629f8e0745fd5a5a018a8e77b5bb728"
+    },
+    "xonotic": {
+      "provider": "papirus",
+      "upstream_icon": "xonotic",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/xonotic.svg",
+      "file": "svg/papirus-xonotic.svg",
+      "sha256": "cac4dd210a896e3d7245f637438170adf04bc3b67302053d01184f705a9c08f8"
+    },
+    "xournalpp": {
+      "provider": "papirus",
+      "upstream_icon": "xournalpp",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/xournal.svg",
+      "file": "svg/papirus-xournalpp.svg",
+      "sha256": "d7a4920d2ac2aaad80c9609fa877f3bcb569d2238cfaae0b83da2d2ca607aa94"
+    },
+    "zathura": {
+      "provider": "papirus",
+      "upstream_icon": "zathura",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/document-viewer.svg",
+      "file": "svg/papirus-zathura.svg",
+      "sha256": "271b22470f7aef81a83983c3879a4679d24ce5c257fcadab6bc94c0642c2c6ea"
+    },
+    "zathura-pdf-mupdf": {
+      "provider": "papirus",
+      "upstream_icon": "zathura",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/document-viewer.svg",
+      "file": "svg/papirus-zathura.svg",
+      "sha256": "271b22470f7aef81a83983c3879a4679d24ce5c257fcadab6bc94c0642c2c6ea"
+    },
+    "zed": {
+      "provider": "papirus",
+      "upstream_icon": "zed",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/zed.svg",
+      "file": "svg/papirus-zed.svg",
+      "sha256": "27a78ded063269b01292ef419428f43fd4f29ebc587059d1279d4959c0194f89"
+    },
+    "zen-browser-bin": {
+      "provider": "papirus",
+      "upstream_icon": "zen-browser",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/zen-browser.svg",
+      "file": "svg/papirus-zen-browser.svg",
+      "sha256": "6fd25be963476379eea987b8690af418848b392ca57a7396f3063789209c656d"
+    },
+    "zerotier-one": {
+      "provider": "simple-icons",
+      "upstream_icon": "zerotier",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/zerotier.svg",
+      "file": "svg/simple-icons-zerotier.svg",
+      "sha256": "e3f44359805e6048c27c5d6c2b1fefc88d30d5418d76bc4b529eacfda8b0d0c2",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    },
+    "zim": {
+      "provider": "papirus",
+      "upstream_icon": "zim",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/zim.svg",
+      "file": "svg/papirus-zim.svg",
+      "sha256": "3af3df6eead5ad4bd25ff16fa37e44d71729ea03fada46dbb252b97e7508ba64"
+    },
+    "zotero": {
+      "provider": "papirus",
+      "upstream_icon": "zotero",
+      "source": "https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/bf539287ef5dc18529424a02cccee76175920a6f/Papirus/48x48/apps/zotero.svg",
+      "file": "svg/papirus-zotero.svg",
+      "sha256": "0988a378dfda6d4bf80c98b75c9976da18193afd84815a7c72b745661cc5c4e5"
+    },
+    "zsh": {
+      "provider": "simple-icons",
+      "upstream_icon": "zsh",
+      "source": "https://github.com/simple-icons/simple-icons/blob/90646e4bf7f3b89df6c37e65baf3e7bc759a517c/icons/zsh.svg",
+      "file": "svg/simple-icons-zsh.svg",
+      "sha256": "884e424ec2de1603f39f5ccd2f959a7c456d33b4bc69c86cf00cf0672a4f07c7",
+      "upstream_license": {
+        "type": "CC0-1.0"
+      }
+    }
+  }
+}

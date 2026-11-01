@@ -20,6 +20,6 @@ done
 ./scripts/dist.sh
 (
   cd packaging
-  makepkg --syncdeps --install --cleanbuild
+  makepkg --force --syncdeps --install --cleanbuild
 )
 echo 'Arch Forge is installed. Open your application launcher and search for Arch Forge.'

@@ -1,122 +1,662 @@
-# category|package|title|description|icon|source
-Essentials|base-devel|Build tools|Compile packages and AUR builds.|applications-development|repo
-Essentials|git|Git|Version control and configuration repositories.|git|repo
-Essentials|curl|curl|Transfer data from URLs.|utilities-terminal|repo
-Essentials|wget|Wget|Download files from the terminal.|folder-download|repo
-Essentials|rsync|Rsync|Copy and synchronize files.|folder-sync|repo
-Essentials|unzip|Unzip|Extract ZIP archives.|package-x-generic|repo
-Essentials|7zip|7-Zip|Create and extract compressed archives.|package-x-generic|repo
-Essentials|zip|Zip|Create ZIP archives.|package-x-generic|repo
-Essentials|xdg-utils|Desktop integration|Open links and files with desktop applications.|preferences-desktop|repo
-Essentials|xdg-user-dirs|Home folders|Manage standard Desktop and Downloads folders.|user-home|repo
-Essentials|man-db|Manual pages|Read installed command documentation.|help-browser|repo
-Essentials|bash-completion|Bash completion|Complete command arguments in Bash.|utilities-terminal|repo
-Essentials|nano|Nano|A straightforward terminal text editor.|accessories-text-editor|repo
-Browsers|firefox|Firefox|Mozilla's web browser.|firefox|repo
-Browsers|chromium|Chromium|Open-source Chromium web browser.|chromium|repo
-Browsers|falkon|Falkon|A lightweight Qt web browser.|falkon|repo
-Browsers|qutebrowser|Qutebrowser|A keyboard-driven web browser.|qutebrowser|repo
-Browsers|torbrowser-launcher|Tor Browser Launcher|Download and launch Tor Browser.|torbrowser-launcher|repo
-Browsers|google-chrome|Google Chrome|Google's browser, packaged through the AUR.|google-chrome|aur
-Browsers|brave-bin|Brave|Brave browser binary package from the AUR.|brave-browser|aur
-Development|neovim|Neovim|An extensible terminal editor.|nvim|repo
-Development|vim|Vim|A modal terminal editor.|vim|repo
-Development|helix|Helix|A terminal editor with language support.|helix|repo
-Development|code|Code - OSS|The open-source build of Visual Studio Code.|visual-studio-code|repo
-Development|visual-studio-code-bin|Visual Studio Code|Microsoft's binary distribution, from the AUR.|visual-studio-code|aur
-Development|kate|Kate|KDE's graphical code editor.|kate|repo
-Development|python|Python|Python language runtime.|python|repo
-Development|python-pip|pip|Python package tooling; prefer virtual environments.|python|repo
-Development|nodejs|Node.js|JavaScript runtime for development tools.|nodejs|repo
-Development|npm|npm|Node.js package manager.|nodejs|repo
-Development|rust|Rust|Rust compiler and Cargo build tooling.|applications-development|repo
-Development|go|Go|Go compiler and toolchain.|applications-development|repo
-Development|jdk-openjdk|OpenJDK|Java development kit.|java|repo
-Development|cmake|CMake|Configure native software builds.|cmake|repo
-Development|ninja|Ninja|A fast build executor.|applications-development|repo
-Development|meson|Meson|Native software build configuration.|applications-development|repo
-Development|gcc|GCC|GNU C and C++ compilers.|applications-development|repo
-Development|gdb|GDB|Debug native programs.|applications-development|repo
-Development|clang|Clang|LLVM C and C++ tooling.|applications-development|repo
-Development|docker|Docker|Container tooling; service setup is separate.|docker|repo
-Development|podman|Podman|Container tooling without a central daemon.|applications-development|repo
-Development|distrobox|Distrobox|Use development containers integrated with your home.|utilities-terminal|repo
-Gaming|steam|Steam|Game library and Proton compatibility tooling.|steam|repo
-Gaming|lutris|Lutris|Manage games across multiple runners.|lutris|repo
-Gaming|gamemode|GameMode|Request performance adjustments while gaming.|applications-games|repo
-Gaming|mangohud|MangoHud|An in-game performance overlay.|applications-games|repo
-Gaming|gamescope|Gamescope|Game scaling and display control.|video-display|repo
-Gaming|wine|Wine|Run supported Windows applications.|wine|repo
-Gaming|winetricks|Winetricks|Manage common Wine runtime components.|wine|repo
-Gaming|protontricks|Protontricks|Configure dependencies for Proton game prefixes.|steam|repo
-Gaming|vulkan-tools|Vulkan tools|Inspect Vulkan graphics support; not a GPU driver.|video-display|repo
-Media|obs-studio|OBS Studio|Record and stream video.|com.obsproject.Studio|repo
-Media|vlc|VLC|Play video and audio.|vlc|repo
-Media|mpv|mpv|A lightweight media player.|mpv|repo
-Media|ffmpeg|FFmpeg|Convert and inspect media files.|applications-multimedia|repo
-Media|gimp|GIMP|Edit raster images.|gimp|repo
-Media|krita|Krita|Digital painting and illustration.|krita|repo
-Media|inkscape|Inkscape|Edit vector artwork.|org.inkscape.Inkscape|repo
-Media|blender|Blender|3D modeling, rendering, and animation.|blender|repo
-Media|audacity|Audacity|Record and edit audio.|audacity|repo
-Media|kdenlive|Kdenlive|Edit video projects.|kdenlive|repo
-Media|handbrake|HandBrake|Transcode video files.|fr.handbrake.ghb|repo
-Media|strawberry|Strawberry|Manage and play a music collection.|strawberry|repo
-Media|spotify|Spotify|Spotify client from the AUR.|spotify|aur
-Communication|discord|Discord|Chat, calls, and communities.|discord|repo
-Communication|vesktop-bin|Vesktop|A community Discord client from the AUR.|vesktop|aur
-Communication|telegram-desktop|Telegram|Telegram desktop messaging.|telegram|repo
-Communication|signal-desktop|Signal|Signal desktop messaging.|signal-desktop|repo
-Communication|element-desktop|Element|A Matrix messaging client.|element|repo
-Communication|thunderbird|Thunderbird|Email, calendars, and contacts.|thunderbird|repo
-System utilities|qbittorrent|qBittorrent|Manage BitTorrent transfers.|qbittorrent|repo
-System utilities|syncthing|Syncthing|Synchronize files between your devices.|syncthing|repo
-System utilities|keepassxc|KeePassXC|Store passwords in a local encrypted database.|keepassxc|repo
-System utilities|btop|btop|Interactive CPU, memory, disk, and process monitoring.|btop|repo
-System utilities|fastfetch|Fastfetch|Display a system information summary.|fastfetch|repo
-System utilities|htop|htop|Inspect and manage running processes.|htop|repo
-System utilities|ncdu|ncdu|Explore disk usage from the terminal.|drive-harddisk|repo
-System utilities|gparted|GParted|Partition editor; review disk changes carefully.|gparted|repo
-System utilities|gnome-disk-utility|Disks|Inspect drives, filesystems, and device health.|org.gnome.DiskUtility|repo
-System utilities|timeshift|Timeshift|System snapshot tooling; requires separate setup.|timeshift|repo
-System utilities|pacman-contrib|Pacman utilities|Cache maintenance and repository update checks.|package-x-generic|repo
-System utilities|reflector|Reflector|Generate mirror lists; no automatic changes here.|network-server|repo
-System utilities|smartmontools|SMART tools|Inspect supported drive health information.|drive-harddisk|repo
-System utilities|flatpak|Flatpak|Install supported desktop apps in named app locations.|flatpak|repo
-System utilities|networkmanager|NetworkManager|Network connection management; service setup is separate.|network-wireless|repo
-System utilities|bluez|Bluetooth stack|Bluetooth support; service setup is separate.|bluetooth|repo
-System utilities|pipewire|PipeWire|Audio and video routing infrastructure.|audio-card|repo
-System utilities|wireplumber|WirePlumber|Session management for PipeWire.|audio-card|repo
-System utilities|pavucontrol|Volume control|Graphical mixer for compatible audio servers.|multimedia-volume-control|repo
-Desktop & styling|hyprland|Hyprland|A dynamic Wayland compositor.|video-display|repo
-Desktop & styling|plasma-meta|KDE Plasma|The Plasma desktop meta-package.|kde|repo
-Desktop & styling|gnome-shell|GNOME Shell|GNOME's desktop shell.|org.gnome.Settings|repo
-Desktop & styling|xfce4-session|Xfce session|The Xfce session manager.|xfce4|repo
-Desktop & styling|cinnamon|Cinnamon|The Cinnamon desktop environment.|cinnamon|repo
-Desktop & styling|sway|Sway|An i3-compatible Wayland compositor.|sway|repo
-Desktop & styling|kitty|Kitty|A GPU-accelerated terminal.|kitty|repo
-Desktop & styling|alacritty|Alacritty|A lightweight GPU-accelerated terminal.|Alacritty|repo
-Desktop & styling|starship|Starship|A configurable shell prompt; shell integration is separate.|utilities-terminal|repo
-Desktop & styling|fish|Fish|An interactive shell; login-shell changes are separate.|utilities-terminal|repo
-Desktop & styling|zsh|Zsh|An extensible interactive shell.|utilities-terminal|repo
-Desktop & styling|waybar|Waybar|A configurable bar for Wayland sessions.|preferences-desktop|repo
-Desktop & styling|fuzzel|Fuzzel|A Wayland application launcher.|system-search|repo
-Desktop & styling|rofi|Rofi|An application and window launcher.|system-search|repo
-Desktop & styling|wl-clipboard|Wayland clipboard|Copy and paste tools for Wayland.|edit-paste|repo
-Desktop & styling|papirus-icon-theme|Papirus icons|An icon theme for compatible desktops.|preferences-desktop-icons|repo
-Desktop & styling|noto-fonts|Noto fonts|General-purpose text fonts.|preferences-desktop-font|repo
-Desktop & styling|noto-fonts-emoji|Noto emoji|Emoji font coverage.|preferences-desktop-font|repo
-Desktop & styling|ttf-jetbrains-mono-nerd|JetBrains Mono Nerd Font|A programming font with additional symbols.|preferences-desktop-font|repo
-System utilities|dolphin|Dolphin|KDE's file manager.|system-file-manager|repo
-System utilities|thunar|Thunar|A lightweight graphical file manager.|system-file-manager|repo
-System utilities|nautilus|Files|GNOME's file manager.|org.gnome.Nautilus|repo
-System utilities|ark|Ark|KDE's archive manager.|ark|repo
-System utilities|file-roller|Archive Manager|GNOME's archive manager.|org.gnome.FileRoller|repo
-System utilities|bluez-utils|Bluetooth utilities|Inspect and pair supported Bluetooth devices.|bluetooth|repo
-System utilities|pipewire-pulse|PipeWire PulseAudio support|PulseAudio compatibility for a PipeWire setup.|audio-card|repo
-System utilities|pipewire-alsa|PipeWire ALSA support|ALSA application integration for PipeWire.|audio-card|repo
-Desktop & styling|adwaita-icon-theme|Adwaita icons|A standard icon theme for GTK desktops.|preferences-desktop-icons|repo
-Desktop & styling|konsole|Konsole|KDE's terminal emulator.|utilities-terminal|repo
-Desktop & styling|gnome-console|Console|GNOME's terminal emulator.|org.gnome.Console|repo
-Desktop & styling|gdm|GDM|GNOME login manager; enabling it is a separate choice.|preferences-system-login|repo
-Desktop & styling|sddm|SDDM|Login manager commonly used with Plasma; enabling it is separate.|preferences-system-login|repo
+# category|package|title|description|icon|source|priority|pkgstats_basis_points
+# Verified 2026-11-01 against Arch x86_64 repositories and selected AUR recipes.
+# Priority: 0 common choices, 1 more options, 2 specialist. Usage: October 2026 pkgstats voluntary reports.
+AI & ML|claude-code|Claude Code|Terminal coding assistant from Anthropic. Sign-in is configured separately.|utilities-terminal|aur|0|789
+AI & ML|openai-codex|Codex CLI|Terminal coding assistant. Sign-in and model access are configured separately.|utilities-terminal|repo|0|581
+AI & ML|gemini-cli|Gemini CLI|Google Gemini terminal assistant. Authentication is configured separately.|gemini-cli|repo|0|284
+AI & ML|ipython|IPython|Enhanced Interactive Python shell|ipython|repo|1|2217
+AI & ML|jupyterlab|JupyterLab|JupyterLab computational environment|jupyterlab|repo|1|1027
+AI & ML|python-matplotlib|Matplotlib|A python plotting library, making publication quality plots|python-matplotlib|repo|1|4857
+AI & ML|python-numpy|NumPy|Scientific tools for Python|python-numpy|repo|1|7362
+AI & ML|ollama|Ollama (CPU)|Run local language models. Models are downloaded separately; service setup is separate.|ollama|repo|0|1516
+AI & ML|python-pandas|Pandas|High-performance, easy-to-use data structures and data analysis tools for Python|python-pandas|repo|1|2351
+AI & ML|aichat|AIChat|Chat with configured AI providers from the terminal.|aichat|repo|1|142
+AI & ML|aider-chat|Aider|Pair programming in the terminal with configurable model providers.|aider-chat|aur|1|5
+AI & ML|python-ipykernel|IPython kernel|The ipython kernel for Jupyter|python-ipykernel|repo|1|1341
+AI & ML|jupyter-notebook|Jupyter Notebook|The language-agnostic HTML notebook application for Project Jupyter|jupyter-notebook|repo|1|697
+AI & ML|lmstudio-bin|LM Studio|Desktop interface for local language models. Download models separately.|lm-studio|aur|1|202
+AI & ML|ollama-rocm|Ollama (AMD ROCm)|AMD ROCm accelerator for Ollama. Requires a supported AMD GPU.|ollama-rocm|repo|1|255
+AI & ML|ollama-cuda|Ollama (NVIDIA CUDA)|NVIDIA CUDA accelerator for Ollama. Requires compatible hardware and drivers.|ollama-cuda|repo|1|371
+AI & ML|ollama-vulkan|Ollama (Vulkan)|Vulkan accelerator for Ollama. Requires a compatible Vulkan driver.|ollama-vulkan|repo|1|255
+AI & ML|opencode|OpenCode|Terminal coding assistant with configurable model providers.|opencode|repo|1|1187
+AI & ML|python-opencv|OpenCV for Python|Python bindings for OpenCV|python-opencv|repo|1|775
+AI & ML|python-pytorch|PyTorch (CPU)|PyTorch for Python. Choose one PyTorch package variant.|python-pytorch|repo|1|359
+AI & ML|qwen-code|Qwen Code|Terminal coding assistant based on Gemini CLI. Configure a model provider separately.|qwen-code|repo|1|64
+AI & ML|python-scikit-learn|Scikit-learn|A set of python modules for machine learning and data mining|python-scikit-learn|repo|1|827
+AI & ML|python-scipy|SciPy|Open-source software for mathematics, science, and engineering|python-scipy|repo|1|2868
+AI & ML|python-seaborn|Seaborn|Statistical data visualization|python-seaborn|repo|1|401
+AI & ML|llama-cpp|llama.cpp|Local language-model inference tools in C/C++. Model files are separate.|llama-cpp|repo|2|309
+AI & ML|opencv|OpenCV|Open Source Computer Vision Library|opencv|repo|2|6550
+AI & ML|python-pytorch-cuda|PyTorch (CUDA)|PyTorch with NVIDIA CUDA support. Choose one PyTorch variant.|python-pytorch-cuda|repo|2|106
+AI & ML|python-pytorch-rocm|PyTorch (ROCm)|PyTorch with AMD ROCm support. Choose one PyTorch variant.|python-pytorch-rocm|repo|2|70
+AI & ML|python-sympy|SymPy|Symbolic manipulation package (Computer Algebra System), written in pure Python|python-sympy|repo|2|1654
+AI & ML|python-tensorflow|TensorFlow|TensorFlow for Python. Choose CPU or CUDA packaging.|python-tensorflow|repo|2|193
+AI & ML|python-tensorflow-cuda|TensorFlow (CUDA)|TensorFlow with NVIDIA CUDA support. Choose CPU or CUDA packaging.|python-tensorflow-cuda|repo|2|23
+AI & ML|whisper-cpp|Whisper.cpp|Local speech transcription in C/C++. Speech models are separate.|whisper-cpp|repo|2|83
+Accessibility|fcitx5|Fcitx 5|Next generation of fcitx, cross-platform input method framework|fcitx5|repo|0|1435
+Accessibility|fcitx5-configtool|Fcitx 5 settings|Configuration Tool for Fcitx5|fcitx5-configtool|repo|0|1180
+Accessibility|orca|Orca screen reader|Screen reader for individuals who are blind or visually impaired|orca|repo|0|1307
+Accessibility|autokey-gtk|AutoKey|A desktop automation utility for Linux and X11 - GTK frontend|autokey-gtk|aur|1|38
+Accessibility|espeak-ng|eSpeak NG|Multi-lingual software speech synthesizer|espeak-ng|repo|1|4329
+Accessibility|fcitx5-chinese-addons|Fcitx 5 Chinese input|Addons related to Chinese, including IME previous bundled inside fcitx4|fcitx5-chinese-addons|repo|1|429
+Accessibility|fcitx5-gtk|Fcitx 5 GTK integration|Fcitx5 gtk im module and glib based dbus client library|fcitx5-gtk|repo|1|1008
+Accessibility|fcitx5-mozc|Fcitx 5 Mozc|Fcitx5 Module of A Japanese Input Method for Chromium OS, Windows, Mac and Linux (the Open Source Edition of Google Japanese Input)|fcitx5-mozc|repo|1|384
+Accessibility|fcitx5-qt|Fcitx 5 Qt integration|Fcitx5 Qt Library (Qt5 & Qt6 integrations)|fcitx5-qt|repo|1|1243
+Accessibility|ibus|IBus|Intelligent input bus for Linux/Unix|ibus|repo|1|2790
+Accessibility|ibus-libpinyin|IBus Pinyin|Intelligent Pinyin engine based on libpinyin for IBus|ibus-libpinyin|repo|1|63
+Accessibility|onboard|Onboard keyboard|On-screen keyboard useful on tablet PCs or for mobility impaired users|onboard|repo|1|383
+Accessibility|speech-dispatcher|Speech Dispatcher|High-level device independent layer for speech synthesis interface|speech-dispatcher|repo|1|2764
+Accessibility|kmag|KMag|Screen Magnifier|kmag|repo|2|949
+Accessibility|kmousetool|KMouseTool|Clicks the mouse for you, reducing the effects of RSI|kmousetool|repo|2|1036
+Backup & storage|borg|Borg Backup|Deduplicating backup program with compression and authenticated encryption|borg|repo|0|1029
+Backup & storage|baobab|Disk Usage Analyzer|A graphical directory tree analyzer|baobab|repo|0|2045
+Backup & storage|gnome-disk-utility|Disks|Inspect drives, filesystems, and device health.|org.gnome.DiskUtility|repo|0|3180
+Backup & storage|filelight|Filelight|View disk usage information|filelight|repo|0|2949
+Backup & storage|gparted|GParted|Graphical partition editor. Review disk changes before applying.|gparted|repo|0|3704
+Backup & storage|kdeconnect|KDE Connect|Adds communication between KDE and your smartphone|kdeconnect|repo|0|3576
+Backup & storage|localsend|LocalSend|An open source cross-platform alternative to AirDrop|localsend|aur|0|595
+Backup & storage|rclone|Rclone|rsync for cloud storage|rclone|repo|0|2103
+Backup & storage|restic|Restic|Fast, secure, efficient backup program|restic|repo|0|913
+Backup & storage|smartmontools|SMART tools|Inspect supported drive health information.|drive-harddisk|repo|0|7612
+Backup & storage|syncthing|Syncthing|Synchronize files between your devices.|syncthing|repo|0|2117
+Backup & storage|timeshift|Timeshift|System snapshot tooling; requires separate setup.|timeshift|repo|0|1001
+Backup & storage|backintime|Back In Time|Simple backup system inspired from the Flyback Project and TimeVault. Qt6 GUI version.|backintime|aur|1|75
+Backup & storage|borgmatic|Borgmatic|Simple, configuration-driven backup software for servers and workstations|borgmatic|repo|1|207
+Backup & storage|btrfs-assistant|Btrfs Assistant|An application for managing BTRFS subvolumes and Snapper snapshots|btrfs-assistant|repo|1|953
+Backup & storage|btrfs-progs|Btrfs tools|Btrfs filesystem utilities|btrfs-progs|repo|1|6905
+Backup & storage|deja-dup|Déjà Dup|Easy to use backup tool based on Restic|deja-dup|repo|1|206
+Backup & storage|exfatprogs|exFAT tools|exFAT filesystem userspace utilities for the Linux Kernel exfat driver|exfatprogs|repo|1|3835
+Backup & storage|ddrescue|GNU ddrescue|Recover readable data from failing media. Check source and destination devices.|ddrescue|repo|1|1278
+Backup & storage|partitionmanager|KDE Partition Manager|KDE partition editor. Review disk changes before applying.|partitionmanager|repo|1|2676
+Backup & storage|nextcloud-client|Nextcloud Desktop|Nextcloud desktop client|nextcloud-client|repo|1|814
+Backup & storage|ntfs-3g|NTFS-3G|NTFS FUSE driver|ntfs-3g|repo|1|5772
+Backup & storage|nvme-cli|NVMe CLI|NVM-Express user space tooling for Linux|nvme-cli|repo|1|2302
+Backup & storage|pciutils|PCI utilities|PCI bus configuration space access library and tools|pciutils|repo|1|9984
+Backup & storage|pika-backup|Pika Backup|Easy to use backup tool to keep your data safe|pika-backup|repo|1|168
+Backup & storage|snapper|Snapper|A tool for managing BTRFS and LVM snapshots|snapper|repo|1|1927
+Backup & storage|testdisk|TestDisk & PhotoRec|Checks and undeletes partitions + PhotoRec, signature based recovery tool|testdisk|repo|1|1753
+Backup & storage|udiskie|Udiskie|Removable disk automounter using udisks|udiskie|repo|1|1775
+Backup & storage|usbutils|USB utilities|A collection of USB tools to query connected USB devices|usbutils|repo|1|8803
+Backup & storage|vorta|Vorta|Desktop Client for Borg Backup|vorta|repo|1|183
+Backup & storage|warpinator|Warpinator|LAN file sender, send and receive files across the network|warpinator|repo|1|128
+Backup & storage|duplicity|Duplicity|A utility for encrypted, bandwidth-efficient backups using the rsync algorithm|duplicity|repo|2|329
+Backup & storage|grub-btrfs|GRUB Btrfs|Include btrfs snapshots in GRUB boot options|grub-btrfs|repo|2|624
+Backup & storage|hdparm|Hdparm|A shell utility for manipulating Linux IDE drive/driver parameters|hdparm|repo|2|5232
+Backup & storage|lsscsi|lsscsi|A tool that lists devices connected via SCSI and its transports|lsscsi|repo|2|2326
+Backup & storage|xfsprogs|XFS tools|XFS filesystem utilities|xfsprogs|repo|2|5218
+Browsers|brave-bin|Brave|Brave browser binary package from the AUR.|brave-browser|aur|0|1255
+Browsers|chromium|Chromium|Open-source Chromium web browser.|chromium|repo|0|3965
+Browsers|firefox|Firefox|Mozilla's web browser.|firefox|repo|0|6978
+Browsers|google-chrome|Google Chrome|Google's browser, packaged through the AUR.|google-chrome|aur|0|1726
+Browsers|falkon|Falkon|A lightweight Qt web browser.|falkon|repo|1|989
+Browsers|librewolf|LibreWolf|Community-maintained fork of Firefox, focused on privacy, security and freedom|librewolf|repo|1|523
+Browsers|qutebrowser|Qutebrowser|A keyboard-driven web browser.|qutebrowser|repo|1|461
+Browsers|torbrowser-launcher|Tor Browser Launcher|Download and launch Tor Browser.|torbrowser-launcher|repo|1|1498
+Browsers|zen-browser-bin|Zen Browser|Official package for Zen, a privacy-focused, feature packed Firefox-based web browser|zen-browser|aur|1|926
+Browsers|lynx|Lynx|A text browser for the World Wide Web|lynx|repo|2|1869
+Browsers|nyxt|Nyxt|A keyboard-driven web browser designed for power users|nyxt|repo|2|102
+Browsers|w3m|w3m|Text-based Web browser as well as pager|w3m|repo|2|1905
+Capture & remote|flameshot|Flameshot|Powerful yet simple to use screenshot software|flameshot|repo|0|1096
+Capture & remote|grim|Grim|Screenshot utility for Wayland|grim|repo|0|3520
+Capture & remote|remmina|Remmina|Remote desktop client written in GTK+|remmina|repo|0|1365
+Capture & remote|slurp|Slurp|Select a region in a Wayland compositor|slurp|repo|0|3249
+Capture & remote|spectacle|Spectacle|KDE screenshot capture utility|spectacle|repo|0|4024
+Capture & remote|freerdp|FreeRDP|Free implementation of the Remote Desktop Protocol (RDP)|freerdp|repo|1|4842
+Capture & remote|gnome-screenshot|GNOME Screenshot|Take pictures of your screen|gnome-screenshot|repo|1|808
+Capture & remote|hyprshot|Hyprshot|Hyprland screenshot utility|hyprshot|repo|1|601
+Capture & remote|kooha|Kooha|Elegantly record your screen|kooha|repo|1|226
+Capture & remote|krdc|KRDC|Remote Desktop Client|krdc|repo|1|1576
+Capture & remote|satty|Satty|Modern screenshot annotation tool, inspired by Swappy and Flameshot|satty|repo|1|932
+Capture & remote|swappy|Swappy|A Wayland native snapshot editing tool|swappy|repo|1|819
+Capture & remote|tigervnc|TigerVNC|Suite of VNC servers and clients based on the VNC 4 branch of TightVNC|tigervnc|repo|1|1352
+Capture & remote|wayvnc|WayVNC|Share a compatible Wayland desktop over VNC. Configure access separately.|wayvnc|repo|1|720
+Capture & remote|wf-recorder|Wf Recorder|Screen recorder for wlroots-based compositors such as sway|wf-recorder|repo|1|774
+Capture & remote|hyprsunset|Hyprsunset|An application to enable a blue-light filter on Hyprland|hyprsunset|repo|2|1093
+Capture & remote|peek|Peek|Simple screen recorder with an easy to use interface|peek|repo|2|366
+Capture & remote|scrot|Scrot|Simple command-line screenshot utility for X|scrot|repo|2|1117
+Capture & remote|vokoscreen|VokoscreenNG|Easy to use screencast creator|vokoscreen|repo|2|133
+Communication|discord|Discord|Chat, calls, and communities.|discord|repo|0|3081
+Communication|element-desktop|Element|A Matrix messaging client.|element|repo|0|938
+Communication|signal-desktop|Signal|Signal desktop messaging.|signal-desktop|repo|0|1967
+Communication|telegram-desktop|Telegram|Telegram desktop messaging.|telegram|repo|0|2116
+Communication|thunderbird|Thunderbird|Email, calendars, and contacts.|thunderbird|repo|0|3101
+Communication|evolution|Evolution|Manage your email, contacts and schedule|evolution|repo|1|594
+Communication|fractal|Fractal|Matrix group messaging app|fractal|repo|1|186
+Communication|geary|Geary|A lightweight email client for the GNOME desktop|geary|repo|1|272
+Communication|mumble|Mumble|An Open Source, low-latency, high quality voice chat software (client)|mumble|repo|1|475
+Communication|neochat|NeoChat|A client for matrix, the decentralized communication protocol|neochat|repo|1|886
+Communication|teamspeak3|TeamSpeak|TeamSpeak is software for quality voice communication via the Internet|teamspeak3|repo|1|294
+Communication|vesktop-bin|Vesktop|A community Discord client from the AUR.|vesktop|aur|1|510
+Communication|claws-mail|Claws Mail|A GTK based e-mail client|claws-mail|repo|2|140
+Communication|gajim|Gajim|Full featured and easy to use XMPP (Jabber) client|gajim|repo|2|205
+Communication|irssi|Irssi|Modular text mode IRC client with Perl scripting|irssi|repo|2|677
+Communication|kmail|KMail|KDE mail client|kmail|repo|2|946
+Communication|quassel-monolithic|Quassel|Next-generation distributed IRC client - monolithic, KDE version|quassel-monolithic|repo|2|24
+Communication|weechat|WeeChat|Fast, light and extensible IRC client (curses UI)|weechat|repo|2|418
+Desktop & styling|adwaita-icon-theme|Adwaita icons|A standard icon theme for GTK desktops.|preferences-desktop-icons|repo|0|9211
+Desktop & styling|alacritty|Alacritty|A lightweight GPU-accelerated terminal.|Alacritty|repo|0|2669
+Desktop & styling|fuzzel|Fuzzel|A Wayland application launcher.|system-search|repo|0|1105
+Desktop & styling|gnome-shell|GNOME Shell|GNOME's desktop shell.|org.gnome.Settings|repo|0|1650
+Desktop & styling|hypridle|Hypridle|hyprland’s idle daemon|hypridle|repo|0|1457
+Desktop & styling|hyprland|Hyprland|A dynamic Wayland compositor.|video-display|repo|0|2139
+Desktop & styling|hyprlock|Hyprlock|hyprland’s GPU-accelerated screen locking utility|hyprlock|repo|0|1558
+Desktop & styling|ttf-jetbrains-mono-nerd|JetBrains Mono Nerd Font|A programming font with additional symbols.|preferences-desktop-font|repo|0|2554
+Desktop & styling|plasma-meta|KDE Plasma|The Plasma desktop meta-package.|kde|repo|0|1741
+Desktop & styling|kitty|Kitty|A GPU-accelerated terminal.|kitty|repo|0|3283
+Desktop & styling|konsole|Konsole|KDE's terminal emulator.|utilities-terminal|repo|0|3905
+Desktop & styling|noto-fonts-emoji|Noto emoji|Emoji font coverage.|preferences-desktop-font|repo|0|7510
+Desktop & styling|noto-fonts|Noto fonts|General-purpose text fonts.|preferences-desktop-font|repo|0|7470
+Desktop & styling|papirus-icon-theme|Papirus icons|An icon theme for compatible desktops.|preferences-desktop-icons|repo|0|2120
+Desktop & styling|rofi|Rofi|An application and window launcher.|system-search|repo|0|2390
+Desktop & styling|waybar|Waybar|A configurable bar for Wayland sessions.|preferences-desktop|repo|0|2341
+Desktop & styling|wl-clipboard|Wayland clipboard|Copy and paste tools for Wayland.|edit-paste|repo|0|4926
+Desktop & styling|zsh|Zsh|An extensible interactive shell.|utilities-terminal|repo|0|5276
+Desktop & styling|adw-gtk-theme|Adw GTK theme|Unofficial GTK 3 port of the libadwaita theme|adw-gtk-theme|repo|1|1513
+Desktop & styling|adwaita-fonts|Adwaita fonts|The typefaces for GNOME|adwaita-fonts|repo|1|9189
+Desktop & styling|breeze-gtk|Breeze GTK theme|Breeze widget theme for GTK 2 and 3|breeze-gtk|repo|1|4208
+Desktop & styling|cinnamon|Cinnamon|The Cinnamon desktop environment.|cinnamon|repo|1|259
+Desktop & styling|cliphist|Cliphist|wayland clipboard manager|cliphist|repo|1|1667
+Desktop & styling|gnome-console|Console|GNOME's terminal emulator.|org.gnome.Console|repo|1|916
+Desktop & styling|copyq|CopyQ|Clipboard manager with searchable and editable history|copyq|repo|1|334
+Desktop & styling|dunst|Dunst|Customizable and lightweight notification-daemon|dunst|repo|1|1420
+Desktop & styling|ttf-fira-code|Fira Code|Monospaced font with programming ligatures|ttf-fira-code|repo|1|1458
+Desktop & styling|fish|Fish|An interactive shell; login-shell changes are separate.|utilities-terminal|repo|1|2905
+Desktop & styling|foot|Foot|Fast, lightweight, and minimalistic Wayland terminal emulator|foot|repo|1|1762
+Desktop & styling|gdm|GDM|GNOME login manager; enabling it is a separate choice.|preferences-system-login|repo|1|1480
+Desktop & styling|ghostty|Ghostty|Fast, native, feature-rich terminal emulator pushing modern features|ghostty|repo|1|1252
+Desktop & styling|xdg-desktop-portal-gnome|GNOME portal|Backend implementation for xdg-desktop-portal for the GNOME desktop environment|xdg-desktop-portal-gnome|repo|1|2219
+Desktop & styling|gnome-terminal|GNOME Terminal|The GNOME Terminal Emulator|gnome-terminal|repo|1|1030
+Desktop & styling|xdg-desktop-portal-gtk|GTK portal|A backend implementation for xdg-desktop-portal using GTK|xdg-desktop-portal-gtk|repo|1|8660
+Desktop & styling|ttf-hack-nerd|Hack Nerd Font|Patched font Hack from nerd fonts library|ttf-hack-nerd|repo|1|1192
+Desktop & styling|xdg-desktop-portal-hyprland|Hyprland portal|xdg-desktop-portal backend for hyprland|xdg-desktop-portal-hyprland|repo|1|1923
+Desktop & styling|hyprpaper|Hyprpaper|a blazing fast wayland wallpaper utility with IPC controls|hyprpaper|repo|1|951
+Desktop & styling|hyprpicker|Hyprpicker|A wlroots-compatible Wayland color picker that does not suck|hyprpicker|repo|1|1483
+Desktop & styling|i3-wm|i3|Improved dynamic tiling window manager|i3-wm|repo|1|954
+Desktop & styling|inter-font|Inter fonts|A typeface specially designed for user interfaces|inter-font|repo|1|697
+Desktop & styling|kanshi|Kanshi|Dynamic output configuration for Wayland WMs|kanshi|repo|1|351
+Desktop & styling|xdg-desktop-portal-kde|KDE portal|A backend implementation for xdg-desktop-portal using Qt/KF5|xdg-desktop-portal-kde|repo|1|4438
+Desktop & styling|kvantum|Kvantum|SVG-based theme engine for Qt6 (including config tool and extra themes)|kvantum|repo|1|1632
+Desktop & styling|ttf-liberation|Liberation fonts|Font family which aims at metric compatibility with Arial, Times New Roman, and Courier New|ttf-liberation|repo|1|8080
+Desktop & styling|mako|Mako|Lightweight notification daemon for Wayland|mako|repo|1|1487
+Desktop & styling|niri|Niri|A scrollable-tiling Wayland compositor|niri|repo|1|822
+Desktop & styling|noto-fonts-cjk|Noto CJK fonts|Google Noto CJK fonts|noto-fonts-cjk|repo|1|4487
+Desktop & styling|nwg-displays|Nwg Displays|Output management utility for sway and Hyprland Wayland compositors|nwg-displays|repo|1|467
+Desktop & styling|nwg-look|Nwg Look|GTK settings editor adapted to work on wlroots-based compositors|nwg-look|repo|1|1561
+Desktop & styling|qt5ct|Qt5 Settings|Qt5 Configuration Utility|qt5ct|repo|1|1936
+Desktop & styling|qt6ct|Qt6 Settings|Qt 6 Configuration Utility|qt6ct|repo|1|2077
+Desktop & styling|quickshell|Quickshell|Flexible toolkit for making desktop shells with QtQuick|quickshell|repo|1|701
+Desktop & styling|sddm|SDDM|Login manager commonly used with Plasma; enabling it is separate.|preferences-system-login|repo|1|4036
+Desktop & styling|starship|Starship|A configurable shell prompt; shell integration is separate.|utilities-terminal|repo|1|2165
+Desktop & styling|sway|Sway|An i3-compatible Wayland compositor.|sway|repo|1|1200
+Desktop & styling|swaync|Sway Notification Center|A simple GTK based notification daemon for Sway|swaync|repo|1|679
+Desktop & styling|swaybg|Swaybg|Wallpaper tool for Wayland compositors|swaybg|repo|1|1558
+Desktop & styling|swayidle|Swayidle|Idle management daemon for Wayland|swayidle|repo|1|1225
+Desktop & styling|swaylock|Swaylock|Screen locker for Wayland|swaylock|repo|1|1118
+Desktop & styling|waypaper|Waypaper|GUI wallpaper setter for Wayland and Xorg window managers. It works as a frontend for popular wallpaper backends like swaybg, swww, wallutils,…|waypaper|aur|1|424
+Desktop & styling|wezterm|WezTerm|A GPU-accelerated cross-platform terminal emulator and multiplexer|wezterm|repo|1|406
+Desktop & styling|wlr-randr|wlr-randr|Utility to manage outputs of a Wayland compositor|wlr-randr|repo|1|847
+Desktop & styling|xdg-desktop-portal-wlr|Wlroots portal|xdg-desktop-portal backend for wlroots|xdg-desktop-portal-wlr|repo|1|1243
+Desktop & styling|wofi|Wofi|launcher for wlroots-based wayland compositors|wofi|repo|1|1245
+Desktop & styling|xfce4-session|Xfce session|The Xfce session manager.|xfce4|repo|1|964
+Desktop & styling|xfce4-terminal|Xfce Terminal|A modern terminal emulator primarily for the Xfce desktop environment|xfce4-terminal|repo|1|1136
+Desktop & styling|zsh-autosuggestions|Zsh Autosuggestions|Fish-like autosuggestions for zsh|zsh-autosuggestions|repo|1|2222
+Desktop & styling|zsh-syntax-highlighting|Zsh Syntax Highlighting|Fish shell like syntax highlighting for Zsh|zsh-syntax-highlighting|repo|1|2392
+Desktop & styling|awesome|Awesome|Highly configurable framework window manager|awesome|repo|2|265
+Desktop & styling|bemenu|Bemenu|Dynamic menu library and client program inspired by dmenu|bemenu|repo|2|449
+Desktop & styling|bspwm|Bspwm|Tiling window manager based on binary space partitioning|bspwm|repo|2|141
+Desktop & styling|budgie-desktop|Budgie Desktop|A familiar, modern desktop environment|budgie-desktop|repo|2|42
+Desktop & styling|greetd|Greetd|Generic greeter daemon|greetd|repo|2|1482
+Desktop & styling|labwc|Labwc|stacking wayland compositor with look and feel from openbox|labwc|repo|2|279
+Desktop & styling|lxappearance|LXAppearance|Feature-rich GTK theme switcher of the LXDE Desktop|lxappearance|repo|2|1108
+Desktop & styling|lxqt-session|LXQt|The LXQt session manager|lxqt-session|repo|2|210
+Desktop & styling|mate-desktop|MATE|Library with common API for various MATE modules|mate-desktop|repo|2|503
+Desktop & styling|mpvpaper|Mpvpaper|video wallpaper program for wlroots based wayland compositors|mpvpaper|aur|2|212
+Desktop & styling|numlockx|NumLockX|Turns on the numlock key in X11.|numlockx|repo|2|768
+Desktop & styling|wl-clip-persist|Persistent Wayland clipboard|Keep Wayland clipboard even after programs close|wl-clip-persist|repo|2|888
+Desktop & styling|qtile|Qtile|A full-featured, pure-Python tiling window manager|qtile|repo|2|103
+Desktop & styling|river|River|a non-monolithic Wayland compositor|river|repo|2|57
+Desktop & styling|greetd-tuigreet|Tuigreet|A console UI greeter for greetd|greetd-tuigreet|repo|2|777
+Desktop & styling|uwsm|UWSM|A standalone Wayland session manager|uwsm|repo|2|1257
+Desktop & styling|wl-mirror|Wayland display mirror|a simple Wayland output mirror client|wl-mirror|repo|2|175
+Desktop & styling|wev|Wayland event viewer|A tool for debugging wayland events on a Wayland window, analagous to the X11 tool xev|wev|repo|2|2001
+Desktop & styling|wlsunset|Wlsunset|Day/night gamma adjustments for Wayland compositors|wlsunset|repo|2|438
+Development|clang|Clang|LLVM C and C++ tooling.|applications-development|repo|0|7523
+Development|cmake|CMake|Configure native software builds.|cmake|repo|0|7403
+Development|code|Code - OSS|The open-source build of Visual Studio Code.|visual-studio-code|repo|0|1534
+Development|gcc|GCC|GNU C and C++ compilers.|applications-development|repo|0|9439
+Development|gdb|GDB|Debug native programs.|applications-development|repo|0|9098
+Development|github-cli|GitHub CLI|The GitHub CLI|github-cli|repo|0|2372
+Development|go|Go|Go compiler and toolchain.|applications-development|repo|0|5879
+Development|kate|Kate|KDE's graphical code editor.|kate|repo|0|3624
+Development|make|Make|GNU make utility to maintain groups of programs|make|repo|0|9514
+Development|meson|Meson|Native software build configuration.|applications-development|repo|0|5539
+Development|neovim|Neovim|An extensible terminal editor.|nvim|repo|0|4414
+Development|ninja|Ninja|A fast build executor.|applications-development|repo|0|7045
+Development|nodejs|Node.js|JavaScript runtime for development tools.|nodejs|repo|0|5846
+Development|npm|npm|Node.js package manager.|nodejs|repo|0|6258
+Development|jdk-openjdk|OpenJDK|Java development kit.|java|repo|0|4431
+Development|python-pip|pip|Python package tooling; prefer virtual environments.|python|repo|0|6228
+Development|python-pipx|pipx|Install and Run Python Applications in Isolated Environments|python-pipx|repo|0|2549
+Development|pnpm|pnpm|Fast, disk space efficient package manager|pnpm|repo|0|2099
+Development|python|Python|Python language runtime.|python|repo|0|9988
+Development|rust|Rust|Rust compiler and Cargo build tooling.|applications-development|repo|0|3694
+Development|shellcheck|ShellCheck|Shell script analysis tool|shellcheck|repo|0|1972
+Development|sqlite|SQLite|A C library that implements an SQL database engine|sqlite|repo|0|10000
+Development|uv|uv|An extremely fast Python package installer and resolver written in Rust|uv|repo|0|3417
+Development|vim|Vim|A modal terminal editor.|vim|repo|0|6589
+Development|visual-studio-code-bin|Visual Studio Code|Microsoft's binary distribution, from the AUR.|visual-studio-code|aur|0|1936
+Development|android-tools|Android platform tools|Android platform tools|android-tools|repo|1|3919
+Development|android-studio|Android Studio|The official Android IDE (Stable branch)|android-studio|aur|1|693
+Development|python-black|Black|Uncompromising Python code formatter|python-black|repo|1|1985
+Development|bun|Bun|Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one|bun|repo|1|834
+Development|composer|Composer|Dependency Manager for PHP|composer|repo|1|641
+Development|sqlitebrowser|DB Browser for SQLite|A light GUI editor for SQLite databases, built on top of Qt|sqlitebrowser|repo|1|1369
+Development|dbeaver|DBeaver|Free universal SQL Client for developers and database administrators (community edition)|dbeaver|repo|1|748
+Development|deno|Deno|A secure runtime for JavaScript and TypeScript|deno|repo|1|5902
+Development|emacs|Emacs|The extensible, customizable, self-documenting real-time display editor|emacs|repo|1|865
+Development|geany|Geany|Fast and lightweight IDE|geany|repo|1|533
+Development|git-filter-repo|Git Filter Repo|Quickly rewrite git repository history (filter-branch replacement)|git-filter-repo|repo|1|728
+Development|git-lfs|Git LFS|Git extension for versioning large files|git-lfs|repo|1|2081
+Development|glab|GitLab CLI|Cli tool to help work seamlessly with GitLab from the command line|glab|repo|1|370
+Development|gitui|GitUI|Blazing fast terminal-ui for git written in Rust|gitui|repo|1|317
+Development|gnome-text-editor|GNOME Text Editor|A simple text editor for the GNOME desktop|org.gnome.TextEditor|repo|1|1333
+Development|gopls|gopls|Language server for Go programming language|gopls|repo|1|493
+Development|gradle|Gradle|Powerful build system for the JVM|gradle|repo|1|1215
+Development|helix|Helix|A terminal editor with language support.|helix|repo|1|829
+Development|httpie|HTTPie|human-friendly CLI HTTP client for the API era|httpie|repo|1|427
+Development|just|Just|A handy way to save and run project-specific commands|just|repo|1|858
+Development|lazygit|Lazygit|Simple terminal UI for git commands|lazygit|repo|1|1752
+Development|lldb|LLDB|Next generation, high-performance debugger|lldb|repo|1|1357
+Development|lua|Lua|Powerful lightweight programming language designed for extending applications|lua|repo|1|9546
+Development|mariadb|MariaDB|MariaDB database server. Initialize and configure the service separately.|mariadb|repo|1|2212
+Development|maven|Maven|Java project management and project comprehension tool|maven|repo|1|1228
+Development|meld|Meld|Compare files, directories and working copies|meld|repo|1|2793
+Development|mousepad|Mousepad|Simple text editor for Xfce|mousepad|repo|1|1387
+Development|jdk17-openjdk|OpenJDK 17|OpenJDK Java 17 development kit|jdk17-openjdk|repo|1|1948
+Development|php|PHP|A general-purpose scripting language that is especially suited to web development|php|repo|1|2203
+Development|postgresql|PostgreSQL|PostgreSQL database server. Initialize and configure the service separately.|postgresql|repo|1|1634
+Development|postman-bin|Postman|Build, test, and document your APIs faster|postman|aur|1|344
+Development|pre-commit|pre-commit|A framework for managing and maintaining multi-language pre-commit hooks|pre-commit|repo|1|402
+Development|python-pytest|pytest|Simple powerful testing with Python|python-pytest|repo|1|3762
+Development|ruby|Ruby|An object-oriented language for quick and easy programming|ruby|repo|1|4510
+Development|ruff|Ruff|An extremely fast Python linter, written in Rust|ruff|repo|1|984
+Development|rust-analyzer|Rust Analyzer|Rust compiler front-end for IDEs|rust-analyzer|repo|1|717
+Development|scrcpy|scrcpy|Display and control your Android device|scrcpy|repo|1|1607
+Development|shfmt|shfmt|Format shell programs|shfmt|repo|1|1322
+Development|strace|Strace|A diagnostic, debugging and instructional userspace tracer|strace|repo|1|4087
+Development|valgrind|Valgrind|Tool to help find memory-management problems in programs|valgrind|repo|1|2240
+Development|python-virtualenv|Virtualenv|Virtual Python Environment builder|python-virtualenv|repo|1|3266
+Development|yarn|Yarn|Fast, reliable, and secure dependency management|yarn|repo|1|2147
+Development|zed|Zed|A high-performance, multiplayer code editor from the creators of Atom and Tree-sitter|dev.zed.Zed|repo|1|1156
+Development|beekeeper-studio-bin|Beekeeper Studio|Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more|beekeeper-studio|aur|2|52
+Development|julia|Julia|High-level, high-performance, dynamic programming language|julia|repo|2|318
+Development|kdiff3|KDiff3|A file comparator/merge tool|kdiff3|repo|2|576
+Development|kotlin|Kotlin|Statically typed programming language with multiplatform support|kotlin|repo|2|312
+Development|lapce|Lapce|Lightning-fast and Powerful Code Editor|lapce|repo|2|163
+Development|lite-xl|Lite XL|A lightweight text editor written in Lua|lite-xl|repo|2|72
+Development|ltrace|Ltrace|Tracks runtime library calls in dynamically linked programs|ltrace|repo|2|565
+Development|luarocks|LuaRocks|Deployment and management system for Lua modules|luarocks|repo|2|1534
+Development|mypy|Mypy|Optional static typing for Python (PEP484)|mypy|repo|2|818
+Development|perl|Perl|A highly capable, feature-rich programming language|perl|repo|2|9995
+Development|qtcreator|Qt Creator|Lightweight, cross-platform integrated development environment|qtcreator|repo|2|700
+Development|r|R|Language and environment for statistical computing and graphics|r|repo|2|1004
+Development|valkey|Valkey|Redis-compatible data store. Configure the service separately.|valkey|repo|2|544
+Development|xed|Xed|A small and lightweight text editor|xed|repo|2|244
+Essentials|7zip|7-Zip|Create and extract compressed archives.|package-x-generic|repo|0|7554
+Essentials|bash-completion|Bash completion|Complete command arguments in Bash.|utilities-terminal|repo|0|5778
+Essentials|base-devel|Build tools|Compile packages and AUR builds.|applications-development|repo|0|8339
+Essentials|curl|curl|Transfer data from URLs.|utilities-terminal|repo|0|9998
+Essentials|xdg-utils|Desktop integration|Open links and files with desktop applications.|preferences-desktop|repo|0|9238
+Essentials|git|Git|Version control and configuration repositories.|git|repo|0|9554
+Essentials|xdg-user-dirs|Home folders|Manage standard Desktop and Downloads folders.|user-home|repo|0|8263
+Essentials|less|Less|A terminal based program for viewing text files|less|repo|0|9655
+Essentials|man-pages|Linux manual pages|Linux man pages|man-pages|repo|0|6304
+Essentials|man-db|Manual pages|Read installed command documentation.|help-browser|repo|0|9002
+Essentials|nano|Nano|A straightforward terminal text editor.|accessories-text-editor|repo|0|6814
+Essentials|openssh|OpenSSH|SSH protocol implementation for remote login, command execution and file transfer|openssh|repo|0|9912
+Essentials|rsync|Rsync|Copy and synchronize files.|folder-sync|repo|0|8804
+Essentials|sudo|Sudo|Give certain users the ability to run some commands as root|sudo|repo|0|9768
+Essentials|unzip|Unzip|Extract ZIP archives.|package-x-generic|repo|0|9046
+Essentials|wget|Wget|Download files from the terminal.|folder-download|repo|0|8747
+Essentials|zip|Zip|Create ZIP archives.|package-x-generic|repo|0|7174
+Essentials|tree|Tree|A directory listing program displaying a depth indented list of files|tree|repo|1|5159
+Essentials|unrar|UnRAR|The RAR uncompression program|unrar|repo|1|5914
+Essentials|which|Which|A utility to show the full path of commands|which|repo|1|9810
+Gaming|game-devices-udev|Game controller rules|Device access rules for supported game controllers.|game-devices-udev|aur|0|449
+Gaming|gamemode|GameMode|Request performance adjustments while gaming.|applications-games|repo|0|2461
+Gaming|gamescope|Gamescope|Game scaling and display control.|video-display|repo|0|2199
+Gaming|heroic-games-launcher|Heroic Games Launcher|Native GOG, Epic Games and Amazon games launcher for Linux|heroic|aur|0|480
+Gaming|lutris|Lutris|Manage games across multiple runners.|lutris|repo|0|2292
+Gaming|mangohud|MangoHud|An in-game performance overlay.|applications-games|repo|0|2204
+Gaming|prismlauncher|Prism Launcher|Minecraft launcher with ability to manage multiple instances|prismlauncher|repo|0|1385
+Gaming|protontricks|Protontricks|Configure dependencies for Proton game prefixes.|steam|repo|0|1633
+Gaming|steam|Steam|Game library and Proton compatibility tooling.|steam|repo|0|5163
+Gaming|vulkan-tools|Vulkan tools|Inspect Vulkan devices and drivers; this package is not a GPU driver.|video-display|repo|0|6676
+Gaming|wine|Wine|Run supported Windows applications.|wine|repo|0|3887
+Gaming|winetricks|Winetricks|Manage common Wine runtime components.|wine|repo|0|3608
+Gaming|0ad|0 A.D.|Cross-platform, 3D and historically-based real-time strategy game|0ad|repo|1|212
+Gaming|antimicrox|AntiMicroX|Graphical program used to map keyboard buttons & mouse controls to a gamepad|antimicrox|repo|1|243
+Gaming|wesnoth|Battle for Wesnoth|A turn-based strategy game on a fantasy world|wesnoth|repo|1|126
+Gaming|dolphin-emu|Dolphin Emulator|A Gamecube and Wii emulator|dolphin-emu|repo|1|600
+Gaming|dosbox-staging|DOSBox Staging|DOS/x86 emulator focusing on ease of use. Based on DOSBox|dosbox-staging|aur|1|65
+Gaming|lib32-gamemode|GameMode 32-bit|A daemon/lib combo that allows games to request a set of optimisations be temporarily applied to the host OS|lib32-gamemode|repo|1|1260
+Gaming|goverlay|GOverlay|A GUI to help manage Vulkan/OpenGL overlays|goverlay|repo|1|849
+Gaming|luanti|Luanti|Multiplayer infinite-world block sandbox game|luanti|repo|1|363
+Gaming|lib32-mangohud|MangoHud 32-bit|32-bit libraries for MangoHud and MangoApp|lib32-mangohud|repo|1|1044
+Gaming|mgba-qt|mGBA|A Nintendo Gameboy Advance Emulator focusing on speed and accuracy (Qt5 UI)|mgba-qt|repo|1|275
+Gaming|minecraft-launcher|Minecraft Launcher|Official Minecraft Launcher|minecraft-launcher|aur|1|882
+Gaming|moonlight-qt|Moonlight|GameStream client for PCs|moonlight-qt|repo|1|390
+Gaming|openttd|OpenTTD|Engine for running Transport Tycoon Deluxe|openttd|repo|1|326
+Gaming|pcsx2|PCSX2|PlayStation 2 emulator|pcsx2|aur|1|105
+Gaming|ppsspp|PPSSPP|A PSP emulator written in C++|ppsspp|repo|1|197
+Gaming|protonup-qt|ProtonUp-Qt|Install and manage GE-Proton, Luxtorpeda & more for Steam, Lutris and Heroic|protonup-qt|aur|1|628
+Gaming|retroarch|RetroArch|Reference frontend for the libretro API|retroarch|repo|1|766
+Gaming|rpcs3-git|RPCS3|PlayStation 3 emulator built from current upstream source. Firmware and games are separate.|rpcs3-git|aur|1|86
+Gaming|scummvm|ScummVM|A 'virtual machine' for several classic graphical point-and-click adventure games.|scummvm|repo|1|294
+Gaming|sunshine|Sunshine|Host game streaming sessions. Configure pairing and network access separately.|sunshine|aur|1|435
+Gaming|supertuxkart|SuperTuxKart|Kart racing game featuring Tux and his friends|supertuxkart|repo|1|516
+Gaming|umu-launcher|UMU Launcher|The Unified Launcher for Windows Games on Linux, to run Proton with fixes outside of Steam|umu-launcher|repo|1|1188
+Gaming|desmume|DeSmuME|Nintendo DS emulator|desmume|repo|2|187
+Gaming|mame|MAME|Port of the popular Multiple Arcade Machine Emulator using SDL with OpenGL support|mame|repo|2|202
+Gaming|openmw|OpenMW|Open-source engine reimplementation for the role-playing game Morrowind|openmw|repo|2|179
+Gaming|openrct2|OpenRCT2|Open source re-implementation of Roller Coaster Tycoon 2 (requires full copy of the game)|openrct2|repo|2|173
+Gaming|sc-controller|SC Controller|User-mode driver, mapper, and GTK 4 based GUI for game controllers, including but not limited to Steam Controller (2015 & 2026)|sc-controller|repo|2|126
+Gaming|supertux|SuperTux|A classic 2D jump'n'run sidescroller game in a style similar to the original SuperMario games|supertux|repo|2|249
+Gaming|vkbasalt|vkBasalt|A Vulkan post-processing layer. Some of the effects are CAS, FXAA, SMAA, deband.|vkbasalt|aur|2|305
+Gaming|warzone2100|Warzone 2100|3D realtime strategy game on a future Earth|warzone2100|repo|2|55
+Gaming|wine-staging|Wine Staging|A compatibility layer for running Windows programs - Staging branch|wine-staging|repo|2|872
+Gaming|xonotic|Xonotic|A free, fast-paced cross-platform first person shooter|xonotic|repo|2|154
+Graphics & CAD|blender|Blender|3D modeling, rendering, and animation.|blender|repo|0|1907
+Graphics & CAD|gimp|GIMP|Edit raster images.|gimp|repo|0|5095
+Graphics & CAD|gwenview|Gwenview|A fast and easy to use image viewer|gwenview|repo|0|3337
+Graphics & CAD|imagemagick|ImageMagick|An image viewing/manipulation program|imagemagick|repo|0|8185
+Graphics & CAD|inkscape|Inkscape|Edit vector artwork.|org.inkscape.Inkscape|repo|0|3280
+Graphics & CAD|krita|Krita|Digital painting and illustration.|krita|repo|0|2231
+Graphics & CAD|curtail|Curtail|Image compressor GUI, supporting PNG, JPEG, WebP and SVG file types, both lossless and lossy compression mode|curtail|repo|1|112
+Graphics & CAD|darktable|Darktable|Utility to organize and develop raw images|darktable|repo|1|979
+Graphics & CAD|digikam|digiKam|An advanced digital photo management application|digikam|repo|1|712
+Graphics & CAD|drawio-desktop|draw.io|Create flowcharts, diagrams, and technical drawings.|drawio-desktop|repo|1|337
+Graphics & CAD|feh|Feh|Fast and light imlib2-based image viewer|feh|repo|1|2181
+Graphics & CAD|freecad|FreeCAD|Feature based parametric 3D CAD modeler|freecad|repo|1|1121
+Graphics & CAD|graphviz|Graphviz|Graph visualization software|graphviz|repo|1|6312
+Graphics & CAD|eog|Image Viewer|Eye of Gnome: An image viewing and cataloging program|eog|repo|1|984
+Graphics & CAD|imv|imv|Image viewer for Wayland and X11|imv|repo|1|822
+Graphics & CAD|kicad|KiCad|Electronic schematic and printed circuit board (PCB) design tools|kicad|repo|1|859
+Graphics & CAD|kolourpaint|KolourPaint|Paint Program|kolourpaint|repo|1|1548
+Graphics & CAD|librecad|LibreCAD|A 2D CAD drawing tool based on the community edition of QCad|librecad|repo|1|340
+Graphics & CAD|loupe|Loupe|A simple image viewer for GNOME|loupe|repo|1|1732
+Graphics & CAD|openscad|OpenSCAD|The programmers solid 3D CAD modeller|openscad|repo|1|668
+Graphics & CAD|pinta|Pinta|Drawing/editing program modeled after Paint.NET. It's goal is to provide a simplified alternative to GIMP for casual users|pinta|repo|1|606
+Graphics & CAD|rawtherapee|RawTherapee|A powerful cross-platform raw image processing program|rawtherapee|repo|1|469
+Graphics & CAD|ristretto|Ristretto|A fast and lightweight picture viewer for Xfce|ristretto|repo|1|770
+Graphics & CAD|scribus|Scribus|Desktop publishing software|scribus|repo|1|449
+Graphics & CAD|shotwell|Shotwell|A digital photo organizer designed for the GNOME desktop environment|shotwell|repo|1|349
+Graphics & CAD|upscayl-bin|Upscayl|Free and Open Source AI Image Upscaler|upscayl|aur|1|192
+Graphics & CAD|fontforge|FontForge|Outline and bitmap font editor|fontforge|repo|2|1376
+Graphics & CAD|graphicsmagick|GraphicsMagick|Image processing system|graphicsmagick|repo|2|5438
+Graphics & CAD|jpegoptim|Jpegoptim|Jpeg optimisation utility|jpegoptim|repo|2|591
+Graphics & CAD|mypaint|MyPaint|Fast and easy painting application for digital painters, with brush dynamics|mypaint|repo|2|181
+Graphics & CAD|optipng|OptiPNG|Compresses PNG files to a smaller size, without losing any information.|optipng|repo|2|2352
+Graphics & CAD|oxipng|Oxipng|A lossless PNG compression optimiser|oxipng|repo|2|402
+Graphics & CAD|plantuml|PlantUML|Component that allows to quickly write uml diagrams|plantuml|repo|2|273
+Media|audacity|Audacity|Record and edit audio.|audacity|repo|0|2855
+Media|ffmpeg|FFmpeg|Convert and inspect media files.|applications-multimedia|repo|0|9299
+Media|handbrake|HandBrake|Transcode video files.|fr.handbrake.ghb|repo|0|1681
+Media|kdenlive|Kdenlive|Edit video projects.|kdenlive|repo|0|2641
+Media|mediainfo|MediaInfo|Supplies technical and tag information about media files (CLI interface)|mediainfo|repo|0|1722
+Media|mpv|mpv|A lightweight media player.|mpv|repo|0|6737
+Media|obs-studio|OBS Studio|Record and stream video.|com.obsproject.Studio|repo|0|3395
+Media|spotify|Spotify|Spotify client from the AUR.|spotify|aur|0|1369
+Media|vlc|VLC|Play video and audio.|vlc|repo|0|5296
+Media|yt-dlp|yt-dlp|A youtube-dl fork with additional features and fixes|yt-dlp|repo|0|5662
+Media|ardour|Ardour|Professional-grade digital audio workstation|ardour|repo|1|837
+Media|easyeffects|EasyEffects|Audio Effects for Pipewire applications|easyeffects|repo|1|1850
+Media|elisa|Elisa|A simple music player aiming to provide a nice experience for its users|elisa|repo|1|1189
+Media|helvum|Helvum|GTK patchbay for PipeWire|helvum|repo|1|998
+Media|kodi|Kodi|A software media player and entertainment hub for digital media (gl renderer)|kodi|repo|1|427
+Media|lmms|LMMS|The Linux MultiMedia Studio|lmms|repo|1|501
+Media|losslesscut-bin|LosslessCut|Crossplatform GUI tool for lossless trimming/cutting of video/audio files|losslesscut|aur|1|257
+Media|mediainfo-gui|MediaInfo GUI|Supplies technical and tag information about media files (GUI interface)|mediainfo-gui|repo|1|391
+Media|musescore|MuseScore|Create, play and print beautiful sheet music|musescore|repo|1|570
+Media|picard|MusicBrainz Picard|Official MusicBrainz tagger|picard|repo|1|829
+Media|qpwgraph|qpwgraph|PipeWire Graph Qt GUI Interface|qpwgraph|repo|1|1499
+Media|rhythmbox|Rhythmbox|Music playback and management application|rhythmbox|repo|1|324
+Media|shotcut|Shotcut|Cross-platform Qt based Video Editor|shotcut|repo|1|646
+Media|strawberry|Strawberry|Manage and play a music collection.|strawberry|repo|1|600
+Media|streamlink|Streamlink|CLI program that launches streams from various streaming services in a custom video player (livestreamer fork)|streamlink|repo|1|426
+Media|avidemux-qt|Avidemux|Graphical tool to edit video (filter/re-encode/split) - Qt GUI|avidemux-qt|repo|2|524
+Media|calf|Calf audio plugins|LV2 plug-in suite|calf|repo|2|1371
+Media|cmus|Cmus|Feature-rich ncurses-based music player|cmus|repo|2|447
+Media|hydrogen|Hydrogen|An advanced drum machine|hydrogen|repo|2|228
+Media|kid3-qt|Kid3|An MP3, Ogg/Vorbis and FLAC tag editor, Qt version|kid3-qt|repo|2|178
+Media|lollypop|Lollypop|Music player for GNOME|lollypop|repo|2|181
+Media|lsp-plugins-lv2|LSP audio plugins|Collection of open-source plugins - LV2|lsp-plugins-lv2|repo|2|1557
+Media|mpd|Music Player Daemon|Flexible, powerful, server-side application for playing music|mpd|repo|2|982
+Media|ncmpcpp|ncmpcpp|Featureful ncurses based MPD client inspired by ncmpc|ncmpcpp|repo|2|562
+Media|qjackctl|QjackCtl|A Qt front-end for the JACK low-latency audio server|qjackctl|repo|2|571
+Media|qtractor|Qtractor|Audio/MIDI multitrack sequencer|qtractor|repo|2|977
+Media|spicetify-cli|Spicetify CLI|Command-line tool to customize Spotify client|spicetify-cli|aur|2|427
+Media|zam-plugins-lv2|Zam audio plugins|Collection of audio plugins for high-quality processing - LV2 plugins|zam-plugins-lv2|repo|2|702
+Network & security|bitwarden|Bitwarden|A secure and free password manager for all of your devices|bitwarden|repo|0|859
+Network & security|gnupg|GnuPG|Complete and free implementation of the OpenPGP standard|gnupg|repo|0|9997
+Network & security|iproute2|IP routing tools|IP Routing Utilities|iproute2|repo|0|9993
+Network & security|keepassxc|KeePassXC|Store passwords in a local encrypted database.|keepassxc|repo|0|2478
+Network & security|nm-connection-editor|Network Connection Editor|NetworkManager GUI connection editor and widgets|nm-connection-editor|repo|0|4263
+Network & security|networkmanager|NetworkManager|Manage network connections. Service setup is separate.|network-wireless|repo|0|7978
+Network & security|network-manager-applet|NetworkManager Applet|Applet for managing network connections|network-manager-applet|repo|0|3141
+Network & security|ufw|UFW|Firewall management from the terminal. Review rules before enabling.|ufw|repo|0|3177
+Network & security|wireguard-tools|WireGuard tools|next generation secure network tunnel - tools for configuration|wireguard-tools|repo|0|3790
+Network & security|bandwhich|Bandwhich|Terminal bandwidth utilization tool|bandwhich|repo|1|391
+Network & security|bitwarden-cli|Bitwarden CLI|The command line vault|bitwarden-cli|repo|1|217
+Network & security|bubblewrap|Bubblewrap|Unprivileged sandboxing tool|bubblewrap|repo|1|9423
+Network & security|cryptsetup|Cryptsetup|Userspace setup tool for transparent encryption of block devices using dm-crypt|cryptsetup|repo|1|10000
+Network & security|bind|DNS utilities (BIND)|A complete, highly portable implementation of the DNS protocol|bind|repo|1|5624
+Network & security|firewalld|Firewalld|Firewall management service. Configure rules and service activation separately.|firewalld|repo|1|1481
+Network & security|gufw|GUFW|Uncomplicated way to manage your Linux firewall|gufw|repo|1|512
+Network & security|iftop|iftop|Display bandwidth usage on an interface|iftop|repo|1|2136
+Network & security|inetutils|Inetutils|A collection of common network programs|inetutils|repo|1|6356
+Network & security|iperf3|iperf3|TCP, UDP, and SCTP network bandwidth measurement tool|iperf3|repo|1|2971
+Network & security|iwd|iwd|Internet Wireless Daemon|iwd|repo|1|4151
+Network & security|kleopatra|Kleopatra|Certificate Manager and Unified Crypto GUI|kleopatra|repo|1|1235
+Network & security|mtr|MTR|Combines the functionality of traceroute and ping into one tool (CLI version)|mtr|repo|1|1742
+Network & security|openbsd-netcat|Netcat|TCP/IP swiss army knife. OpenBSD variant.|openbsd-netcat|repo|1|3498
+Network & security|nethogs|Nethogs|A net top tool which displays traffic used per process instead of per IP or interface|nethogs|repo|1|1144
+Network & security|networkmanager-openvpn|NetworkManager OpenVPN|NetworkManager VPN plugin for OpenVPN (with GUI)|networkmanager-openvpn|repo|1|3183
+Network & security|nftables|nftables|Netfilter tables userspace tools|nftables|repo|1|9902
+Network & security|nmap|Nmap|Utility for network discovery and security auditing|nmap|repo|1|5075
+Network & security|openvpn|OpenVPN|An easy-to-use, robust and highly configurable VPN (Virtual Private Network)|openvpn|repo|1|4437
+Network & security|seahorse|Seahorse|GNOME application for managing PGP keys|seahorse|repo|1|2199
+Network & security|socat|Socat|Multipurpose relay|socat|repo|1|5869
+Network & security|speedtest-cli|Speedtest CLI|Command line interface for testing internet bandwidth using speedtest.net|speedtest-cli|repo|1|1542
+Network & security|tailscale|Tailscale|A mesh VPN that makes it easy to connect your devices, wherever they are.|tailscale|repo|1|1677
+Network & security|traceroute|Traceroute|Tracks the route taken by packets over an IP network|traceroute|repo|1|3306
+Network & security|veracrypt|VeraCrypt|Disk encryption with strong security based on TrueCrypt|veracrypt|repo|1|584
+Network & security|vnstat|vnStat|A console-based network traffic monitor|vnstat|repo|1|802
+Network & security|wireshark-qt|Wireshark|Network traffic and protocol analyzer/sniffer - Qt GUI|wireshark-qt|repo|1|2523
+Network & security|apparmor|AppArmor|Mandatory Access Control (MAC) using Linux Security Module (LSM)|apparmor|repo|2|2305
+Network & security|arp-scan|ARP Scan|A tool that uses ARP to discover and fingerprint IP hosts on the local network|arp-scan|repo|2|747
+Network & security|clamav|ClamAV|Anti-virus toolkit for Unix|clamav|repo|2|1333
+Network & security|curlie|Curlie|The power of curl, the ease of use of httpie.|curlie|repo|2|98
+Network & security|firejail|Firejail|Linux namespaces sandbox program|firejail|repo|2|789
+Network & security|networkmanager-vpnc|NetworkManager VPNC|NetworkManager VPN plugin for VPNC (with GUI)|networkmanager-vpnc|repo|2|510
+Network & security|nload|Nload|Monitors network traffic and bandwidth usage|nload|repo|2|371
+Network & security|tcpdump|Tcpdump|Powerful command-line packet analyzer|tcpdump|repo|2|2807
+Network & security|zerotier-one|ZeroTier|Creates virtual Ethernet networks of almost unlimited size.|zerotier-one|repo|2|326
+Office & study|anki|Anki|A smart spaced repetition flashcard program|anki|repo|0|669
+Office & study|calibre|Calibre|Ebook management application|calibre|repo|0|1799
+Office & study|evince|Document Viewer|Document viewer (PDF, PostScript, XPS, djvu, dvi, tiff, cbr, cbz, cb7, cbt)|evince|repo|0|2376
+Office & study|libreoffice-fresh|LibreOffice|Office suite with Writer, Calc, and Impress. Choose Fresh or Still.|libreoffice-startcenter|repo|0|4711
+Office & study|obsidian|Obsidian|A powerful knowledge base that works on top of a local folder of plain text Markdown files|obsidian|repo|0|2184
+Office & study|okular|Okular|Document Viewer|okular|repo|0|3675
+Office & study|pdfarranger|PDF Arranger|Helps merge or split PDF documents and rotate, crop and rearrange pages|pdfarranger|repo|0|687
+Office & study|xournalpp|Xournal++|Handwriting notetaking software with PDF annotation support|xournalpp|repo|0|1160
+Office & study|zotero|Zotero|A free, easy-to-use tool to help you collect, organize, cite, and share your research sources.|zotero|aur|0|198
+Office & study|apostrophe|Apostrophe|Distraction free Markdown editor|apostrophe|repo|1|124
+Office & study|gnome-calculator|Calculator|GNOME Scientific calculator|gnome-calculator|repo|1|2290
+Office & study|cherrytree|CherryTree|Hierarchical note-taking application|cherrytree|repo|1|105
+Office & study|foliate|Foliate|A simple and modern GTK eBook reader|foliate|repo|1|537
+Office & study|gnucash|GnuCash|Personal and small-business financial-accounting application|gnucash|repo|1|365
+Office & study|homebank|HomeBank|Free, easy, personal accounting for everyone|homebank|repo|1|122
+Office & study|joplin-desktop|Joplin|A note taking and to-do application with synchronization capabilities - Desktop|joplin-desktop|aur|1|110
+Office & study|kcalc|KCalc|Scientific Calculator|kcalc|repo|1|2518
+Office & study|libreoffice-still|LibreOffice Still|Conservative LibreOffice release branch. Choose Fresh or Still.|libreoffice-startcenter|repo|1|1415
+Office & study|ocrmypdf|OCRmyPDF|A tool to add an OCR text layer to scanned PDF files, allowing them to be searched|ocrmypdf|aur|1|338
+Office & study|onlyoffice-bin|ONLYOFFICE Desktop Editors|An office suite that combines text, spreadsheet and presentation editors|onlyoffice|aur|1|623
+Office & study|pandoc-cli|Pandoc|Conversion between documentation formats|pandoc-cli|repo|1|1631
+Office & study|papers|Papers|Document viewer for PDF and other document formats aimed at the GNOME desktop|papers|repo|1|1157
+Office & study|qalculate-gtk|Qalculate!|GTK frontend for libqalculate|qalculate-gtk|repo|1|530
+Office & study|rnote|Rnote|A simple drawing application to create handwritten notes|rnote|repo|1|193
+Office & study|tesseract|Tesseract OCR|An OCR program|tesseract|repo|1|6576
+Office & study|texstudio|TeXstudio|Integrated writing environment for creating LaTeX documents|texstudio|repo|1|442
+Office & study|zathura|Zathura|Minimalistic document viewer|zathura|repo|1|2023
+Office & study|zathura-pdf-mupdf|Zathura PDF support|PDF support for Zathura (MuPDF backend) (Supports PDF, ePub, and OpenXPS)|zathura-pdf-mupdf|repo|1|1548
+Office & study|zim|Zim|A WYSIWYG text editor that aims at bringing the concept of a wiki to the desktop|zim|repo|1|197
+Office & study|abiword|AbiWord|Fully-featured word processor|abiword|repo|2|201
+Office & study|calligra|Calligra|A set of applications for productivity and creative usage|calligra|repo|2|647
+Office & study|gnumeric|Gnumeric|Spreadsheet application for GNOME|gnumeric|repo|2|304
+Office & study|kmymoney|KMyMoney|Personal finance manager for KDE which operates similarly to MS-Money or Quicken|kmymoney|repo|2|165
+Office & study|qalculate-qt|Qalculate! Qt|Qt frontend for libqalculate|qalculate-qt|repo|2|503
+Office & study|speedcrunch|SpeedCrunch|Simple but powerful calculator using Qt|speedcrunch|repo|2|364
+Office & study|texlive-meta|TeX Live|Metapackage to install Tex Live|texlive-meta|repo|2|300
+System utilities|file-roller|Archive Manager|GNOME's archive manager.|org.gnome.FileRoller|repo|0|2361
+System utilities|ark|Ark|KDE's archive manager.|ark|repo|0|3939
+System utilities|blueman|Blueman|GTK+ Bluetooth Manager|blueman|repo|0|2631
+System utilities|bluez|Bluetooth stack|Bluetooth support; service setup is separate.|bluetooth|repo|0|8193
+System utilities|bluez-utils|Bluetooth utilities|Inspect and pair supported Bluetooth devices.|bluetooth|repo|0|6465
+System utilities|dolphin|Dolphin|KDE's file manager.|system-file-manager|repo|0|4446
+System utilities|nautilus|Files|GNOME's file manager.|org.gnome.Nautilus|repo|0|2737
+System utilities|flatpak|Flatpak|Desktop app installation tooling. Remotes and app locations are configured separately.|flatpak|repo|0|5813
+System utilities|lm_sensors|Hardware sensors|Collection of user space tools for general SMBus access and hardware monitoring|lm_sensors|repo|0|9705
+System utilities|mission-center|Mission Center|Monitor your CPU, Memory, Disk, Network and GPU usage|mission-center|repo|0|601
+System utilities|pacman-contrib|Pacman utilities|Cache maintenance and repository update checks.|package-x-generic|repo|0|8487
+System utilities|pipewire|PipeWire|Audio and video routing infrastructure.|audio-card|repo|0|8980
+System utilities|pipewire-alsa|PipeWire ALSA support|ALSA application integration for PipeWire.|audio-card|repo|0|6021
+System utilities|pipewire-pulse|PipeWire PulseAudio support|PulseAudio compatibility for a PipeWire setup.|audio-card|repo|0|7758
+System utilities|qbittorrent|qBittorrent|Manage BitTorrent transfers.|qbittorrent|repo|0|2800
+System utilities|reflector|Reflector|Generate mirror lists; no automatic changes here.|network-server|repo|0|6373
+System utilities|thunar|Thunar|A lightweight graphical file manager.|system-file-manager|repo|0|2615
+System utilities|pavucontrol|Volume control|Graphical mixer for compatible audio servers.|multimedia-volume-control|repo|0|5291
+System utilities|wireplumber|WirePlumber|Session management for PipeWire.|audio-card|repo|0|8008
+System utilities|alsa-utils|ALSA utilities|Advanced Linux Sound Architecture - Utilities|alsa-utils|repo|1|5910
+System utilities|aria2|Aria2|Download utility that supports HTTP(S), FTP, BitTorrent, and Metalink|aria2|repo|1|2616
+System utilities|bluetuith|Bluetuith|TUI-based bluetooth manager|bluetuith|aur|1|82
+System utilities|corectrl|CoreCtrl|Core control application|corectrl|repo|1|548
+System utilities|cpu-x|CPU-X|A Free software that gathers information on CPU, motherboard and more|cpu-x|repo|1|534
+System utilities|cups|CUPS printing|Printing services. Printer and service setup are separate.|cups|repo|1|5642
+System utilities|deluge-gtk|Deluge|GTK UI for Deluge|deluge-gtk|repo|1|375
+System utilities|simple-scan|Document Scanner|Simple scanning utility|simple-scan|repo|1|1825
+System utilities|expac|Expac|alpm data (pacman database) extraction utility|expac|repo|1|4681
+System utilities|gnome-system-monitor|GNOME System Monitor|View current processes and monitor system state|gnome-system-monitor|repo|1|1541
+System utilities|hardinfo2|HardInfo|System Information and Benchmark for Linux Systems.|hardinfo2|repo|1|339
+System utilities|inxi|Inxi|Full featured CLI system information tool|inxi|repo|1|3192
+System utilities|lact|LACT|Linux GPU Configuration Tool|lact|repo|1|874
+System utilities|nemo|Nemo|File manager for Cinnamon (Nautilus fork)|nemo|repo|1|900
+System utilities|openrgb|OpenRGB|Open source RGB lighting control that doesn't depend on manufacturer software|openrgb|repo|1|938
+System utilities|pacutils|Pacutils|Helper tools for libalpm|pacutils|repo|1|3634
+System utilities|pamixer|Pamixer|Pulseaudio command-line mixer like amixer|pamixer|repo|1|1050
+System utilities|paru|Paru|Feature packed AUR helper|paru|aur|1|3251
+System utilities|pcmanfm-qt|PCManFM-Qt|The LXQt file manager, Qt port of PCManFM|pcmanfm-qt|repo|1|377
+System utilities|peazip|PeaZip|File and archive manager application features volume spanning, compression and authenticated encryption|peazip|repo|1|174
+System utilities|piper|Piper|GTK application to configure gaming mice|piper|repo|1|896
+System utilities|pwvucontrol|PipeWire volume control|Pipewire volume control for GNOME|pwvucontrol|aur|1|355
+System utilities|power-profiles-daemon|Power Profiles Daemon|Makes power profiles handling available over D-Bus|power-profiles-daemon|repo|1|3321
+System utilities|system-config-printer|Printer settings|A CUPS printer configuration tool and status applet|system-config-printer|repo|1|3291
+System utilities|psensor|Psensor|Graphical hardware temperature monitoring application|psensor|repo|1|548
+System utilities|rebuild-detector|Rebuild Detector|Detects which packages need to be rebuilt|rebuild-detector|repo|1|2108
+System utilities|sane|SANE scanning tools|Scanner Access Now Easy|sane|repo|1|5003
+System utilities|skanlite|Skanlite|Image Scanning Application|skanlite|repo|1|1439
+System utilities|solaar|Solaar|Linux device manager for a wide range of Logitech devices|solaar|repo|1|1060
+System utilities|transmission-gtk|Transmission|Fast, easy, and free BitTorrent client (GTK+ GUI)|transmission-gtk|repo|1|831
+System utilities|xarchiver|Xarchiver|GTK frontend to various command line archivers|xarchiver|repo|1|898
+System utilities|yay|Yay|Yet another yogurt. Pacman wrapper and AUR helper written in go.|yay|aur|1|4701
+System utilities|rocm-hip-sdk|AMD HIP SDK|AMD HIP development libraries and tools. Requires supported hardware.|rocm-hip-sdk|repo|2|577
+System utilities|bleachbit|BleachBit|Review app caches and cleanup categories before deleting files.|bleachbit|repo|2|697
+System utilities|cpupower|CPU power tools|Linux kernel tool to examine and tune power saving related features of your processor|cpupower|repo|2|3384
+System utilities|evtest|Input event tester|Input device event monitor and query tool|evtest|repo|2|1893
+System utilities|ksystemstats|KDE system statistics|A plugin based system monitoring daemon|ksystemstats|repo|2|4495
+System utilities|krusader|Krusader|Advanced twin panel (commander style) file manager|krusader|repo|2|344
+System utilities|namcap|Namcap|A Pacman package analyzer|namcap|repo|2|1825
+System utilities|openrazer-daemon|OpenRazer|Userspace daemon that abstracts access to the kernel driver. Provides a DBus service for applications to use|openrazer-daemon|repo|2|336
+System utilities|pcmanfm|PCManFM|Extremely fast and lightweight file manager|pcmanfm|repo|2|630
+System utilities|polychromatic|Polychromatic|RGB lighting management front-end application for OpenRazer|polychromatic|aur|2|212
+System utilities|tlp|TLP|Linux Advanced Power Management|tlp|repo|2|1727
+System utilities|zram-generator|Zram Generator|Systemd unit generator for zram devices|zram-generator|repo|2|3254
+Terminal tools|bat|Bat|Cat clone with syntax highlighting and git integration|bat|repo|0|4678
+Terminal tools|btop|btop|Interactive CPU, memory, disk, and process monitoring.|btop|repo|0|4625
+Terminal tools|duf|Duf|Disk Usage/Free Utility|duf|repo|0|1871
+Terminal tools|eza|Eza|A modern replacement for ls (community fork of exa)|eza|repo|0|3493
+Terminal tools|fastfetch|Fastfetch|Display a system information summary.|fastfetch|repo|0|4817
+Terminal tools|fd|fd|Simple, fast and user-friendly alternative to find|fd|repo|0|5126
+Terminal tools|fzf|fzf|Command-line fuzzy finder|fzf|repo|0|5835
+Terminal tools|htop|htop|Inspect and manage running processes.|htop|repo|0|6963
+Terminal tools|jq|jq|Command-line JSON processor|jq|repo|0|7691
+Terminal tools|ncdu|ncdu|Explore disk usage from the terminal.|drive-harddisk|repo|0|2942
+Terminal tools|ripgrep|Ripgrep|A search tool that combines the usability of ag with the raw speed of grep|ripgrep|repo|0|7999
+Terminal tools|tmux|Tmux|Terminal multiplexer|tmux|repo|0|4642
+Terminal tools|trash-cli|Trash CLI|Command line trashcan (recycle bin) interface|trash-cli|repo|0|1790
+Terminal tools|yazi|Yazi|Blazing fast terminal file manager written in Rust, based on async I/O|yazi|repo|0|2075
+Terminal tools|zoxide|Zoxide|A smarter cd command for your terminal|zoxide|repo|0|2319
+Terminal tools|age|Age|A simple, modern and secure file encryption tool|age|repo|1|441
+Terminal tools|asciinema|Asciinema|Record and share terminal sessions|asciinema|repo|1|668
+Terminal tools|atuin|Atuin|Magical shell history|atuin|repo|1|466
+Terminal tools|bottom|Bottom|A graphical process/system monitor|bottom|repo|1|639
+Terminal tools|chezmoi|Chezmoi|Manage your dotfiles across multiple machines|chezmoi|repo|1|501
+Terminal tools|git-delta|Delta|Syntax-highlighting pager for git and diff output|utilities-terminal|repo|1|1717
+Terminal tools|direnv|Direnv|A shell extension that manages your environment|direnv|repo|1|548
+Terminal tools|dust|Dust|A more intuitive version of du in rust|dust|repo|1|1474
+Terminal tools|entr|Entr|Run arbitrary commands when files change|entr|repo|1|377
+Terminal tools|glances|Glances|CLI curses-based monitoring tool|glances|repo|1|1548
+Terminal tools|parallel|GNU Parallel|A shell tool for executing jobs in parallel|parallel|repo|1|4969
+Terminal tools|screen|GNU Screen|Full-screen window manager that multiplexes a physical terminal|screen|repo|1|2495
+Terminal tools|stow|GNU Stow|Manage installation of multiple softwares in the same directory tree|stow|repo|1|860
+Terminal tools|gum|Gum|A tool for glamorous shell scripts|gum|repo|1|3305
+Terminal tools|hyperfine|Hyperfine|A command-line benchmarking tool|hyperfine|repo|1|673
+Terminal tools|inotify-tools|Inotify tools|a C library and a set of command-line programs for Linux providing a simple interface to inotify.|inotify-tools|repo|1|2620
+Terminal tools|lf|lf|A terminal file manager inspired by ranger|lf|repo|1|404
+Terminal tools|lsof|Lsof|Lists open files for running Unix processes|lsof|repo|1|8053
+Terminal tools|mc|Midnight Commander|A file manager that emulates Norton Commander|mc|repo|1|1526
+Terminal tools|moreutils|Moreutils|A growing collection of the unix tools that nobody thought to write thirty years ago|moreutils|repo|1|1889
+Terminal tools|mosh|Mosh|Mobile shell, surviving disconnects with local echo and line editing|mosh|repo|1|832
+Terminal tools|nvtop|NVTop|GPUs process monitoring for AMD, Intel and NVIDIA|nvtop|repo|1|3292
+Terminal tools|pass|Pass|Stores, retrieves, generates, and synchronizes passwords securely|pass|repo|1|1258
+Terminal tools|pv|Pipe Viewer|A terminal-based tool for monitoring the progress of data through a pipeline|pv|repo|1|3221
+Terminal tools|psmisc|Process utilities|Miscellaneous procfs tools|psmisc|repo|1|9982
+Terminal tools|procs|Procs|A modern replacement for ps written in Rust|procs|repo|1|386
+Terminal tools|pwgen|Pwgen|Password generator for creating easily memorable passwords|pwgen|repo|1|1260
+Terminal tools|ranger|Ranger|Simple, vim-like file manager|ranger|repo|1|1085
+Terminal tools|tealdeer|Tealdeer|A fast tldr client in Rust|tealdeer|repo|1|1337
+Terminal tools|tldr|tldr|Command line client for tldr, a collection of simplified man pages.|tldr|repo|1|1674
+Terminal tools|watchexec|Watchexec|Executes commands in response to file modifications|watchexec|repo|1|159
+Terminal tools|yq|yq|Command-line YAML, XML, TOML processor - jq wrapper for YAML/XML/TOML documents|yq|repo|1|840
+Terminal tools|zellij|Zellij|A terminal multiplexer|zellij|repo|1|775
+Terminal tools|cmatrix|CMatrix|A curses-based scrolling 'Matrix'-like screen|cmatrix|repo|2|1463
+Terminal tools|figlet|Figlet|A program for making large letters out of ordinary text|figlet|repo|2|1067
+Terminal tools|navi|Navi|An interactive cheatsheet tool for the command-line|navi|repo|2|170
+Terminal tools|nnn|nnn|The fastest terminal file manager ever written.|nnn|repo|2|482
+Terminal tools|powertop|PowerTOP|A tool to diagnose issues with power consumption and power management|powertop|repo|2|2884
+Terminal tools|vifm|Vifm|A file manager with curses interface, which provides Vi[m]-like environment|vifm|repo|2|455
+Virtualization|distrobox|Distrobox|Use development containers integrated with your home.|utilities-terminal|repo|0|648
+Virtualization|docker|Docker|Container engine and CLI. Service and user access setup are separate.|docker|repo|0|4536
+Virtualization|docker-compose|Docker Compose|Fast, isolated development environments using Docker|docker-compose|repo|0|3621
+Virtualization|libvirt|Libvirt|Virtual machine management services. Service and user access setup are separate.|libvirt|repo|0|3754
+Virtualization|podman|Podman|Container tooling without a central daemon.|applications-development|repo|0|1910
+Virtualization|qemu-desktop|QEMU Desktop|A QEMU setup for desktop environments|qemu-desktop|repo|0|3591
+Virtualization|virt-manager|Virtual Machine Manager|Desktop user interface for managing virtual machines|virt-manager|repo|0|2833
+Virtualization|buildah|Buildah|A tool which facilitates building OCI images|buildah|repo|1|265
+Virtualization|gnome-boxes|GNOME Boxes|Simple GNOME application to access virtual systems|gnome-boxes|repo|1|718
+Virtualization|podman-compose|Podman Compose|A script to run docker-compose.yml using podman|podman-compose|repo|1|896
+Virtualization|skopeo|Skopeo|A command line utility for various operations on container images and image repositories.|skopeo|repo|1|409
+Virtualization|toolbox|Toolbx|Unprivileged development environment|toolbox|repo|1|59
+Virtualization|virt-install|Virt Install|Command line tool for creating new KVM , Xen, or Linux container guests using the libvirt hypervisor|virt-install|repo|1|2921
+Virtualization|virt-viewer|Virt Viewer|A lightweight interface for interacting with the graphical display of virtualized guest OS.|virt-viewer|repo|1|1176
+Virtualization|virtualbox|VirtualBox|Powerful x86 virtualization for enterprise as well as home use|virtualbox|repo|1|1814
+Virtualization|waydroid|Waydroid|A container-based approach to boot a full Android system on a regular Linux system|waydroid|repo|1|971
+Virtualization|helm|Helm|The Kubernetes Package Manager|helm|repo|2|454
+Virtualization|incus|Incus|Powerful system container and virtual machine manager|incus|repo|2|135
+Virtualization|kubectl|Kubectl|A command line tool for communicating with a Kubernetes API server|kubectl|repo|2|807
+Virtualization|libguestfs|Libguestfs|Access and modify virtual machine disk images|libguestfs|repo|2|750
+Virtualization|lxc|LXC|Linux Containers|lxc|repo|2|1512
+Virtualization|lxd|LXD|Daemon based on liblxc offering a REST API to manage containers|lxd|repo|2|73
+Virtualization|minikube|Minikube|A tool that makes it easy to run Kubernetes locally|minikube|repo|2|304
+Virtualization|qemu-full|QEMU Full|A full QEMU setup|qemu-full|repo|2|1441
+Virtualization|virtualbox-host-dkms|VirtualBox DKMS modules|VirtualBox modules built with DKMS. Matching kernel headers are required.|virtualbox-host-dkms|repo|2|1859

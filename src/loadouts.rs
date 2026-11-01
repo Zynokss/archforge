@@ -41,8 +41,9 @@ pub(crate) struct App {
     pub title: String,
     pub category: String,
     pub description: String,
-    pub icon: String,
     pub source: Source,
+    pub priority: u8,
+    pub popularity: Option<u32>,
 }
 pub(crate) const CATEGORIES: &[&str] = &[
     "All packages",
@@ -54,6 +55,15 @@ pub(crate) const CATEGORIES: &[&str] = &[
     "Communication",
     "System utilities",
     "Desktop & styling",
+    "Office & study",
+    "Graphics & CAD",
+    "Terminal tools",
+    "Network & security",
+    "Backup & storage",
+    "Virtualization",
+    "AI & ML",
+    "Capture & remote",
+    "Accessibility",
     "Imported / custom",
 ];
 #[derive(Clone, Debug)]
@@ -247,6 +257,37 @@ impl Profile {
             return Err(
                 "Choose Code - OSS or Visual Studio Code. Their package files can conflict.".into(),
             );
+        }
+        for (family, variants) in [
+            (
+                "LibreOffice release",
+                &["libreoffice-fresh", "libreoffice-still"][..],
+            ),
+            ("Wine version", &["wine", "wine-staging"][..]),
+            (
+                "PyTorch variant",
+                &[
+                    "python-pytorch",
+                    "python-pytorch-cuda",
+                    "python-pytorch-rocm",
+                ][..],
+            ),
+            (
+                "TensorFlow variant",
+                &["python-tensorflow", "python-tensorflow-cuda"][..],
+            ),
+        ] {
+            let selected: Vec<_> = variants
+                .iter()
+                .filter(|n| self.packages.contains_key(**n))
+                .copied()
+                .collect();
+            if selected.len() > 1 {
+                return Err(format!(
+                    "Choose one {family}. Selected alternatives: {}. Their package files can conflict.",
+                    selected.join(", ")
+                ));
+            }
         }
         let mut repo = Vec::new();
         let mut aur = Vec::new();

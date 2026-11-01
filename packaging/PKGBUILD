@@ -5,7 +5,7 @@ pkgrel=1
 pkgdesc='Native Arch Linux system and gaming utility'
 url='https://github.com/Zynokss/archforge'
 arch=('x86_64' 'aarch64')
-license=('MIT')
+license=('MIT' 'GPL-3.0-only' 'CC0-1.0')
 provides=("arch-forge=$pkgver")
 conflicts=('arch-forge')
 replaces=('arch-forge')
@@ -50,4 +50,9 @@ package() {
     install -Dm644 "data/icons/$size.png" "$pkgdir/usr/share/icons/hicolor/${size}x${size}/apps/io.github.zynokss.ArchForge.png"
   done
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -dm755 "$pkgdir/usr/share/archforge/app-icons"
+  cp -r data/app-icons/. "$pkgdir/usr/share/archforge/app-icons/"
+  install -Dm644 data/app-icons/Papirus-GPL-3.0.txt "$pkgdir/usr/share/licenses/$pkgname/Papirus-GPL-3.0.txt"
+  install -Dm644 data/app-icons/Simple-Icons-CC0.md "$pkgdir/usr/share/licenses/$pkgname/Simple-Icons-CC0.md"
+  install -Dm644 data/app-icons/NOTICE.md "$pkgdir/usr/share/licenses/$pkgname/Artwork-NOTICE.md"
 }

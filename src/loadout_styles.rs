@@ -10,15 +10,68 @@ pub(crate) fn catalog() -> Vec<App> {
                 name: fields[1].into(),
                 title: fields[2].into(),
                 description: fields[3].into(),
-                icon: fields[4].into(),
                 source: if fields[5] == "aur" {
                     Source::Aur
                 } else {
                     Source::Repo
                 },
+                priority: fields[6].parse().expect("Catalog priority must be numeric"),
+                popularity: if fields[7].is_empty() {
+                    None
+                } else {
+                    Some(
+                        fields[7]
+                            .parse()
+                            .expect("Catalog popularity must be numeric"),
+                    )
+                },
             }
         })
         .collect()
+}
+/// Recommended order is curated common choices first, then the public survey snapshot.
+/// Popularity is a percentage in basis points, not an absolute usage claim.
+pub(crate) fn sort_catalog(
+    apps: &mut [App],
+    order: u32,
+    installed: &std::collections::BTreeMap<String, String>,
+) {
+    apps.sort_by(|a, b| {
+        let names = || {
+            a.title
+                .to_lowercase()
+                .cmp(&b.title.to_lowercase())
+                .then_with(|| a.name.cmp(&b.name))
+        };
+        let recommended = || {
+            a.priority
+                .cmp(&b.priority)
+                .then_with(|| b.popularity.cmp(&a.popularity))
+                .then_with(names)
+        };
+        match order {
+            1 => b.popularity.cmp(&a.popularity).then_with(names),
+            2 => names(),
+            3 => names().reverse(),
+            4 => installed
+                .contains_key(&b.name)
+                .cmp(&installed.contains_key(&a.name))
+                .then_with(recommended),
+            _ => recommended(),
+        }
+    });
+}
+pub(crate) fn ranking_note(app: &App) -> String {
+    let tier = match app.priority {
+        0 => "Common choice",
+        1 => "More options",
+        _ => "Specialist",
+    };
+    let usage = app
+        .popularity
+        .map(|n| format!("{:.2}% of October 2026 pkgstats reports", n as f64 / 100.))
+        .unwrap_or_else(|| "No pkgstats figure in this snapshot".into());
+    format!("{tier} · {usage}. Voluntary survey; this is not a safety rating.")
 }
 pub(crate) struct Kit {
     pub name: &'static str,
