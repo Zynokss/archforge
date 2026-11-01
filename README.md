@@ -2,24 +2,33 @@
   <img src="assets/readme-banner.svg" alt="Arch Forge — system tools for Arch Linux" width="100%">
 </p>
 
-A native desktop utility for Arch Linux, built with Rust and GTK4.
+# Arch Forge — Arch Linux desktop tools for gaming, packages and system maintenance
 
-Arch Forge brings system readings, gaming tools, package information, and maintenance commands into one place. Commands run as your desktop user; actions that need administrator access ask for authentication separately.
+Arch Forge (`archforge`) is a native **Arch Linux system utility** built with Rust and GTK4. Monitor your hardware, manage pacman packages, set up Linux gaming tools, review cleanup actions, and discover Hyprland dotfiles from one desktop application.
+
+Use Loadouts to select apps in bulk and save a package selection for a fresh Arch install. Explore community desktop setups in Ricing, with real screenshots, formatted READMEs, and reviewed installation commands.
+
+[Download the latest release](https://github.com/Zynokss/archforge/releases/latest) · [Installation](#install-arch-forge-on-arch-linux) · [Features](#features) · [Report a bug](https://github.com/Zynokss/archforge/issues)
+
+Commands run as your desktop user; actions that need administrator access ask for authentication separately.
 
 ## Features
 
 - **Overview** — live CPU, memory, and storage graphs, hardware details, uptime, temperature, and failed-service status.
+- **Tools** — searchable Arch Linux utilities for storage, services, boot performance, networking, and package checks.
+- **Loadouts** — browse apps by category, select packages in bulk, and export a reusable package selection.
+- **Ricing** — discover Hyprland desktop setups, browse dotfiles and screenshot galleries, and review upstream installation instructions.
 - **Gaming** — installation checks and setup guidance for Steam, GameMode, MangoHud, Vulkan tools, Gamescope, and Lutris.
 - **Cleanup** — package-cache usage and previews, journal usage, orphan-package inspection, and reviewed cleanup actions.
 - **Packages** — search and sort installed packages, inspect foreign packages, and check repository updates.
 - **Diagnostics** — failed services, boot timing, Vulkan information, and a system report with copyable output.
 - **App updates** — automatic version checks and one-click installation of verified GitHub release packages.
 
-## Screenshots
+## Screenshot
 
-![System overview in the Crimson theme](assets/screenshots/overview.png)
+![Arch Forge system monitor on Arch Linux with CPU, memory, storage and maintenance tools](assets/screenshots/overview.png)
 
-## Install
+## Install Arch Forge on Arch Linux
 
 On **Arch Linux x86_64**, install the latest prebuilt release with:
 
@@ -104,14 +113,10 @@ Choose Crimson, Sage, Lavender, Sand, or Desktop colors from the sidebar. The se
 
 Desktop colors can follow an existing end4/Quickshell palette at `~/.local/state/quickshell/user/generated/colors.json`, respecting `XDG_STATE_HOME`. If that palette is unavailable, the app uses Sage. Arch Forge does not modify the shell configuration.
 
-## License
 
-[MIT](LICENSE). Arch Forge is an independent project and is not affiliated with Arch Linux.
+## Arch Linux tools and navigation
 
-
-### Tools and navigation
-
-Use **Tools** to search by task (for example, `missing files`, `boot`, `DNS`, or `cache`), or use the category tabs. The grouped view starts with short previews for each category; **View all** opens the complete category. Search returns all matching tools, with no preview limit. Sort by recommended order or name, or switch to a compact list. Every tool has a built-in outline icon, independent of the desktop icon theme. **Ctrl+K** opens tool search; **Ctrl+1–7** switch between Overview, Tools, Gaming, Cleanup, Packages, Diagnostics, and Loadouts. Read-only tools include package file checks, package-list export, file ownership, package history, drives, mounts, free space, enabled services, timers, boot errors, boot timing, SSD trim status, network addresses, DNS status, and power profiles. Output can be copied or saved; system changes open an editable command in your terminal and wait for Enter.
+Use **Tools** to search by task (for example, `missing files`, `boot`, `DNS`, or `cache`), or use the category tabs. The grouped view starts with short previews for each category; **View all** opens the complete category. Search returns all matching tools, with no preview limit. Sort by recommended order or name, or switch to a compact list. Every tool has a built-in outline icon, independent of the desktop icon theme. **Ctrl+K** opens tool search; **Ctrl+1–8** switch between Overview, Tools, Gaming, Cleanup, Packages, Diagnostics, Loadouts, and Ricing. Read-only tools include package file checks, package-list export, file ownership, package history, drives, mounts, free space, enabled services, timers, boot errors, boot timing, SSD trim status, network addresses, DNS status, and power profiles. Output can be copied or saved; system changes open an editable command in your terminal and wait for Enter.
 
 **Package cache location** changes where pacman downloads package archives. Installed files keep the locations defined by their packages; pacman's `RootDir` is intended for another installation or chroot. Arch Forge inserts a managed first `CacheDir` in `[options]`, preserves existing entries as fallbacks, validates the proposed configuration with `pacman-conf`, and backs up `/etc/pacman.conf` before an atomic replacement. Existing archives are kept. The cache measurement and paccache tools follow the configured cache directories.
 
@@ -120,7 +125,7 @@ The cache folder must use a mounted Linux filesystem and protected, root-owned p
 References: [pacman configuration](https://man.archlinux.org/man/pacman.conf.5.en), [pacman-conf](https://man.archlinux.org/man/pacman-conf.8.en), [paccache](https://man.archlinux.org/man/paccache.8.en).
 
 
-### Installing apps on another drive
+## Installing apps on another drive
 
 Open **Tools → Storage → App install locations**. Flatpak mode can register a mounted Linux data filesystem, then install an application by its Flatpak ID into that named location. Refresh after completing the setup command. The command adds Flathub to the selected installation and retains Flatpak's interactive transaction review. Existing apps are not moved. App data stays in the home directory, and temporary downloads or metadata can still need system space. Sign out and back in if shortcuts from a newly added installation are missing.
 
@@ -131,7 +136,7 @@ This setup accepts persistent, root-owned mounts under `/mnt`, `/media`, or `/ho
 Reference: [Flatpak custom installations](https://docs.flatpak.org/en/latest/tips-and-tricks.html#adding-a-custom-installation).
 
 
-### Loadouts: bring a package selection to a fresh Arch install
+## Loadouts: prepare apps for a fresh Arch Linux install
 
 Open **Loadouts** to choose from 659 curated packages across 17 categories, including desktop apps, terminal tools, office and study, graphics and CAD, backup, networking, virtualization, accessibility, and AI/ML. The catalog includes 621 official repository packages and 38 selected AUR recipes. Search spans package names and descriptions. Source and status filters, pagination, **Select matches**, and exact-name additions keep larger selections manageable. Category navigation scrolls independently; compact windows use a category dropdown. **Recommended** places curated common choices before more options and specialist tools, using an October 2026 pkgstats snapshot within each group. **Popular first** uses those survey percentages directly; alphabetical and installed-first sorting are also available. See [catalog sources and selection rules](data/loadouts/CATALOG.md) for the scope and limits of these rankings. Selections stay in place while package database updates refresh the other pages.
 
@@ -153,10 +158,14 @@ A loadout is not a disk image. Partitions, accounts, boot setup, repository conf
 
 The image-inspired **Amber Night** app palette is available under **Appearance**. It uses amber accents with cool charcoal surfaces; selecting it does not change your desktop's configuration.
 
-### Application artwork
+## Application artwork
 
 Loadouts ships with selected [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) and [Simple Icons](https://github.com/simple-icons/simple-icons) artwork, so app logos are available even before the apps are installed. A shared offline resolver uses a recognizable app logo first, then a package function symbol, a category symbol, and finally a generic package outline. Functional symbols are bundled local SVGs; no icon theme or runtime download is required. Source code and functional symbols are MIT licensed; application artwork licenses and attribution are listed in [the icon notices](data/app-icons/NOTICE.md).
 
-### Ricing
+## Hyprland dotfiles and desktop ricing
 
 Browse curated community desktop setups in the Ricing sidebar tab. Discover real repository screenshots, open a setup for its gallery and formatted README, and review documented installation methods before opening a terminal. Downloaded previews are cached locally. Installation instructions include upstream links and compatibility notes; opening a setup never runs its installer.
+
+## License
+
+[MIT](LICENSE). Bundled application artwork has separate licenses listed in [the icon notices](data/app-icons/NOTICE.md). Arch Forge is an independent project and is not affiliated with Arch Linux.
