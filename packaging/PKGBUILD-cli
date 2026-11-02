@@ -1,6 +1,6 @@
 # Standalone terminal package: ../scripts/dist.sh && makepkg -p PKGBUILD-cli
 pkgname=archforge-cli
-pkgver=0.11.0
+pkgver=0.12.0
 pkgrel=1
 pkgdesc='Arch Forge terminal workbench for packages, cleanup, diagnostics and loadouts'
 url='https://github.com/Zynokss/archforge'

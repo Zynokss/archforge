@@ -1,8 +1,9 @@
 use std::{fs, path::PathBuf};
 
-pub const OPTIONS: [(&str, &str); 6] = [
+pub const OPTIONS: [(&str, &str); 7] = [
     ("crimson", "Crimson"),
     ("amber", "Amber Night"),
+    ("arch-night", "Arch Night"),
     ("sage", "Sage"),
     ("lavender", "Lavender"),
     ("sand", "Sand"),
@@ -114,24 +115,28 @@ impl Palette {
     pub fn preset(name: &str) -> Self {
         let values = match name {
             "crimson" => [
-                "#101214", "#181b1e", "#21252a", "#30353c", "#f0f1f3", "#aeb7c3", "#ff6467",
-                "#26090c", "#452327", "#ffdadc",
+                "#0b0507", "#14090d", "#231017", "#3a1823", "#f5eef1", "#c7b8bf", "#ff2c50",
+                "#26020b", "#420d1b", "#ffe6ed",
+            ],
+            "arch-night" => [
+                "#080f14", "#101a21", "#182731", "#293c48", "#edf4fa", "#b1c3d0", "#35d3fa",
+                "#03202b", "#103b50", "#d7f6ff",
             ],
             "amber" => [
-                "#141719", "#1c2023", "#252a2e", "#343a40", "#eff1f3", "#b4bcc4", "#ffb454",
-                "#251905", "#493824", "#ffe2b8",
+                "#0e0a06", "#181109", "#281c0e", "#3c2c18", "#f7f0e7", "#c9bba9", "#ffb454",
+                "#251905", "#493018", "#ffe2b8",
             ],
             "lavender" => [
-                "#17141b", "#201c25", "#2b2531", "#39303f", "#eee6f2", "#c4b8c9", "#d5b7ee",
-                "#392448", "#493653", "#f0d9ff",
+                "#0c0810", "#160f1d", "#23172e", "#392549", "#f2eaf8", "#c4b5d1", "#c7a0f5",
+                "#29143b", "#39204f", "#f0d9ff",
             ],
             "sand" => [
-                "#191714", "#23201b", "#2e2a23", "#3b352b", "#efe8dc", "#c6beb0", "#dfc48c",
-                "#3c2e0d", "#4c4026", "#f8e3b5",
+                "#0d0b07", "#17130c", "#262014", "#3a3020", "#f5eee1", "#c6bda9", "#dfc48c",
+                "#30240c", "#41331b", "#f8e3b5",
             ],
             _ => [
-                "#141714", "#1c211c", "#252c25", "#343d32", "#e5e9df", "#b7c1b2", "#c1d0b5",
-                "#293622", "#3d4b35", "#dfecd2",
+                "#070d09", "#0f1912", "#19291d", "#2b3d2c", "#edf3e9", "#b8c6b5", "#a8d59c",
+                "#172a13", "#263d25", "#e1f3d8",
             ],
         };
         let [
@@ -163,10 +168,13 @@ impl Palette {
         if name != "desktop" {
             return (
                 Self::preset(name),
-                if name == "amber" {
+                if name == "arch-night" {
+                    "Midnight blue surfaces, cyan edge lighting and luminous controls.".into()
+                } else if name == "amber" {
                     "Amber accents on cool charcoal surfaces.".into()
                 } else {
-                    "Material colors for your workbench.".into()
+                    "Deep tinted surfaces, illuminated borders and accent-colored hover glow."
+                        .into()
                 },
             );
         }
@@ -248,7 +256,9 @@ impl Palette {
 
 pub fn apply(provider: &gtk::CssProvider, name: &str) -> String {
     let (palette, description) = Palette::load(name);
-    provider.load_from_string(&palette.css());
+    let mut css = palette.css();
+    css.push_str(include_str!("luminous.css"));
+    provider.load_from_string(&css);
     if let Some(display) = gtk::gdk::Display::default() {
         gtk::style_context_add_provider_for_display(
             &display,
@@ -256,5 +266,126 @@ pub fn apply(provider: &gtk::CssProvider, name: &str) -> String {
             gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
         );
     }
+    fn recolor_brand(widget: &gtk::Widget, primary: &str) {
+        use gtk::prelude::*;
+        if (widget.has_css_class("brand-icon") || widget.has_css_class("themed-arch-mark"))
+            && let Some(image) = widget.downcast_ref::<gtk::Image>()
+        {
+            image.set_paintable(
+                crate::arch_logo(primary, image.pixel_size().max(1))
+                    .paintable()
+                    .as_ref(),
+            );
+        }
+        let mut child = widget.first_child();
+        while let Some(w) = child {
+            recolor_brand(&w, primary);
+            child = w.next_sibling();
+        }
+    }
+    for window in gtk::Window::list_toplevels() {
+        recolor_brand(&window, &palette.primary);
+    }
     description
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn presets_have_readable_text() {
+        for (name, _) in OPTIONS {
+            let p = Palette::preset(name);
+            assert!(contrast(&p.foreground, &p.surface) >= 7.0);
+            assert!(contrast(&p.on_primary, &p.primary) >= 4.5);
+            assert!(contrast(&p.muted, &p.high) >= 4.5);
+        }
+    }
+    #[test]
+    fn desktop_values_cannot_inject_css() {
+        assert!(hex("#123abc").is_some());
+        assert!(hex("red;}").is_none());
+        assert!(Palette::from_desktop("{\"primary\": \"url(bad)\"}").is_none());
+    }
+    #[test]
+    fn desktop_low_contrast_is_adjusted() {
+        assert!(contrast(&legible("#555555", "#555555", "#ffffff"), "#555555") >= 4.5);
+    }
+}
+
+/// Decorative, palette-driven header. Controls stay on top and retain their size.
+pub(crate) fn banner(header: &impl gtk::prelude::IsA<gtk::Widget>) -> gtk::Overlay {
+    use gtk::prelude::*;
+    let banner = gtk::Overlay::new();
+    banner.add_css_class("forge-banner");
+    let art = gtk::DrawingArea::new();
+    art.add_css_class("forge-banner-art");
+    art.set_hexpand(true);
+    art.set_vexpand(true);
+    art.set_can_target(false);
+    art.set_accessible_role(gtk::AccessibleRole::Presentation);
+    let logo = std::cell::RefCell::new(None::<(String, gtk::gdk_pixbuf::Pixbuf)>);
+    art.set_draw_func(move |area, cr, width, height| {
+        let color = area.color();
+        let (r, g, b) = (
+            color.red() as f64,
+            color.green() as f64,
+            color.blue() as f64,
+        );
+        let (w, h) = (width as f64, height as f64);
+        let x = w * 0.62;
+        let _ = cr.save();
+        cr.translate(x, h * 1.05);
+        cr.scale((w * 0.42).max(1.), (h * 1.25).max(1.));
+        let glow = gtk::cairo::RadialGradient::new(0., 0., 0., 0., 0., 1.);
+        glow.add_color_stop_rgba(0., r, g, b, 0.35);
+        glow.add_color_stop_rgba(0.4, r, g, b, 0.10);
+        glow.add_color_stop_rgba(1., r, g, b, 0.);
+        let _ = cr.set_source(&glow);
+        let _ = cr.paint();
+        let _ = cr.restore();
+        // Small windows keep the ambient light without placing artwork over text.
+        if w < 950. {
+            return;
+        }
+        // Reuse the same transparent vector as the sidebar and desktop icon.
+        // Cache each tint until the active palette changes.
+        let tint = format!(
+            "#{:02x}{:02x}{:02x}",
+            (r * 255.).round() as u8,
+            (g * 255.).round() as u8,
+            (b * 255.).round() as u8
+        );
+        let mut cached = logo.borrow_mut();
+        if cached
+            .as_ref()
+            .is_none_or(|(previous, _)| previous != &tint)
+        {
+            let loader = gtk::gdk_pixbuf::PixbufLoader::with_type("svg").expect("SVG loader");
+            loader.set_size(112, 112);
+            let svg = include_str!("../data/arch-mark.svg").replace("#ff6467", &tint);
+            loader.write(svg.as_bytes()).expect("Bundled Arch mark");
+            loader.close().expect("Complete SVG");
+            *cached = Some((tint, loader.pixbuf().expect("Decoded Arch mark")));
+        }
+        if let Some((_, pixbuf)) = cached.as_ref() {
+            use gtk::gdk::prelude::GdkCairoContextExt;
+            // Fit inside the actual allocation, including shorter page headers.
+            // Keep a clear inset so neither the tip nor the base touches a clip edge.
+            let size = 112_f64.min((h - 16.).max(0.));
+            if size > 0. {
+                let _ = cr.save();
+                cr.translate(x - size / 2., (h - size) / 2.);
+                cr.scale(size / pixbuf.width() as f64, size / pixbuf.height() as f64);
+                cr.set_source_pixbuf(pixbuf, 0., 0.);
+                let _ = cr.paint();
+                let _ = cr.restore();
+            }
+        }
+    });
+    banner.set_child(Some(&art));
+    banner.add_overlay(header);
+    banner.set_measure_overlay(header, true);
+    header.set_valign(gtk::Align::Center);
+    banner
 }

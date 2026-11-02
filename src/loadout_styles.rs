@@ -29,6 +29,11 @@ pub(crate) fn catalog() -> Vec<App> {
         })
         .collect()
 }
+pub(crate) fn catalog_entry<'a>(catalog: &'a [App], name: &str) -> Option<&'a App> {
+    let actual =
+        crate::package_variants::resolve(catalog.iter().map(|app| app.name.as_str()), name)?;
+    catalog.iter().find(|app| app.name == actual)
+}
 /// Recommended order is curated common choices first, then the public survey snapshot.
 /// Popularity is a percentage in basis points, not an absolute usage claim.
 pub(crate) fn sort_catalog(
@@ -54,8 +59,11 @@ pub(crate) fn sort_catalog(
             2 => names(),
             3 => names().reverse(),
             4 => installed
-                .contains_key(&b.name)
-                .cmp(&installed.contains_key(&a.name))
+                .contains_key(crate::package_variants::installed_name(installed, &b.name))
+                .cmp(
+                    &installed
+                        .contains_key(crate::package_variants::installed_name(installed, &a.name)),
+                )
                 .then_with(recommended),
             _ => recommended(),
         }

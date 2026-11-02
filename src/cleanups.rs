@@ -44,6 +44,11 @@ impl Action {
         matches!(self, Self::Orphans | Self::Aur)
     }
     fn paths(self) -> Result<Vec<PathBuf>, String> {
+        #[cfg(test)]
+        if let Some(paths) = cleanup_tests::OVERRIDE.lock().unwrap().as_ref() {
+            return Ok(paths.clone());
+        }
+
         paths_for(
             self,
             &glib::home_dir(),
@@ -562,4 +567,12 @@ pub fn show(parent: &gtk::ApplicationWindow, action: Action) {
         });
     });
     dialog.present();
+}
+
+#[cfg(test)]
+#[path = "cleanup_tests.rs"]
+mod cleanup_tests;
+#[cfg(test)]
+pub fn verify_ui(parent: &gtk::ApplicationWindow) {
+    cleanup_tests::ui(parent);
 }

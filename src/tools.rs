@@ -925,7 +925,7 @@ impl Catalog {
     }
 }
 pub(crate) fn page(parent: &gtk::ApplicationWindow) -> gtk::Box {
-    let page = column(16);
+    let page = column(12);
     page.add_css_class("content");
     page.add_css_class("tools-page");
     let header = column(4);
@@ -935,7 +935,7 @@ pub(crate) fn page(parent: &gtk::ApplicationWindow) -> gtk::Box {
         "Packages, storage, system services, and network checks.",
         "subtitle",
     ));
-    page.append(&header);
+    page.append(&crate::theme::banner(&header));
     let search = gtk::SearchEntry::builder()
         .placeholder_text("Search tools… e.g. cache, boot, missing files")
         .hexpand(true)
@@ -1131,6 +1131,15 @@ pub(crate) fn inspect_mounts(parent: &gtk::ApplicationWindow) {
             .find(|t| t.name == "Mounted filesystems")
             .expect("Mount inspection tool"),
     );
+}
+
+#[cfg(test)]
+#[path = "tools_tests.rs"]
+mod tests;
+
+#[cfg(test)]
+pub(crate) fn verify_ui(parent: &gtk::ApplicationWindow) {
+    tests::ui(parent);
 }
 
 pub(crate) fn inspect_cleanup(

@@ -209,3 +209,29 @@ pub(crate) fn panel(parent: &gtk::ApplicationWindow) -> gtk::Box {
     panel.append(&stack);
     panel
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn additional_cleanup_commands_are_valid_and_interactive() {
+        for task in STORAGE.iter().chain(APPS).chain(SYSTEM) {
+            for command in std::iter::once(task.inspect).chain(task.change) {
+                assert!(
+                    std::process::Command::new("/usr/bin/bash")
+                        .args(["-n", "-c", command])
+                        .status()
+                        .unwrap()
+                        .success(),
+                    "{}",
+                    task.title
+                );
+                assert!(
+                    !command.contains("--noconfirm")
+                        && !command.contains("rm -rf")
+                        && !command.contains("--force")
+                );
+            }
+        }
+    }
+}

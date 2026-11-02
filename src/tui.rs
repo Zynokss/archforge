@@ -193,7 +193,8 @@ impl App {
             .collect::<BTreeSet<_>>()
             .into_iter()
             .map(|n| {
-                let data = catalog.get(n.as_str());
+                let data = crate::package_variants::resolve(catalog.keys().map(String::as_str), n)
+                    .and_then(|name| catalog.get(name));
                 Package {
                     name: n.clone(),
                     title: data.map(|d| d.0.clone()).unwrap_or_else(|| n.clone()),
@@ -413,18 +414,20 @@ impl App {
                 backend::install_plan(&self.selected, &self.scan).ok()
             } else {
                 self.active_package().map(|p| {
+                    let actual =
+                        crate::package_variants::installed_name(&self.scan.installed, &p.name);
                     Action::new(
                         "Package information",
                         "Shows metadata for this package. Read-only.",
                         "/usr/bin/pacman",
                         &[
-                            if self.scan.installed.contains_key(&p.name) {
+                            if self.scan.installed.contains_key(actual) {
                                 "-Qi"
                             } else {
                                 "-Si"
                             },
                             "--",
-                            &p.name,
+                            actual,
                         ],
                         false,
                     )
@@ -1681,17 +1684,26 @@ fn draw_packages(frame: &mut Frame, area: Rect, app: &mut App, c: Colors) {
             if cols[1].width >= 64 {
                 spans.push(Span::raw(format!(
                     "{:<29}",
-                    p.name.chars().take(28).collect::<String>()
+                    name.chars().take(28).collect::<String>()
                 )));
                 spans.push(Span::styled(
                     format!("{status:<12}"),
                     Style::default().fg(color),
                 ));
-                spans.push(Span::styled(p.source.clone(), Style::default().fg(c.muted)));
+                let source = if app.scan.installed.contains_key(name) {
+                    if app.scan.available.contains(name) {
+                        "repo"
+                    } else {
+                        "foreign"
+                    }
+                } else {
+                    &p.source
+                };
+                spans.push(Span::styled(source, Style::default().fg(c.muted)));
             } else {
                 spans.push(Span::raw(format!(
                     "{:<21}",
-                    p.name.chars().take(20).collect::<String>()
+                    name.chars().take(20).collect::<String>()
                 )));
                 spans.push(Span::styled(status, Style::default().fg(color)));
             }
@@ -2168,4 +2180,223 @@ fn copy(text: &str) -> Result<String, String> {
         "Clipboard request sent. Emulator support/permission is required; e exports to a file."
             .into(),
     )
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use ratatui::backend::TestBackend;
+    fn key(c: KeyCode) -> KeyEvent {
+        KeyEvent::new(c, KeyModifiers::NONE)
+    }
+    fn fixture() -> App {
+        let mut app = App::new();
+        app.scanning = false;
+        app.scan.inventory.cpu = "Test processor".into();
+        app.scan.inventory.gpu = "Test graphics adapter".into();
+        app.scan.inventory.kernel = "test-kernel".into();
+        app.scan.inventory.failed_services = Some(1);
+        app.scan.installed.insert("git".into(), "1.0".into());
+        app.scan.installed.insert("lutris-git".into(), "1.0".into());
+        for i in 0..100 {
+            app.scan.available.insert(format!("test-package-{i:03}"));
+        }
+        app.scan.available.insert("git".into());
+        app.refresh_catalog();
+        app
+    }
+    #[test]
+    fn package_variants_inherit_categories_and_inspect_actual_names() {
+        let mut app = fixture();
+        app.scan
+            .installed
+            .insert("firefox-bin".into(), "1.0".into());
+        app.scan
+            .installed
+            .insert("obs-studio-git".into(), "1.0".into());
+        app.refresh_catalog();
+        assert_eq!(
+            app.packages
+                .iter()
+                .find(|p| p.name == "firefox-bin")
+                .unwrap()
+                .category,
+            "Browsers"
+        );
+        assert_eq!(
+            app.packages
+                .iter()
+                .find(|p| p.name == "obs-studio-git")
+                .unwrap()
+                .category,
+            "Media"
+        );
+        app.page = 1;
+        app.pages[1].query = "firefox".into();
+        let action = app.pending_action().unwrap();
+        assert!(action.args.contains(&"-Qi".into()));
+        assert!(action.args.contains(&"firefox-bin".into()));
+    }
+    #[test]
+    fn navigation_bulk_selection_review_and_pane_scroll_are_preserved() {
+        let mut a = fixture();
+        a.key(key(KeyCode::Char('2')));
+        assert_eq!(a.page, 1);
+        a.key(key(KeyCode::Char('a')));
+        assert_eq!(a.selected.len(), a.visible_packages().len());
+        a.selected.remove("lutris-git");
+        a.key(key(KeyCode::Char('i')));
+        assert!(a.execute.is_none());
+        assert!(matches!(
+            a.dialog,
+            Some(Dialog::Review {
+                reviewed: false,
+                ..
+            })
+        ));
+        // Enter on the unchecked run control cannot execute.
+        a.key(key(KeyCode::Tab));
+        a.key(key(KeyCode::Enter));
+        assert!(a.execute.is_none());
+        a.key(key(KeyCode::BackTab));
+        a.key(key(KeyCode::Char(' ')));
+        a.key(key(KeyCode::Tab));
+        a.key(key(KeyCode::Enter));
+        let plan = a.execute.take().unwrap();
+        assert!(plan.admin);
+        assert!(plan.args.contains(&"-Syu".into()));
+        assert!(!plan.args.contains(&"git".into()));
+        a.key(key(KeyCode::End));
+        let cursor = a.pages[1].cursor;
+        let mut terminal = Terminal::new(TestBackend::new(120, 32)).unwrap();
+        terminal.draw(|f| draw(f, &mut a)).unwrap();
+        let offset = a.pages[1].offset;
+        assert!(
+            offset > 0,
+            "large package lists must scroll within the pane"
+        );
+        a.key(key(KeyCode::Char('8')));
+        a.key(key(KeyCode::Char('2')));
+        assert_eq!(a.pages[1].cursor, cursor);
+        terminal.draw(|f| draw(f, &mut a)).unwrap();
+        assert_eq!(a.pages[1].offset, offset);
+        assert!(!a.selected.is_empty());
+        a.pane = Pane::Selection;
+        a.move_cursor(5);
+        assert_eq!(a.summary_scroll, 5);
+        a.pane = Pane::Categories;
+        a.move_cursor(1);
+        assert_eq!(a.pages[1].category, 1);
+        assert_eq!(a.pages[1].cursor, 0);
+        a.key(key(KeyCode::Char('f')));
+        assert_eq!(a.pages[1].filter, 1);
+    }
+    #[test]
+    fn all_screens_resize_and_show_loading_empty_failure_and_review_states() {
+        let mut a = fixture();
+        for (w, h) in [(160, 50), (100, 32), (80, 24), (60, 20), (45, 16), (30, 10)] {
+            let mut terminal = Terminal::new(TestBackend::new(w, h)).unwrap();
+            for page in 0..8 {
+                a.page = page;
+                a.nav = page;
+                terminal.draw(|f| draw(f, &mut a)).unwrap();
+            }
+            a.page = 2;
+            a.review(backend::cleanup()[1].clone());
+            terminal.draw(|f| draw(f, &mut a)).unwrap();
+            a.dialog = None;
+            a.output_open = true;
+            a.busy = true;
+            a.output.clear();
+            terminal.draw(|f| draw(f, &mut a)).unwrap();
+            a.busy = false;
+            a.output = "error: mock command failed\nNo packages were changed.".into();
+            terminal.draw(|f| draw(f, &mut a)).unwrap();
+            a.output_open = false;
+            a.page = 1;
+            a.pages[1].query = "no-matching-package".into();
+            terminal.draw(|f| draw(f, &mut a)).unwrap();
+            a.pages[1].query.clear();
+        }
+    }
+    #[test]
+    fn output_search_scroll_and_no_color_are_terminal_safe() {
+        let mut a = fixture();
+        a.output = (0..200)
+            .map(|i| format!("line {i}: {}", if i % 10 == 0 { "warning" } else { "ok" }))
+            .collect::<Vec<_>>()
+            .join("\n");
+        a.output_open = true;
+        a.output_height = 10;
+        a.move_cursor(100000);
+        assert_eq!(a.output_scroll, 190);
+        a.move_cursor(-10);
+        assert_eq!(a.output_scroll, 180);
+        a.submit_input(InputKind::OutputSearch, "warning".into());
+        assert_eq!(a.output_lines().len(), 20);
+        assert_eq!(a.output_scroll, 0);
+        a.key(key(KeyCode::Right));
+        assert_eq!(a.output_horizontal, 8);
+        a.no_color = true;
+        let mut t = Terminal::new(TestBackend::new(120, 35)).unwrap();
+        t.draw(|f| draw(f, &mut a)).unwrap();
+        for cell in t.backend().buffer().content() {
+            assert_eq!(cell.fg, Color::Reset);
+            assert_eq!(cell.bg, Color::Reset);
+        }
+        assert_eq!(
+            backend::clean_output(b"\x1b[31merror\x1b[0m\x1b]52;c;secret\x07\n"),
+            "error\n"
+        );
+    }
+    #[test]
+    fn planning_never_runs_commands_and_rejects_unknown_targets() {
+        let scan = fixture().scan;
+        let selected = BTreeSet::from(["test-package-001".into(), "git".into()]);
+        let plan = backend::install_plan(&selected, &scan).unwrap();
+        assert!(!plan.args.contains(&"git".into()));
+        assert!(backend::install_plan(&BTreeSet::from(["--noconfirm".into()]), &scan).is_err());
+        assert!(backend::removal(&BTreeSet::from(["test-package-001".into()]), &scan).is_err());
+        let remove = backend::removal(&BTreeSet::from(["lutris".into()]), &scan).unwrap();
+        assert_eq!(remove.args, vec!["-R", "--", "lutris-git"]);
+    }
+}
+
+#[cfg(test)]
+mod live_render {
+    use super::*;
+    #[test]
+    #[ignore = "Local read-only visual verification; writes only /tmp artifacts"]
+    fn snapshot_actual_readings() {
+        let mut app = App::new();
+        app.scan = backend::scan();
+        app.scanning = false;
+        app.refresh_catalog();
+        let mut sampler = crate::system::Sampler::default();
+        sampler.sample();
+        std::thread::sleep(Duration::from_millis(150));
+        app.metrics = Some(sampler.sample());
+        app.status = "Ready · local visual verification".into();
+        app.no_color = false;
+        app.last_update = Some(Instant::now());
+        for (width, height, page, name) in [
+            (160, 50, 0, "overview"),
+            (160, 50, 4, "loadout"),
+            (80, 24, 0, "compact"),
+            (80, 24, 4, "compact-loadout"),
+            (160, 50, 7, "wiki"),
+        ] {
+            app.page = page;
+            app.nav = page;
+            app.pane = Pane::Items;
+            let mut t = Terminal::new(ratatui::backend::TestBackend::new(width, height)).unwrap();
+            t.draw(|f| draw(f, &mut app)).unwrap();
+            let cells:Vec<_>=t.backend().buffer().content().iter().map(|cell|serde_json::json!({"text":cell.symbol(),"fg":format!("{:?}",cell.fg),"bg":format!("{:?}",cell.bg),"style":format!("{:?}",cell.modifier)})).collect();
+            std::fs::write(
+                format!("/tmp/archforge-tui-{name}.json"),
+                serde_json::json!({"width":width,"height":height,"cells":cells}).to_string(),
+            )
+            .unwrap();
+        }
+    }
 }

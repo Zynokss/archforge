@@ -37,7 +37,7 @@
   <g transform="translate(1044 64)">
     <rect width="272" height="272" rx="64" fill="#111417" stroke="url(#edge)" stroke-width="2"/>
     <rect x="10" y="10" width="252" height="252" rx="55" fill="none" stroke="#ff6467" stroke-opacity=".08"/>
-    <g transform="translate(28 28) scale(1.6875)"><path fill="#ff6467" d="M64 8 114 116 77 99V82c0-12-6-20-13-20s-13 8-13 20v17l-37 17L45 48l11 7-7-15 15-32Z"/></g>
+    <g transform="translate(28 28) scale(1.6875)"><path transform="scale(0.231047)" fill="#ff6467" d="M277 0 487 430Q451 409 410 401Q459 429 506 467L553 554Q448 490 337 460C345 422 340 390 327 365C315 337 297 323 277 323C256 323 239 337 227 365C214 395 211 428 220 460Q109 489 1 554L203 176Q239 205 280 220Q240 190 210 158Z"/></g>
   </g>
   <rect x="1" y="1" width="1438" height="398" rx="21" fill="none" stroke="#394049" stroke-opacity=".6"/>
 </svg>

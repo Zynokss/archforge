@@ -47,9 +47,11 @@ fn lookup(table: &'static str, key: &str) -> Option<&'static str> {
                 })
                 .collect()
         })
-        .get(table)?
-        .get(key)
-        .copied()
+        .get(table)
+        .and_then(|entries| {
+            let actual = crate::package_variants::resolve(entries.keys().copied(), key)?;
+            entries.get(actual).copied()
+        })
 }
 
 fn asset(name: &str) -> Option<&'static str> {
@@ -108,4 +110,13 @@ pub(crate) fn icon(app: &App) -> gtk::Widget {
         image.set_tooltip_text(Some(&app.title));
         image.upcast()
     }
+}
+
+#[cfg(test)]
+#[path = "app_icons_tests.rs"]
+mod tests;
+
+#[cfg(test)]
+pub(crate) fn verify_ui(parent: &gtk::ApplicationWindow) {
+    tests::ui(parent);
 }

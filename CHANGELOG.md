@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.12.0
+
+- Redesigned Packages with summary cards, package descriptions and sizes, source/category filters, pagination, bulk selection and reviewed package actions.
+- Unified package variant matching across desktop and terminal views, loadouts, gaming checks and icons. Common packaging suffixes retain catalog metadata while actions preserve actual installed names and explicit source decisions.
+- Added Uncategorized and Reset filters, fixed variant category filtering, and prevented duplicate installed variants in package browsing.
+- Overhauled every appearance palette with deep tinted surfaces, illuminated borders, hover glow and a matching Arch banner.
+- Replaced the custom Arch mark with a transparent silhouette throughout the app and launcher icons, and fixed logo clipping in shorter headers.
+- Verified all palettes, compact layouts, category/sort/pagination behavior and desktop workflows in isolated graphical sessions.
+
 ## 0.11.0
 
 - Added a standalone terminal edition for Linux consoles, SSH and terminal emulators, with no GTK or VTE dependency.

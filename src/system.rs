@@ -89,7 +89,8 @@ impl Inventory {
                 .is_ok_and(|m| m.is_file() && m.permissions().mode() & 0o111 != 0)
     }
     pub fn installed(&self, name: &str) -> bool {
-        self.packages.iter().any(|p| p.name == name)
+        crate::package_variants::resolve(self.packages.iter().map(|p| p.name.as_str()), name)
+            .is_some()
     }
 }
 
@@ -377,5 +378,81 @@ pub fn run(program: &str, args: &[&str], seconds: u64) -> Result<String, String>
             output.text,
             error.text
         ))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn exact_arch_detection() {
+        assert!(is_arch("NAME=Arch\nID=arch\n"));
+        assert!(is_arch("ID=\"arch\""));
+        assert!(!is_arch("ID=manjaro\nID_LIKE=arch"));
+    }
+    #[test]
+    fn cpu_excludes_guest_double_counting() {
+        assert_eq!(cpu_ticks("cpu 10 2 3 40 5 1 2 0 8 9"), Some((63, 45)));
+        assert_eq!(cpu_ticks(""), None);
+    }
+    #[test]
+    fn memory_uses_available_including_reclaimable_cache() {
+        assert_eq!(
+            memory_bytes("MemTotal: 1000 kB\nMemFree: 100 kB\nMemAvailable: 600 kB\n"),
+            (400 * 1024, 1000 * 1024)
+        );
+    }
+    #[test]
+    fn package_versions_preserved() {
+        let p = parse_packages("linux 6.18-1\nsteam 1:1.0-2\n");
+        assert_eq!(p.len(), 2);
+        assert_eq!(p[1].version, "1:1.0-2");
+    }
+    #[test]
+    fn failed_commands_are_errors() {
+        assert!(run("/usr/bin/false", &[], 1).is_err());
+    }
+    #[test]
+    fn inherited_output_pipes_obey_the_timeout() {
+        let start = Instant::now();
+        let result = run("/usr/bin/sh", &["-c", "sleep 2 & printf done"], 1);
+        assert!(
+            start.elapsed() < Duration::from_millis(1800),
+            "Inherited output pipes exceeded the deadline"
+        );
+        assert!(result.is_err(), "A child holding output open must time out");
+    }
+    #[test]
+    fn captured_output_is_bounded_without_breaking_the_writer() {
+        let output = run(
+            "/usr/bin/sh",
+            &[
+                "-c",
+                "head -c 5000000 /dev/zero && printf writer_finished >&2",
+            ],
+            5,
+        )
+        .unwrap();
+        assert!(output.contains("Output truncated"));
+        assert!(output.contains("writer_finished"));
+        assert!(output.len() < 4 * 1024 * 1024 + 200);
+    }
+    #[test]
+    fn a_running_command_obeys_the_timeout() {
+        let start = Instant::now();
+        assert!(run("/usr/bin/sleep", &["5"], 1).is_err());
+        assert!(start.elapsed() < Duration::from_millis(1800));
+    }
+    #[test]
+    fn stdout_stderr_and_invalid_utf8_are_preserved() {
+        let output = run(
+            "/usr/bin/sh",
+            &["-c", "printf 'ok\\377'; printf problem >&2"],
+            2,
+        )
+        .unwrap();
+        assert!(output.starts_with("ok"));
+        assert!(output.contains('\u{fffd}'));
+        assert!(output.contains("problem"));
     }
 }

@@ -405,3 +405,12 @@ pub(crate) fn show(parent: &gtk::ApplicationWindow) {
     view.reload();
     window.present();
 }
+
+#[cfg(test)]
+#[path = "app_locations_tests.rs"]
+mod tests;
+
+#[cfg(test)]
+pub(crate) fn verify_ui(parent: &gtk::ApplicationWindow) {
+    tests::ui(parent);
+}

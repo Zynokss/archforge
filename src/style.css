@@ -77,9 +77,9 @@ popover > contents { background: @forge_surface; color: @forge_fg; border: 1px s
 .palette-choice { border-radius: 9px; min-width: 175px; padding: 10px; }
 .palette-choice.chosen { background: @forge_container; color: @forge_on_container; }
 .swatch { min-width: 24px; min-height: 24px; border-radius: 30px; }
-.crimson-swatch { background: #ff6467; }
-.sage-swatch { background: #c1d0b5; }
-.lavender-swatch { background: #d5b7ee; }
+.crimson-swatch { background: #ff2c50; }
+.sage-swatch { background: #a8d59c; }
+.lavender-swatch { background: #c7a0f5; }
 .sand-swatch { background: #dfc48c; }
 .desktop-swatch { background: @forge_primary; }
 .palette-description { margin-top: 10px; font-size: 12px; color: @forge_muted; }
@@ -451,3 +451,32 @@ menubutton.sidebar-utility > button { padding: 0; border: 0; background: transpa
 .wiki-toc-link { padding: 5px 0; border: 0; background: transparent; font-size: 11px; }
 .sidebar button.nav { padding: 10px 14px; margin-bottom: 4px; }
 .sidebar button.nav.active { padding-left: 12px; }
+
+/* Package workbench: shared geometry across every palette. */
+.arch-night-swatch { background: #35d3fa; }
+.package-tabs button { min-width: 106px; padding: 10px 18px; }
+.package-tabs button:checked { background: @forge_container; border-color: @forge_primary; color: @forge_on_container; }
+.package-stat { border-radius: 11px; border: 1px solid alpha(@forge_muted, 0.22); background: linear-gradient(120deg, @forge_high, @forge_surface); padding: 16px 14px; }
+.package-stat .material-symbol, .package-stat image { color: @forge_primary; background: alpha(@forge_primary, 0.07); border-radius: 10px; padding: 9px; }
+.package-stat-value { font-size: 23px; font-weight: 650; font-feature-settings: "tnum"; }
+.package-table { padding: 16px; }
+.package-table-header { padding: 10px 12px; border: 1px solid alpha(@forge_muted, 0.22); border-radius: 9px 9px 0 0; background: @forge_high; }
+.package-name-heading { padding-left: 38px; }
+.packages-page .package-row { padding: 7px 12px; min-height: 32px; }
+.packages-page .package-row .row-title { font-weight: 600; }
+.packages-page .package-row .row-sub { font-size: 11px; }
+.package-version { background: alpha(@forge_highest, 0.5); border-radius: 5px; padding: 4px 7px; font-size: 11px; }
+.package-source { background: alpha(@forge_primary, 0.09); color: @forge_primary; border-radius: 5px; padding: 5px 7px; font-size: 11px; }
+.package-more { padding: 0; min-width: 20px; }
+.package-more > button { padding: 3px; border-color: transparent; background: transparent; min-width: 20px; }
+.package-page-number { background: @forge_container; color: @forge_on_container; border: 1px solid @forge_primary; border-radius: 7px; padding: 7px 12px; font-feature-settings: "tnum"; }
+.package-aside .section-title { font-size: 16px; margin-bottom: 9px; }
+.package-aside button { padding: 10px 12px; }
+.compact .package-toolbar { margin-bottom: 4px; }
+.compact .package-stat { padding: 10px 8px; }
+.compact .package-stat .material-symbol { padding: 3px; }
+.compact .package-stat-value { font-size: 20px; }
+.compact .package-stat .tiny { font-size: 10px; }
+.compact .package-row .package-version { min-width: 90px; }
+
+.package-header-art { color: @forge_primary; }

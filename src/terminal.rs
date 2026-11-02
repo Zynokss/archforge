@@ -24,3 +24,7 @@ pub fn open(proposed: &str) -> Result<(), String> {
     });
     Ok(())
 }
+#[cfg(test)]
+pub fn verify_ui(parent: &gtk::ApplicationWindow) {
+    crate::embedded_terminal::verify_ui(parent);
+}

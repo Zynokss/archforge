@@ -590,6 +590,12 @@ pub(crate) fn restart_command() -> Command {
     Command::new("/usr/bin/archforge")
 }
 fn restart() -> std::io::Error {
+    #[cfg(test)]
+    if updater_tests::INTERCEPT.load(std::sync::atomic::Ordering::SeqCst) {
+        updater_tests::RESTART_CALLS.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
+        return std::io::Error::other("test restart intercepted");
+    }
+
     restart_command().exec()
 }
 
@@ -735,4 +741,12 @@ fn create_view(parent: &gtk::ApplicationWindow) -> Rc<View> {
 
 pub fn launcher(parent: &gtk::ApplicationWindow) -> gtk::Button {
     create_view(parent).launcher.clone()
+}
+
+#[cfg(test)]
+#[path = "updater_tests.rs"]
+mod updater_tests;
+#[cfg(test)]
+pub fn verify_ui(parent: &gtk::ApplicationWindow) {
+    updater_tests::ui(parent);
 }

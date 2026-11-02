@@ -843,3 +843,128 @@ pub(crate) fn run() -> bool {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn rejects_shell_syntax_options_and_bad_profile_sources() {
+        for s in ["--noconfirm", "git;id", "$(id)", "git /tmp/x", ""] {
+            assert!(names(s).is_err());
+        }
+        assert_eq!(names("git curl git").unwrap(), vec!["curl", "git"]);
+        let profile = serde_json::json!({"format":"archforge-loadout","version":1,"packages":[{"name":"git","source":"repo"},{"name":"vesktop","source":"foreign"}]});
+        assert_eq!(
+            profile_names(&profile.to_string()).unwrap(),
+            (vec!["git".into()], 1)
+        );
+        let mut bad = profile;
+        bad["packages"][0]["name"] = "--noconfirm".into();
+        assert!(profile_names(&bad.to_string()).is_err());
+    }
+    #[test]
+    fn terminal_catalog_has_real_unique_packages_and_excludes_desktop_apps() {
+        let apps = catalog();
+        assert!(apps.len() > 35);
+        let names: BTreeSet<_> = apps.iter().map(|f| f[1]).collect();
+        assert_eq!(names.len(), apps.len());
+        assert!(names.contains("git"));
+        assert!(!names.contains("firefox"));
+        assert!(!names.contains("vesktop-bin"));
+    }
+}
+
+#[cfg(test)]
+mod session_checks {
+    use super::*;
+    use std::os::unix::fs::PermissionsExt;
+    fn fake_sudo(dir: &std::path::Path, passwordless: bool) -> std::path::PathBuf {
+        let path = dir.join("sudo");
+        let calls = dir.join("calls");
+        let script = format!(
+            "#!/usr/bin/bash\nprintf '%s\\n' \"$*\" >> {}\nif [[ $1 == -n ]]; then exit {}; fi\nif [[ $1 == -k || $1 == -v ]]; then exit 0; fi\nif [[ $1 == -- ]]; then shift; exec \"$@\"; fi\nexit 1\n",
+            shell_quote(calls.to_str().unwrap()),
+            if passwordless { 0 } else { 1 }
+        );
+        fs::write(&path, script).unwrap();
+        fs::set_permissions(&path, fs::Permissions::from_mode(0o700)).unwrap();
+        path
+    }
+    #[test]
+    fn mocked_mutations_authenticate_each_time_and_block_passwordless_validation() {
+        let dir = tempfile::tempdir().unwrap();
+        let sudo = fake_sudo(dir.path(), false);
+        let marker = dir.path().join("command-ran");
+        // The mock operation only creates a temporary marker. No package command runs.
+        let args = vec![
+            "-c".into(),
+            format!("printf done >> {}", shell_quote(marker.to_str().unwrap())),
+        ];
+        for _ in 0..2 {
+            assert!(
+                execute_with(sudo.to_str().unwrap(), "/usr/bin/bash", &args, true, None)
+                    .unwrap()
+                    .success()
+            );
+        }
+        let calls = fs::read_to_string(dir.path().join("calls")).unwrap();
+        assert_eq!(calls.lines().filter(|l| *l == "-v").count(), 2);
+        assert!(calls.ends_with("-k\n"));
+        assert_eq!(fs::read_to_string(&marker).unwrap(), "donedone");
+        let blocked = tempfile::tempdir().unwrap();
+        let sudo = fake_sudo(blocked.path(), true);
+        assert!(execute_with(sudo.to_str().unwrap(), "/usr/bin/bash", &args, true, None).is_err());
+        assert_eq!(fs::read_to_string(&marker).unwrap(), "donedone");
+    }
+    #[test]
+    fn shell_arguments_are_preserved_without_evaluation() {
+        let log = tempfile::NamedTempFile::new().unwrap();
+        let args = vec!["%s".into(), "a b ' $(false); literal".into()];
+        assert!(
+            execute_with(
+                "/usr/bin/sudo",
+                "/usr/bin/printf",
+                &args,
+                false,
+                Some(log.path())
+            )
+            .unwrap()
+            .success()
+        );
+        let text = fs::read_to_string(log.path()).unwrap();
+        assert!(text.contains("a b ' $(false); literal"));
+    }
+    // A real PTY harness invokes this test with a private fake sudo and benign shell command.
+    #[test]
+    #[ignore = "Driven by a local PTY harness; never invokes real sudo"]
+    fn mocked_interactive_authentication() {
+        let Some(dir) = std::env::var_os("ARCHFORGE_TEST_SESSION_DIR") else {
+            return;
+        };
+        let dir = std::path::PathBuf::from(dir);
+        let sudo = dir.join("sudo");
+        let log = dir.join("transcript");
+        let status=execute_with(sudo.to_str().unwrap(),"/usr/bin/bash",&["-c".into(),"printf 'Transaction confirmation: '; read -r answer; printf 'Confirmed: %s\\n' \"$answer\"".into()],true,Some(&log)).unwrap();
+        assert!(status.success());
+    }
+    #[test]
+    #[ignore = "Driven by a local PTY harness; mock command only"]
+    fn mocked_interactive_interrupt() {
+        let Some(dir) = std::env::var_os("ARCHFORGE_TEST_SESSION_DIR") else {
+            return;
+        };
+        let dir = std::path::PathBuf::from(dir);
+        let status = execute_with(
+            dir.join("sudo").to_str().unwrap(),
+            "/usr/bin/bash",
+            &[
+                "-c".into(),
+                "printf 'Interrupt mock command now'; exec /usr/bin/sleep 30".into(),
+            ],
+            true,
+            Some(&dir.join("transcript")),
+        )
+        .unwrap();
+        assert!(!status.success());
+    }
+}

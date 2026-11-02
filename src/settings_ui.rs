@@ -8,12 +8,14 @@ pub(crate) fn page(
     let page = column(18);
     page.add_css_class("content");
     page.add_css_class("settings-page");
-    page.append(&label("Workspace / Settings", "eyebrow"));
-    page.append(&label("Make Arch Forge yours.", "page-title"));
-    page.append(&wrapped(
+    let header = column(0);
+    header.append(&label("Workspace / Settings", "eyebrow"));
+    header.append(&label("Make Arch Forge yours.", "page-title"));
+    header.append(&wrapped(
         "Appearance, updates, preferences, and information about the app.",
         "subtitle",
     ));
+    page.append(&crate::theme::banner(&header));
     let controls = column(12);
     controls.add_css_class("panel");
     controls.append(&label("App preferences", "section-title"));

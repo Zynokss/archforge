@@ -6,9 +6,6 @@
 /screenshots/
 /test-results/
 /tests/
-/src/ui_tests.rs
-/scripts/test*
-/scripts/preview.py
 /AGENTS.md
 __pycache__/
 *.log

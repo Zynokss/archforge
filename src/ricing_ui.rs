@@ -590,7 +590,7 @@ pub(crate) fn page(parent: &gtk::ApplicationWindow, setups: gtk::Widget) -> gtk:
     add_repo.set_hexpand(false);
     heading.append(&add_repo);
     heading.append(&backup_button);
-    page.append(&heading);
+    page.append(&crate::theme::banner(&heading));
 
     let sections = gtk::Stack::new();
     sections.set_vhomogeneous(false);
@@ -810,4 +810,191 @@ pub(crate) fn page(parent: &gtk::ApplicationWindow, setups: gtk::Widget) -> gtk:
     backup_button.connect_clicked(move |_| sections_for_button.set_visible_child_name("backups"));
     page.append(&sections);
     page
+}
+
+#[cfg(test)]
+mod gallery_checks {
+    use super::*;
+    fn walk(w: &gtk::Widget) -> Vec<gtk::Widget> {
+        let mut out = vec![w.clone()];
+        let mut child = w.first_child();
+        while let Some(c) = child {
+            out.extend(walk(&c));
+            child = c.next_sibling();
+        }
+        out
+    }
+    fn wait(mut condition: impl FnMut() -> bool) {
+        let start = std::time::Instant::now();
+        loop {
+            while glib::MainContext::default().pending() {
+                glib::MainContext::default().iteration(false);
+            }
+            if condition() {
+                break;
+            }
+            assert!(
+                start.elapsed() < Duration::from_secs(80),
+                "Ricing UI did not settle"
+            );
+            std::thread::sleep(Duration::from_millis(20));
+        }
+    }
+    #[test]
+    #[ignore]
+    fn ricing_gallery_states() {
+        gtk::init().unwrap();
+        let provider = gtk::CssProvider::new();
+        crate::theme::apply(&provider, "amber");
+        let app = gtk::Application::builder()
+            .application_id("io.github.zynokss.RicingCheck")
+            .build();
+        app.register(None::<&gtk::gio::Cancellable>).unwrap();
+        let window = gtk::ApplicationWindow::builder()
+            .application(&app)
+            .title("Ricing verification")
+            .default_width(1586)
+            .default_height(992)
+            .build();
+        let shell = row(0);
+        let sidebar = column(12);
+        sidebar.add_css_class("sidebar");
+        sidebar.set_width_request(220);
+        sidebar.append(&label("Arch Forge", "section-title"));
+        for name in [
+            "Overview",
+            "Tools",
+            "Gaming",
+            "Cleanup",
+            "Packages",
+            "Diagnostics",
+            "Loadouts",
+            "Ricing",
+        ] {
+            sidebar.append(&button(name, name == "Ricing"));
+        }
+        shell.append(&sidebar);
+        let page = page(&window, column(0).upcast());
+        let scroll = gtk::ScrolledWindow::builder()
+            .hexpand(true)
+            .child(&page)
+            .build();
+        shell.append(&scroll);
+        window.set_child(Some(&shell));
+        window.present();
+        wait(|| window.width() > 0);
+        crate::dialogs::snapshot(window.upcast_ref(), "ricing-discover-loading");
+        wait(|| {
+            walk(page.upcast_ref())
+                .iter()
+                .filter(|w| w.is_visible())
+                .filter_map(|w| w.downcast_ref::<gtk::Label>())
+                .all(|l| l.text() != "Loading screenshots…")
+        });
+        assert!(
+            walk(page.upcast_ref())
+                .iter()
+                .any(|w| w.is::<gtk::Picture>())
+        );
+        crate::dialogs::snapshot(window.upcast_ref(), "ricing-discover-success");
+        let view = walk(page.upcast_ref())
+            .into_iter()
+            .filter_map(|w| w.downcast::<gtk::Button>().ok())
+            .find(|b| b.label().as_deref() == Some("View setup →"))
+            .unwrap();
+        view.emit_clicked();
+        crate::dialogs::snapshot(window.upcast_ref(), "ricing-detail-loading");
+        wait(|| {
+            walk(page.upcast_ref())
+                .iter()
+                .any(|w| w.has_css_class("ricing-thumbnail"))
+        });
+        crate::dialogs::snapshot(window.upcast_ref(), "ricing-detail-success");
+        let documents = walk(page.upcast_ref())
+            .into_iter()
+            .filter_map(|w| w.downcast::<gtk::Stack>().ok())
+            .find(|stack| stack.child_by_name("readme").is_some())
+            .unwrap();
+        documents.set_visible_child_name("readme");
+        wait(|| {
+            walk(page.upcast_ref())
+                .iter()
+                .any(|w| w.is::<gtk::Expander>())
+        });
+        assert!(
+            !walk(page.upcast_ref())
+                .iter()
+                .filter_map(|w| w.downcast_ref::<gtk::Label>())
+                .any(|l| l.text().contains("<h1>"))
+        );
+        scroll.vadjustment().set_value(600.0);
+        crate::dialogs::snapshot(window.upcast_ref(), "ricing-readme-github");
+        if let Some(expander) = walk(page.upcast_ref())
+            .into_iter()
+            .filter_map(|w| w.downcast::<gtk::Expander>().ok())
+            .next()
+        {
+            expander.set_expanded(true);
+        }
+        crate::dialogs::snapshot(window.upcast_ref(), "ricing-readme-expanded");
+        documents.set_visible_child_name("install");
+        crate::dialogs::snapshot(window.upcast_ref(), "ricing-installation-github");
+        documents.set_visible_child_name("overview");
+        let next = walk(page.upcast_ref())
+            .into_iter()
+            .filter_map(|w| w.downcast::<gtk::Button>().ok())
+            .find(|b| b.label().as_deref() == Some("›"))
+            .unwrap();
+        next.emit_clicked();
+        let failed = crate::ricing::Project {
+            repository: "archforge-test/no-such-repository",
+            ..crate::ricing::PROJECTS[0]
+        };
+        let gallery = walk(page.upcast_ref())
+            .into_iter()
+            .find(|w| w.has_css_class("ricing-gallery"))
+            .unwrap()
+            .downcast::<gtk::Box>()
+            .unwrap();
+        load_preview(failed, &gallery, None, true);
+        wait(|| {
+            walk(gallery.upcast_ref())
+                .iter()
+                .filter_map(|w| w.downcast_ref::<gtk::Button>())
+                .any(|b| b.label().as_deref() == Some("Retry"))
+        });
+        assert!(
+            !walk(gallery.upcast_ref())
+                .iter()
+                .filter_map(|w| w.downcast_ref::<gtk::Label>())
+                .any(|l| l.text().contains("Loading"))
+        );
+        crate::dialogs::snapshot(window.upcast_ref(), "ricing-detail-failure");
+        let back = walk(page.upcast_ref())
+            .into_iter()
+            .filter_map(|w| w.downcast::<gtk::Button>().ok())
+            .find(|b| {
+                walk(b.upcast_ref())
+                    .iter()
+                    .filter_map(|w| w.downcast_ref::<gtk::Label>())
+                    .any(|l| l.text() == "Back to Discover")
+            })
+            .unwrap();
+        back.emit_clicked();
+        let art = walk(page.upcast_ref())
+            .into_iter()
+            .find(|w| w.has_css_class("ricing-card-art"))
+            .unwrap()
+            .downcast::<gtk::Box>()
+            .unwrap();
+        load_preview(failed, &art, None, false);
+        wait(|| {
+            walk(art.upcast_ref())
+                .iter()
+                .filter_map(|w| w.downcast_ref::<gtk::Button>())
+                .any(|b| b.label().as_deref() == Some("Retry"))
+        });
+        crate::dialogs::snapshot(window.upcast_ref(), "ricing-discover-failure");
+        window.close();
+    }
 }

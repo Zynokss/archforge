@@ -420,3 +420,7 @@ pub(crate) fn install_command(id: &str, app: &str) -> Result<String, String> {
         q(app)
     ))
 }
+
+#[cfg(test)]
+#[path = "app_storage_tests.rs"]
+mod tests;

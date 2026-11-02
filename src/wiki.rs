@@ -279,7 +279,8 @@ pub(crate) fn page(parent: &gtk::ApplicationWindow) -> gtk::Box {
     page.add_css_class("content");
     page.add_css_class("wiki-page");
     page.set_vexpand(true);
-    page.append(&label("Workspace / Wiki", "eyebrow"));
+    let banner_content = column(0);
+    banner_content.append(&label("Workspace / Wiki", "eyebrow"));
     let header = row(12);
     let text = column(4);
     text.set_hexpand(true);
@@ -292,7 +293,8 @@ pub(crate) fn page(parent: &gtk::ApplicationWindow) -> gtk::Box {
     let official = gtk::LinkButton::with_label("https://wiki.archlinux.org/", "Open ArchWiki ↗");
     official.set_valign(gtk::Align::Center);
     header.append(&official);
-    page.append(&header);
+    banner_content.append(&header);
+    page.append(&crate::theme::banner(&banner_content));
     let search = gtk::SearchEntry::builder()
         .placeholder_text("Search commands, tasks, errors, or topics…")
         .hexpand(true)
@@ -487,4 +489,104 @@ pub(crate) fn page(parent: &gtk::ApplicationWindow) -> gtk::Box {
         let _ = &view;
     });
     page
+}
+
+#[cfg(test)]
+pub(crate) fn verify_ui(parent: &gtk::ApplicationWindow) {
+    tests::verify(parent);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn guide_commands_are_valid_and_identifiers_are_unique() {
+        let mut keys = BTreeSet::new();
+        for entry in ENTRIES {
+            assert!(entry.topic < TOPICS.len());
+            assert!(keys.insert(key(entry)));
+            assert!(
+                TOPICS[entry.topic]
+                    .url
+                    .starts_with("https://wiki.archlinux.org/")
+            );
+            assert!(!entry.command.contains("pacman -Sy "));
+            assert!(
+                std::process::Command::new("/usr/bin/bash")
+                    .args(["-n", "-c", entry.command])
+                    .status()
+                    .unwrap()
+                    .success(),
+                "{}",
+                entry.title
+            );
+        }
+    }
+    pub(super) fn verify(parent: &gtk::ApplicationWindow) {
+        fn walk(w: &gtk::Widget) -> Vec<gtk::Widget> {
+            let mut out = vec![w.clone()];
+            let mut c = w.first_child();
+            while let Some(child) = c {
+                out.extend(walk(&child));
+                c = child.next_sibling();
+            }
+            out
+        }
+        let window = gtk::Window::builder()
+            .title("Wiki verification")
+            .transient_for(parent)
+            .default_width(1300)
+            .default_height(900)
+            .build();
+        let content = page(parent);
+        window.set_child(Some(&content));
+        window.present();
+        let search = walk(content.upcast_ref())
+            .into_iter()
+            .find_map(|w| w.downcast::<gtk::SearchEntry>().ok())
+            .unwrap();
+        search.set_text("journalctl vacuum");
+        search.emit_by_name::<()>("search-changed", &[]);
+        assert!(
+            walk(content.upcast_ref())
+                .iter()
+                .filter_map(|w| w.downcast_ref::<gtk::Label>())
+                .any(|l| l.text() == "Keep seven days of archived logs")
+        );
+        let saved = walk(content.upcast_ref())
+            .into_iter()
+            .filter_map(|w| w.downcast::<gtk::ToggleButton>().ok())
+            .find(|b| b.label().as_deref() == Some("☆ Save"))
+            .unwrap();
+        saved.set_active(true);
+        assert!(super::saved().iter().any(|k| k.contains("Keep seven days")));
+        let review = walk(content.upcast_ref())
+            .into_iter()
+            .filter_map(|w| w.downcast::<gtk::Button>().ok())
+            .find(|b| b.label().as_deref() == Some("Review command"))
+            .unwrap();
+        review.emit_clicked();
+        if let Some(review) = gtk::Window::list_toplevels()
+            .into_iter()
+            .filter_map(|w| w.downcast::<gtk::Window>().ok())
+            .find(|w| w.title().as_deref() == Some("Keep seven days of archived logs"))
+        {
+            crate::dialogs::snapshot(&review, "wiki-review-command");
+            review.close();
+        } else {
+            panic!("Review dialog missing");
+        }
+        search.set_text("no-such-guide-entry-12345");
+        search.emit_by_name::<()>("search-changed", &[]);
+        assert!(
+            walk(content.upcast_ref())
+                .iter()
+                .filter_map(|w| w.downcast_ref::<gtk::Label>())
+                .any(|l| l.text().starts_with("No commands match"))
+        );
+        search.set_text("");
+        search.emit_by_name::<()>("search-changed", &[]);
+        crate::dialogs::snapshot(&window, "wiki-browse");
+        window.close();
+    }
 }

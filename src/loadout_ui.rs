@@ -288,6 +288,7 @@ impl View {
     }
     fn matches_status(&self, name: &str) -> bool {
         let state = self.packages.borrow();
+        let name = state.installed_variant(name);
         match self.status_filter.get() {
             1 => state.ready && state.installed.contains_key(name),
             2 => state.ready && !state.installed.contains_key(name),
@@ -311,7 +312,13 @@ impl View {
         p.packages = p
             .packages
             .into_iter()
-            .map(|(name, source)| (state.installed_variant(&name).to_owned(), source))
+            .map(|(name, source)| {
+                let actual = state.installed_variant(&name);
+                (
+                    actual.to_owned(),
+                    state.variant_source(actual, &name, source),
+                )
+            })
             .collect();
         let enabled = self.enabled.borrow();
         p.files.retain(|path, _| enabled.contains(path));
@@ -334,27 +341,36 @@ impl View {
             let state = self.packages.borrow();
             let actual = state.installed_variant(&app.name);
             if actual != app.name {
+                app.source = state.variant_source(actual, &app.name, app.source);
                 app.description = format!("{} Installed package: {actual}.", app.description);
                 app.name = actual.to_owned();
             }
         }
-        let existing: BTreeSet<_> = apps.iter().map(|a| a.name.clone()).collect();
-        for (name, source) in &self.profile.borrow().packages {
-            if !existing.contains(name) {
-                apps.push(App {
-                    name: name.clone(),
-                    title: name.clone(),
-                    category: "Imported / custom".into(),
-                    description: "From this loadout; verify availability on the target system."
-                        .into(),
-                    source: *source,
-                    priority: 2,
-                    popularity: None,
-                });
+        let mut existing = BTreeSet::new();
+        apps.retain(|app| existing.insert(app.name.clone()));
+        let selected = self.effective();
+        let catalog = crate::loadout_styles::catalog();
+        for (name, source) in &selected.packages {
+            if existing.insert(name.clone()) {
+                let mut app = crate::loadout_styles::catalog_entry(&catalog, name)
+                    .cloned()
+                    .unwrap_or_else(|| App {
+                        name: name.clone(),
+                        title: name.clone(),
+                        category: "Imported / custom".into(),
+                        description: "From this loadout; verify availability on the target system."
+                            .into(),
+                        source: *source,
+                        priority: 2,
+                        popularity: None,
+                    });
+                app.name = name.clone();
+                app.source = *source;
+                apps.push(app);
             }
         }
         for app in &mut apps {
-            if let Some(source) = self.profile.borrow().packages.get(&app.name) {
+            if let Some(source) = selected.packages.get(&app.name) {
                 app.source = *source;
             }
         }
@@ -650,7 +666,7 @@ impl View {
             for name in names.iter().take(20) {
                 let line = row(7);
                 line.add_css_class("loadout-selected-item");
-                if let Some(app) = catalog.iter().find(|app| app.name == ***name) {
+                if let Some(app) = crate::loadout_styles::catalog_entry(&catalog, name) {
                     let icon = crate::app_icons::icon(app);
                     icon.set_size_request(20, 20);
                     line.append(&icon);
@@ -674,7 +690,12 @@ impl View {
                 let weak = Rc::downgrade(self);
                 remove.connect_clicked(move |_| {
                     if let Some(view) = weak.upgrade() {
-                        view.profile.borrow_mut().packages.remove(&name);
+                        let state = view.packages.borrow();
+                        view.profile
+                            .borrow_mut()
+                            .packages
+                            .retain(|selected, _| state.installed_variant(selected) != name);
+                        drop(state);
                         view.render_packages();
                         view.render_summary();
                     }
@@ -824,7 +845,7 @@ impl View {
         );
     }
 }
-fn removal_review(parent: &gtk::ApplicationWindow, names: Vec<String>, command: String) {
+pub(crate) fn removal_review(parent: &gtk::ApplicationWindow, names: Vec<String>, command: String) {
     let (window, surface) = Surface::new(
         parent,
         "Uninstall packages",
@@ -1238,7 +1259,7 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
     let capture = button("Capture this system", true);
     top.append(&import);
     top.append(&capture);
-    page.append(&top);
+    page.append(&crate::theme::banner(&top));
     let workspace_tabs = gtk::Stack::new();
     workspace_tabs.set_vhomogeneous(false);
     workspace_tabs.set_vexpand(true);
@@ -1958,4 +1979,13 @@ pub(crate) fn page(parent: &gtk::ApplicationWindow, stack: &gtk::Stack) -> gtk::
         .build();
     stack.add_named(&scroll, Some("ricing"));
     page
+}
+
+#[cfg(test)]
+#[path = "loadout_ui_tests.rs"]
+mod tests;
+
+#[cfg(test)]
+pub(crate) fn verify_ui(parent: &gtk::ApplicationWindow) {
+    tests::ui(parent);
 }

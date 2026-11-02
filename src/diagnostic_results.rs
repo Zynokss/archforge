@@ -199,3 +199,7 @@ pub(crate) fn summarize(job: Job, result: &Result<String, String>) -> Findings {
     }
     summary
 }
+
+#[cfg(test)]
+#[path = "diagnostic_results_tests.rs"]
+mod tests;

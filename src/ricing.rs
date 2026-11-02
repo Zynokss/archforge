@@ -455,3 +455,54 @@ pub(crate) fn backup_files() -> Vec<(String, u64, String)> {
     files.truncate(40);
     files
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn curated_installation_commands_are_valid_bash() {
+        for project in PROJECTS {
+            assert!(
+                std::process::Command::new("/usr/bin/bash")
+                    .args(["-n", "-c", project.command])
+                    .status()
+                    .unwrap()
+                    .success(),
+                "{}",
+                project.repository
+            );
+            assert!(installation_document(*project).contains(project.command));
+        }
+        assert_eq!(
+            PROJECTS[0].command,
+            "bash <(curl -s https://ii.clsty.link/get)"
+        );
+        assert_eq!(
+            PROJECTS[2].command,
+            "bash <(curl -s https://ml4w.com/os/stable)"
+        );
+    }
+    #[test]
+    fn resolves_readme_image_sources() {
+        let project = PROJECTS[0];
+        let readme = "![Desktop](../screenshots/desktop.png) <img src = \"images/widgets.webp\"> ![Other](https://github.com/pctrade/end4-pC/blob/main/screenshots/1.png)";
+        let urls = image_urls(readme, project, "main/.github");
+        assert!(urls.contains(&"https://raw.githubusercontent.com/end-4/dots-hyprland/main/screenshots/desktop.png".into()));
+        assert!(urls.contains(&"https://raw.githubusercontent.com/end-4/dots-hyprland/main/.github/images/widgets.webp".into()));
+        assert!(urls.contains(
+            &"https://raw.githubusercontent.com/pctrade/end4-pC/main/screenshots/1.png".into()
+        ));
+        assert!(clean_url("http://example.com/image.png", project, "main").is_none());
+    }
+    #[test]
+    #[ignore]
+    fn curated_screenshots_download_and_cache() {
+        for project in PROJECTS {
+            let details = fetch(*project).unwrap_or_else(|e| panic!("{}: {e}", project.repository));
+            assert!(!details.images.is_empty(), "{}", project.repository);
+            for (url, bytes) in details.images {
+                assert_eq!(std::fs::read(cache_path(&url).unwrap()).unwrap(), bytes);
+            }
+        }
+    }
+}

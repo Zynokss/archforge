@@ -1,7 +1,7 @@
 use super::*;
 use std::cell::Cell;
 
-fn heading(
+pub(super) fn heading(
     parent: &gtk::ApplicationWindow,
     title: &str,
     subtitle: &str,
@@ -28,7 +28,7 @@ fn heading(
     );
     report.set_valign(gtk::Align::Center);
     top.append(&report);
-    p.append(&top);
+    p.append(&theme::banner(&top));
     p
 }
 
@@ -301,13 +301,20 @@ pub(super) fn overview(
             }
         });
     });
-    if let Some(top) = p.first_child().and_then(|w| w.downcast::<gtk::Box>().ok()) {
+    if let Some(top) = p
+        .first_child()
+        .and_then(|w| w.downcast::<gtk::Overlay>().ok())
+        .and_then(|w| w.last_child())
+        .and_then(|w| w.downcast::<gtk::Box>().ok())
+    {
         top.append(&refresh);
     }
 
     let strip = row(22);
     strip.add_css_class("overview-strip");
-    strip.append(&arch_logo("#48b7e8", 30));
+    let mark = arch_logo(&theme::Palette::load(&theme::selected()).0.primary, 30);
+    mark.add_css_class("themed-arch-mark");
+    strip.append(&mark);
     strip.append(&label("Arch Linux", "section-title"));
     strip.append(&gtk::Separator::new(gtk::Orientation::Vertical));
     strip.append(&label(
@@ -336,7 +343,7 @@ pub(super) fn overview(
         ("Graphics", "video-display-symbolic"),
         ("Root storage", "drive-harddisk-symbolic"),
     ] {
-        let card = column(12);
+        let card = column(8);
         card.add_css_class("overview-metric");
         card.set_hexpand(true);
         let top = row(10);
@@ -893,160 +900,7 @@ pub(super) fn cleanup(parent: &gtk::ApplicationWindow) -> gtk::Box {
 }
 
 pub(super) fn packages(parent: &gtk::ApplicationWindow, inv: &Inventory) -> gtk::Box {
-    let p = heading(
-        parent,
-        "Know what is installed.",
-        "Search your local package database. Package versions come directly from pacman.",
-        "Packages",
-    );
-    let actions = row(12);
-    actions.append(&icon_job(
-        parent,
-        "Check updates",
-        "\u{e863}",
-        Job::Updates,
-        true,
-    ));
-    actions.append(&icon_job(
-        parent,
-        "Inspect foreign packages",
-        "\u{e1a1}",
-        Job::Foreign,
-        false,
-    ));
-    p.append(&actions);
-    let table = panel("panel");
-    table.set_vexpand(true);
-    let toolbar = row(14);
-    let search = gtk::SearchEntry::builder()
-        .placeholder_text("Search installed packages…")
-        .hexpand(true)
-        .build();
-    toolbar.append(&search);
-    let sort = gtk::DropDown::from_strings(&["Name A–Z", "Name Z–A"]);
-    sort.set_valign(gtk::Align::Center);
-    toolbar.append(&sort);
-    table.append(&toolbar);
-    let count = label("Loading local database…", "muted");
-    count.set_margin_top(12);
-    count.set_margin_bottom(14);
-    table.append(&count);
-    let columns = row(16);
-    columns.add_css_class("table-columns");
-    let name = label("PACKAGE", "tiny");
-    name.set_hexpand(true);
-    columns.append(&name);
-    let version = label("INSTALLED VERSION", "tiny");
-    version.set_width_chars(28);
-    columns.append(&version);
-    table.append(&columns);
-    let list = column(0);
-    let scroll = gtk::ScrolledWindow::builder()
-        .child(&list)
-        .vexpand(true)
-        .min_content_height(310)
-        .hscrollbar_policy(gtk::PolicyType::Never)
-        .build();
-    table.append(&scroll);
-    table.append(&note(
-        "\u{e88e}",
-        "Search to narrow down the list. Results are limited to 80 packages.",
-    ));
-    p.append(&table);
-    let packages = Rc::new(inv.packages.clone());
-    let query = Rc::new(RefCell::new(String::new()));
-    let descending = Rc::new(RefCell::new(false));
-    let draw: Rc<dyn Fn()> = Rc::new({
-        let query = query.clone();
-        let descending = descending.clone();
-        move || {
-            while let Some(child) = list.first_child() {
-                list.remove(&child);
-            }
-            let query = query.borrow();
-            let mut matching: Vec<_> = packages
-                .iter()
-                .filter(|pkg| pkg.name.contains(query.as_str()))
-                .collect();
-            matching.sort_by(|a, b| a.name.cmp(&b.name));
-            if *descending.borrow() {
-                matching.reverse();
-            }
-            count.set_text(&format!(
-                "{} matching packages · Showing first {} results",
-                matching.len(),
-                matching.len().min(80)
-            ));
-            if matching.is_empty() {
-                list.append(&label("No packages match your search.", "muted"));
-            }
-            for pkg in matching.iter().take(80) {
-                let r = row(12);
-                r.add_css_class("package-row");
-                r.append(&symbol("\u{e1a1}", "package-x-generic-symbolic"));
-                let name = label(&pkg.name, "row-title");
-                name.set_hexpand(true);
-                name.set_ellipsize(gtk::pango::EllipsizeMode::End);
-                name.set_tooltip_text(Some(&pkg.name));
-                name.set_selectable(true);
-                r.append(&name);
-                let version = label(&pkg.version, "mono");
-                version.set_width_chars(28);
-                version.set_max_width_chars(28);
-                version.set_ellipsize(gtk::pango::EllipsizeMode::Middle);
-                version.set_tooltip_text(Some(&pkg.version));
-                version.set_selectable(true);
-                r.append(&version);
-                list.append(&r);
-            }
-        }
-    });
-    draw();
-    let render = draw.clone();
-    search.connect_search_changed(move |entry| {
-        *query.borrow_mut() = entry.text().to_lowercase();
-        render();
-    });
-    sort.connect_selected_notify(move |s| {
-        *descending.borrow_mut() = s.selected() == 1;
-        draw();
-    });
-    let controllers = parent.observe_controllers();
-    let old: Vec<_> = (0..controllers.n_items())
-        .filter_map(|i| controllers.item(i))
-        .filter_map(|w| w.downcast::<gtk::EventController>().ok())
-        .filter(|c| c.name().as_deref() == Some("archforge-package-search"))
-        .collect();
-    for controller in old {
-        parent.remove_controller(&controller);
-    }
-    let controller = gtk::EventControllerKey::new();
-    controller.set_name(Some("archforge-package-search"));
-    let entry = search.downgrade();
-    let page = p.downgrade();
-    controller.connect_key_pressed(move |_, key, _, mods| {
-        if key == gtk::gdk::Key::f
-            && mods.contains(gtk::gdk::ModifierType::CONTROL_MASK)
-            && page.upgrade().is_some_and(|p| p.is_mapped())
-        {
-            if let Some(entry) = entry.upgrade() {
-                entry.grab_focus();
-            }
-            glib::Propagation::Stop
-        } else {
-            glib::Propagation::Proceed
-        }
-    });
-    parent.add_controller(controller);
-    p.append(&footer(&[
-        (
-            "\u{e8f1}",
-            "Local package database",
-            &format!("{} installed packages", inv.packages.len()),
-        ),
-        ("\u{e1db}", "Source", "pacman"),
-    ]));
-    p
+    crate::packages_ui::build(parent, inv)
 }
 
 #[derive(Clone)]

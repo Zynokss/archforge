@@ -15,6 +15,7 @@ mod loadout_ui;
 mod loadouts;
 mod package_cache;
 mod package_variants;
+mod packages_ui;
 mod preferences;
 mod ricing;
 mod ricing_document;
@@ -27,6 +28,8 @@ mod theme;
 mod tool_icons;
 mod tools;
 mod tui;
+#[cfg(test)]
+mod ui_tests;
 mod updater;
 mod wiki;
 mod wiki_data;
@@ -132,6 +135,9 @@ fn adapt_layout(window: &gtk::ApplicationWindow) {
         window.remove_css_class("compact");
     }
     fn visit(w: &gtk::Widget, compact: bool) {
+        if w.has_css_class("package-header-art") {
+            w.set_visible(!compact);
+        }
         if w.has_css_class("wiki-topic-picker") {
             w.set_visible(compact);
         }
@@ -681,7 +687,7 @@ fn build(app: &gtk::Application) {
     sidebar.add_css_class("sidebar");
     sidebar.set_width_request(220);
     let brand = row(10);
-    let icon = arch_logo("#ff6467", 50);
+    let icon = arch_logo(&theme::Palette::load(&chosen.borrow()).0.primary, 50);
     icon.add_css_class("brand-icon");
     brand.append(&icon);
     let brand_text = column(0);
@@ -833,7 +839,9 @@ fn build(app: &gtk::Application) {
     sidebar.append(&settings_button);
     let foot = row(12);
     foot.add_css_class("sidebar-foot");
-    foot.append(&arch_logo("#48b7e8", 30));
+    let mark = arch_logo(&theme::Palette::load(&theme::selected()).0.primary, 30);
+    mark.add_css_class("themed-arch-mark");
+    foot.append(&mark);
     let details = column(3);
     details.append(&label("Arch Linux", "row-title"));
     details.append(&label("Native · rolling release", "tiny"));

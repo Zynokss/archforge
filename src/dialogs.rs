@@ -1171,3 +1171,16 @@ pub fn show_job(parent: &gtk::ApplicationWindow, job: Job) {
     }
     window.present();
 }
+
+#[cfg(test)]
+#[path = "dialog_tests.rs"]
+mod dialog_tests;
+#[cfg(test)]
+pub fn verify_ui(parent: &gtk::ApplicationWindow) {
+    dialog_tests::ui(parent);
+}
+
+#[cfg(test)]
+pub fn snapshot(window: &gtk::Window, name: &str) {
+    dialog_tests::capture(window, name);
+}

@@ -6,15 +6,34 @@ pub(crate) struct Snapshot {
     pub updates_checked: bool,
     pub installed: BTreeMap<String, String>,
     pub cached: BTreeSet<String>,
+    pub foreign: Option<BTreeSet<String>>,
     pub updates: BTreeMap<String, (String, String)>,
     pub update_note: String,
     pub cache_note: String,
 }
 impl Snapshot {
-    /// Only reviewed alternatives of the same application; never infer equivalence
-    /// by stripping suffixes (e.g. unrelated -git or library packages).
+    /// Exact names take priority over unambiguous packaging variants.
     pub fn installed_variant<'a>(&'a self, name: &'a str) -> &'a str {
         crate::package_variants::installed_name(&self.installed, name)
+    }
+    pub fn variant_source(
+        &self,
+        actual: &str,
+        requested: &str,
+        source: crate::loadouts::Source,
+    ) -> crate::loadouts::Source {
+        use crate::loadouts::Source;
+        if actual == requested || source == Source::Foreign {
+            return source;
+        }
+        match &self.foreign {
+            Some(foreign) if !foreign.contains(actual) => Source::Repo,
+            _ => crate::loadout_styles::catalog()
+                .iter()
+                .find(|app| app.name == actual && app.source == Source::Aur)
+                .map(|app| app.source)
+                .unwrap_or(Source::Foreign),
+        }
     }
     pub fn describe(&self, name: &str) -> (String, &'static str, String) {
         if !self.ready {
@@ -24,6 +43,8 @@ impl Snapshot {
                 "Installation status is unavailable until the package scan succeeds.".into(),
             );
         }
+        let requested = name;
+        let name = self.installed_variant(name);
         if let Some(version) = self.installed.get(name) {
             if let Some((old, new)) = self.updates.get(name) {
                 return (
@@ -35,7 +56,15 @@ impl Snapshot {
             return (
                 "Installed".into(),
                 "package-installed",
-                format!("Installed version: {version}. {}", self.update_note),
+                format!(
+                    "Installed package: {name} · version: {version}. {}{}",
+                    if requested != name {
+                        "Packaging variant detected. "
+                    } else {
+                        ""
+                    },
+                    self.update_note
+                ),
             );
         }
         if self.cached.contains(name) {
@@ -97,6 +126,11 @@ pub(crate) fn scan(check_updates: bool) -> Result<Snapshot, String> {
         }
         state.installed.insert(name.into(), version.into());
     }
+    state.foreign = match crate::system::run("/usr/bin/pacman", &["-Qmq"], 30) {
+        Ok(text) => Some(text.lines().map(str::to_owned).collect()),
+        Err(e) if e.trim() == "Exit 1" => Some(BTreeSet::new()),
+        Err(_) => None,
+    };
     match crate::package_cache::directories() {
         Ok(dirs) => {
             let mut unreadable = 0;
@@ -246,3 +280,7 @@ pub(crate) fn preview_removal(names: &[String]) -> Result<RemovalPreview, String
     let refs: Vec<_> = args.iter().map(String::as_str).collect();
     removal_result(names, crate::system::run("/usr/bin/pacman", &refs, 30))
 }
+
+#[cfg(test)]
+#[path = "loadout_state_tests.rs"]
+mod tests;

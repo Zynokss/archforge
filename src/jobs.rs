@@ -189,3 +189,85 @@ impl Job {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn empty_queries_are_successful_without_hiding_errors() {
+        assert_eq!(
+            Job::Foreign.empty_query_message("Exit 1\n"),
+            Some("No foreign packages found.")
+        );
+        assert_eq!(
+            Job::Orphans.empty_query_message("Exit 1\n"),
+            Some("No orphan packages found.")
+        );
+        assert_eq!(
+            Job::Updates.empty_query_message("Exit 2\n"),
+            Some("No repository updates available.")
+        );
+        assert_eq!(
+            Job::Foreign.empty_query_message("Exit 1\nerror: database unavailable"),
+            None
+        );
+        assert_eq!(Job::Vulkan.empty_query_message("Exit 1\n"), None);
+    }
+
+    #[test]
+    #[ignore = "Runs installed read-only tools and may access repository mirrors"]
+    fn local_read_only_jobs() {
+        let mut report = String::new();
+        for job in [
+            Job::CacheSize,
+            Job::CachePreview,
+            Job::JournalSize,
+            Job::Orphans,
+            Job::Foreign,
+            Job::Failed,
+            Job::Boot,
+            Job::Vulkan,
+            Job::Updates,
+            Job::Report,
+        ] {
+            let result = job.execute();
+            let state = match result {
+                Ok(output) => format!("PASS ({} output bytes)", output.len()),
+                Err(error) if job.cache_permission_error(&error) => {
+                    "EXPECTED: protected cache folders; authentication offered".into()
+                }
+                Err(error) if !std::path::Path::new(job.command().unwrap().0).exists() => {
+                    format!("UNAVAILABLE: optional tool ({error})")
+                }
+                Err(error) => panic!("{} failed: {error}", job.title()),
+            };
+            report.push_str(&format!("{}: {state}\n", job.title()));
+        }
+        std::fs::create_dir_all("test-results").unwrap();
+        std::fs::write("test-results/runner-jobs.txt", &report).unwrap();
+        println!("{report}");
+    }
+    #[test]
+    fn protected_cache_is_identified_without_hiding_other_errors() {
+        let message = "Exit 1\n14G /var/cache/pacman/pkg\ndu: cannot read directory '/var/cache/pacman/pkg/download-abc': Permission denied";
+        assert!(Job::CacheSize.cache_permission_error(message));
+        assert!(!Job::CacheSize.cache_permission_error("du: No such file or directory"));
+        assert!(!Job::CacheClean.cache_permission_error(message));
+    }
+    #[test]
+    fn authenticated_measurement_is_read_only_and_gated() {
+        assert!(Job::CacheSizeAdmin.privileged());
+        assert!(!Job::CacheSizeAdmin.destructive());
+        assert!(
+            Job::CacheSizeAdmin
+                .confirmation()
+                .contains("does not change or delete files")
+        );
+        let (program, args) = Job::CacheSizeAdmin.command().unwrap();
+        assert_eq!(program, "/usr/bin/pkexec");
+        assert_eq!(&args[..3], &["/usr/bin/du", "-sch", "--"]);
+        assert_eq!(&args[3..], crate::package_cache::directories().unwrap());
+        assert!(Job::CacheClean.destructive());
+        assert!(Job::JournalClean.destructive());
+    }
+}

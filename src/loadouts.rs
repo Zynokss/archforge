@@ -802,3 +802,7 @@ pub(crate) fn state_home() -> Result<PathBuf, String> {
         .map(PathBuf::from)
         .unwrap_or(home()?.join(".local/state")))
 }
+
+#[cfg(test)]
+#[path = "loadouts_tests.rs"]
+mod tests;

@@ -268,3 +268,7 @@ pub(crate) fn apply(destination: Option<&str>) -> Result<String, String> {
         proposed
     ))
 }
+
+#[cfg(test)]
+#[path = "package_cache_tests.rs"]
+mod tests;

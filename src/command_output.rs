@@ -283,3 +283,105 @@ pub(crate) fn pane(view: &gtk::TextView, command: Option<&str>, expandable: bool
 fn pane_for_expansion(view: &gtk::TextView, command: Option<&str>) -> gtk::Box {
     pane(view, command, false)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    fn walk(w: &gtk::Widget) -> Vec<gtk::Widget> {
+        let mut out = vec![w.clone()];
+        let mut c = w.first_child();
+        while let Some(child) = c {
+            out.extend(walk(&child));
+            c = child.next_sibling();
+        }
+        out
+    }
+    fn pump() {
+        let start = std::time::Instant::now();
+        while start.elapsed() < std::time::Duration::from_millis(500) {
+            while glib::MainContext::default().pending() {
+                glib::MainContext::default().iteration(false);
+            }
+            std::thread::sleep(std::time::Duration::from_millis(10));
+        }
+    }
+    #[test]
+    #[ignore]
+    fn command_viewer_controls() {
+        gtk::init().unwrap();
+        let provider = gtk::CssProvider::new();
+        crate::theme::apply(&provider, "amber");
+        let window = gtk::Window::builder()
+            .title("Output verification")
+            .default_width(1160)
+            .default_height(760)
+            .build();
+        window.add_css_class("forge-dialog");
+        let view = gtk::TextView::builder()
+            .editable(false)
+            .cursor_visible(false)
+            .build();
+        view.add_css_class("console");
+        crate::dialogs::style_output(&view.buffer());
+        let mut output = String::from(
+            "VULKANINFO\nVulkan Instance Version: 1.4.354\ndeviceName = AMD Radeon RX 6600\n",
+        );
+        for n in 0..2000 {
+            output.push_str(&format!("Extension {n}: Unicode ✓ — read-only output\n"));
+        }
+        view.buffer().set_text(&output);
+        let panel = pane(&view, Some("/usr/bin/vulkaninfo --summary"), true);
+        window.set_child(Some(&panel));
+        window.present();
+        pump();
+        let search = walk(panel.upcast_ref())
+            .into_iter()
+            .find_map(|w| w.downcast::<gtk::SearchEntry>().ok())
+            .unwrap();
+        search.set_text("deviceName");
+        pump();
+        let buffer = view.buffer();
+        let (a, b) = buffer.selection_bounds().unwrap();
+        assert_eq!(buffer.text(&a, &b, false), "deviceName");
+        let wrap = walk(panel.upcast_ref())
+            .into_iter()
+            .find_map(|w| w.downcast::<gtk::ToggleButton>().ok())
+            .unwrap();
+        wrap.set_active(false);
+        assert_eq!(view.wrap_mode(), gtk::WrapMode::None);
+        wrap.set_active(true);
+        for w in walk(panel.upcast_ref()) {
+            if let Some(button) = w.downcast_ref::<gtk::Button>()
+                && button.label().as_deref() == Some("Copy output")
+            {
+                button.emit_clicked();
+            }
+        }
+        crate::dialogs::snapshot(&window, "shared-output-viewer");
+        let expand = walk(panel.upcast_ref())
+            .into_iter()
+            .filter_map(|w| w.downcast::<gtk::Button>().ok())
+            .find(|b| b.label().as_deref() == Some("Expand ↗"))
+            .unwrap();
+        expand.emit_clicked();
+        pump();
+        let expanded = gtk::Window::list_toplevels()
+            .into_iter()
+            .filter_map(|w| w.downcast::<gtk::Window>().ok())
+            .find(|w| w.title().as_deref() == Some("Command output"))
+            .unwrap();
+        let expanded_view = walk(expanded.upcast_ref())
+            .into_iter()
+            .find_map(|w| w.downcast::<gtk::TextView>().ok())
+            .unwrap();
+        assert_eq!(expanded_view.buffer(), buffer);
+        expanded.close();
+        buffer.set_text("No results\n");
+        pump();
+        assert_eq!(
+            buffer.text(&buffer.start_iter(), &buffer.end_iter(), false),
+            "No results\n"
+        );
+        window.close();
+    }
+}

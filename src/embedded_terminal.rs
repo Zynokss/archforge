@@ -29,7 +29,13 @@ printf '\n\033[1;%smCommand finished (exit %s).\033[0m\n' "$color" "$result"
 exit "$result"
 "#;
 
+#[cfg(test)]
+thread_local! { static TEST_SESSION: RefCell<Option<String>> = const { RefCell::new(None) }; }
 fn session_script() -> String {
+    #[cfg(test)]
+    if let Some(script) = TEST_SESSION.with(|s| s.borrow().clone()) {
+        return script;
+    }
     SESSION.into()
 }
 
@@ -413,4 +419,239 @@ pub(crate) fn show(
     window.connect_close_request(move |_| { if running.get() { status.set_text("A command is still running. Finish it, or use Ctrl+C and wait for it to exit before closing."); glib::Propagation::Stop } else { glib::Propagation::Proceed } });
     window.present();
     window
+}
+
+#[cfg(test)]
+pub(crate) fn verify_ui(parent: &gtk::ApplicationWindow) {
+    fn walk(w: &gtk::Widget) -> Vec<gtk::Widget> {
+        let mut out = vec![w.clone()];
+        let mut c = w.first_child();
+        while let Some(child) = c {
+            out.extend(walk(&child));
+            c = child.next_sibling();
+        }
+        out
+    }
+    let window = show(
+        parent.upcast_ref(),
+        "Embedded terminal review",
+        "Review the action before authentication. This verification does not run the command.",
+        "printf 'Reviewed command\\n'",
+    );
+    let widgets = walk(window.upcast_ref());
+    let check = widgets
+        .iter()
+        .find_map(|w| w.downcast_ref::<gtk::CheckButton>())
+        .unwrap();
+    let run = widgets
+        .iter()
+        .filter_map(|w| w.downcast_ref::<gtk::Button>())
+        .find(|b| b.label().as_deref() == Some("Authenticate & run"))
+        .unwrap();
+    assert!(!run.is_sensitive());
+    check.set_active(true);
+    assert!(run.is_sensitive());
+    let editor = widgets
+        .iter()
+        .find_map(|w| w.downcast_ref::<gtk::TextView>())
+        .unwrap();
+    editor.buffer().set_text("printf 'Changed command\\n'");
+    assert!(!run.is_sensitive());
+    crate::dialogs::snapshot(&window, "embedded-terminal-review");
+    window.close();
+}
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::os::unix::fs::PermissionsExt;
+    #[test]
+    fn fresh_authentication_is_required_and_passwordless_validation_is_blocked() {
+        for (mode, expected, executed) in [
+            ("password", 0, true),
+            ("passwordless", 77, false),
+            ("failure", 78, false),
+        ] {
+            let dir = tempfile::tempdir().unwrap();
+            let sudo = dir.path().join("sudo");
+            let log = dir.path().join("auth.log");
+            let marker = dir.path().join("executed");
+            std::fs::write(
+                &sudo,
+                r#"#!/usr/bin/bash
+printf '%s\n' "$*" >> "$AUTH_TEST_LOG"
+if [[ $* == '-n -k -v' ]]; then [[ $AUTH_TEST_MODE == passwordless ]]; exit $?; fi
+if [[ $* == '-v' ]]; then [[ $AUTH_TEST_MODE == password ]]; exit $?; fi
+exit 0
+"#,
+            )
+            .unwrap();
+            std::fs::set_permissions(&sudo, std::fs::Permissions::from_mode(0o700)).unwrap();
+            let script = SESSION.replace(
+                "/usr/bin/sudo",
+                &crate::package_cache::quote(sudo.to_str().unwrap()),
+            );
+            let command = format!(
+                "printf yes > {}",
+                crate::package_cache::quote(marker.to_str().unwrap())
+            );
+            let output = std::process::Command::new("/usr/bin/bash")
+                .args([
+                    "--noprofile",
+                    "--norc",
+                    "-c",
+                    &script,
+                    "archforge",
+                    &command,
+                ])
+                .env_remove("BASH_ENV")
+                .env("AUTH_TEST_LOG", &log)
+                .env("AUTH_TEST_MODE", mode)
+                .output()
+                .unwrap();
+            assert_eq!(output.status.code(), Some(expected));
+            assert_eq!(marker.exists(), executed);
+            let calls = std::fs::read_to_string(&log).unwrap();
+            assert!(calls.starts_with("-n -k -v\n"));
+            if executed {
+                assert!(calls.contains("-k\n-v\n"));
+                assert!(calls.ends_with("-k\n"));
+            }
+        }
+    }
+}
+
+#[cfg(test)]
+mod pty_tests {
+    use super::*;
+    use std::os::unix::fs::PermissionsExt;
+    fn walk(w: &gtk::Widget) -> Vec<gtk::Widget> {
+        let mut out = vec![w.clone()];
+        let mut c = w.first_child();
+        while let Some(child) = c {
+            out.extend(walk(&child));
+            c = child.next_sibling();
+        }
+        out
+    }
+    fn wait(mut ready: impl FnMut() -> bool) {
+        let start = std::time::Instant::now();
+        loop {
+            while glib::MainContext::default().pending() {
+                glib::MainContext::default().iteration(false);
+            }
+            if ready() {
+                break;
+            }
+            assert!(start.elapsed() < std::time::Duration::from_secs(12));
+            std::thread::sleep(std::time::Duration::from_millis(15));
+        }
+    }
+    #[test]
+    #[ignore]
+    fn embedded_pty_prompts_without_echoing_input_and_closes_after_exit() {
+        gtk::init().unwrap();
+        let app = gtk::Application::builder()
+            .application_id("io.github.zynokss.PtyCheck")
+            .build();
+        app.register(None::<&gtk::gio::Cancellable>).unwrap();
+        let parent = gtk::ApplicationWindow::builder()
+            .application(&app)
+            .title("PTY test host")
+            .build();
+        parent.present();
+        let dir = tempfile::tempdir().unwrap();
+        let sudo = dir.path().join("sudo");
+        std::fs::write(
+            &sudo,
+            r#"#!/usr/bin/bash
+if [[ $* == '-n -k -v' ]]; then exit 1; fi
+if [[ $* == '-v' ]]; then
+  read -r -s -p '[sudo] test password: ' value
+  printf '\n'
+  [[ $value == 'dummy-secret-for-pty-test' ]]
+  exit $?
+fi
+exit 0
+"#,
+        )
+        .unwrap();
+        std::fs::set_permissions(&sudo, std::fs::Permissions::from_mode(0o700)).unwrap();
+        TEST_SESSION.with(|s| {
+            *s.borrow_mut() = Some(SESSION.replace(
+                "/usr/bin/sudo",
+                &crate::package_cache::quote(sudo.to_str().unwrap()),
+            ))
+        });
+        let window = show(
+            parent.upcast_ref(),
+            "PTY round trip",
+            "Isolated test with a mock authentication binary; no system changes.",
+            "printf '\\033[32mPTY_SUCCESS\\033[0m\\n'",
+        );
+        let widgets = walk(window.upcast_ref());
+        let check = widgets
+            .iter()
+            .find_map(|w| w.downcast_ref::<gtk::CheckButton>())
+            .unwrap();
+        let terminal = widgets
+            .iter()
+            .find_map(|w| w.downcast_ref::<vte4::Terminal>())
+            .unwrap();
+        let run = widgets
+            .iter()
+            .filter_map(|w| w.downcast_ref::<gtk::Button>())
+            .find(|b| b.label().as_deref() == Some("Authenticate & run"))
+            .unwrap();
+        check.set_active(true);
+        run.emit_clicked();
+        wait(|| {
+            terminal
+                .text_format(vte4::Format::Text)
+                .is_some_and(|s| s.contains("test password:"))
+        });
+        window.close();
+        assert!(window.is_visible(), "A running session must not close");
+        terminal.feed_child(b"dummy-secret-for-pty-test\n");
+        wait(|| {
+            terminal
+                .text_format(vte4::Format::Text)
+                .is_some_and(|s| s.contains("PTY_SUCCESS"))
+                && check.is_sensitive()
+        });
+        let text = terminal.text_format(vte4::Format::Text).unwrap();
+        assert!(!text.contains("dummy-secret-for-pty-test"));
+        assert!(!check.is_active());
+        assert!(!run.is_sensitive());
+        assert_eq!(
+            crate::ACTIVE_JOBS.load(std::sync::atomic::Ordering::SeqCst),
+            0
+        );
+        // VTE parses incoming output asynchronously: wait for the new prompt,
+        // not the prompt still visible from the preceding completed session.
+        check.set_active(true);
+        run.emit_clicked();
+        wait(|| {
+            terminal
+                .text_format(vte4::Format::Text)
+                .is_some_and(|s| s.contains("test password:") && !s.contains("PTY_SUCCESS"))
+                && !check.is_sensitive()
+        });
+        terminal.feed_child(b"dummy-secret-for-pty-test\n");
+        wait(|| {
+            terminal
+                .text_format(vte4::Format::Text)
+                .is_some_and(|s| s.contains("PTY_SUCCESS"))
+                && check.is_sensitive()
+        });
+        assert!(
+            !terminal
+                .text_format(vte4::Format::Text)
+                .unwrap()
+                .contains("dummy-secret-for-pty-test")
+        );
+        crate::dialogs::snapshot(&window, "embedded-terminal-completed");
+        window.close();
+        parent.close();
+        TEST_SESSION.with(|s| *s.borrow_mut() = None);
+    }
 }
