@@ -258,6 +258,18 @@ pub(super) fn write_new(path: &str, text: &str) -> Result<(), String> {
         .map_err(|e| format!("{path}: {e}. Existing files are never overwritten."))?;
     f.write_all(text.as_bytes()).map_err(|e| e.to_string())
 }
+/// Saved selections retain real installed identities, never a guessed AUR source.
+pub(super) fn selection_profile(names: &BTreeSet<String>, scan: &Scan) -> Result<String, String> {
+    if names.len() > 5000 || names.iter().any(|n| !cli::valid_name(n)) {
+        return Err("Choose at most 5,000 valid package names before exporting.".into());
+    }
+    let actual: BTreeSet<_> = names
+        .iter()
+        .map(|n| crate::package_variants::installed_name(&scan.installed, n).to_owned())
+        .collect();
+    let packages:Vec<_>=actual.iter().map(|n|serde_json::json!({"name":n,"source":if scan.repository_error.is_none() && scan.available.contains(n){"repo"}else{"foreign"}})).collect();
+    serde_json::to_string_pretty(&serde_json::json!({"format":"archforge-loadout","version":1,"name":"My terminal loadout","repositories":[],"packages":packages,"dotfiles":{},"executable":[],"modes":{}})).map_err(|e|e.to_string())
+}
 pub(super) fn capture(path: &str) -> Result<String, String> {
     let explicit = cli::names(&cli::output("/usr/bin/pacman", &["-Qqe"])?)?;
     let native: BTreeSet<_> = cli::output("/usr/bin/pacman", &["-Qnq"])?

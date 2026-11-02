@@ -6,7 +6,6 @@
 /screenshots/
 /test-results/
 /tests/
-/AGENTS.md
 __pycache__/
 *.log
 .env

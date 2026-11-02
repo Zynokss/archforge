@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.12.1
+
+- Updated both bundled and standalone terminal editions with actual-installed-name/source filtering and identity-preserving loadout exports.
+- Added per-workspace sorting (`S`), filter reset (`R`), focused package version/description details, and separate repository, foreign/local and AUR-recipe filters.
+- Deduplicated installed variant rows, reused catalog metadata for exact-name additions/imports, and retained category identity across rescans.
+- Invalidated stale update flags after installed versions change and cached variant lookups for large package lists.
+
 ## 0.12.0
 
 - Redesigned Packages with summary cards, package descriptions and sizes, source/category filters, pagination, bulk selection and reviewed package actions.

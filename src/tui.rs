@@ -48,6 +48,7 @@ struct PageState {
     category: usize,
     filter: usize,
     source_filter: usize,
+    sort: usize,
 }
 #[derive(Clone)]
 struct Package {
@@ -56,6 +57,38 @@ struct Package {
     category: String,
     description: String,
     source: String,
+}
+const SORTS: &[&str] = &["Installed first", "Name A–Z", "Name Z–A"];
+const SOURCES: &[&str] = &["All sources", "Repository", "Foreign/local", "AUR recipes"];
+fn catalog_package(name: &str, source: &str, fallback: &str) -> Package {
+    type Metadata = BTreeMap<String, (String, String, String)>;
+    static CATALOG: std::sync::OnceLock<Metadata> = std::sync::OnceLock::new();
+    let catalog = CATALOG.get_or_init(|| {
+        include_str!("../data/loadouts/catalog.tsv")
+            .lines()
+            .filter(|l| !l.starts_with('#'))
+            .filter_map(|l| {
+                let fields: Vec<_> = l.split('|').collect();
+                (fields.len() == 8).then(|| {
+                    (
+                        fields[1].into(),
+                        (fields[2].into(), fields[0].into(), fields[3].into()),
+                    )
+                })
+            })
+            .collect()
+    });
+    let data = crate::package_variants::resolve(catalog.keys().map(String::as_str), name)
+        .and_then(|actual| catalog.get(actual));
+    Package {
+        name: name.into(),
+        title: data.map(|d| d.0.clone()).unwrap_or_else(|| name.into()),
+        category: data
+            .map(|d| d.1.clone())
+            .unwrap_or_else(|| "Uncategorized".into()),
+        description: data.map(|d| d.2.clone()).unwrap_or_else(|| fallback.into()),
+        source: source.into(),
+    }
 }
 #[derive(Clone, Copy)]
 enum InputKind {
@@ -89,6 +122,7 @@ struct App {
     pane: Pane,
     pages: [PageState; 8],
     scan: Scan,
+    variants: BTreeMap<String, String>,
     scanning: bool,
     metrics: Option<crate::system::Metrics>,
     selected: BTreeSet<String>,
@@ -134,6 +168,7 @@ impl App {
             pane: Pane::Items,
             pages: std::array::from_fn(|_| PageState::default()),
             scan: Scan::default(),
+            variants: BTreeMap::new(),
             scanning: true,
             metrics: None,
             selected: BTreeSet::new(),
@@ -172,55 +207,66 @@ impl App {
         });
     }
     fn refresh_catalog(&mut self) {
-        let catalog: BTreeMap<_, _> = include_str!("../data/loadouts/catalog.tsv")
-            .lines()
-            .filter(|l| !l.starts_with('#'))
-            .filter_map(|l| {
-                let f: Vec<_> = l.split('|').collect();
-                (f.len() == 8).then(|| {
-                    (
-                        f[1].to_owned(),
-                        (f[2].to_owned(), f[0].to_owned(), f[3].to_owned()),
-                    )
-                })
-            })
-            .collect();
+        self.variants = crate::package_variants::alias_index(&self.scan.installed);
         self.packages = self
             .scan
             .available
             .iter()
             .chain(self.scan.installed.keys())
+            .map(|n| self.installed_name(n).to_owned())
             .collect::<BTreeSet<_>>()
             .into_iter()
             .map(|n| {
-                let data = crate::package_variants::resolve(catalog.keys().map(String::as_str), n)
-                    .and_then(|name| catalog.get(name));
-                Package {
-                    name: n.clone(),
-                    title: data.map(|d| d.0.clone()).unwrap_or_else(|| n.clone()),
-                    category: data
-                        .map(|d| d.1.clone())
-                        .unwrap_or_else(|| "Other packages".into()),
-                    description: data.map(|d| d.2.clone()).unwrap_or_else(|| {
-                        "Package from this system's configured databases.".into()
-                    }),
-                    source: if self.scan.available.contains(n) {
+                catalog_package(
+                    &n,
+                    if self.scan.available.contains(&n) {
                         "repo"
+                    } else if self.scan.repository_error.is_some() {
+                        "unknown"
                     } else {
                         "foreign"
-                    }
-                    .into(),
-                }
+                    },
+                    "Package from this system's configured databases.",
+                )
             })
             .collect();
         self.packages
             .sort_by_key(|p| (!self.scan.installed.contains_key(&p.name), p.name.clone()));
+        self.normalize_selection();
         self.cache_categories();
+    }
+    fn installed_name<'a>(&'a self, name: &'a str) -> &'a str {
+        if self.scan.installed.contains_key(name) {
+            name
+        } else {
+            self.variants
+                .get(crate::package_variants::base_name(name))
+                .map(String::as_str)
+                .unwrap_or(name)
+        }
+    }
+    fn normalize_selection(&mut self) {
+        self.selected = std::mem::take(&mut self.selected)
+            .into_iter()
+            .map(|n| self.installed_name(&n).to_owned())
+            .collect();
     }
     fn poll(&mut self) {
         while let Ok(msg) = self.rx.try_recv() {
             match msg {
                 Message::Scan(scan) => {
+                    if scan.inventory.error.is_some() {
+                        self.update_names.clear();
+                        self.updates = None;
+                    } else {
+                        self.update_names.retain(|name| {
+                            scan.installed.contains_key(name)
+                                && scan.installed.get(name) == self.scan.installed.get(name)
+                        });
+                        if self.updates.is_some() {
+                            self.updates = Some(self.update_names.len());
+                        }
+                    }
                     self.scan = *scan;
                     self.scanning = false;
                     self.last_update = Some(Instant::now());
@@ -267,7 +313,8 @@ impl App {
                 Message::Imported(result) => match result {
                     Ok((names, skipped)) => {
                         self.selected = names.into_iter().collect();
-                        let extra:Vec<_>=self.selected.iter().filter(|n|!self.build.iter().any(|p|&p.name==*n)).map(|n|Package{name:n.clone(),title:n.clone(),category:"Imported / custom".into(),description:"Imported repository package; availability is checked before installation.".into(),source:"repo".into()}).collect();
+                        self.normalize_selection();
+                        let extra:Vec<_>=self.selected.iter().filter(|n|!self.build.iter().any(|p|&p.name==*n)).map(|n|catalog_package(n,"repo","Imported repository package; availability is checked before installation.")).collect();
                         self.build.extend(extra);
                         self.cache_categories();
                         self.page = 4;
@@ -295,6 +342,11 @@ impl App {
     }
     fn cache_categories(&mut self) {
         for (page, source) in [(1, &self.packages), (4, &self.build)] {
+            let selected = self
+                .category_cache
+                .get(&page)
+                .and_then(|c| c.get(self.pages[page].category))
+                .cloned();
             let mut categories = vec!["All categories".into()];
             categories.extend(
                 source
@@ -302,6 +354,9 @@ impl App {
                     .map(|p| p.category.clone())
                     .collect::<BTreeSet<_>>(),
             );
+            self.pages[page].category = selected
+                .and_then(|name| categories.iter().position(|c| c == &name))
+                .unwrap_or(0);
             self.category_cache.insert(page, categories);
         }
     }
@@ -311,16 +366,33 @@ impl App {
             .cloned()
             .unwrap_or_else(|| vec!["All categories".into()])
     }
+    fn package_source<'a>(&'a self, package: &'a Package) -> &'a str {
+        let actual = self.installed_name(&package.name);
+        if self.scan.installed.contains_key(actual) {
+            if self.scan.repository_error.is_some() {
+                "unknown"
+            } else if self.scan.available.contains(actual) {
+                "repo"
+            } else {
+                "foreign"
+            }
+        } else if self.scan.available.contains(&package.name) {
+            "repo"
+        } else {
+            &package.source
+        }
+    }
     fn visible_packages(&self) -> Vec<usize> {
         let st = &self.pages[self.page];
         let categories = self.categories();
         let category = categories.get(st.category);
         let query = st.query.to_lowercase();
-        self.source()
+        let visible: Vec<_> = self
+            .source()
             .iter()
             .enumerate()
             .filter(|(_, p)| {
-                let actual = crate::package_variants::installed_name(&self.scan.installed, &p.name);
+                let actual = self.installed_name(&p.name);
                 let installed = self.scan.installed.contains_key(actual);
                 let matches_filter = match st.filter {
                     1 => installed,
@@ -330,19 +402,52 @@ impl App {
                 };
                 matches_filter
                     && match st.source_filter {
-                        1 => self.scan.available.contains(&p.name),
-                        2 => !self.scan.available.contains(&p.name),
+                        1 => self.package_source(p) == "repo",
+                        2 => self.package_source(p) == "foreign",
+                        3 => self.package_source(p) == "aur",
                         _ => true,
                     }
                     && (st.category == 0 || category == Some(&p.category))
                     && (query.is_empty()
-                        || format!("{} {} {}", p.name, p.title, p.description)
+                        || format!("{} {} {} {}", actual, p.name, p.title, p.description)
                             .to_lowercase()
                             .contains(&query))
             })
             .map(|(i, _)| i)
-            .collect()
+            .collect();
+        // A catalog entry and an exact-name addition may resolve to one installed package.
+        // Keep the exact row when available, without showing duplicate variants.
+        let mut unique = BTreeMap::new();
+        for index in visible {
+            let package = &self.source()[index];
+            let actual = self.installed_name(&package.name);
+            if !unique.contains_key(actual) || actual == package.name {
+                unique.insert(actual, index);
+            }
+        }
+        let mut visible: Vec<_> = unique.into_values().collect();
+        visible.sort_by(|a, b| {
+            let (a, b) = (&self.source()[*a], &self.source()[*b]);
+            let names = || {
+                self.installed_name(&a.name)
+                    .cmp(self.installed_name(&b.name))
+            };
+            match st.sort {
+                1 => names(),
+                2 => names().reverse(),
+                _ => {
+                    let installed = |p: &Package| {
+                        self.scan
+                            .installed
+                            .contains_key(self.installed_name(&p.name))
+                    };
+                    installed(b).cmp(&installed(a)).then_with(names)
+                }
+            }
+        });
+        visible
     }
+
     fn wiki_entries(&self) -> Vec<usize> {
         let q = self.pages[7].query.to_lowercase();
         crate::wiki_data::ENTRIES
@@ -414,8 +519,7 @@ impl App {
                 backend::install_plan(&self.selected, &self.scan).ok()
             } else {
                 self.active_package().map(|p| {
-                    let actual =
-                        crate::package_variants::installed_name(&self.scan.installed, &p.name);
+                    let actual = self.installed_name(&p.name);
                     Action::new(
                         "Package information",
                         "Shows metadata for this package. Read-only.",
@@ -488,7 +592,7 @@ impl App {
         }
         if self.package_page() {
             if let Some(p) = self.active_package() {
-                let actual = crate::package_variants::installed_name(&self.scan.installed, &p.name);
+                let actual = self.installed_name(&p.name);
                 let a = Action::new(
                     &format!("{} · package information", p.title),
                     "Reads exact package metadata.",
@@ -736,9 +840,25 @@ impl App {
             KeyCode::Char('U') => self.review(backend::update()),
             KeyCode::Char('t') if self.package_page() && !self.output_open => {
                 let st = &mut self.pages[self.page];
-                st.source_filter = (st.source_filter + 1) % 3;
+                st.source_filter = (st.source_filter + 1) % SOURCES.len();
                 st.cursor = 0;
                 st.offset = 0;
+            }
+            KeyCode::Char('S') if self.package_page() && !self.output_open => {
+                let st = &mut self.pages[self.page];
+                st.sort = (st.sort + 1) % SORTS.len();
+                st.cursor = 0;
+                st.offset = 0;
+            }
+            KeyCode::Char('R') if self.package_page() && !self.output_open => {
+                let st = &mut self.pages[self.page];
+                st.query.clear();
+                st.category = 0;
+                st.filter = 0;
+                st.source_filter = 0;
+                st.cursor = 0;
+                st.offset = 0;
+                self.status = "Filters reset · package selection preserved".into();
             }
             KeyCode::Char('e') if self.output_open => {
                 self.dialog = Some(Dialog::Input(InputKind::Export, String::new()))
@@ -749,14 +869,15 @@ impl App {
             KeyCode::Char(' ')
                 if self.package_page() && !self.output_open && self.pane == Pane::Items =>
             {
-                if let Some(p) = self.active_package()
-                    && !self.selected.remove(&p.name)
-                {
-                    if self.selected.len() < 5000 {
-                        self.selected.insert(p.name);
-                    } else {
-                        self.status =
-                            "Selection limit reached (5,000). Narrow the selection.".into();
+                if let Some(p) = self.active_package() {
+                    let actual = self.installed_name(&p.name).to_owned();
+                    if !self.selected.remove(&actual) {
+                        if self.selected.len() < 5000 {
+                            self.selected.insert(actual);
+                        } else {
+                            self.status =
+                                "Selection limit reached (5,000). Narrow the selection.".into();
+                        }
                     }
                 }
             }
@@ -768,7 +889,7 @@ impl App {
                 }
                 let names: Vec<_> = rows
                     .iter()
-                    .map(|i| self.source()[*i].name.clone())
+                    .map(|i| self.installed_name(&self.source()[*i].name).to_owned())
                     .collect();
                 if names.iter().all(|n| self.selected.contains(n)) {
                     for n in names {
@@ -851,7 +972,13 @@ impl App {
                 let content = if self.output_open {
                     self.output.clone()
                 } else {
-                    serde_json::json!({"format":"archforge-loadout","version":1,"name":"My terminal loadout","repositories":[],"packages":self.selected.iter().map(|n|serde_json::json!({"name":n,"source":if self.scan.available.contains(n){"repo"}else{"foreign"}})).collect::<Vec<_>>(),"dotfiles":{},"executable":[],"modes":{}}).to_string()
+                    match backend::selection_profile(&self.selected, &self.scan) {
+                        Ok(content) => content,
+                        Err(e) => {
+                            self.status = e;
+                            return;
+                        }
+                    }
                 };
                 let tx = self.tx.clone();
                 std::thread::spawn(move || {
@@ -864,10 +991,11 @@ impl App {
                 Ok(names) => {
                     for n in names {
                         if !self.build.iter().any(|p| p.name == n) {
-                            self.build.push(Package{name:n.clone(),title:n.clone(),category:"Imported / custom".into(),description:"Exact-name addition. Repository availability is checked before installation.".into(),source:"repo".into()});
+                            self.build.push(catalog_package(&n,"repo","Exact-name addition. Repository availability is checked before installation."));
                         }
                         self.selected.insert(n);
                     }
+                    self.normalize_selection();
                     self.cache_categories();
                     self.status = "Added to selection. Review the plan with i.".into();
                 }
@@ -1605,6 +1733,7 @@ fn draw_packages(frame: &mut Frame, area: Rect, app: &mut App, c: Colors) {
     let listparts = Layout::vertical([
         Constraint::Length(3),
         Constraint::Min(1),
+        Constraint::Length(if area.height >= 16 { 3 } else { 0 }),
         Constraint::Length(2),
     ])
     .split(cols[1]);
@@ -1615,7 +1744,7 @@ fn draw_packages(frame: &mut Frame, area: Rect, app: &mut App, c: Colors) {
         .unwrap_or_default();
     frame.render_widget(
         Paragraph::new(format!(
-            "/ {}  |  {}  |  {}\n{} matches · {} selected{}",
+            "/ {} | {} | {}\n{} matches · {} selected · {} · {}{}",
             if s.query.is_empty() {
                 "Search packages"
             } else {
@@ -1625,10 +1754,12 @@ fn draw_packages(frame: &mut Frame, area: Rect, app: &mut App, c: Colors) {
             filters[s.filter],
             view.len(),
             app.selected.len(),
+            SOURCES[s.source_filter],
+            SORTS[s.sort],
             if s.filter == 3 && app.updates.is_none() {
                 " · Updates not checked"
             } else {
-                [" · All sources", " · Repository", " · Foreign/AUR"][s.source_filter]
+                ""
             }
         ))
         .style(Style::default().fg(c.muted))
@@ -1654,7 +1785,7 @@ fn draw_packages(frame: &mut Frame, area: Rect, app: &mut App, c: Colors) {
         .take(viewport)
         .map(|i| {
             let p = &app.source()[*i];
-            let name = crate::package_variants::installed_name(&app.scan.installed, &p.name);
+            let name = app.installed_name(&p.name);
             let status = if app.scan.inventory.error.is_some() {
                 "Unavailable"
             } else if app.scanning && app.scan.installed.is_empty() {
@@ -1674,7 +1805,7 @@ fn draw_packages(frame: &mut Frame, area: Rect, app: &mut App, c: Colors) {
                 c.muted
             };
             let mut spans = vec![Span::styled(
-                if app.selected.contains(&p.name) {
+                if app.selected.contains(name) {
                     "[x] "
                 } else {
                     "[ ] "
@@ -1690,15 +1821,7 @@ fn draw_packages(frame: &mut Frame, area: Rect, app: &mut App, c: Colors) {
                     format!("{status:<12}"),
                     Style::default().fg(color),
                 ));
-                let source = if app.scan.installed.contains_key(name) {
-                    if app.scan.available.contains(name) {
-                        "repo"
-                    } else {
-                        "foreign"
-                    }
-                } else {
-                    &p.source
-                };
+                let source = app.package_source(p);
                 spans.push(Span::styled(source, Style::default().fg(c.muted)));
             } else {
                 spans.push(Span::raw(format!(
@@ -1717,7 +1840,7 @@ fn draw_packages(frame: &mut Frame, area: Rect, app: &mut App, c: Colors) {
             Paragraph::new(if app.scanning {
                 "Scanning packages… You can keep navigating."
             } else {
-                "No matching packages. Clear / search or change f filter."
+                "No matching packages. R resets search, category, status and source filters."
             })
             .wrap(Wrap { trim: false })
             .block(c.border("PACKAGES", app.pane == Pane::Items)),
@@ -1743,7 +1866,29 @@ fn draw_packages(frame: &mut Frame, area: Rect, app: &mut App, c: Colors) {
             &mut state,
         );
     }
-    frame.render_widget(Paragraph::new("Space toggle · a select/clear matches · + exact names\ni review install · d review uninstall · s save profile").style(Style::default().fg(c.muted)),listparts[2]);
+    if listparts[2].height > 0
+        && let Some(index) = view.get(cursor)
+    {
+        let package = &app.source()[*index];
+        let actual = app.installed_name(&package.name);
+        let version = app
+            .scan
+            .installed
+            .get(actual)
+            .map(String::as_str)
+            .unwrap_or("Not installed");
+        frame.render_widget(
+            Paragraph::new(format!(
+                "{actual} · {version} · {}\n{}",
+                app.package_source(package),
+                package.description
+            ))
+            .style(Style::default().fg(c.muted))
+            .wrap(Wrap { trim: false }),
+            listparts[2],
+        );
+    }
+    frame.render_widget(Paragraph::new("f status · t source · S sort · R reset filters\nSpace select · a bulk · i install · d remove · s save").style(Style::default().fg(c.muted)),listparts[3]);
     if wide {
         draw_selection(frame, cols[2], app, c);
     } else if app.pane == Pane::Selection {
@@ -1756,14 +1901,7 @@ fn draw_selection(frame: &mut Frame, area: Rect, app: &App, c: Colors) {
     let installed = app
         .selected
         .iter()
-        .filter(|n| {
-            app.scan
-                .installed
-                .contains_key(crate::package_variants::installed_name(
-                    &app.scan.installed,
-                    n,
-                ))
-        })
+        .filter(|n| app.scan.installed.contains_key(app.installed_name(n)))
         .count();
     let missing = app.selected.len() - installed;
     let mut lines = vec![
@@ -2034,7 +2172,7 @@ fn draw_dialog(frame: &mut Frame, app: &mut App, c: Colors) {
             let block = c.border("HELP · ↑↓ scroll · Esc closes", true);
             let inner = block.inner(area);
             let lines = wrapped(
-                "Navigation\nArrow keys or j/k: move · Enter: open · Esc: back\nTab / Shift+Tab: pane · 1–8: workspace\nPgUp / PgDn / Home / End: scroll\n\nPackages / loadouts\nSpace: toggle · a: select/clear matches\nf: status · t: source · /: search · +: exact names\ni: review install · d: review removal\ns: export selection · x: clear selection\n\nLogs\no: open/close · /: search · Left/Right: pan\nc: terminal clipboard · e: export\n\nReview\nUp/Down: scroll details · Tab: focus\nSpace: review checkbox · Enter: execute\nAuthentication uses a real terminal.\n\nr: rescan · u: check updates · U: full upgrade · q: quit",
+                "Navigation\nArrow keys or j/k: move · Enter: open · Esc: back\nTab / Shift+Tab: pane · 1–8: workspace\nPgUp / PgDn / Home / End: scroll\n\nPackages / loadouts\nSpace: toggle · a: select/clear matches\nf: status · t: source · /: search · +: exact names\nS: sort · R: reset filters (keeps selection)\ni: review install · d: review removal\ns: export selection · x: clear selection\n\nLogs\no: open/close · /: search · Left/Right: pan\nc: terminal clipboard · e: export\n\nReview\nUp/Down: scroll details · Tab: focus\nSpace: review checkbox · Enter: execute\nAuthentication uses a real terminal.\n\nr: rescan · u: check updates · U: full upgrade · q: quit",
                 inner.width as usize,
             );
             *scroll = (*scroll).min(lines.len().saturating_sub(inner.height as usize));
@@ -2348,6 +2486,138 @@ mod tests {
             backend::clean_output(b"\x1b[31merror\x1b[0m\x1b]52;c;secret\x07\n"),
             "error\n"
         );
+    }
+    #[test]
+    fn variants_filter_by_actual_source_and_export_actual_identity() {
+        let mut app = fixture();
+        app.scan.available.insert("lutris".into());
+        app.build.push(catalog_package("lutris", "repo", ""));
+        app.selected = BTreeSet::from(["lutris".into(), "lutris-git".into(), "git".into()]);
+        app.refresh_catalog();
+        assert_eq!(
+            app.selected,
+            BTreeSet::from(["lutris-git".into(), "git".into()])
+        );
+        assert_eq!(
+            app.packages
+                .iter()
+                .filter(|p| p.name.starts_with("lutris"))
+                .count(),
+            1
+        );
+        app.page = 4;
+        app.pages[4].query = "lutris-git".into();
+        app.pages[4].source_filter = 2;
+        let visible = app.visible_packages();
+        assert_eq!(visible.len(), 1);
+        assert_eq!(app.package_source(&app.source()[visible[0]]), "foreign");
+        let mut terminal = Terminal::new(TestBackend::new(160, 50)).unwrap();
+        terminal.draw(|f| draw(f, &mut app)).unwrap();
+        let text: String = terminal
+            .backend()
+            .buffer()
+            .content()
+            .iter()
+            .map(|cell| cell.symbol())
+            .collect();
+        assert!(text.contains("lutris-git · 1.0 · foreign"));
+        app.pages[4].source_filter = 1;
+        assert!(app.visible_packages().is_empty());
+        app.pages[4].source_filter = 3;
+        assert!(app.visible_packages().is_empty());
+        let profile: serde_json::Value = serde_json::from_str(
+            &backend::selection_profile(
+                &BTreeSet::from(["lutris".into(), "lutris-git".into(), "git".into()]),
+                &app.scan,
+            )
+            .unwrap(),
+        )
+        .unwrap();
+        let packages = profile["packages"].as_array().unwrap();
+        assert_eq!(packages.len(), 2);
+        assert!(
+            packages
+                .iter()
+                .any(|p| p["name"] == "lutris-git" && p["source"] == "foreign")
+        );
+        assert!(
+            packages
+                .iter()
+                .any(|p| p["name"] == "git" && p["source"] == "repo")
+        );
+        app.scan.repository_error = Some("offline database".into());
+        let actual = app.build.iter().find(|p| p.name == "lutris").unwrap();
+        assert_eq!(app.package_source(actual), "unknown");
+        assert!(
+            backend::selection_profile(&BTreeSet::from(["bad;name".into()]), &app.scan).is_err()
+        );
+    }
+    #[test]
+    fn sorting_and_reset_are_per_page_and_preserve_selection() {
+        let mut app = fixture();
+        app.page = 1;
+        app.key(key(KeyCode::Char('S')));
+        let names = |app: &App| {
+            app.visible_packages()
+                .iter()
+                .map(|i| app.source()[*i].name.clone())
+                .collect::<Vec<_>>()
+        };
+        assert!(names(&app).windows(2).all(|p| p[0] <= p[1]));
+        app.key(key(KeyCode::Char('S')));
+        assert!(names(&app).windows(2).all(|p| p[0] >= p[1]));
+        app.selected.insert("git".into());
+        app.pages[1].query = "does-not-exist".into();
+        app.pages[1].category = 1;
+        app.pages[1].filter = 2;
+        app.pages[1].source_filter = 2;
+        assert!(app.visible_packages().is_empty());
+        app.key(key(KeyCode::Char('R')));
+        assert!(!app.visible_packages().is_empty());
+        assert_eq!(app.pages[1].category, 0);
+        assert_eq!(app.pages[1].filter, 0);
+        assert_eq!(app.pages[1].source_filter, 0);
+        assert_eq!(app.pages[1].sort, 2);
+        assert!(app.selected.contains("git"));
+        app.page = 4;
+        assert_eq!(app.pages[4].sort, 0);
+    }
+    #[test]
+    fn rescan_preserves_category_identity_and_new_rows_reuse_metadata() {
+        let mut app = fixture();
+        app.page = 1;
+        app.pages[1].category = app.categories().iter().position(|c| c == "Gaming").unwrap();
+        app.scan
+            .installed
+            .insert("firefox-bin".into(), "1.0".into());
+        app.refresh_catalog();
+        assert_eq!(app.categories()[app.pages[1].category], "Gaming");
+        app.page = 4;
+        app.submit_input(InputKind::Custom, "obs-studio-git".into());
+        let package = app
+            .build
+            .iter()
+            .find(|p| p.name == "obs-studio-git")
+            .unwrap();
+        assert_eq!(package.category, "Media");
+        assert_eq!(package.title, "OBS Studio");
+        app.scan.installed.remove("lutris-git");
+        app.refresh_catalog();
+        app.page = 1;
+        assert_eq!(app.pages[1].category, 0);
+    }
+    #[test]
+    fn rescan_drops_update_flags_for_replaced_or_removed_versions() {
+        let mut app = fixture();
+        app.update_names = BTreeSet::from(["git".into(), "lutris-git".into()]);
+        app.updates = Some(2);
+        let mut scan = Scan::default();
+        scan.installed.insert("git".into(), "2.0".into());
+        scan.installed.insert("lutris-git".into(), "1.0".into());
+        app.tx.send(Message::Scan(Box::new(scan))).unwrap();
+        app.poll();
+        assert_eq!(app.update_names, BTreeSet::from(["lutris-git".into()]));
+        assert_eq!(app.updates, Some(1));
     }
     #[test]
     fn planning_never_runs_commands_and_rejects_unknown_targets() {

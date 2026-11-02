@@ -1,6 +1,6 @@
 # Local source package. Run ../scripts/dist.sh from this directory first.
 pkgname=archforge
-pkgver=0.12.0
+pkgver=0.12.1
 pkgrel=1
 pkgdesc='Native Arch Linux system and gaming utility'
 url='https://github.com/Zynokss/archforge'

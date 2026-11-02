@@ -52,6 +52,23 @@ pub(crate) fn installed_name<'a>(
     resolve(installed.keys().map(String::as_str), name).unwrap_or(name)
 }
 
+/// Precompute family matches for UIs that resolve thousands of rows per frame.
+/// Exact installed names still take priority at the call site.
+pub(crate) fn alias_index(
+    installed: &std::collections::BTreeMap<String, String>,
+) -> std::collections::BTreeMap<String, String> {
+    let mut families = std::collections::BTreeMap::<&str, Vec<&str>>::new();
+    for name in installed.keys() {
+        families.entry(base_name(name)).or_default().push(name);
+    }
+    families
+        .into_iter()
+        .filter_map(|(base, names)| {
+            resolve(names, base).map(|actual| (base.to_owned(), actual.to_owned()))
+        })
+        .collect()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -81,6 +98,36 @@ mod tests {
             resolve(["example-git", "example"], "example-bin"),
             Some("example")
         );
+    }
+    #[test]
+    fn indexed_matches_keep_exact_and_ambiguity_rules() {
+        let installed = std::collections::BTreeMap::from([
+            ("example-bin".into(), "1".into()),
+            ("example-git".into(), "1".into()),
+            ("tool-git".into(), "1".into()),
+        ]);
+        let index = alias_index(&installed);
+        assert!(!index.contains_key("example"));
+        assert_eq!(index.get("tool").map(String::as_str), Some("tool-git"));
+        for name in [
+            "tool",
+            "tool-bin",
+            "tool-git",
+            "example",
+            "example-bin",
+            "example-git",
+            "unknown",
+        ] {
+            let indexed = if installed.contains_key(name) {
+                name
+            } else {
+                index
+                    .get(base_name(name))
+                    .map(String::as_str)
+                    .unwrap_or(name)
+            };
+            assert_eq!(indexed, installed_name(&installed, name));
+        }
     }
     #[test]
     fn unrelated_packages_are_not_merged() {
