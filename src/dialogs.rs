@@ -308,7 +308,7 @@ impl Surface {
         let mut captions = Vec::new();
         for (i, (caption, value, icon)) in [first, second].into_iter().enumerate() {
             if i > 0 {
-                let divider = gtk::Separator::new(gtk::Orientation::Horizontal);
+                let divider = gtk::Separator::new(gtk::Orientation::Vertical);
                 divider.set_margin_top(0);
                 divider.set_margin_bottom(0);
                 box_.append(&divider);
@@ -346,22 +346,29 @@ impl Surface {
         }
     }
     pub fn details(&self, title: &str, subtitle: &str, command: Option<&str>) -> Details {
-        self.content.add_css_class("dialog-sidebar");
-        self.content.set_hexpand(false);
-        self.content.set_size_request(260, -1);
-        self.status.set_compact(true);
-        self.status.title.set_max_width_chars(25);
-        self.status.detail.set_max_width_chars(32);
-        let mut child = self.content.first_child();
-        while let Some(widget) = child {
-            if widget.has_css_class("dialog-stats") {
-                let cards = widget
-                    .downcast_ref::<gtk::Box>()
-                    .expect("Summary container");
-                cards.set_orientation(gtk::Orientation::Vertical);
+        self.workspace.set_orientation(gtk::Orientation::Vertical);
+        self.workspace.add_css_class("output-workspace");
+        self.workspace.set_spacing(12);
+        self.content.set_orientation(gtk::Orientation::Vertical);
+        let summary = row(16);
+        summary.add_css_class("output-summary");
+        let mut widget = self.content.first_child();
+        while let Some(child) = widget {
+            widget = child.next_sibling();
+            if child.has_css_class("dialog-hero") || child.has_css_class("dialog-stats") {
+                self.content.remove(&child);
+                summary.append(&child);
             }
-            child = widget.next_sibling();
         }
+        self.content.prepend(&summary);
+        self.content.set_hexpand(true);
+        self.content.set_size_request(-1, -1);
+        self.status.set_compact(true);
+        self.status.title.set_xalign(0.0);
+        self.status.detail.set_xalign(0.0);
+        self.status.detail.set_justify(gtk::Justification::Left);
+        self.status.title.set_max_width_chars(25);
+        self.status.detail.set_max_width_chars(55);
         let expander = gtk::Expander::new(None);
         expander.add_css_class("dialog-details");
         let status = self.status.clone();
@@ -387,15 +394,11 @@ impl Surface {
         heading.add_css_class("console-heading");
         let child = column(12);
         child.add_css_class("dialog-details-content");
+        heading.set_visible(false);
         child.append(&heading);
         let form = column(8);
         form.set_visible(false);
         child.append(&form);
-        if let Some(command) = command {
-            let command = wrapped(command, "console-command");
-            command.set_selectable(true);
-            child.append(&command);
-        }
         let output = gtk::TextView::builder()
             .editable(false)
             .cursor_visible(false)
@@ -406,15 +409,22 @@ impl Surface {
             .bottom_margin(12)
             .build();
         output.add_css_class("console");
-        let scroll = gtk::ScrolledWindow::builder()
-            .child(&output)
-            .hscrollbar_policy(gtk::PolicyType::Never)
-            .min_content_height(80)
-            .vexpand(true)
-            .hexpand(true)
-            .build();
-        child.append(&scroll);
+        let viewer = crate::command_output::pane(&output, command, true);
+        child.append(&viewer);
         let tools = row(10);
+        tools.connect_map(|tools| {
+            let mut child = tools.first_child();
+            while let Some(widget) = child {
+                if let Some(b) = widget.downcast_ref::<gtk::Button>()
+                    && b.label().is_some_and(|s| {
+                        matches!(s.as_str(), "Copy output" | "Copy command" | "Save output…")
+                    })
+                {
+                    b.set_visible(false);
+                }
+                child = widget.next_sibling();
+            }
+        });
         child.append(&tools);
         expander.set_child(Some(&child));
         // Keep the native container for existing observers, with its disclosure
@@ -454,7 +464,7 @@ pub(crate) fn style_output(buffer: &gtk::TextBuffer) {
         ("log-good", "#86d694"),
         ("log-warn", "#f4c16f"),
         ("log-error", "#ff858b"),
-        ("log-heading", "#8cbbef"),
+        ("log-heading", "#edbd65"),
     ] {
         let tag = gtk::TextTag::builder().name(name).foreground(color).build();
         table.add(&tag);
@@ -488,7 +498,14 @@ pub(crate) fn style_output(buffer: &gtk::TextBuffer) {
                 || lower.contains("passed")
             {
                 Some("log-good")
-            } else if line.starts_with("==") || line.starts_with("::") || line.starts_with('#') {
+            } else if line.starts_with("==")
+                || line.starts_with("::")
+                || line.starts_with('#')
+                || line.trim() == "VULKANINFO"
+                || line.contains("Extensions:")
+                || line.contains("Layers:")
+                || line.starts_with("GPU")
+            {
                 Some("log-heading")
             } else {
                 None
@@ -625,6 +642,46 @@ impl JobView {
         self.close.add_css_class("primary");
     }
     fn run(self: &Rc<Self>) {
+        if self.job.privileged() {
+            if let Some(parent) = self.parent.upgrade() {
+                match self.job.command() {
+                    Ok((program, args)) => {
+                        let command = if program == "/usr/bin/pkexec" {
+                            format!(
+                                "sudo {}",
+                                args.iter()
+                                    .map(|a| crate::package_cache::quote(a))
+                                    .collect::<Vec<_>>()
+                                    .join(" ")
+                            )
+                        } else {
+                            self.job.display_command()
+                        };
+                        crate::embedded_terminal::show(
+                            parent.upcast_ref(),
+                            self.job.title(),
+                            self.job.confirmation(),
+                            &command,
+                        );
+                        if let Some(window) = self
+                            .details
+                            .output
+                            .root()
+                            .and_then(|r| r.downcast::<gtk::Window>().ok())
+                        {
+                            window.close();
+                        }
+                    }
+                    Err(error) => self.status.set(
+                        Tone::Error,
+                        "Could not prepare command",
+                        &error,
+                        "Nothing has run",
+                    ),
+                }
+            }
+            return;
+        }
         self.status.set(
             Tone::Busy,
             if self.job.destructive() {
@@ -942,7 +999,7 @@ fn create_job(parent: &gtk::ApplicationWindow, job: Job) -> (gtk::Window, Rc<Job
         Job::Updates => ("Available updates", "Repository check"),
     };
     let stats = surface.stats(
-        (first, "—", "package-x-generic-symbolic"),
+        (first, "—", icon),
         (
             second,
             if matches!(job, Job::Failed) {
@@ -1011,6 +1068,34 @@ fn create_job(parent: &gtk::ApplicationWindow, job: Job) -> (gtk::Window, Rc<Job
         close,
         parent: parent.downgrade(),
     });
+    if !job.destructive() && !job.privileged() && job.preview().is_none() {
+        let rerun = button("Run again", false);
+        rerun.set_sensitive(false);
+        surface.actions.prepend(&rerun);
+        let weak = Rc::downgrade(&view);
+        rerun.connect_clicked(move |_| {
+            if let Some(view) = weak.upgrade()
+                && view.status.tone.get() != Tone::Busy
+            {
+                view.run();
+            }
+        });
+        let weak = Rc::downgrade(&view);
+        let window = window.downgrade();
+        let rerun = rerun.downgrade();
+        glib::timeout_add_local(Duration::from_millis(100), move || {
+            let (Some(view), Some(window), Some(button)) =
+                (weak.upgrade(), window.upgrade(), rerun.upgrade())
+            else {
+                return glib::ControlFlow::Break;
+            };
+            if !window.is_visible() {
+                return glib::ControlFlow::Break;
+            }
+            button.set_sensitive(view.status.tone.get() != Tone::Busy);
+            glib::ControlFlow::Continue
+        });
+    }
     let weak = Rc::downgrade(&view);
     view.authorize.connect_clicked(move |_| {
         if let Some(view) = weak.upgrade() {
@@ -1041,8 +1126,17 @@ fn create_job(parent: &gtk::ApplicationWindow, job: Job) -> (gtk::Window, Rc<Job
     (window, view)
 }
 
+pub(crate) fn size_output(window: &gtk::Window, parent: &gtk::ApplicationWindow) {
+    if let Some(surface) = parent.surface()
+        && let Some(monitor) = gtk::prelude::WidgetExt::display(parent).monitor_at_surface(&surface)
+    {
+        let bounds = monitor.geometry();
+        window.set_default_size(1160.min(bounds.width() - 48), 760.min(bounds.height() - 64));
+    }
+}
 pub fn show_job(parent: &gtk::ApplicationWindow, job: Job) {
     let (window, view) = create_job(parent, job);
+    size_output(&window, parent);
     if let Some(preview) = job.preview() {
         view.authorize.set_sensitive(false);
         view.status.set(

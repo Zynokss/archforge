@@ -380,7 +380,7 @@ pub fn show(parent: &gtk::ApplicationWindow, action: Action) {
     let close = surface.close_button(&dialog, "Close", false);
     let confirm = button(
         if action.terminal() {
-            "Open terminal"
+            "Open embedded terminal"
         } else {
             "Permanently clean"
         },
@@ -467,7 +467,7 @@ pub fn show(parent: &gtk::ApplicationWindow, action: Action) {
                         .unwrap_or_else(|| "Review with yay".into()),
                 );
                 if can_clean {
-                    preview_status.set(Tone::Ready, "Ready for your review", if action.terminal() { "Review the candidates below. The terminal command waits for Enter and asks for transaction confirmation." } else if matches!(action,Action::Trash) { "Emptying Trash is permanent. Review the selected files and metadata before confirming." } else { "Close apps using this cache first. The reviewed entries will be permanently removed; cache folders are kept." }, "Awaiting confirmation");
+                    preview_status.set(Tone::Ready, "Ready for your review", if action.terminal() { "Review the candidates below. The embedded terminal requires command review and fresh authentication, then asks for transaction confirmation." } else if matches!(action,Action::Trash) { "Emptying Trash is permanent. Review the selected files and metadata before confirming." } else { "Close apps using this cache first. The reviewed entries will be permanently removed; cache folders are kept." }, "Awaiting confirmation");
                     disclosure.set_expanded(true);
                 } else {
                     preview_status.set(
@@ -509,7 +509,7 @@ pub fn show(parent: &gtk::ApplicationWindow, action: Action) {
             return;
         };
         button.set_sensitive(false);
-        status.set(Tone::Busy, if action.terminal() { "Opening your terminal…" } else { "Cleaning selected entries…" }, "You can close this dialog; the operation will continue.", "Working…");
+        status.set(Tone::Busy, if action.terminal() { "Opening the embedded terminal…" } else { "Cleaning selected entries…" }, "You can close this dialog; the operation will continue.", "Working…");
         let terminal = matches!(&prepared, Prepared::Terminal { .. });
         let (tx, rx) = mpsc::channel();
         let operation = crate::Operation::new();
@@ -551,7 +551,7 @@ pub fn show(parent: &gtk::ApplicationWindow, action: Action) {
                     buffer.set_text(&message);
                 }
                 Err(error) => {
-                    status.set(if terminal { Tone::Error } else { Tone::Warning }, if terminal { "Could not open your terminal" } else { "Some entries were kept" }, if terminal { "No cleanup command has run. Copy the command from the details or review again to retry." } else { "Open the details below to review the entries that could not be removed. Review again before retrying." }, "Check the details");
+                    status.set(if terminal { Tone::Error } else { Tone::Warning }, if terminal { "Could not open the embedded terminal" } else { "Some entries were kept" }, if terminal { "No cleanup command has run. Copy the command from the details or review again to retry." } else { "Open the details below to review the entries that could not be removed. Review again before retrying." }, "Check the details");
                     close.set_label("Done"); close.add_css_class("primary");
                     if let Some(confirm) = confirm.upgrade() { confirm.set_visible(false); }
                     disclosure.set_expanded(true);

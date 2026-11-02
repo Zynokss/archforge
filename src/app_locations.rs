@@ -72,13 +72,13 @@ impl View {
         }
         if !inv.flatpak {
             self.status.set(Tone::Ready,"Flatpak is required","Install Flatpak first, then refresh locations. Pacman remains your Arch system package manager.","Optional desktop-app support");
-            self.details.output.buffer().set_text("sudo pacman -Syu --needed flatpak\n\nReview pacman's transaction in your terminal. After installation, return here and refresh locations.");
+            self.details.output.buffer().set_text("sudo pacman -Syu --needed flatpak\n\nReview pacman's transaction in the embedded terminal. After installation, return here and refresh locations.");
             *self.command.borrow_mut() = Some("sudo pacman -Syu --needed flatpak".into());
             self.action.set_label("Install Flatpak…");
             self.action.set_sensitive(true);
             return;
         }
-        self.action.set_label("Open terminal");
+        self.action.set_label("Open embedded terminal");
         let result = if mode == 0 {
             let candidates: Vec<_> = inv
                 .drives
@@ -263,7 +263,7 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Window, Rc<View>) {
     surface.content.append(&wrapped("Flatpak supports app-drive selection. Pacman packages use the storage layout of the Arch system.","muted"));
     let details = surface.details(
         "Installation review",
-        "Choose a location · review the command · run it in your terminal",
+        "Choose a location · review the command · run it in the embedded terminal",
         None,
     );
     details.form.set_visible(true);
@@ -326,7 +326,7 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Window, Rc<View>) {
     );
     details.tools.append(&docs);
     surface.close_button(&window, "Close", false);
-    let action = button("Open terminal", true);
+    let action = button("Open embedded terminal", true);
     surface.actions.append(&action);
     let view = Rc::new(View {
         window: window.downgrade(),

@@ -1,7 +1,7 @@
 # Local source package. Run ../scripts/dist.sh from this directory first.
 pkgname=archforge
-pkgver=0.9.1
-pkgrel=5
+pkgver=0.10.0
+pkgrel=1
 pkgdesc='Native Arch Linux system and gaming utility'
 url='https://github.com/Zynokss/archforge'
 arch=('x86_64' 'aarch64')
@@ -10,13 +10,15 @@ provides=("arch-forge=$pkgver")
 conflicts=('arch-forge')
 replaces=('arch-forge')
 options=('!debug')
-depends=('gtk4>=4.20' 'pacman' 'polkit' 'systemd' 'pciutils' 'curl')
+depends=('vte4>=0.76' 'sudo' 'gtk4>=4.20' 'pacman' 'polkit' 'systemd' 'pciutils' 'curl')
 makedepends=('rust' 'pkgconf')
 optdepends=(
+  'docker: inspect container disk usage and prune dangling images'
+  'virtualbox: inventory virtual machines and virtual disks'
+  'timeshift: review and create configured system snapshots'
   'flatpak: install desktop apps on a separate app drive'
   'power-profiles-daemon: inspect available power profiles'
   'iproute2: inspect network interface addresses'
-  'xdg-terminal-exec: use your preferred terminal for setup commands'
   'pacman-contrib: package cache maintenance and update checks'
   'vulkan-tools: Vulkan diagnostics'
   'gamemode: gaming performance requests and self-test'

@@ -344,3 +344,110 @@ window.compact .ricing-card-glyph { margin-top: 10px; }
 .github-document .github-table { border: 1px solid #30363d; padding: 12px; }
 .github-document separator { background: #30363d; min-height: 1px; margin: 8px 0; }
 .github-document link { color: #58a6ff; }
+.sidebar-utility, .appearance-button.sidebar-utility { min-height: 24px; padding: 10px 14px; margin: 0 0 8px; border: 1px solid alpha(@forge_muted, 0.18); border-radius: 9px; background: alpha(@forge_high, 0.25); }
+menubutton.sidebar-utility > button { padding: 0; border: 0; background: transparent; min-height: 24px; }
+.overview-strip { padding: 14px 18px; background: alpha(@forge_surface, 0.8); border: 1px solid alpha(@forge_muted, 0.17); border-radius: 10px; }
+.overview-metric { padding: 18px; border: 1px solid alpha(@forge_muted, 0.17); border-radius: 10px; background: alpha(@forge_surface, 0.8); min-height: 165px; }
+.overview-metric-value { font-size: 32px; font-weight: 750; margin-top: 8px; }
+.overview-gpu-name { font-size: 18px; }
+.overview-page .panel { padding: 18px; }
+.overview-page .panel > button { margin-top: 7px; }
+.overview-page .panel > .muted, .overview-page .panel > .tiny { margin: 7px 0; }
+.overview-metric progressbar trough { min-height: 9px; border-radius: 6px; background: alpha(@forge_muted, 0.17); }
+.overview-metric progressbar progress { min-height: 9px; border-radius: 6px; background: @forge_primary; }
+.overview-page .info-row { padding: 5px 4px; min-height: 23px; }
+.overview-page .panel > .section-title { margin-bottom: 8px; }
+.overview-page .overview-gpu-name { font-size: 20px; }
+.overview-page .overview-strip separator { margin: 2px 0; }
+.overview-page .panel { padding: 16px 18px; }
+.overview-page .page-header > button.primary { background: transparent; color: @forge_primary; border-color: @forge_primary; }
+.overview-page { padding: 18px 20px; }
+.sidebar-utility.active { border-left: 3px solid @forge_primary; background: alpha(@forge_primary, 0.12); }
+.settings-page switch:checked { background: @forge_primary; }
+.settings-page button.link { padding: 7px 10px; }
+.overview-page .panel > button { margin-top: 4px; }
+.overview-live-footer { padding: 9px 14px; border: 1px solid alpha(@forge_muted, 0.17); border-radius: 9px; background: alpha(@forge_surface, 0.5); }
+.output-workspace > .dialog-content { padding: 12px 16px; background: alpha(@forge_high, 0.2); border: 1px solid alpha(@forge_muted, 0.2); border-radius: 11px; }
+.output-workspace .dialog-hero { padding: 0; min-width: 180px; }
+.output-workspace .dialog-headline { font-size: 17px; margin-bottom: 3px; }
+.output-workspace .dialog-description { font-size: 11px; }
+.output-workspace .dialog-stats { border: 0; border-radius: 0; background: transparent; }
+.output-workspace .dialog-stat { padding: 6px 16px; }
+.output-workspace .dialog-stat-value { font-size: 16px; color: @forge_primary; }
+.output-workspace .dialog-stat image { color: @forge_primary; }
+.output-workspace .dialog-details-content { padding: 10px; }
+.command-output-pane { border: 1px solid alpha(#8cbbef, 0.2); border-radius: 9px; background: #0d1117; }
+.output-toolbar { padding: 8px 10px; background: alpha(#8cbbef, 0.07); }
+.output-toolbar button { padding: 5px 10px; min-height: 20px; font-size: 12px; }
+.output-toolbar searchentry { padding: 4px 8px; min-height: 20px; }
+.output-command { padding: 0 8px; }
+.output-command .console-command { padding: 7px 10px; font-size: 12px; }
+.output-command button { padding: 4px 8px; font-size: 11px; }
+.command-output-pane .console, .command-output-pane .console text { background: #0d1117; color: #cdd9e5; font-family: monospace; font-size: 12px; border: 0; }
+.output-line-numbers { background: #0d1117; border-right: 1px solid alpha(@forge_muted, 0.12); }
+.command-output-pane .console, .command-output-pane .console text { font-size: 13px; }
+/* Loadouts: compact library with a clear, persistent selection. */
+.loadouts-page { padding: 0 20px 10px; }
+.loadouts-page .loadout-panel { padding: 10px; border-radius: 10px; }
+.loadouts-page .loadout-profile { padding: 7px 10px; }
+.loadouts-page .loadout-profile entry { min-height: 22px; padding: 5px 10px; }
+.loadouts-page .loadout-category { padding: 8px 9px; border-radius: 6px; }
+.loadouts-page .loadout-category label { font-size: 11px; }
+.loadouts-page .loadout-mode-tabs { border-bottom: 1px solid alpha(@forge_muted, 0.2); padding-bottom: 4px; }
+.loadouts-page .loadout-mode-tabs button { background: transparent; border: 0; border-radius: 0; padding: 8px 14px; font-size: 12px; }
+.loadouts-page .loadout-mode-tabs button:checked { color: @forge_primary; border-bottom: 2px solid @forge_primary; }
+.loadouts-page .loadout-app { padding: 4px 6px; min-height: 34px; }
+.loadouts-page .loadout-app.selected { background: alpha(@forge_primary, 0.1); }
+.loadouts-page .loadout-app.selected:hover { background: alpha(@forge_primary, 0.16); }
+.loadouts-page .loadout-app .row-title { font-size: 12px; }
+.loadouts-page .loadout-status-badge, .loadouts-page .loadout-source-badge { padding: 2px 7px; font-size: 10px; }
+.loadouts-page .loadout-app .loadout-package-action { min-height: 19px; padding: 3px 8px; background: transparent; color: @forge_fg; border: 1px solid alpha(@forge_muted, 0.4); }
+.loadouts-page .loadout-filters entry, .loadouts-page .loadout-filters dropdown > button { padding: 6px 8px; min-height: 22px; }
+.loadouts-page .loadout-selected-count { color: @forge_primary; font-size: 11px; font-weight: 650; }
+.loadouts-page .loadout-group-heading { font-size: 12px; font-weight: 650; margin: 10px 0 4px; }
+.loadouts-page .loadout-selected-item { padding: 4px 0; }
+.loadouts-page .loadout-selected-item label { font-size: 11px; }
+.loadouts-page .loadout-selected-item .loadout-clear { padding: 2px; min-width: 15px; min-height: 15px; }
+.loadouts-page .loadout-selection-panel > button { padding: 7px 10px; font-size: 11px; }
+.loadouts-page .loadout-selection-panel separator { margin: 7px 0; }
+.loadouts-page .loadout-command { padding: 8px 12px; }
+.loadouts-page .loadout-custom-package { padding: 6px 2px; font-size: 11px; color: @forge_muted; }
+.loadouts-page .loadout-command .console, .loadouts-page .loadout-command .console text { font-size: 12px; }
+.loadouts-page .loadout-table-header { font-size: 11px; }
+.loadouts-page .loadout-app button.loadout-uninstall:hover, .loadouts-page .loadout-app button.loadout-uninstall:focus-visible { background: alpha(#ff6370, 0.16); color: #ff858b; border-color: #ff6370; }
+.loadouts-page .loadout-app button.loadout-uninstall:active { background: alpha(#ff6370, 0.26); }
+.embedded-terminal-content { padding: 20px; }
+.embedded-terminal-notice { padding: 10px 14px; border-left: 3px solid @forge_primary; background: alpha(@forge_primary, 0.07); border-radius: 5px; }
+.embedded-command-editor, .embedded-command-editor text { background: #11161c; color: #a8cfff; font-family: monospace; font-size: 12px; border-radius: 7px; }
+.embedded-terminal-frame { background: #000000; border: 1px solid alpha(@forge_primary, 0.3); border-radius: 9px; padding: 12px; }
+.embedded-terminal-window vte-terminal { padding: 6px; background: #000000; }
+.embedded-command-panel, .embedded-output-panel { padding: 12px; border: 1px solid alpha(@forge_muted, 0.2); border-radius: 10px; background: alpha(@forge_surface, 0.6); }
+.embedded-review-footer { padding-top: 12px; border-top: 1px solid alpha(@forge_muted, 0.2); }
+.embedded-review-check { padding: 11px 14px; border: 1px solid @forge_primary; border-radius: 8px; color: @forge_primary; font-weight: 650; background: alpha(@forge_primary, 0.06); }
+.embedded-review-check check { min-width: 22px; min-height: 22px; border: 2px solid @forge_primary; border-radius: 5px; margin-right: 8px; background: #000000; }
+.embedded-review-check check:checked { background: @forge_primary; color: @forge_on_primary; }
+.embedded-review-check:checked { background: alpha(@forge_primary, 0.15); }
+.embedded-run-hint { font-size: 10px; color: @forge_muted; }
+.embedded-review-footer button.primary:disabled { opacity: 0.8; color: @forge_muted; background: alpha(@forge_primary, 0.14); border-color: alpha(@forge_primary, 0.3); }
+.wiki-page { padding: 10px 20px; }
+.wiki-panel { padding: 12px; border: 1px solid alpha(@forge_muted, 0.2); border-radius: 8px; background: alpha(@forge_surface, 0.65); }
+.wiki-panel > .section-title { margin-bottom: 8px; }
+.wiki-topic { padding: 9px 7px; font-size: 11px; background: transparent; border: 0; }
+.wiki-topic.chosen { color: @forge_primary; background: alpha(@forge_primary, 0.14); border-left: 2px solid @forge_primary; }
+.wiki-topic-title { font-size: 24px; font-weight: 700; }
+.wiki-tabs button { padding: 8px 18px; border: 0; border-radius: 0; background: transparent; font-size: 12px; }
+.wiki-tabs button:checked { color: @forge_primary; background: alpha(@forge_primary, 0.08); border-bottom: 2px solid @forge_primary; }
+.wiki-command-card { padding: 12px; border: 1px solid alpha(@forge_muted, 0.2); border-radius: 7px; background: alpha(@forge_high, 0.16); }
+.wiki-command-card .row-title { font-size: 14px; }
+.wiki-command-card .muted { font-size: 12px; }
+.wiki-code-row { padding: 7px 10px; border: 1px solid alpha(@forge_muted, 0.16); border-radius: 6px; background: #0d1117; }
+.wiki-code { font-family: monospace; font-size: 12px; }
+.wiki-page button.link { padding: 4px 6px; min-height: 18px; font-size: 11px; }
+.wiki-command-card button { padding: 4px 8px; min-height: 18px; font-size: 11px; }
+.wiki-read-badge, .wiki-change-badge { padding: 3px 7px; border-radius: 5px; font-size: 10px; }
+.wiki-read-badge { color: #86d694; background: alpha(#86d694, 0.08); }
+.wiki-change-badge { color: @forge_primary; background: alpha(@forge_primary, 0.08); }
+.wiki-tip { font-size: 12px; padding: 10px; border: 1px solid alpha(@forge_primary, 0.25); border-radius: 6px; background: alpha(@forge_primary, 0.07); }
+.wiki-toc-link { padding: 5px 0; border: 0; background: transparent; font-size: 11px; }
+.sidebar button.nav { padding: 10px 14px; margin-bottom: 4px; }
+.sidebar button.nav.active { padding-left: 12px; }

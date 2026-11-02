@@ -67,6 +67,44 @@ fn text_view() -> gtk::TextView {
         .build();
     view.add_css_class("console");
     crate::dialogs::style_output(&view.buffer());
+    for (name, color) in [
+        ("command-program", "#cba6f7"),
+        ("command-flag", "#ffbf69"),
+        ("command-package", "#89dceb"),
+    ] {
+        view.buffer()
+            .tag_table()
+            .add(&gtk::TextTag::builder().name(name).foreground(color).build());
+    }
+    view.buffer().connect_changed(|buffer| {
+        let text = buffer.text(&buffer.start_iter(), &buffer.end_iter(), false);
+        if !["sudo ", "pacman ", "yay ", "paru "]
+            .iter()
+            .any(|prefix| text.starts_with(prefix))
+        {
+            return;
+        }
+        let mut offset = 0;
+        for segment in text.split_inclusive(char::is_whitespace) {
+            let token = segment.trim();
+            if !token.is_empty() {
+                let tag = if ["sudo", "pacman", "yay", "paru"].contains(&token) {
+                    "command-program"
+                } else if token.starts_with('-') {
+                    "command-flag"
+                } else {
+                    "command-package"
+                };
+                buffer.apply_tag_by_name(
+                    tag,
+                    &buffer.iter_at_offset(offset),
+                    &buffer.iter_at_offset(offset + token.chars().count() as i32),
+                );
+            }
+            offset += segment.chars().count() as i32;
+        }
+    });
+
     view
 }
 fn write_file(path: &std::path::Path, text: &str) -> Result<(), String> {
@@ -269,6 +307,12 @@ impl View {
     fn effective(&self) -> Profile {
         let mut p = self.profile.borrow().clone();
         p.name = self.profile_name.text().to_string();
+        let state = self.packages.borrow();
+        p.packages = p
+            .packages
+            .into_iter()
+            .map(|(name, source)| (state.installed_variant(&name).to_owned(), source))
+            .collect();
         let enabled = self.enabled.borrow();
         p.files.retain(|path, _| enabled.contains(path));
         p.executable.retain(|path| enabled.contains(path));
@@ -286,6 +330,14 @@ impl View {
     }
     fn apps(&self) -> Vec<App> {
         let mut apps = crate::loadout_styles::catalog();
+        for app in &mut apps {
+            let state = self.packages.borrow();
+            let actual = state.installed_variant(&app.name);
+            if actual != app.name {
+                app.description = format!("{} Installed package: {actual}.", app.description);
+                app.name = actual.to_owned();
+            }
+        }
         let existing: BTreeSet<_> = apps.iter().map(|a| a.name.clone()).collect();
         for (name, source) in &self.profile.borrow().packages {
             if !existing.contains(name) {
@@ -444,9 +496,12 @@ impl View {
             let installed = state.ready && state.installed.contains_key(&app.name);
             let action = button(if installed { "Uninstall" } else { "Install" }, !installed);
             action.add_css_class("loadout-package-action");
+            if installed {
+                action.add_css_class("loadout-uninstall");
+            }
             action.set_sensitive(state.ready && (installed || app.source != Source::Foreign));
             action.set_tooltip_text(Some(if installed {
-                "Review removal in your terminal"
+                "Review removal in the embedded terminal"
             } else {
                 "Review installation; cached archives may be reused by pacman"
             }));
@@ -468,7 +523,7 @@ impl View {
             });
             card.append(&table_cell(&action, &self.columns[2], 94));
             let selected = gtk::CheckButton::new();
-            selected.set_active(self.profile.borrow().packages.contains_key(&app.name));
+            selected.set_active(self.effective().packages.contains_key(&app.name));
             selected.update_property(&[gtk::accessible::Property::Label(&format!(
                 "Select {}",
                 app.title
@@ -480,14 +535,30 @@ impl View {
                     if check.is_active() {
                         profile.packages.insert(app.name.clone(), app.source);
                     } else {
-                        profile.packages.remove(&app.name);
+                        let state = v.packages.borrow();
+                        profile
+                            .packages
+                            .retain(|name, _| state.installed_variant(name) != app.name);
                     }
                     drop(profile);
                     v.render_summary();
                 }
             });
             selected.set_halign(gtk::Align::Center);
-            card.append(&table_cell(&selected, &self.columns[3], 24));
+            if selected.is_active() {
+                card.add_css_class("selected");
+            }
+            let selected_row = card.downgrade();
+            selected.connect_toggled(move |check| {
+                if let Some(row) = selected_row.upgrade() {
+                    if check.is_active() {
+                        row.add_css_class("selected");
+                    } else {
+                        row.remove_css_class("selected");
+                    }
+                }
+            });
+            card.prepend(&table_cell(&selected, &self.columns[3], 24));
             self.library.append(&card);
         }
     }
@@ -527,13 +598,13 @@ impl View {
             self.files.append(&row);
         }
     }
-    fn render_summary(&self) {
+    fn render_summary(self: &Rc<Self>) {
         let p = self.effective();
         let repo = p.packages.values().filter(|s| **s == Source::Repo).count();
         let aur = p.packages.values().filter(|s| **s == Source::Aur).count();
         let foreign = p.packages.len() - repo - aur;
         self.count
-            .set_text(&format!("{} selected packages", p.packages.len()));
+            .set_text(&format!("{} selected", p.packages.len()));
         while let Some(child) = self.summary.first_child() {
             self.summary.remove(&child);
         }
@@ -554,43 +625,85 @@ impl View {
             .keys()
             .filter(|n| state.updates.contains_key(*n))
             .count();
-        for (name, value) in [
-            ("To install", p.packages.len() - installed),
-            (
-                "Already installed · skip",
-                installed.saturating_sub(updates),
-            ),
-            ("Updates available", updates),
-            ("Selected dotfiles", p.files.len()),
-        ] {
-            if name == "Selected dotfiles" && value == 0 {
+        let catalog = crate::loadout_styles::catalog();
+        for (heading, installed_group) in [("Will install", false), ("Already installed", true)] {
+            let names: Vec<_> = p
+                .packages
+                .keys()
+                .filter(|n| state.installed.contains_key(*n) == installed_group)
+                .collect();
+            if names.is_empty() {
                 continue;
             }
-            let item = row(8);
-            item.add_css_class("loadout-summary-row");
-            let text = label(name, "muted");
-            text.set_hexpand(true);
-            item.append(&text);
-            let value = if !state.ready || (name == "Updates available" && !state.updates_checked) {
-                "—".into()
-            } else {
-                value.to_string()
-            };
-            let value_row = row(8);
-            let dot = label(
-                "●",
-                match name {
-                    "To install" => "scan-cached",
-                    "Updates available" => "scan-updates",
-                    "Already installed · skip" => "scan-installed",
-                    _ => "muted",
-                },
-            );
-            dot.add_css_class("selection-dot");
-            value_row.append(&dot);
-            value_row.append(&label(&value, "row-title"));
-            item.append(&value_row);
-            self.summary.append(&item);
+            self.summary.append(&label(
+                &format!(
+                    "{} ({})",
+                    if !state.ready {
+                        "Awaiting scan"
+                    } else {
+                        heading
+                    },
+                    names.len()
+                ),
+                "loadout-group-heading",
+            ));
+            for name in names.iter().take(20) {
+                let line = row(7);
+                line.add_css_class("loadout-selected-item");
+                if let Some(app) = catalog.iter().find(|app| app.name == ***name) {
+                    let icon = crate::app_icons::icon(app);
+                    icon.set_size_request(20, 20);
+                    line.append(&icon);
+                    let title = label(&app.title, "");
+                    title.set_ellipsize(gtk::pango::EllipsizeMode::End);
+                    title.set_hexpand(true);
+                    line.append(&title);
+                } else {
+                    let title = label(name, "");
+                    title.set_hexpand(true);
+                    title.set_ellipsize(gtk::pango::EllipsizeMode::End);
+                    line.append(&title);
+                }
+                if installed_group && self.skip.is_active() {
+                    line.append(&label("Skipped", "scan-installed"));
+                }
+                let remove = gtk::Button::from_icon_name("window-close-symbolic");
+                remove.add_css_class("loadout-clear");
+                remove.set_tooltip_text(Some("Remove from selection"));
+                let name = (*name).clone();
+                let weak = Rc::downgrade(self);
+                remove.connect_clicked(move |_| {
+                    if let Some(view) = weak.upgrade() {
+                        view.profile.borrow_mut().packages.remove(&name);
+                        view.render_packages();
+                        view.render_summary();
+                    }
+                });
+                line.append(&remove);
+                self.summary.append(&line);
+            }
+            if names.len() > 20 {
+                self.summary
+                    .append(&label(&format!("+ {} more", names.len() - 20), "tiny"));
+            }
+        }
+        if p.packages.is_empty() {
+            self.summary.append(&wrapped(
+                "Select packages from the library to build your loadout.",
+                "muted",
+            ));
+        }
+        if updates > 0 {
+            self.summary.append(&label(
+                &format!("{updates} selected package updates available"),
+                "scan-updates",
+            ));
+        }
+        if !p.files.is_empty() {
+            self.summary.append(&label(
+                &format!("{} selected dotfiles", p.files.len()),
+                "tiny",
+            ));
         }
         self.uninstall
             .set_label(&format!("Uninstall selected ({installed})"));
@@ -608,7 +721,7 @@ impl View {
             "Full selection · pacman skips current versions"
         });
         self.install.set_label(&format!(
-            "Install {} ({})",
+            "Review & install {} ({})",
             if self.skip.is_active() {
                 "missing"
             } else {
@@ -715,7 +828,7 @@ fn removal_review(parent: &gtk::ApplicationWindow, names: Vec<String>, command: 
     let (window, surface) = Surface::new(
         parent,
         "Uninstall packages",
-        "Check dependencies before reviewing removal. Pacman asks for confirmation in your terminal.",
+        "Check dependencies before reviewing removal. Pacman asks for confirmation in the embedded terminal.",
         "\u{e872}",
         "edit-delete-symbolic",
     );
@@ -763,7 +876,7 @@ fn removal_review(parent: &gtk::ApplicationWindow, names: Vec<String>, command: 
         .buffer()
         .set_text("Checking the exact selected packages against pacman's installed database…");
     let close = surface.close_button(&window, "Cancel", false);
-    let open = button("Open terminal", true);
+    let open = button("Open embedded terminal", true);
     open.set_visible(false);
     surface.actions.append(&open);
     let allowed = Rc::new(Cell::new(false));
@@ -803,7 +916,7 @@ fn removal_review(parent: &gtk::ApplicationWindow, names: Vec<String>, command: 
         match result {
             Ok(plan) if plan.blockers.is_empty() => {
                 stats[1].set_text("None");
-                surface.status.set(Tone::Ready, "Ready to review removal", "Open the terminal to review the command and press Enter. Pacman checks dependencies again and asks for confirmation.", "Nothing removed yet");
+                surface.status.set(Tone::Ready, "Ready to review removal", "Open the terminal to review the command and choose Authenticate & run. Pacman checks dependencies again and asks for confirmation.", "Nothing removed yet");
                 details.title.set_text("Removal preview & command");
                 details
                     .subtitle
@@ -1169,6 +1282,23 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
     for category in loadouts::CATEGORIES {
         let b = button(category, false);
         b.add_css_class("loadout-category");
+        let content = row(9);
+        let icon_name = match *category {
+            "Essentials" => "package-x-generic-symbolic",
+            "Browsers" => "web-browser-symbolic",
+            "Development" => "utilities-terminal-symbolic",
+            "Gaming" => "applications-games-symbolic",
+            "Media" => "video-display-symbolic",
+            "Communication" => "user-available-symbolic",
+            "System utilities" => "applications-system-symbolic",
+            "Desktop & styling" => "preferences-desktop-theme-symbolic",
+            _ => "view-grid-symbolic",
+        };
+        let icon = gtk::Image::from_icon_name(icon_name);
+        icon.set_pixel_size(18);
+        content.append(&icon);
+        content.append(&label(category, ""));
+        b.set_child(Some(&content));
         category_list.append(&b);
         category_buttons.push(b);
     }
@@ -1185,6 +1315,16 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
     let center = column(10);
     center.set_hexpand(true);
     center.add_css_class("loadout-panel");
+    let package_mode = row(6);
+    package_mode.add_css_class("loadout-mode-tabs");
+    let build_mode = gtk::ToggleButton::with_label("Build loadout");
+    build_mode.set_active(true);
+    let manage_mode = gtk::ToggleButton::with_label("Manage installed");
+    manage_mode.set_tooltip_text(Some("Show installed packages in this library. Use Packages for the complete system package database."));
+    manage_mode.set_group(Some(&build_mode));
+    package_mode.append(&build_mode);
+    package_mode.append(&manage_mode);
+    center.append(&package_mode);
     let packages = column(8);
     let scan_bar = row(8);
     scan_bar.add_css_class("loadout-scan-toolbar");
@@ -1198,6 +1338,13 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
     scan_status.set_max_width_chars(18);
     let refresh = button("Check for updates", false);
     refresh.add_css_class("loadout-refresh");
+    let refresh_contents = row(7);
+    let refresh_icon = gtk::Image::from_icon_name("view-refresh-symbolic");
+    refresh_icon.set_pixel_size(16);
+    refresh_contents.append(&refresh_icon);
+    refresh_contents.append(&label("Check for updates", ""));
+    refresh.set_child(Some(&refresh_contents));
+    refresh.update_property(&[gtk::accessible::Property::Label("Check for updates")]);
     refresh.set_tooltip_text(Some(
         "Refresh repository update information using checkupdates. AUR packages are not checked.",
     ));
@@ -1230,6 +1377,18 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
         "Filter installation status",
     )]);
     filters.append(&statuses);
+    let status_picker = statuses.clone();
+    manage_mode.connect_toggled(move |mode| {
+        if mode.is_active() {
+            status_picker.set_selected(1);
+        }
+    });
+    let status_picker = statuses.clone();
+    build_mode.connect_toggled(move |mode| {
+        if mode.is_active() {
+            status_picker.set_selected(0);
+        }
+    });
     let sort = gtk::DropDown::from_strings(&[
         "Recommended",
         "Popular first",
@@ -1247,6 +1406,8 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
     let name_heading = label("Package", "");
     name_heading.set_hexpand(true);
     name_heading.set_margin_start(38);
+    let selection_heading = label("", "");
+    header.append(&table_cell(&selection_heading, &columns[3], 24));
     header.append(&name_heading);
     for (i, (title, width)) in [("Status", 150), ("Source", 76), ("Actions", 94), ("✓", 24)]
         .into_iter()
@@ -1256,7 +1417,9 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
         if i == 3 {
             l.set_xalign(0.5);
         }
-        header.append(&table_cell(&l, &columns[i], width));
+        if i != 3 {
+            header.append(&table_cell(&l, &columns[i], width));
+        }
     }
     packages.append(&header);
     let library = column(0);
@@ -1290,7 +1453,12 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
     custom.append(&custom_source);
     let add = button("Add", false);
     custom.append(&add);
-    packages.append(&custom);
+    let custom_more = gtk::Expander::builder()
+        .label("Add a custom package")
+        .child(&custom)
+        .build();
+    custom_more.add_css_class("loadout-custom-package");
+    packages.append(&custom_more);
     center.append(&packages);
     let styling = column(10);
     styling.append(&label("Desktop kits & starter dotfiles", "section-title"));
@@ -1331,11 +1499,12 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
     body.append(&center);
     let side = column(8);
     side.add_css_class("loadout-panel");
+    side.add_css_class("loadout-selection-panel");
     side.set_width_request(236);
     side.set_hexpand(false);
     side.set_valign(gtk::Align::Start);
     let selection_heading = row(10);
-    let selection_title = label("Your selection", "section-title");
+    let selection_title = label("Your loadout", "section-title");
     selection_title.set_hexpand(true);
     selection_heading.append(&selection_title);
     let clear = gtk::Button::from_icon_name("edit-clear-symbolic");
@@ -1345,9 +1514,17 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
     selection_heading.append(&clear);
     side.append(&selection_heading);
     let count = label("", "muted");
+    count.add_css_class("loadout-selected-count");
     side.append(&count);
     let summary = column(2);
-    side.append(&summary);
+    let summary_scroll = gtk::ScrolledWindow::builder()
+        .child(&summary)
+        .hscrollbar_policy(gtk::PolicyType::Never)
+        .min_content_height(50)
+        .max_content_height(220)
+        .propagate_natural_height(true)
+        .build();
+    side.append(&summary_scroll);
     let foreign = gtk::CheckButton::new();
     let foreign_label = wrapped("Try selected foreign packages through AUR", "tiny");
     foreign_label.set_max_width_chars(28);
@@ -1366,20 +1543,32 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
     cache_note.set_max_width_chars(30);
     side.append(&cache_note);
     let install = button("Install missing", true);
+    side.append(&gtk::Separator::new(gtk::Orientation::Horizontal));
+    side.append(&label("Installation plan", "row-title"));
+    side.append(&label("1   Update repository packages", "tiny"));
+    side.append(&label("2   Install your selected apps", "tiny"));
     side.append(&install);
     let update = button("Update system", false);
-    side.append(&update);
+    let installed_actions = column(6);
+    installed_actions.append(&update);
     let uninstall = button("Uninstall selected (0)", false);
     uninstall.add_css_class("destructive-action");
-    side.append(&uninstall);
+    installed_actions.append(&uninstall);
     let export = button("Export install script", false);
     export.set_tooltip_text(Some("Package-only script. Run it with bash as your regular user; dotfiles are applied separately."));
     let profile_actions = column(8);
-    profile_actions.append(&export);
+    side.append(&export);
+    let installed_more = gtk::Expander::builder()
+        .label("Installed package actions")
+        .child(&installed_actions)
+        .build();
+    let installed_mode = installed_more.clone();
+    manage_mode.connect_toggled(move |mode| installed_mode.set_expanded(mode.is_active()));
+    side.append(&installed_more);
     let apply = button("Review dotfiles", false);
     profile_actions.append(&apply);
     let note = wrapped(
-        "Install commands prompt in your terminal. Dotfiles are reviewed and applied separately with backups.",
+        "Install commands prompt in the embedded terminal. Dotfiles are reviewed and applied separately with backups.",
         "tiny",
     );
     note.set_max_width_chars(30);
@@ -1408,7 +1597,7 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
     let command_panel = column(5);
     command_panel.add_css_class("loadout-command");
     let command_heading = row(10);
-    let l = label("Generated install command", "row-title");
+    let l = label("Command preview", "row-title");
     command_heading.append(&l);
     let command_hint = label("", "tiny");
     command_hint.set_hexpand(true);
@@ -1530,8 +1719,7 @@ fn create(parent: &gtk::ApplicationWindow) -> (gtk::Box, Rc<View>) {
     uninstall.connect_clicked(move |_| {
         if let Some(v) = weak.upgrade() {
             let names = v
-                .profile
-                .borrow()
+                .effective()
                 .packages
                 .keys()
                 .filter(|name| v.packages.borrow().installed.contains_key(*name))

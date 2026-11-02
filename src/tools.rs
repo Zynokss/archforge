@@ -268,8 +268,8 @@ pub(crate) fn launch_terminal(
     open.set_sensitive(false);
     status.set(
         Tone::Busy,
-        "Opening your terminal…",
-        "Review the command and press Enter to run it.",
+        "Opening embedded terminal…",
+        "Review the action and command in Arch Forge before authenticating.",
         "Waiting for terminal",
     );
     let (tx, rx) = mpsc::channel();
@@ -307,49 +307,9 @@ pub(crate) fn terminal_review(
     description: &str,
     command: &str,
 ) {
-    let (window, surface) = Surface::new(
-        parent,
-        name,
-        description,
-        "\u{eb8e}",
-        "utilities-terminal-symbolic",
-    );
-    surface.status.set(Tone::Ready,"Review this command","The terminal opens with an editable command. Press Enter to run it; the dialog closes when the terminal opens.","Nothing has run");
-    surface.stats(
-        (
-            "Execution",
-            "Interactive terminal",
-            "utilities-terminal-symbolic",
-        ),
-        (
-            "Confirmation",
-            "Required in terminal",
-            "dialog-information-symbolic",
-        ),
-    );
-    let details = surface.details(
-        "Proposed command",
-        "Review or copy before running",
-        Some(command),
-    );
-    details.output.buffer().set_text(description);
-    let copy = button("Copy command", false);
-    let proposed = command.to_string();
-    copy.connect_clicked(move |_| copy_text(&proposed));
-    details.tools.append(&copy);
-    surface.close_button(&window, "Cancel", false);
-    let open = button("Open terminal", true);
-    surface.actions.append(&open);
-    let weak = window.downgrade();
-    let command = command.to_string();
-    let status = surface.status;
-    open.connect_clicked(move |b| {
-        if let Some(w) = weak.upgrade() {
-            launch_terminal(&w, command.clone(), status.clone(), b);
-        }
-    });
-    window.present();
+    crate::embedded_terminal::show(parent.upcast_ref(), name, description, command);
 }
+
 fn read_tool(
     parent: &gtk::ApplicationWindow,
     tool: Tool,
@@ -359,6 +319,7 @@ fn read_tool(
 ) {
     let (window, surface) =
         Surface::new(parent, tool.name, tool.description, "\u{eb8e}", tool.icon);
+    crate::dialogs::size_output(&window, parent);
     surface.status.set(
         Tone::Busy,
         "Reading your system…",
@@ -604,7 +565,7 @@ fn cache_location(parent: &gtk::ApplicationWindow) {
     reset.connect_clicked(move |_|{if let Some(parent)=weak_parent.upgrade(){terminal_review(&parent,"Restore cache settings","Removes only Arch Forge's CacheDir entry. Existing pacman cache settings resume, or pacman's default applies if none remain. A configuration backup is created; archives are kept.","sudo /usr/bin/archforge --reset-package-cache");}});
     details.tools.append(&reset);
     surface.close_button(&window, "Cancel", false);
-    let open = button("Open terminal", true);
+    let open = button("Open embedded terminal", true);
     surface.actions.append(&open);
     let weak = window.downgrade();
     let status = surface.status.clone();
@@ -1169,5 +1130,33 @@ pub(crate) fn inspect_mounts(parent: &gtk::ApplicationWindow) {
             .iter()
             .find(|t| t.name == "Mounted filesystems")
             .expect("Mount inspection tool"),
+    );
+}
+
+pub(crate) fn inspect_cleanup(
+    parent: &gtk::ApplicationWindow,
+    name: &'static str,
+    description: &'static str,
+    icon: &'static str,
+    command: &'static str,
+) {
+    read_tool(
+        parent,
+        Tool {
+            name,
+            category: "Storage",
+            description,
+            keywords: "cleanup",
+            icon,
+            action: Action::Read("/usr/bin/bash", &[], "Inspection"),
+        },
+        "/usr/bin/bash",
+        vec![
+            "--noprofile".into(),
+            "--norc".into(),
+            "-c".into(),
+            command.into(),
+        ],
+        "Inspection",
     );
 }

@@ -1,25 +1,31 @@
 mod app_icons;
 mod app_locations;
 mod app_storage;
+mod cleanup_tools;
 mod cleanups;
+mod command_output;
 mod diagnostic_results;
 mod dialogs;
+mod embedded_terminal;
 mod jobs;
 mod loadout_state;
 mod loadout_styles;
 mod loadout_ui;
 mod loadouts;
 mod package_cache;
+mod preferences;
 mod ricing;
 mod ricing_document;
 mod ricing_ui;
 mod screens;
+mod settings_ui;
 mod system;
 mod terminal;
 mod theme;
 mod tool_icons;
 mod tools;
 mod updater;
+mod wiki;
 use screens::{cleanup, diagnostics, gaming, overview, packages};
 
 use gtk::{glib, prelude::*};
@@ -122,6 +128,12 @@ fn adapt_layout(window: &gtk::ApplicationWindow) {
         window.remove_css_class("compact");
     }
     fn visit(w: &gtk::Widget, compact: bool) {
+        if w.has_css_class("wiki-topic-picker") {
+            w.set_visible(compact);
+        }
+        if w.has_css_class("wiki-topic-list") {
+            w.set_visible(!compact);
+        }
         if w.has_css_class("loadout-category-picker") {
             w.set_visible(compact);
         }
@@ -133,6 +145,7 @@ fn adapt_layout(window: &gtk::ApplicationWindow) {
             && [
                 "split-layout",
                 "metric-grid",
+                "wiki-columns",
                 "page-header",
                 "command-toolbar",
                 "catalog-columns",
@@ -169,7 +182,13 @@ fn adapt_layout(window: &gtk::ApplicationWindow) {
             if b.has_css_class("split-layout")
                 && let Some(aside) = b.last_child()
             {
-                aside.set_width_request(if compact { -1 } else { 330 });
+                aside.set_width_request(if compact {
+                    -1
+                } else if b.has_css_class("overview-columns") {
+                    540
+                } else {
+                    330
+                });
             }
         }
         let mut child = w.first_child();
@@ -360,7 +379,7 @@ fn show_setup(parent: &gtk::ApplicationWindow, name: &str, package: &str, instal
         }
     } else {
         (
-            "Open a terminal with this command ready to review. Press Enter to perform a full system upgrade and install the package, then review pacman's transaction before accepting.",
+            "Open a terminal with this command ready to review. Review the command and authenticate inside Arch Forge to perform a full system upgrade and install the package, then review pacman's transaction before accepting.",
             format!("sudo pacman -Syu --needed {package}"),
         )
     };
@@ -415,7 +434,7 @@ fn show_setup(parent: &gtk::ApplicationWindow, name: &str, package: &str, instal
     let buttons = surface.actions.clone();
     surface.close_button(&d, "Close", false);
     if !launch_option {
-        let open = button("Open terminal", true);
+        let open = button("Open embedded terminal", true);
         let proposed = cmd.clone();
         let status = status.clone();
         let setup = d.downgrade();
@@ -423,8 +442,8 @@ fn show_setup(parent: &gtk::ApplicationWindow, name: &str, package: &str, instal
             b.set_sensitive(false);
             status.set(
                 dialogs::Tone::Busy,
-                "Opening your terminal…",
-                "The command will wait for you to review it and press Enter.",
+                "Opening the embedded terminal…",
+                "The embedded terminal waits for command review and fresh authentication.",
                 "Starting terminal",
             );
             let (tx, rx) = mpsc::channel();
@@ -455,7 +474,7 @@ fn show_setup(parent: &gtk::ApplicationWindow, name: &str, package: &str, instal
                 if let Err(error) = &result {
                     status.set(
                         dialogs::Tone::Error,
-                        "Could not open your terminal",
+                        "Could not open the embedded terminal",
                         error,
                         "Copy command is available",
                     );
@@ -608,6 +627,14 @@ fn refresh_pages(
             .build();
         stack.add_named(&scroll, Some("loadouts"));
     }
+    if stack.child_by_name("wiki").is_none() {
+        let page = wiki::page(window);
+        let scroll = gtk::ScrolledWindow::builder()
+            .hscrollbar_policy(gtk::PolicyType::Never)
+            .child(&page)
+            .build();
+        stack.add_named(&scroll, Some("wiki"));
+    }
     stack.set_visible_child_name(&selected);
 }
 
@@ -617,6 +644,7 @@ fn build(app: &gtk::Application) {
     let chosen = Rc::new(RefCell::new(theme::selected()));
     theme::apply(&provider, &chosen.borrow());
     if let Some(settings) = gtk::Settings::default() {
+        settings.set_gtk_enable_animations(!preferences::reduced_motion());
         settings.set_gtk_interface_color_scheme(gtk::InterfaceColorScheme::Dark);
     }
     let window = gtk::ApplicationWindow::builder()
@@ -663,7 +691,11 @@ fn build(app: &gtk::Application) {
     stack.set_vexpand(true);
     stack.set_hhomogeneous(false);
     stack.set_transition_type(gtk::StackTransitionType::Crossfade);
-    stack.set_transition_duration(160);
+    stack.set_transition_duration(if preferences::reduced_motion() {
+        0
+    } else {
+        160
+    });
     let navs = Rc::new(RefCell::new(Vec::<gtk::Button>::new()));
     for (name, title, glyph, icon) in [
         ("overview", "Overview", "\u{e871}", "view-grid-symbolic"),
@@ -694,6 +726,7 @@ fn build(app: &gtk::Application) {
             "\u{e3ae}",
             "applications-graphics-symbolic",
         ),
+        ("wiki", "Wiki", "\u{e865}", "help-browser-symbolic"),
     ] {
         let b = gtk::Button::new();
         b.add_css_class("nav");
@@ -745,7 +778,7 @@ fn build(app: &gtk::Application) {
             return glib::Propagation::Stop;
         }
         if let Some(digit) = key.to_unicode().and_then(|c| c.to_digit(10))
-            && (1..=8).contains(&digit)
+            && (1..=9).contains(&digit)
         {
             let nav = jump_navs.borrow()[digit as usize - 1].clone();
             if nav.is_sensitive() {
@@ -759,8 +792,41 @@ fn build(app: &gtk::Application) {
     let spacer = column(0);
     spacer.set_vexpand(true);
     sidebar.append(&spacer);
-    sidebar.append(&updater::launcher(&window));
-    sidebar.append(&appearance_menu(&provider, chosen));
+    let updates = updater::launcher(&window);
+    updates.add_css_class("sidebar-utility");
+    let appearance = appearance_menu(&provider, chosen);
+    appearance.add_css_class("sidebar-utility");
+    sidebar.append(&updates);
+    sidebar.append(&appearance);
+    let settings_page = settings_ui::page(&updates, &appearance, &stack);
+    let settings_scroll = gtk::ScrolledWindow::builder()
+        .hscrollbar_policy(gtk::PolicyType::Never)
+        .child(&settings_page)
+        .build();
+    stack.add_named(&settings_scroll, Some("settings"));
+    let settings_button = gtk::Button::new();
+    let settings_label = row(12);
+    settings_label.append(&gtk::Image::from_icon_name("emblem-system-symbolic"));
+    settings_label.append(&label("Settings", ""));
+    settings_button.set_child(Some(&settings_label));
+    settings_button.add_css_class("sidebar-utility");
+    let settings_stack = stack.clone();
+    let settings_navs = navs.clone();
+    settings_button.connect_clicked(move |_| {
+        for b in settings_navs.borrow().iter() {
+            b.remove_css_class("active");
+        }
+        settings_stack.set_visible_child_name("settings");
+    });
+    let settings_state = settings_button.clone();
+    stack.connect_visible_child_name_notify(move |stack| {
+        if stack.visible_child_name().as_deref() == Some("settings") {
+            settings_state.add_css_class("active");
+        } else {
+            settings_state.remove_css_class("active");
+        }
+    });
+    sidebar.append(&settings_button);
     let foot = row(12);
     foot.add_css_class("sidebar-foot");
     foot.append(&arch_logo("#48b7e8", 30));
@@ -777,6 +843,7 @@ fn build(app: &gtk::Application) {
     loading.append(&label("Reading your system…", "page-title"));
     loading.append(&label("Loading hardware and installed packages.", "muted"));
     stack.add_named(&loading, Some("loading"));
+    stack.set_visible_child_name("loading");
     let metrics = Rc::new(RefCell::new(Metrics::default()));
     let mut sampler = Sampler::default();
     *metrics.borrow_mut() = sampler.sample();

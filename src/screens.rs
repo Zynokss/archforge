@@ -1,6 +1,5 @@
 use super::*;
 use std::cell::Cell;
-use std::collections::VecDeque;
 
 fn heading(
     parent: &gtk::ApplicationWindow,
@@ -170,180 +169,75 @@ fn read_only_card(name: &str, description: &str, glyph: &str) -> gtk::Box {
     r
 }
 
-#[derive(Clone)]
-struct MetricCard {
-    root: gtk::Box,
-    value: gtk::Label,
-    detail: gtk::Label,
-    chart: gtk::DrawingArea,
-    gauge: gtk::DrawingArea,
-    history: Rc<RefCell<VecDeque<f64>>>,
-    current: Rc<RefCell<Option<f64>>>,
-}
-impl MetricCard {
-    fn new(name: &str, glyph: &str, axis: &[&str; 3]) -> Self {
-        let root = panel("metric");
-        root.set_hexpand(true);
-        root.set_vexpand(false);
-        root.set_height_request(260);
-        root.append(&label(name, "metric-label"));
-        let reading = row(18);
-        reading.set_margin_top(16);
-        let current = Rc::new(RefCell::new(None::<f64>));
-        let gauge = gtk::DrawingArea::builder()
-            .width_request(74)
-            .height_request(74)
-            .build();
-        gauge.add_css_class("gauge");
-        let level = current.clone();
-        let cpu = name == "Processor";
-        gauge.set_draw_func(move |area, cr, w, h| {
-            let (x, y) = (w as f64 / 2.0, h as f64 / 2.0);
-            let radius = (x.min(y) - 5.0).max(1.0);
-            let c = area.color();
-            cr.set_line_width(if cpu { 7.0 } else { 2.0 });
-            cr.set_source_rgba(0.7, 0.75, 0.8, 0.10);
-            cr.arc(x, y, radius, 0.0, std::f64::consts::TAU);
-            let _ = cr.stroke();
-            if cpu && let Some(percent) = *level.borrow() {
-                cr.set_source_rgba(c.red() as f64, c.green() as f64, c.blue() as f64, 1.0);
-                cr.set_line_cap(gtk::cairo::LineCap::Round);
-                cr.arc(
-                    x,
-                    y,
-                    radius,
-                    -std::f64::consts::FRAC_PI_2,
-                    -std::f64::consts::FRAC_PI_2
-                        + percent.clamp(0.0, 100.0) / 100.0 * std::f64::consts::TAU,
-                );
-                let _ = cr.stroke();
-            }
-        });
-        let icon = symbol(glyph, "utilities-system-monitor-symbolic");
-        icon.set_halign(gtk::Align::Center);
-        icon.set_valign(gtk::Align::Center);
-        icon.add_css_class("metric-icon");
-        let overlay = gtk::Overlay::new();
-        overlay.set_child(Some(&gauge));
-        overlay.add_overlay(&icon);
-        reading.append(&overlay);
-        let values = column(4);
-        values.set_valign(gtk::Align::Center);
-        let value = label("…", "metric-value");
-        let detail = label("Waiting for a sample", "metric-detail");
-        values.append(&value);
-        values.append(&detail);
-        reading.append(&values);
-        root.append(&reading);
-        let plot = row(8);
-        plot.set_margin_top(14);
-        let ticks = column(0);
-        ticks.add_css_class("axis");
-        ticks.set_width_request(30);
-        for (i, text) in axis.iter().enumerate() {
-            let l = label(text, "axis-label");
-            if i == 1 {
-                l.set_vexpand(true);
-                l.set_valign(gtk::Align::Center);
-            }
-            ticks.append(&l);
+fn overview_jump(parent: &gtk::ApplicationWindow, destination: &str, capture: bool) {
+    fn walk(w: &gtk::Widget) -> Vec<gtk::Widget> {
+        let mut out = vec![w.clone()];
+        let mut c = w.first_child();
+        while let Some(child) = c {
+            out.extend(walk(&child));
+            c = child.next_sibling();
         }
-        plot.append(&ticks);
-        let chart = gtk::DrawingArea::builder()
-            .height_request(70)
-            .hexpand(true)
-            .build();
-        chart.add_css_class("chart");
-        let history = Rc::new(RefCell::new(VecDeque::<f64>::new()));
-        let samples = history.clone();
-        chart.set_draw_func(move |area, cr, width, height| {
-            let (w, h) = (width as f64, height as f64);
-            let c = area.color();
-            cr.set_source_rgba(0.7, 0.75, 0.8, 0.12);
-            cr.set_line_width(1.0);
-            for y in [1.0, h / 2.0, h - 1.0] {
-                cr.move_to(0.0, y);
-                cr.line_to(w, y);
-            }
-            let _ = cr.stroke();
-            let data = samples.borrow();
-            if data.len() < 2 {
-                return;
-            }
-            let points: Vec<_> = data
-                .iter()
-                .enumerate()
-                .map(|(i, v)| {
-                    (
-                        i as f64 / (data.len() - 1) as f64 * w,
-                        h - 2.0 - v.clamp(0.0, 100.0) / 100.0 * (h - 4.0),
-                    )
-                })
-                .collect();
-            cr.move_to(0.0, h);
-            for (x, y) in &points {
-                cr.line_to(*x, *y);
-            }
-            cr.line_to(w, h);
-            cr.close_path();
-            let gradient = gtk::cairo::LinearGradient::new(0.0, 0.0, 0.0, h);
-            gradient.add_color_stop_rgba(
-                0.0,
-                c.red() as f64,
-                c.green() as f64,
-                c.blue() as f64,
-                0.27,
-            );
-            gradient.add_color_stop_rgba(
-                1.0,
-                c.red() as f64,
-                c.green() as f64,
-                c.blue() as f64,
-                0.02,
-            );
-            let _ = cr.set_source(&gradient);
-            let _ = cr.fill();
-            cr.move_to(points[0].0, points[0].1);
-            for (x, y) in &points[1..] {
-                cr.line_to(*x, *y);
-            }
-            cr.set_source_rgb(c.red() as f64, c.green() as f64, c.blue() as f64);
-            cr.set_line_width(2.0);
-            let _ = cr.stroke();
-        });
-        plot.append(&chart);
-        root.append(&plot);
-        Self {
-            root,
-            value,
-            detail,
-            chart,
-            gauge,
-            history,
-            current,
+        out
+    }
+    for w in walk(parent.upcast_ref()) {
+        if let Some(button) = w.downcast_ref::<gtk::Button>()
+            && button.has_css_class("nav")
+            && walk(w.upcast_ref()).iter().any(|c| {
+                c.downcast_ref::<gtk::Label>()
+                    .is_some_and(|l| l.text() == destination)
+            })
+        {
+            button.emit_clicked();
+            break;
         }
     }
-    fn update(&self, value: &str, detail: &str, percent: Option<f64>) {
-        self.value.set_text(value);
-        self.detail.set_text(detail);
-        *self.current.borrow_mut() = percent;
-        if let Some(percent) = percent {
-            let mut h = self.history.borrow_mut();
-            if h.len() == 60 {
-                h.pop_front();
+    if capture {
+        let loadouts = walk(parent.upcast_ref())
+            .into_iter()
+            .filter_map(|w| w.downcast::<gtk::Stack>().ok())
+            .find_map(|stack| stack.child_by_name("loadouts"));
+        if let Some(loadouts) = loadouts {
+            for w in walk(&loadouts) {
+                if let Some(button) = w.downcast_ref::<gtk::Button>()
+                    && button.label().as_deref() == Some("Capture this system")
+                {
+                    button.emit_clicked();
+                    break;
+                }
             }
-            h.push_back(percent);
-            self.chart.set_tooltip_text(Some(&format!(
-                "{} actual samples over {} seconds. Samples refresh every 2 seconds.",
-                h.len(),
-                h.len().saturating_sub(1) * 2
-            )));
         }
-        self.chart.queue_draw();
-        self.gauge.queue_draw();
     }
 }
-
+fn overview_link(
+    parent: &gtk::ApplicationWindow,
+    text: &str,
+    destination: &'static str,
+    primary: bool,
+    capture: bool,
+) -> gtk::Button {
+    let b = button(text, primary);
+    b.add_css_class("overview-shortcut");
+    let owner = parent.downgrade();
+    b.connect_clicked(move |_| {
+        if let Some(parent) = owner.upgrade() {
+            overview_jump(&parent, destination, capture);
+        }
+    });
+    b
+}
+fn overview_gpu(gpu: &str) -> String {
+    for prefix in ["Radeon", "GeForce", "Intel"] {
+        if let Some(start) = gpu.find(prefix) {
+            return gpu[start..]
+                .split(['/', ']', '('])
+                .next()
+                .unwrap_or(gpu)
+                .trim()
+                .to_string();
+        }
+    }
+    gpu.to_string()
+}
 pub(super) fn overview(
     parent: &gtk::ApplicationWindow,
     inv: &Inventory,
@@ -352,122 +246,266 @@ pub(super) fn overview(
     let p = heading(
         parent,
         "Your system, in focus.",
-        "Live telemetry and the essentials of your Arch installation.",
+        "Performance, maintenance, and your next restore point.",
         "Overview",
     );
-    let cards = row(16);
-    cards.set_vexpand(false);
+    p.add_css_class("overview-page");
+    p.set_spacing(12);
+    let refresh = button("↻", false);
+    refresh.set_tooltip_text(Some("Refresh hardware and service status"));
+    let owner = parent.downgrade();
+    let readings = metrics.clone();
+    refresh.connect_clicked(move |b| {
+        b.set_sensitive(false);
+        let (tx, rx) = std::sync::mpsc::channel();
+        std::thread::spawn(move || {
+            let _ = tx.send(Inventory::load());
+        });
+        let owner = owner.clone();
+        let readings = readings.clone();
+        let refresh = b.downgrade();
+        glib::timeout_add_local(Duration::from_millis(100), move || {
+            let Some(parent) = owner.upgrade() else {
+                return glib::ControlFlow::Break;
+            };
+            match rx.try_recv() {
+                Ok(inventory) => {
+                    fn stack(w: &gtk::Widget) -> Option<gtk::Stack> {
+                        if let Some(s) = w.downcast_ref::<gtk::Stack>()
+                            && s.child_by_name("overview").is_some()
+                        {
+                            return Some(s.clone());
+                        }
+                        let mut child = w.first_child();
+                        while let Some(c) = child {
+                            if let Some(found) = stack(&c) {
+                                return Some(found);
+                            }
+                            child = c.next_sibling();
+                        }
+                        None
+                    }
+                    if let Some(stack) = stack(parent.upcast_ref()) {
+                        crate::refresh_pages(&parent, &stack, &inventory, readings.clone());
+                    }
+                    glib::ControlFlow::Break
+                }
+                Err(std::sync::mpsc::TryRecvError::Empty) => glib::ControlFlow::Continue,
+                Err(_) => {
+                    if let Some(b) = refresh.upgrade() {
+                        b.set_sensitive(true);
+                        b.set_tooltip_text(Some("Refresh failed; click to retry"));
+                    }
+                    glib::ControlFlow::Break
+                }
+            }
+        });
+    });
+    if let Some(top) = p.first_child().and_then(|w| w.downcast::<gtk::Box>().ok()) {
+        top.append(&refresh);
+    }
+
+    let strip = row(22);
+    strip.add_css_class("overview-strip");
+    strip.append(&arch_logo("#48b7e8", 30));
+    strip.append(&label("Arch Linux", "section-title"));
+    strip.append(&gtk::Separator::new(gtk::Orientation::Vertical));
+    strip.append(&label(
+        &format!(
+            "{} · {}",
+            inv.desktop,
+            std::env::var("XDG_SESSION_TYPE").unwrap_or_else(|_| "Unknown session".into())
+        ),
+        "row-title",
+    ));
+    strip.append(&gtk::Separator::new(gtk::Orientation::Vertical));
+    let uptime = label("Uptime · …", "muted");
+    uptime.set_hexpand(true);
+    strip.append(&uptime);
+    strip.append(&label("● Live", "scan-installed"));
+    p.append(&strip);
+    let cards = row(14);
     cards.add_css_class("metric-grid");
     cards.set_homogeneous(true);
-    let cpu = MetricCard::new("Processor", "\u{e322}", &["100%", "50%", "0%"]);
-    let total_gib = metrics.borrow().total_memory as f64 / 1_073_741_824.0;
-    let max = format!("{total_gib:.1}");
-    let mid = format!("{:.1}", total_gib / 2.0);
-    let memory = MetricCard::new("Memory", "\u{e1db}", &[&max, &mid, "0 GiB"]);
-    let disk = MetricCard::new("Root storage", "\u{e161}", &["100%", "50%", "0%"]);
-    for c in [&cpu, &memory, &disk] {
-        cards.append(&c.root);
+    let mut values = Vec::new();
+    let mut details = Vec::new();
+    let mut bars = Vec::new();
+    for (name, icon) in [
+        ("CPU", "computer-symbolic"),
+        ("Memory", "media-flash-symbolic"),
+        ("Graphics", "video-display-symbolic"),
+        ("Root storage", "drive-harddisk-symbolic"),
+    ] {
+        let card = column(12);
+        card.add_css_class("overview-metric");
+        card.set_hexpand(true);
+        let top = row(10);
+        top.append(&gtk::Image::from_icon_name(icon));
+        top.append(&label(name, "row-title"));
+        card.append(&top);
+        let value = wrapped("…", "overview-metric-value");
+        value.set_ellipsize(gtk::pango::EllipsizeMode::End);
+        value.set_lines(2);
+        card.append(&value);
+        let detail = wrapped("…", "muted");
+        detail.set_max_width_chars(30);
+        card.append(&detail);
+        let bar = gtk::ProgressBar::new();
+        bar.set_visible(name != "Graphics");
+        card.append(&bar);
+        values.push(value);
+        details.push(detail);
+        bars.push(bar);
+        cards.append(&card);
     }
+    let gpu_name = overview_gpu(&inv.gpu);
+    values[2].set_text(&gpu_name);
+    values[2].set_tooltip_text(Some(&inv.gpu));
+    values[2].add_css_class("overview-gpu-name");
+    details[2].set_text("GPU utilization telemetry unavailable");
     p.append(&cards);
+    let left = column(16);
+    let right = column(16);
     let hardware = panel("panel");
-    hardware.add_css_class("system-overview");
-    hardware.append(&title("System overview", ""));
-    hardware.append(&info_row("Processor", &inv.cpu, "\u{e322}"));
-    hardware.append(&info_row("Graphics", &inv.gpu, "\u{e30a}"));
-    hardware.append(&info_row("Kernel", &inv.kernel, "\u{eb8e}"));
-    hardware.append(&info_row("Session", &inv.desktop, "\u{e30c}"));
-    let maintenance = panel("panel");
-    maintenance.add_css_class("maintenance");
-    maintenance.append(&title("Maintenance", "\u{e869}"));
-    maintenance.append(&wrapped(
-        "A little maintenance goes a long way. Inspect first, then choose what changes.",
-        "subtitle",
+    hardware.append(&title("System details", "\u{e873}"));
+    for (name, value, glyph) in [
+        ("Processor", inv.cpu.as_str(), "\u{e322}"),
+        ("Graphics", gpu_name.as_str(), "\u{e30a}"),
+        ("Kernel", inv.kernel.as_str(), "\u{eb8e}"),
+        ("Desktop", inv.desktop.as_str(), "\u{e30c}"),
+    ] {
+        hardware.append(&info_row(name, value, glyph));
+    }
+    hardware.append(&info_row(
+        "Session",
+        &std::env::var("XDG_SESSION_TYPE").unwrap_or_else(|_| "Unknown".into()),
+        "\u{e30c}",
     ));
-    for (text, glyph, job) in [
-        ("Check repository updates", "\u{e863}", Job::Updates),
-        ("Inspect failed services", "\u{e8ef}", Job::Failed),
-        ("Generate system report", "\u{e873}", Job::Report),
-    ] {
-        let b = icon_job(parent, text, glyph, job, matches!(job, Job::Updates));
-        b.add_css_class("action-tile");
-        maintenance.append(&b);
-    }
-    p.append(&split(&hardware, &maintenance));
-    let uptime = label("…", "footer-value");
-    let temperature = label("…", "footer-value");
-    let status = row(0);
-    status.add_css_class("footer");
-    for (glyph, name, value) in [
-        ("\u{e8b5}", "Uptime", uptime.clone()),
-        ("\u{f076}", "CPU temperature", temperature.clone()),
-        (
-            "\u{e30c}",
-            "Session",
-            label(
-                &std::env::var("XDG_SESSION_TYPE").unwrap_or_else(|_| "Unknown".into()),
-                "footer-value",
-            ),
-        ),
-    ] {
-        let item = row(12);
-        item.add_css_class("footer-item");
-        item.set_hexpand(true);
-        item.append(&symbol(glyph, "computer-symbolic"));
-        let c = column(3);
-        c.append(&label(name, "tiny"));
-        c.append(&value);
-        item.append(&c);
-        status.append(&item);
-    }
-    let services = icon_job(
+    left.append(&hardware);
+    let recovery = panel("panel");
+    recovery.append(&title("Recovery readiness", "\u{e889}"));
+    recovery.append(&wrapped(
+        "Keep a package list and selected configs ready for your next installation.",
+        "muted",
+    ));
+    recovery.append(&label("Capture and export a profile in Loadouts", "tiny"));
+    let actions = row(12);
+    actions.append(&overview_link(
         parent,
-        &inv.failed_services.map_or_else(
-            || "Service status unavailable".into(),
-            |n| {
-                if n == 0 {
-                    "No failed services".into()
-                } else {
-                    format!("{n} failed services")
-                }
-            },
-        ),
+        "Capture this system",
+        "Loadouts",
+        true,
+        true,
+    ));
+    actions.append(&overview_link(
+        parent,
+        "Open Loadouts",
+        "Loadouts",
+        false,
+        false,
+    ));
+    recovery.append(&actions);
+    recovery.append(&wrapped(
+        "Store your exported profile on another drive. A loadout is not a full system backup.",
+        "tiny",
+    ));
+    left.append(&recovery);
+    let attention = panel("panel");
+    attention.append(&title("Needs attention", "\u{e002}"));
+    let service_label = inv.failed_services.map_or_else(
+        || "Service status unavailable".into(),
+        |n| {
+            if n == 0 {
+                "No failed services".into()
+            } else {
+                format!("{n} failed service(s) · Inspect")
+            }
+        },
+    );
+    attention.append(&icon_job(
+        parent,
+        &service_label,
         "\u{e8b9}",
         Job::Failed,
         false,
-    );
-    status.append(&services);
-    p.append(&status);
+    ));
+    attention.append(&icon_job(
+        parent,
+        "Check repository updates",
+        "\u{e863}",
+        Job::Updates,
+        false,
+    ));
+    attention.append(&label(
+        "Package updates are checked when you choose Check.",
+        "tiny",
+    ));
+    right.append(&attention);
+    let quick = panel("panel");
+    quick.append(&title("Quick actions", "\u{e3e7}"));
+    for (text, destination) in [
+        ("Browse packages  ›", "Packages"),
+        ("Review cleanup  ›", "Cleanup"),
+        ("Run diagnostics  ›", "Diagnostics"),
+        ("Explore ricing  ›", "Ricing"),
+    ] {
+        quick.append(&overview_link(parent, text, destination, false, false));
+    }
+    right.append(&quick);
+    let columns = split(&left, &right);
+    columns.add_css_class("overview-columns");
+    columns.set_vexpand(false);
+    right.set_width_request(540);
+    p.append(&columns);
+    let live_footer = row(16);
+    live_footer.add_css_class("overview-live-footer");
+    let live_text = label("Metrics refresh automatically", "tiny");
+    live_text.set_hexpand(true);
+    live_footer.append(&live_text);
+    live_footer.append(&label(
+        "Hardware and service details refresh on demand",
+        "tiny",
+    ));
+    p.append(&live_footer);
     let update = move || {
         let m = metrics.borrow();
-        cpu.update(
-            &m.cpu.map_or_else(|| "…".into(), |v| format!("{v:.0}%")),
-            "Total utilization",
-            m.cpu,
+        values[0].set_text(
+            &m.cpu
+                .map_or_else(|| "Measuring…".into(), |v| format!("{v:.0}%")),
         );
-        memory.update(
-            &format!("{:.1} GiB", m.used_memory as f64 / 1_073_741_824.0),
-            &format!("{:.0}% used of {}", m.memory, system::bytes(m.total_memory)),
-            Some(m.memory),
-        );
-        let pct = if m.total_disk > 0 {
-            m.used_disk as f64 / m.total_disk as f64 * 100.0
+        details[0].set_text(&m.temperature.map_or_else(
+            || "CPU temperature unavailable".into(),
+            |v| format!("{v:.0} °C"),
+        ));
+        bars[0].set_fraction(m.cpu.unwrap_or(0.0).clamp(0.0, 100.0) / 100.0);
+        values[1].set_text(&format!(
+            "{:.1} GiB",
+            m.used_memory as f64 / 1_073_741_824.0
+        ));
+        details[1].set_text(&format!(
+            "of {} · {:.0}%",
+            system::bytes(m.total_memory),
+            m.memory
+        ));
+        bars[1].set_fraction((m.memory / 100.0).clamp(0.0, 1.0));
+        let ratio = if m.total_disk > 0 {
+            m.used_disk as f64 / m.total_disk as f64
         } else {
             0.0
         };
-        disk.update(
-            &format!("{pct:.0}%"),
-            &format!(
-                "{} of {}",
-                system::bytes(m.used_disk),
-                system::bytes(m.total_disk)
-            ),
-            Some(pct),
-        );
-        uptime.set_text(&format!("{}h {}m", m.uptime / 3600, m.uptime % 3600 / 60));
-        temperature.set_text(
-            &m.temperature
-                .map_or_else(|| "Unavailable".into(), |v| format!("{v:.0} °C")),
-        );
+        values[3].set_text(&format!("{:.0}%", ratio * 100.0));
+        details[3].set_text(&format!(
+            "{} / {}\n{} free",
+            system::bytes(m.used_disk),
+            system::bytes(m.total_disk),
+            system::bytes(m.total_disk.saturating_sub(m.used_disk))
+        ));
+        bars[3].set_fraction(ratio.clamp(0.0, 1.0));
+        uptime.set_text(&format!(
+            "Uptime · {}h {}m",
+            m.uptime / 3600,
+            m.uptime % 3600 / 60
+        ));
     };
     update();
     let weak = p.downgrade();
@@ -678,6 +716,7 @@ pub(super) fn cleanup(parent: &gtk::ApplicationWindow) -> gtk::Box {
         "\u{e88e}",
         "Cleanup runs only when you choose. Review candidates before removing them.",
     ));
+    p.append(&crate::cleanup_tools::panel(parent));
     let main = column(16);
     let cache = panel("panel");
     let top = title("Package cache", "\u{e2c7}");
@@ -1287,13 +1326,7 @@ pub(super) fn diagnostics(parent: &gtk::ApplicationWindow, inv: &Inventory) -> g
     let top = title("Command output", "\u{eb8e}");
     top.append(&copy);
     output.append(&top);
-    let scroll = gtk::ScrolledWindow::builder()
-        .child(&view)
-        .hscrollbar_policy(gtk::PolicyType::Never)
-        .min_content_height(160)
-        .vexpand(true)
-        .build();
-    output.append(&scroll);
+    output.append(&crate::command_output::pane(&view, None, true));
     output.append(&status);
     main.append(&output);
     let aside = column(16);

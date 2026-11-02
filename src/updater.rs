@@ -332,6 +332,16 @@ struct View {
     available: Rc<std::cell::RefCell<Option<Release>>>,
 }
 
+fn launcher_label(button: &gtk::Button, text: &str) {
+    let content = crate::row(12);
+    let icon = gtk::Image::from_icon_name("folder-download-symbolic");
+    icon.set_pixel_size(18);
+    content.append(&icon);
+    content.append(&crate::label(text, ""));
+    button.set_child(Some(&content));
+    button.update_property(&[gtk::accessible::Property::Label(text)]);
+}
+
 impl View {
     fn activity(&self, text: &str, detail: &str) {
         self.busy.set(true);
@@ -383,7 +393,7 @@ impl View {
         *self.available.borrow_mut() = None;
         self.restart.set_visible(false);
         self.update.set_visible(false);
-        self.launcher.set_label("App updates");
+        launcher_label(&self.launcher, "App updates");
         self.launcher.remove_css_class("primary");
         self.release_link.set_uri(RELEASES);
         self.notes.set_text("");
@@ -416,7 +426,7 @@ impl View {
                 self.notes.set_text(&release.notes);
                 self.notes_expander.set_expanded(true);
                 self.release_link.set_uri(&release.page);
-                self.launcher.set_label("Update available");
+                launcher_label(&self.launcher, "Update available");
                 self.launcher.add_css_class("primary");
                 self.update
                     .set_label(&format!("Update to {}", release.version));
@@ -470,7 +480,7 @@ impl View {
             return;
         };
         self.activity("Downloading update…", "Downloading and verifying the Arch package. Installation will request administrator authentication.");
-        self.launcher.set_label("Updating…");
+        launcher_label(&self.launcher, "Updating…");
         let (tx, rx) = mpsc::channel();
         let version = release.version.clone();
         std::thread::spawn(move || {
@@ -507,7 +517,7 @@ impl View {
             .set_text("Download or installation output");
         self.notes.set_text(error);
         self.notes_expander.set_expanded(true);
-        self.launcher.set_label("Update available");
+        launcher_label(&self.launcher, "Update available");
         self.idle();
     }
 
@@ -542,7 +552,7 @@ impl View {
                     "The new version will open automatically when running operations finish.",
                     "Restarting…",
                 );
-                self.launcher.set_label("Restarting…");
+                launcher_label(&self.launcher, "Restarting…");
                 self.update.set_visible(false);
                 self.idle();
                 self.check.set_sensitive(false);
@@ -585,6 +595,7 @@ fn restart() -> std::io::Error {
 
 fn create_view(parent: &gtk::ApplicationWindow) -> Rc<View> {
     let launcher = button("App updates", false);
+    launcher_label(&launcher, "App updates");
     launcher.set_margin_top(8);
     let (dialog, surface) = Surface::new(
         parent,
@@ -713,7 +724,9 @@ fn create_view(parent: &gtk::ApplicationWindow) -> Rc<View> {
     let parent = parent.downgrade();
     let initial = view.clone();
     glib::timeout_add_local_once(Duration::from_secs(3), move || {
-        if parent.upgrade().is_some_and(|p| p.is_visible()) {
+        if crate::preferences::automatic_updates()
+            && parent.upgrade().is_some_and(|p| p.is_visible())
+        {
             initial.check();
         }
     });

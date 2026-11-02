@@ -400,7 +400,7 @@ fn detail_page(
                 &parent_for_install,
                 "Review dotfile setup",
                 &format!(
-                    "{}\n\n{}\n\nThe terminal opens with the command editable. Press Enter only after reviewing it.",
+                    "{}\n\n{}\n\nThe embedded terminal shows an editable command and requires review and fresh authentication before running.",
                     project.impact, project.description
                 ),
                 project.command,

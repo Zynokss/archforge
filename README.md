@@ -75,7 +75,7 @@ If you installed an older `arch-forge` package, run the installation command abo
 To run a checkout without installing it, install the build dependencies and use:
 
 ```sh
-sudo pacman -Syu --needed rust gtk4 pkgconf pciutils polkit curl
+sudo pacman -Syu --needed rust gtk4 vte4 sudo pkgconf pciutils polkit curl
 cargo run --release --locked
 ```
 
@@ -99,13 +99,48 @@ Cleanup always starts with a review. Package-cache cleanup keeps the latest two 
 
 Protected pacman download folders can prevent a complete unprivileged size check. Arch Forge marks that result as partial and offers an authenticated, read-only measurement.
 
-Package setup offers **Open terminal**: the command appears at an editable prompt and waits for Enter before running. The setup dialog closes after the terminal opens successfully. Startup failures leave the dialog and copy action available. The terminal stays open afterward so you can read the output. Arch Forge uses `xdg-terminal-exec` when available, then supported installed terminals such as Kitty, Foot, Alacritty, Konsole, or GNOME Terminal. `TERMINAL` can specify a supported executable name or path, without extra arguments. If no terminal is found, the copy action remains available. Steam launch options are copied into Steam instead. Update checks cover configured repositories, not the AUR. Package changes are detected after pacman finishes, and the current page and package search are refreshed without reopening the app. Existing tool executables are detected even if their expected package entry is missing, so the app offers configuration instead of a conflicting install.
+Package setup and reviewed commands open an embedded GTK terminal inside Arch Forge. Each session explains the action and shows an editable Bash command. Editing clears the review checkbox. **Authenticate & run** stays disabled until the command has been reviewed. Every run ignores sudo's credential cache and requests fresh authentication before executing; passwordless sudo validation is blocked rather than treated as a confirmed password entry. PAM/sudo policy still controls the authentication mechanism. Commands run as the desktop account and invoke sudo only where the command specifies it. Password input is handled by the terminal and sudo, without being copied into application logs. The session clears its sudo credentials on exit and refuses to close while a child process is still running. Use Ctrl+C to cancel, then wait for the process to exit. Completed output remains visible; another run requires review and fresh authentication again.
+
+The terminal uses VTE with a black background, a colored ANSI palette and normal interactive prompts. It runs commands in Bash, with the desktop account's environment; it does not embed a separate terminal application's UI or custom shell configuration. The package depends on `vte4` and `sudo`. Steam launch options remain copy-only for Steam. Package changes refresh the package list after transactions finish.
 
 Personal cleanup offers home Trash, yay build cache, pip cache, and thumbnails. Paths come from the current account and `XDG_DATA_HOME` / `XDG_CACHE_HOME`, with standard home-directory defaults; pip also honors `PIP_CACHE_DIR`. Relative XDG paths are ignored. No username is embedded in the application. Trash cleanup covers the home Trash's files and metadata, not Trash directories on other mounted volumes.
 
 Personal cleanup previews selected entries and requires a separate permanent-clean action. It runs as your regular user, includes hidden entries, keeps the cache root folders, and refuses root/home directories or linked cleanup roots. Deletion uses retained directory descriptors, does not follow symlinks, and does not traverse other filesystems. Changed root folders require another review. Close apps using a cache first; active apps can recreate cache files. A separate `yay -Sc --aur` action opens a terminal and lets yay ask which AUR cache entries to remove, without running yay as root or hiding errors.
 
 Command dialogs keep the full output visible beside a summary of the result. The output scrolls independently, with colors for warnings, errors, and completion messages; action buttons stay visible. Summaries show reported values such as cache size, cleanup candidates, failed units, startup duration, and Vulkan device information. The Diagnostics page also shows key findings beside the log, including affected services, the slowest startup unit, GPU and driver details, and report usage figures. Missing fields stay marked as not reported. Empty package-cache previews show zero candidates and disable cleanup; commands and complete output remain available to inspect and copy.
+
+### Additional cleanup tools
+
+Cleanup also groups optional maintenance tasks into **Storage review**, **Apps & containers**, and **Logs, temp & snapshots**:
+
+- Rank large installed packages, inspect home-cache usage, find home files over 1 GiB, and list pacman configuration leftovers without deleting them.
+- Inspect Docker disk use and remove dangling images through Docker's interactive prompt; volumes and containers are kept.
+- Review unused Flatpak refs separately for user and system installations. App data and named custom installations are kept.
+- Inventory VirtualBox machines and disks without removing them.
+- Preview and apply systemd's configured age-based temporary-file cleanup, or use a 50 MiB archived-journal budget instead of the default seven-day cleanup.
+- List Timeshift snapshots or create an on-demand snapshot with an existing configured Timeshift installation.
+
+Optional tools are enabled only when their executable is installed. Docker also needs daemon access; Timeshift needs configuration and administrative authentication. Inspections can report permission errors or partial results. Applying system cleanup opens a reviewed terminal command; nothing runs automatically when the page opens.
+
+These additions were informed by [4lgn's Arch Linux cleanup notes](https://gist.github.com/4lgn/4a31df668321cf95a790fdb29615a846) and [arch-cleaner](https://github.com/antonio-foti/arch-cleaner), with separate inspections and interactive actions in Arch Forge.
+
+## Wiki field guide
+
+The **Wiki** tab below Ricing provides an offline field guide with 76 command cards across 11 topics: getting started, packages, files and permissions, services, networking, storage, hardware, Hyprland/Wayland, shell usage, troubleshooting, and backups. Browse by topic, search all cards, use the command cheat sheet, or save entries for later. Bookmarks are stored locally under `$XDG_CONFIG_HOME/archforge/wiki-saved.json` (normally `~/.config/archforge/wiki-saved.json`).
+
+Each card explains its effect and links to official documentation. Read-only commands can be inspected in the shared output viewer. Concrete system-changing commands open the embedded review dialog; examples containing UPPERCASE placeholders remain copy-only until adapted. The guide does not run commands when browsed and does not duplicate the full ArchWiki. Its offline summaries are a starting point; consult the linked current documentation for hardware-specific procedures and unfamiliar changes.
+
+The embedded review footer has a prominent **I reviewed the command** checkbox, clear disabled-run guidance, and separate command and terminal-output panels. Editing a command clears its review; the existing fresh-authentication gate is preserved.
+
+## Command output viewer
+
+Diagnostics, cleanup previews and tool results use a shared read-only output viewer. Search within the log and jump between matches, toggle line wrapping, inspect line numbers, copy the original output, or save it as a text file. **Expand** opens the same output buffer in a larger window without re-running the command. The summary above the log shows the action status and available key facts. Read-only diagnostic jobs also offer **Run again** after the current check finishes. Cleanup and installation actions retain their separate review and authentication steps.
+
+## Overview and Settings
+
+Overview presents live CPU, memory and storage readings, GPU identification, system details, failed-service inspection, package update checks, and quick links to the main workspaces. **Capture this system** opens Loadouts' existing capture review; it does not save or apply files automatically. The refresh button reloads hardware and service information.
+
+**Settings**, below App updates and Appearance, provides access to both controls, a startup update-check preference, reduced-motion preference, version information, and links to Zynokss, the source repository, issue tracker and license notices. Preferences are stored locally in `~/.config/archforge/preferences.json`, respecting an absolute `XDG_CONFIG_HOME`. Manual update checks remain available when automatic startup checks are disabled.
 
 ## Appearance
 
@@ -116,11 +151,11 @@ Desktop colors can follow an existing end4/Quickshell palette at `~/.local/state
 
 ## Arch Linux tools and navigation
 
-Use **Tools** to search by task (for example, `missing files`, `boot`, `DNS`, or `cache`), or use the category tabs. The grouped view starts with short previews for each category; **View all** opens the complete category. Search returns all matching tools, with no preview limit. Sort by recommended order or name, or switch to a compact list. Every tool has a built-in outline icon, independent of the desktop icon theme. **Ctrl+K** opens tool search; **Ctrl+1–8** switch between Overview, Tools, Gaming, Cleanup, Packages, Diagnostics, Loadouts, and Ricing. Read-only tools include package file checks, package-list export, file ownership, package history, drives, mounts, free space, enabled services, timers, boot errors, boot timing, SSD trim status, network addresses, DNS status, and power profiles. Output can be copied or saved; system changes open an editable command in your terminal and wait for Enter.
+Use **Tools** to search by task (for example, `missing files`, `boot`, `DNS`, or `cache`), or use the category tabs. The grouped view starts with short previews for each category; **View all** opens the complete category. Search returns all matching tools, with no preview limit. Sort by recommended order or name, or switch to a compact list. Every tool has a built-in outline icon, independent of the desktop icon theme. **Ctrl+K** opens tool search; **Ctrl+1–9** switch between Overview, Tools, Gaming, Cleanup, Packages, Diagnostics, Loadouts, Ricing, and Wiki. Read-only tools include package file checks, package-list export, file ownership, package history, drives, mounts, free space, enabled services, timers, boot errors, boot timing, SSD trim status, network addresses, DNS status, and power profiles. Output can be copied or saved; system changes open an editable command in the embedded terminal and wait for review and authentication.
 
 **Package cache location** changes where pacman downloads package archives. Installed files keep the locations defined by their packages; pacman's `RootDir` is intended for another installation or chroot. Arch Forge inserts a managed first `CacheDir` in `[options]`, preserves existing entries as fallbacks, validates the proposed configuration with `pacman-conf`, and backs up `/etc/pacman.conf` before an atomic replacement. Existing archives are kept. The cache measurement and paccache tools follow the configured cache directories.
 
-The cache folder must use a mounted Linux filesystem and protected, root-owned parent directories; symlinks, group/other-writable paths, and sensitive system trees are refused. The parent must exist; the final cache folder can be created with mode 0755. Removable drives must be mounted before use. **Restore previous settings** removes only Arch Forge's managed entry, preserves other edits, and creates another backup. Applying either action requires the installed current version of Arch Forge and an explicit `sudo` command in your terminal. No configuration changes happen merely by opening the setting.
+The cache folder must use a mounted Linux filesystem and protected, root-owned parent directories; symlinks, group/other-writable paths, and sensitive system trees are refused. The parent must exist; the final cache folder can be created with mode 0755. Removable drives must be mounted before use. **Restore previous settings** removes only Arch Forge's managed entry, preserves other edits, and creates another backup. Applying either action requires the installed current version of Arch Forge and an explicit `sudo` command in the embedded terminal. No configuration changes happen merely by opening the setting.
 
 References: [pacman configuration](https://man.archlinux.org/man/pacman.conf.5.en), [pacman-conf](https://man.archlinux.org/man/pacman-conf.8.en), [paccache](https://man.archlinux.org/man/paccache.8.en).
 
@@ -140,12 +175,14 @@ Reference: [Flatpak custom installations](https://docs.flatpak.org/en/latest/tip
 
 Open **Loadouts** to choose from 659 curated packages across 17 categories, including desktop apps, terminal tools, office and study, graphics and CAD, backup, networking, virtualization, accessibility, and AI/ML. The catalog includes 621 official repository packages and 38 selected AUR recipes. Search spans package names and descriptions. Source and status filters, pagination, **Select matches**, and exact-name additions keep larger selections manageable. Category navigation scrolls independently; compact windows use a category dropdown. **Recommended** places curated common choices before more options and specialist tools, using an October 2026 pkgstats snapshot within each group. **Popular first** uses those survey percentages directly; alphabetical and installed-first sorting are also available. See [catalog sources and selection rules](data/loadouts/CATALOG.md) for the scope and limits of these rankings. Selections stay in place while package database updates refresh the other pages.
 
+Loadouts uses a checkbox-first package table with highlighted selections. **Build loadout** shows the library; **Manage installed** filters it to installed entries. The selection panel separates packages to install from packages already installed, with per-item removal from the selection. Removing a selection item does not uninstall it. Larger selections scroll within the summary so review/install and script export remain accessible. Uninstall and system-update controls are grouped under **Installed package actions**.
+
 - **Capture this system** reads explicitly installed repository and foreign package names, plus enabled repository names for reference (without saving URLs or keys). Configuration folders are optional and unchecked by default. Preview the snapshot, then save its JSON file to another drive or your own backup storage.
 - **Save selection** exports the packages and checked dotfiles currently in the workspace. **Import profile** loads a saved selection without installing or applying anything.
 - **Package status** distinguishes installed versions, cached archives, missing packages, and repository updates. Status filters help narrow the list. **Skip installed packages** is enabled by default; saved profiles and exported scripts still retain the full selection for another installation. Cached archives may be older; pacman verifies and reuses suitable files.
 - **Check for updates** uses `checkupdates` from pacman-contrib, which refreshes a separate database. It does not check AUR packages. **Update system** reviews a full repository upgrade rather than a partial package upgrade.
 - **Uninstall** on a package, or **Uninstall selected**, first runs a read-only dependency preview. If another app needs a selected package, the dialog lists the blockers without opening a terminal. Otherwise it opens a reviewed `pacman -R` command. Pacman checks dependencies and asks for confirmation; recursive dependency removal and automatic acceptance are not enabled. Installed/cache status refreshes periodically while the package list is visible.
-- **Install missing** opens a reviewed command in your terminal. Repository packages use `pacman -Syu --needed`; AUR packages use an already installed `paru` or `yay` as your regular user. **Export install script** creates a standalone package-only script. Neither flow silently accepts transactions or bootstraps an AUR helper.
+- **Install missing** opens a reviewed command in the embedded terminal. Repository packages use `pacman -Syu --needed`; AUR packages use an already installed `paru` or `yay` as your regular user. **Export install script** creates a standalone package-only script. Neither flow silently accepts transactions or bootstraps an AUR helper.
 - Foreign packages can be local builds, so they are not silently treated as AUR packages. The optional foreign-to-AUR checkbox is an explicit source decision. Custom repositories and multilib must already be configured where needed.
 
 Desktop kits cover Hyprland, KDE Plasma, GNOME, Xfce, Cinnamon, and Sway. Two starter color bundles, **Amber Night** and **Crimson Night**, include Kitty and GTK settings; Hyprland and Sway also get compositor and Waybar starters; Plasma gets a KDE color scheme and matching color settings. Hyprland's starter uses the current Lua configuration format. GNOME, Xfce, and Cinnamon kits install session packages and shared app colors, leaving desktop-wide appearance to their own settings. No display manager or service is enabled automatically.
