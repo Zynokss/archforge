@@ -14,24 +14,7 @@ impl Snapshot {
     /// Only reviewed alternatives of the same application; never infer equivalence
     /// by stripping suffixes (e.g. unrelated -git or library packages).
     pub fn installed_variant<'a>(&'a self, name: &'a str) -> &'a str {
-        if self.installed.contains_key(name) {
-            return name;
-        }
-        const GROUPS: &[&[&str]] = &[
-            &["vesktop-bin", "vesktop", "vesktop-git"],
-            &["lutris", "lutris-git"],
-            &["adw-gtk-theme", "adw-gtk-theme-git"],
-        ];
-        GROUPS
-            .iter()
-            .find(|group| group.contains(&name))
-            .and_then(|group| {
-                group
-                    .iter()
-                    .find(|candidate| self.installed.contains_key(**candidate))
-            })
-            .copied()
-            .unwrap_or(name)
+        crate::package_variants::installed_name(&self.installed, name)
     }
     pub fn describe(&self, name: &str) -> (String, &'static str, String) {
         if !self.ready {

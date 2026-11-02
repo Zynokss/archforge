@@ -10,7 +10,14 @@ if ! [[ -f /etc/arch-release ]]; then
   echo 'Arch Forge supports Arch Linux only.' >&2
   exit 1
 fi
-for tool in cargo makepkg fakeroot pkgconf; do
+package_file=PKGBUILD
+if [[ "${1:-}" == --cli ]]; then
+  package_file=PKGBUILD-cli
+elif [[ $# -gt 0 ]]; then
+  echo 'Usage: ./scripts/install.sh [--cli]' >&2
+  exit 1
+fi
+for tool in cargo makepkg fakeroot; do
   if ! command -v "$tool" >/dev/null 2>&1; then
     echo 'Install the build tools first: sudo pacman -Syu --needed base-devel rust git' >&2
     exit 1
@@ -20,6 +27,10 @@ done
 ./scripts/dist.sh
 (
   cd packaging
-  makepkg --force --syncdeps --install --cleanbuild
+  makepkg --force --syncdeps --install --cleanbuild -p "$package_file"
 )
-echo 'Arch Forge is installed. Open your application launcher and search for Arch Forge.'
+if [[ "$package_file" == PKGBUILD-cli ]]; then
+  echo 'Arch Forge terminal is installed. Run archforge-cli.'
+else
+  echo 'Arch Forge is installed. Use the application launcher, or run archforge-cli in a terminal.'
+fi

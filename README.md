@@ -2,19 +2,21 @@
   <img src="assets/readme-banner.svg" alt="Arch Forge — system tools for Arch Linux" width="100%">
 </p>
 
-# Arch Forge — Arch Linux desktop tools for gaming, packages and system maintenance
+# Arch Forge — Arch Linux desktop and terminal tools
 
-Arch Forge (`archforge`) is a native **Arch Linux system utility** built with Rust and GTK4. Monitor your hardware, manage pacman packages, set up Linux gaming tools, review cleanup actions, and discover Hyprland dotfiles from one desktop application.
+Arch Forge is a native **Arch Linux system utility** built with Rust. Use the **GTK4 desktop app** (`archforge`) or the **keyboard-driven terminal interface** (`archforge-cli`) to manage packages, review cleanup, inspect your system, and save reusable package loadouts. The terminal edition works in a Linux console or SSH session without a graphical desktop.
 
-Use Loadouts to select apps in bulk and save a package selection for a fresh Arch install. Explore community desktop setups in Ricing, with real screenshots, formatted READMEs, and reviewed installation commands.
+Use Loadouts to select apps in bulk and save a package selection for a fresh Arch install. The desktop edition also includes gaming tools and Ricing: community desktop setups with real screenshot galleries, formatted READMEs, and reviewed installation instructions. Neither edition requires Hyprland.
 
-[Download the latest release](https://github.com/Zynokss/archforge/releases/latest) · [Installation](#install-arch-forge-on-arch-linux) · [Features](#features) · [Report a bug](https://github.com/Zynokss/archforge/issues)
+[Download the latest release](https://github.com/Zynokss/archforge/releases/latest) · [Installation](#install-arch-forge-on-arch-linux) · [Features](#features) · [Terminal edition](#terminal-edition) · [Changelog](CHANGELOG.md) · [Report a bug](https://github.com/Zynokss/archforge/issues)
 
-Commands run as your desktop user; actions that need administrator access ask for authentication separately.
+Run either edition as your regular user. Actions that need administrator access show a review and request authentication separately.
 
 ## Features
 
-- **Overview** — live CPU, memory, and storage graphs, hardware details, uptime, temperature, and failed-service status.
+- **Terminal workbench** — full-screen keyboard navigation, categories and bulk selection, background inspections, syntax-colored command previews, and searchable/exportable logs.
+
+- **Overview** — live CPU, memory, and storage readings, hardware details, uptime, temperature, failed-service findings, and quick actions.
 - **Tools** — searchable Arch Linux utilities for storage, services, boot performance, networking, and package checks.
 - **Loadouts** — browse apps by category, select packages in bulk, and export a reusable package selection.
 - **Ricing** — discover Hyprland desktop setups, browse dotfiles and screenshot galleries, and review upstream installation instructions.
@@ -22,11 +24,19 @@ Commands run as your desktop user; actions that need administrator access ask fo
 - **Cleanup** — package-cache usage and previews, journal usage, orphan-package inspection, and reviewed cleanup actions.
 - **Packages** — search and sort installed packages, inspect foreign packages, and check repository updates.
 - **Diagnostics** — failed services, boot timing, Vulkan information, and a system report with copyable output.
-- **App updates** — automatic version checks and one-click installation of verified GitHub release packages.
+- **Wiki** — offline command reference with search, official documentation links, and saved entries in the desktop app.
+- **Settings** — startup and appearance preferences, update controls, and project information in the desktop app.
+- **App updates** — desktop version checks and one-click installation of verified GitHub release packages.
 
-## Screenshot
+## Screenshots
 
-![Arch Forge system monitor on Arch Linux with CPU, memory, storage and maintenance tools](assets/screenshots/overview.png)
+**Desktop app** — live system overview, maintenance findings and recovery tools.
+
+![Arch Forge GTK4 desktop overview with live hardware readings and maintenance actions](assets/screenshots/overview.png)
+
+**Terminal interface** — the same workbench from a console or SSH session, without a graphical desktop.
+
+![Arch Forge Ratatui terminal interface with persistent navigation, usage meters, hardware details and command preview](assets/screenshots/terminal.png)
 
 ## Install Arch Forge on Arch Linux
 
@@ -37,11 +47,23 @@ curl -fLO https://github.com/Zynokss/archforge/releases/latest/download/archforg
 sudo pacman -U ./archforge-x86_64.pkg.tar.zst
 ```
 
-This installs Arch Forge system-wide, including its **application-menu shortcut and red icon**. Open your application launcher, search for **Arch Forge**, and launch it. You only need the terminal for installation; Rust and a source checkout are not required.
+This installs both `archforge` and `archforge-cli` system-wide, including the desktop app’s **application-menu shortcut and red icon**. Open your application launcher, search for **Arch Forge**, and launch it. You only need the terminal for installation; Rust and a source checkout are not required.
 
 You can also download the `.pkg.tar.zst` from the [latest release](https://github.com/Zynokss/archforge/releases/latest) and install the downloaded file with `sudo pacman -U /path/to/package.pkg.tar.zst`. If your desktop has an Arch package installer, you can open the package with that instead.
 
-Arch Forge requires GTK4 4.20 or newer and a desktop polkit authentication agent for administrator actions. Run the app as your regular desktop user. It refuses to run as root or on a distribution whose `/etc/os-release` does not identify it as Arch Linux.
+The desktop edition requires GTK4 4.20 or newer, VTE, and a desktop polkit authentication agent for app-update installation. Both editions use sudo for reviewed terminal commands. Run the app as your regular user. It refuses to run as root or on a distribution whose `/etc/os-release` does not identify it as Arch Linux.
+
+### Terminal-only installation
+
+On Arch Linux x86_64 without a graphical desktop:
+
+```sh
+curl -fLO https://github.com/Zynokss/archforge/releases/latest/download/archforge-cli-x86_64.pkg.tar.zst
+sudo pacman -U ./archforge-cli-x86_64.pkg.tar.zst
+archforge-cli
+```
+
+The standalone package has no GTK or VTE dependency. Choose either the full package or the terminal-only package; the full package already includes the TUI, and pacman will ask to replace conflicting editions if you switch. Update the standalone edition by downloading and installing its newer release package. Remove it with `sudo pacman -Rns archforge-cli`.
 
 ### Install from source
 
@@ -91,7 +113,7 @@ cargo run --release --locked
 | `mangohud` | In-game performance overlay |
 | `ttf-material-symbols-variable` | Rounded interface icons |
 
-A desktop polkit authentication agent is required for administrator actions. Google Sans Flex is used when available; the interface falls back to Rubik or the system sans-serif font. Native symbolic icons are used when the Material font is absent.
+A desktop polkit authentication agent is required for the desktop updater. Reviewed command sessions use sudo. Google Sans Flex is used when available; the interface falls back to Rubik or the system sans-serif font. Native symbolic icons are used when the Material font is absent.
 
 ## Maintenance
 
@@ -123,6 +145,37 @@ Cleanup also groups optional maintenance tasks into **Storage review**, **Apps &
 Optional tools are enabled only when their executable is installed. Docker also needs daemon access; Timeshift needs configuration and administrative authentication. Inspections can report permission errors or partial results. Applying system cleanup opens a reviewed terminal command; nothing runs automatically when the page opens.
 
 These additions were informed by [4lgn's Arch Linux cleanup notes](https://gist.github.com/4lgn/4a31df668321cf95a790fdb29615a846) and [arch-cleaner](https://github.com/antonio-foti/arch-cleaner), with separate inspections and interactive actions in Arch Forge.
+
+## Terminal edition
+
+Run **`archforge-cli`** for a full-screen Rust TUI built with Ratatui and Crossterm. The full desktop package includes it; `archforge --tui` opens the same interface. An interactive console without display variables selects terminal mode automatically when launching `archforge`. The standalone package needs no GTK, VTE, compositor, display server, mouse, or Nerd Fonts.
+
+```sh
+# Install only the terminal edition:
+./scripts/install.sh --cli
+
+# Run from source without graphical dependencies:
+cargo run --release --locked --no-default-features --bin archforge-cli
+
+# Non-interactive reports (also selected automatically for redirected input/output):
+archforge-cli --plain overview
+archforge-cli --plain packages
+archforge-cli --plain diagnostics
+archforge-cli --plain wiki
+```
+
+The persistent workspace contains Overview, Packages, Cleanup, Diagnostics, Build loadout, Capture loadout, Import loadout and Wiki. Overview reads actual CPU, memory, storage and hardware data. Unavailable readings and unchecked updates are labeled explicitly. Read-only scans run in background workers; selections and list positions survive navigation. Smaller terminals hide secondary panels, accessible with Tab. `NO_COLOR` removes interface colors while retaining reverse-video focus.
+
+- **Arrow keys / j / k** navigate; **Enter** opens; **Tab / Shift+Tab** switches panes; **Esc** returns; **1–8** changes workspace; **?** opens help; **q** quits.
+- **Space** selects packages; **a** selects/clears matching entries; **f** filters status; **t** filters source; **/** searches; **+** adds exact names. **i** reviews installation, **d** reviews removal, **s** exports the selection, **x** clears it. Bulk selections are limited to 5,000 entries.
+- **u** reviews a repository update check, **U** reviews a full system upgrade, **r** rescans. Update checks use checkupdates' separate database and do not cover AUR recipes.
+- **o** opens the retained output viewer. **/** filters output, **PageUp/PageDown** scrolls, **Left/Right** pans long lines, **c** requests terminal clipboard copy using OSC 52, and **e** exports to a new private file. Linux consoles and emulators that block OSC 52 can use export instead.
+
+Selecting an operation only previews its command. Opening it shows a review panel; the **I reviewed the command** checkbox sits beside a separate execution control. **Up/Down** scrolls long review details, and **Tab** moves between checkbox and execution. Read-only inspections run in the background after review. Privileged operations restore the normal terminal and use a real PTY for sudo, package prompts and command input. Authentication and execution share that PTY. Fresh authentication is required each time; passwordless validation is rejected. Only terminal output is recorded, never the input stream. Passwords remain sudo's responsibility. On completion, the TUI returns with the output retained and sudo credentials invalidated. Ctrl+C cancels the child session; exit, errors and termination signals restore terminal modes and cursor visibility.
+
+Terminal loadouts share the desktop catalog, reviewed installed-package variants, offline Wiki data and JSON profile format. The Build loadout library includes selected terminal-capable tools. Installation uses configured repositories, skips installed packages and performs a full system upgrade. AUR entries are reference-only; the terminal edition does not build unreviewed recipes. Imports exclude AUR/foreign packages and dotfiles, and only prepare a selection for review. Captures save explicitly installed package names without personal files, passwords or repository URLs. Exports refuse to overwrite existing files. Ricing and appearance controls stay in the desktop edition.
+
+The standalone `archforge-cli` package and full `archforge` package are alternatives: the full package includes the terminal executable. `util-linux` supplies the PTY session recorder. `--plain` without a report name retains the older numbered interface when used interactively; non-interactive use always produces a read-only report and never authenticates or changes packages.
 
 ## Wiki field guide
 

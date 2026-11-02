@@ -23,10 +23,12 @@ jobs:
           printf "%s\n" "PACKAGER='Zynokss <31770892+Zynokss@users.noreply.github.com>'" > /home/builder/.makepkg.conf
           chown builder:builder /home/builder/.makepkg.conf
           chown -R builder:builder "$GITHUB_WORKSPACE"
-          su builder -c 'cd "$GITHUB_WORKSPACE" && ./scripts/dist.sh && cd packaging && makepkg --noconfirm --cleanbuild'
+          su builder -c 'cd "$GITHUB_WORKSPACE" && ./scripts/dist.sh && cd packaging && makepkg --noconfirm --cleanbuild && makepkg --noconfirm --cleanbuild -p PKGBUILD-cli'
           mkdir release
           cp packaging/archforge-"$version"-*.pkg.tar.zst packaging/archforge-"$version".tar.gz release/
+          cp packaging/archforge-cli-"$version"-*.pkg.tar.zst release/
           cp release/archforge-"$version"-*-x86_64.pkg.tar.zst release/archforge-x86_64.pkg.tar.zst
+          cp release/archforge-cli-"$version"-*-x86_64.pkg.tar.zst release/archforge-cli-x86_64.pkg.tar.zst
           cd release
           sha256sum *.pkg.tar.zst *.tar.gz > SHA256SUMS
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

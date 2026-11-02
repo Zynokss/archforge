@@ -1,0 +1,33 @@
+# Standalone terminal package: ../scripts/dist.sh && makepkg -p PKGBUILD-cli
+pkgname=archforge-cli
+pkgver=0.11.0
+pkgrel=1
+pkgdesc='Arch Forge terminal workbench for packages, cleanup, diagnostics and loadouts'
+url='https://github.com/Zynokss/archforge'
+arch=('x86_64' 'aarch64')
+license=('MIT')
+depends=('glibc' 'gcc-libs' 'pacman' 'systemd' 'util-linux' 'sudo')
+makedepends=('rust')
+conflicts=('archforge')
+optdepends=(
+  'pciutils: graphics and PCI hardware identification'
+  'procps-ng: memory and uptime in plain-text reports'
+  'pacman-contrib: cache maintenance and repository update checks'
+  'iproute2: network interfaces and listening sockets'
+)
+options=('!debug')
+source=("archforge-$pkgver.tar.gz")
+sha256sums=('SKIP')
+prepare() {
+  cd "archforge-$pkgver"
+  cargo fetch --locked
+}
+build() {
+  cd "archforge-$pkgver"
+  cargo build --release --locked --offline --no-default-features --bin archforge-cli
+}
+package() {
+  cd "archforge-$pkgver"
+  install -Dm755 target/release/archforge-cli "$pkgdir/usr/bin/archforge-cli"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

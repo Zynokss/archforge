@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="400" viewBox="0 0 1440 400" role="img" aria-labelledby="title description">
   <title id="title">Arch Forge</title>
-  <desc id="description">System tools for Arch Linux, with the red Arch Forge mark on a charcoal background.</desc>
+  <desc id="description">Desktop and terminal system tools for Arch Linux, with the red Arch Forge mark on a charcoal background.</desc>
   <defs>
     <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
       <stop stop-color="#191d21"/><stop offset="1" stop-color="#0c0e11"/>
@@ -32,7 +32,7 @@
     <path d="M163 310v15" stroke="#4f3e43"/>
     <text x="188" y="322" fill="#bfc6d0" font-size="15">Gaming</text>
     <path d="M283 310v15" stroke="#4f3e43"/>
-    <text x="309" y="322" fill="#bfc6d0" font-size="15">Maintenance</text>
+    <text x="309" y="322" fill="#bfc6d0" font-size="15">Desktop + Terminal</text>
   </g>
   <g transform="translate(1044 64)">
     <rect width="272" height="272" rx="64" fill="#111417" stroke="url(#edge)" stroke-width="2"/>

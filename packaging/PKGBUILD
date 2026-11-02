@@ -1,16 +1,16 @@
 # Local source package. Run ../scripts/dist.sh from this directory first.
 pkgname=archforge
-pkgver=0.10.0
+pkgver=0.11.0
 pkgrel=1
 pkgdesc='Native Arch Linux system and gaming utility'
 url='https://github.com/Zynokss/archforge'
 arch=('x86_64' 'aarch64')
 license=('MIT' 'GPL-3.0-only' 'CC0-1.0')
-provides=("arch-forge=$pkgver")
-conflicts=('arch-forge')
+provides=("arch-forge=$pkgver" "archforge-cli=$pkgver")
+conflicts=('arch-forge' 'archforge-cli')
 replaces=('arch-forge')
 options=('!debug')
-depends=('vte4>=0.76' 'sudo' 'gtk4>=4.20' 'pacman' 'polkit' 'systemd' 'pciutils' 'curl')
+depends=('vte4>=0.76' 'sudo' 'gtk4>=4.20' 'pacman' 'polkit' 'systemd' 'util-linux' 'pciutils' 'curl')
 makedepends=('rust' 'pkgconf')
 optdepends=(
   'docker: inspect container disk usage and prune dangling images'
@@ -42,6 +42,7 @@ build() {
 
 package() {
   cd "$pkgname-$pkgver"
+  install -Dm755 target/release/archforge-cli "$pkgdir/usr/bin/archforge-cli"
   install -Dm755 target/release/archforge "$pkgdir/usr/bin/archforge"
   install -Dm644 data/io.github.zynokss.ArchForge.desktop "$pkgdir/usr/share/applications/io.github.zynokss.ArchForge.desktop"
   install -Dm644 data/io.github.zynokss.ArchForge.svg "$pkgdir/usr/share/icons/hicolor/scalable/apps/io.github.zynokss.ArchForge.svg"

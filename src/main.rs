@@ -3,6 +3,7 @@ mod app_locations;
 mod app_storage;
 mod cleanup_tools;
 mod cleanups;
+mod cli;
 mod command_output;
 mod diagnostic_results;
 mod dialogs;
@@ -13,6 +14,7 @@ mod loadout_styles;
 mod loadout_ui;
 mod loadouts;
 mod package_cache;
+mod package_variants;
 mod preferences;
 mod ricing;
 mod ricing_document;
@@ -24,8 +26,10 @@ mod terminal;
 mod theme;
 mod tool_icons;
 mod tools;
+mod tui;
 mod updater;
 mod wiki;
+mod wiki_data;
 use screens::{cleanup, diagnostics, gaming, overview, packages};
 
 use gtk::{glib, prelude::*};
@@ -904,6 +908,20 @@ fn build(app: &gtk::Application) {
 }
 
 fn main() -> glib::ExitCode {
+    use std::io::IsTerminal;
+    let args: Vec<_> = std::env::args().skip(1).collect();
+    let console = args.is_empty()
+        && std::env::var_os("DISPLAY").is_none()
+        && std::env::var_os("WAYLAND_DISPLAY").is_none()
+        && std::io::stdin().is_terminal()
+        && std::io::stdout().is_terminal();
+    if console || args.first().is_some_and(|arg| arg == "--tui") {
+        return if cli::run() {
+            glib::ExitCode::SUCCESS
+        } else {
+            glib::ExitCode::FAILURE
+        };
+    }
     glib::set_application_name("Arch Forge");
     if !system::is_arch(&system::read("/etc/os-release")) {
         eprintln!("Arch Forge supports Arch Linux only (ID=arch).");
