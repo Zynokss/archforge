@@ -19,3 +19,15 @@ id_ed25519*
 
 /_site/
 /repository-input/
+
+# Local workspace guidance
+/AGENTS.md
+/CLAUDE.md
+/docs/ARCHITECTURE.md
+/docs/FEATURES.md
+/docs/DESIGN_SYSTEM.md
+/docs/DECISIONS.md
+/docs/CURRENT_STATE.md
+/.claude/
+/.codex/
+/.local-ai/
