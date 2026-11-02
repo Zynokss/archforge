@@ -1,0 +1,68 @@
+name: Signed pacman repository
+on:
+  workflow_dispatch:
+  workflow_call:
+    secrets:
+      ARCHFORGE_REPO_SIGNING_KEY:
+        required: true
+      ARCHFORGE_REPO_SIGNING_PASSPHRASE:
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: archforge-pacman-repository
+  cancel-in-progress: false
+jobs:
+  repository:
+    runs-on: ubuntu-24.04
+    container: archlinux:base-devel
+    steps:
+      - name: Install repository tools
+        run: pacman -Syu --noconfirm --needed git python github-cli gnupg
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Download and verify release packages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/fetch-repository-packages.py repository-input
+      - name: Import dedicated signing subkey
+        env:
+          SIGNING_KEY: ${{ secrets.ARCHFORGE_REPO_SIGNING_KEY }}
+          SIGNING_PASSPHRASE: ${{ secrets.ARCHFORGE_REPO_SIGNING_PASSPHRASE }}
+        run: |
+          test -n "$SIGNING_KEY"
+          test -n "$SIGNING_PASSPHRASE"
+          export GNUPGHOME="$RUNNER_TEMP/archforge-gnupg"
+          install -d -m700 "$GNUPGHOME"
+          printf '%s' "$SIGNING_PASSPHRASE" > "$RUNNER_TEMP/archforge-signing-passphrase"
+          chmod 600 "$RUNNER_TEMP/archforge-signing-passphrase"
+          printf '%s' "$SIGNING_KEY" | gpg --batch --pinentry-mode loopback --passphrase-file "$RUNNER_TEMP/archforge-signing-passphrase" --import
+      - name: Sign packages and repository databases
+        env:
+          GNUPGHOME: ${{ runner.temp }}/archforge-gnupg
+        run: python scripts/build-pacman-repository.py --packages repository-input --output _site --passphrase-file "$RUNNER_TEMP/archforge-signing-passphrase"
+      - name: Refuse stale deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: test "$(cat repository-input/release-tag.txt)" = "$(gh api repos/Zynokss/archforge/releases/latest --jq .tag_name)"
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: _site
+      - name: Remove signing material
+        if: always()
+        run: |
+          gpgconf --homedir "$RUNNER_TEMP/archforge-gnupg" --kill all || true
+          rm -rf -- "$RUNNER_TEMP/archforge-gnupg"
+          rm -f -- "$RUNNER_TEMP/archforge-signing-passphrase"
+  deploy:
+    needs: repository
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish atomic repository snapshot
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

@@ -88,7 +88,7 @@ Updates require an internet connection, `curl`, and a desktop polkit agent. Down
 
 ### Package availability
 
-Arch Forge is distributed through GitHub Releases. It is not currently published in the AUR or Arch's official repositories, so `pacman -S archforge` and AUR-helper installation are not available. The package installed above is tracked by pacman and can be removed with `sudo pacman -Rns archforge`.
+Arch Forge is distributed through GitHub Releases and its own [signed pacman repository](https://zynokss.github.io/archforge/). After the [one-time public-key and repository setup](docs/PACMAN_REPOSITORY.md), install the full app with `sudo pacman -Syu archforge`, or choose `sudo pacman -Syu archforge-cli` for the standalone terminal edition. Normal system upgrades then update the installed edition. Packages and repository databases require trusted signatures. It is not published in the AUR or Arch's official repositories. GitHub release packages remain available for direct installation and can be removed with `sudo pacman -Rns archforge`.
 
 If you installed an older `arch-forge` package, run the installation command above once and accept pacman's replacement prompt. The package and executable are now named `archforge`; the application-menu name remains Arch Forge.
 

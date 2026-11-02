@@ -16,3 +16,6 @@ id_rsa*
 id_ed25519*
 /core
 /core.*
+
+/_site/
+/repository-input/

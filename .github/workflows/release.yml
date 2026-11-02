@@ -53,3 +53,11 @@ jobs:
           GH_REPO: ${{ github.repository }}
           RELEASE_TAG: ${{ github.ref_name }}
         run: gh release create "$RELEASE_TAG" release/* --verify-tag --title "Arch Forge ${RELEASE_TAG#v}" --generate-notes --latest
+  repository:
+    needs: publish
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/pacman-repository.yml
+    secrets: inherit
