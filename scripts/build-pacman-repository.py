@@ -12,7 +12,7 @@ import shutil
 import subprocess
 
 PROJECT = Path(__file__).resolve().parent.parent
-BASE_URL = "https://zynokss.github.io/archforge"
+BASE_URL = "https://zynoksy.github.io/archforge"
 NAMES = {"archforge", "archforge-cli"}
 
 
@@ -123,11 +123,11 @@ def build(packages, output, public_key, expected, passphrase_file):
 <style>body{{font:16px/1.6 system-ui;max-width:900px;margin:48px auto;padding:0 24px;background:#0d1015;color:#e9edf4}}a{{color:#71d9ff}}pre{{padding:18px;background:#18212b;overflow:auto;border-radius:8px}}code{{font-size:14px}}h1,h2{{line-height:1.2}}</style>
 <h1>Arch Forge signed pacman repository</h1><p>Arch Linux x86_64 · current package version {html.escape(version)}. This is an independently maintained third-party repository.</p>
 <p>The full app includes the desktop interface and CLI. The standalone CLI is the alternative without GTK/VTE. Choose one.</p>
-<h2>1. Trust the signing key</h2><p>Primary fingerprint: <code>{expected}</code>. Compare this with the fingerprint in the <a href="https://github.com/Zynokss/archforge/blob/main/docs/PACMAN_REPOSITORY.md">source repository documentation</a>. Never import a private key.</p>
+<h2>1. Trust the signing key</h2><p>Primary fingerprint: <code>{expected}</code>. Compare this with the fingerprint in the <a href="https://github.com/zynoksy/archforge/blob/main/docs/PACMAN_REPOSITORY.md">source repository documentation</a>. Never import a private key.</p>
 <pre><code>{html.escape(instructions)}</code></pre>
 <h2>2. Add the repository</h2><p>Append this to <code>/etc/pacman.conf</code>, below the official repositories:</p><pre><code>{html.escape(configuration)}</code></pre>
 <h2>3. Install or update</h2><pre><code>sudo pacman -Syu archforge</code></pre><p>For terminal-only systems, use <code>sudo pacman -Syu archforge-cli</code> instead. Subsequent updates use the normal <code>sudo pacman -Syu</code> command.</p>
-<h2>Downloads</h2><ul>{links}</ul><p><a href="archforge-repo.asc">Public key</a> · <a href="repo/x86_64/archforge.db">Signed database</a> · <a href="repo/x86_64/archforge.db.sig">Database signature</a> · <a href="https://github.com/Zynokss/archforge/releases">GitHub releases</a></p></html>''')
+<h2>Downloads</h2><ul>{links}</ul><p><a href="archforge-repo.asc">Public key</a> · <a href="repo/x86_64/archforge.db">Signed database</a> · <a href="repo/x86_64/archforge.db.sig">Database signature</a> · <a href="https://github.com/zynoksy/archforge/releases">GitHub releases</a></p></html>''')
     if any(p.is_symlink() for p in output.rglob("*")):
         raise ValueError("Pages artifacts must not contain symlinks")
     print(f"Signed and verified repository {version} with {expected}")

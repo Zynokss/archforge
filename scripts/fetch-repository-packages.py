@@ -7,7 +7,7 @@ from pathlib import Path
 import re
 import subprocess
 
-REPOSITORY = "Zynokss/archforge"
+REPOSITORY = "zynoksy/archforge"
 TAG = re.compile(r"v\d+\.\d+\.\d+\Z")
 
 

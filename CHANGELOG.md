@@ -34,4 +34,4 @@
 - Updated Overview, Settings, Cleanup, command output and Loadouts.
 - Fixed installed-status detection for reviewed Vesktop, Lutris and GTK theme variants.
 
-[Releases and downloads](https://github.com/Zynokss/archforge/releases)
+[Releases and downloads](https://github.com/zynoksy/archforge/releases)

@@ -8,7 +8,7 @@ Arch Forge is a native **Arch Linux system utility** built with Rust. Use the **
 
 Use Loadouts to select apps in bulk and save a package selection for a fresh Arch install. The desktop edition also includes gaming tools and Ricing: community desktop setups with real screenshot galleries, formatted READMEs, and reviewed installation instructions. Neither edition requires Hyprland.
 
-[Download the latest release](https://github.com/Zynokss/archforge/releases/latest) · [Installation](#install-arch-forge-on-arch-linux) · [Features](#features) · [Terminal edition](#terminal-edition) · [Changelog](CHANGELOG.md) · [Report a bug](https://github.com/Zynokss/archforge/issues)
+[Download the latest release](https://github.com/zynoksy/archforge/releases/latest) · [Installation](#install-arch-forge-on-arch-linux) · [Features](#features) · [Terminal edition](#terminal-edition) · [Changelog](CHANGELOG.md) · [Report a bug](https://github.com/zynoksy/archforge/issues)
 
 Run either edition as your regular user. Actions that need administrator access show a review and request authentication separately.
 
@@ -43,13 +43,13 @@ Run either edition as your regular user. Actions that need administrator access 
 On **Arch Linux x86_64**, install the latest prebuilt release with:
 
 ```sh
-curl -fLO https://github.com/Zynokss/archforge/releases/latest/download/archforge-x86_64.pkg.tar.zst
+curl -fLO https://github.com/zynoksy/archforge/releases/latest/download/archforge-x86_64.pkg.tar.zst
 sudo pacman -U ./archforge-x86_64.pkg.tar.zst
 ```
 
 This installs both `archforge` and `archforge-cli` system-wide, including the desktop app’s **application-menu shortcut and red icon**. Open your application launcher, search for **Arch Forge**, and launch it. You only need the terminal for installation; Rust and a source checkout are not required.
 
-You can also download the `.pkg.tar.zst` from the [latest release](https://github.com/Zynokss/archforge/releases/latest) and install the downloaded file with `sudo pacman -U /path/to/package.pkg.tar.zst`. If your desktop has an Arch package installer, you can open the package with that instead.
+You can also download the `.pkg.tar.zst` from the [latest release](https://github.com/zynoksy/archforge/releases/latest) and install the downloaded file with `sudo pacman -U /path/to/package.pkg.tar.zst`. If your desktop has an Arch package installer, you can open the package with that instead.
 
 The desktop edition requires GTK4 4.20 or newer, VTE, and a desktop polkit authentication agent for app-update installation. Both editions use sudo for reviewed terminal commands. Run the app as your regular user. It refuses to run as root or on a distribution whose `/etc/os-release` does not identify it as Arch Linux.
 
@@ -58,7 +58,7 @@ The desktop edition requires GTK4 4.20 or newer, VTE, and a desktop polkit authe
 On Arch Linux x86_64 without a graphical desktop:
 
 ```sh
-curl -fLO https://github.com/Zynokss/archforge/releases/latest/download/archforge-cli-x86_64.pkg.tar.zst
+curl -fLO https://github.com/zynoksy/archforge/releases/latest/download/archforge-cli-x86_64.pkg.tar.zst
 sudo pacman -U ./archforge-cli-x86_64.pkg.tar.zst
 archforge-cli
 ```
@@ -71,7 +71,7 @@ For aarch64, or if you prefer to build locally:
 
 ```sh
 sudo pacman -Syu --needed base-devel rust git
-git clone https://github.com/Zynokss/archforge.git
+git clone https://github.com/zynoksy/archforge.git
 cd archforge
 ./scripts/install.sh
 ```
@@ -88,7 +88,7 @@ Updates require an internet connection, `curl`, and a desktop polkit agent. Down
 
 ### Package availability
 
-Arch Forge is distributed through GitHub Releases and its own [signed pacman repository](https://zynokss.github.io/archforge/). After the [one-time public-key and repository setup](docs/PACMAN_REPOSITORY.md), install the full app with `sudo pacman -Syu archforge`, or choose `sudo pacman -Syu archforge-cli` for the standalone terminal edition. Normal system upgrades then update the installed edition. Packages and repository databases require trusted signatures. It is not published in the AUR or Arch's official repositories. GitHub release packages remain available for direct installation and can be removed with `sudo pacman -Rns archforge`.
+Arch Forge is distributed through GitHub Releases and its own [signed pacman repository](https://zynoksy.github.io/archforge/). After the [one-time public-key and repository setup](docs/PACMAN_REPOSITORY.md), install the full app with `sudo pacman -Syu archforge`, or choose `sudo pacman -Syu archforge-cli` for the standalone terminal edition. Normal system upgrades then update the installed edition. Packages and repository databases require trusted signatures. It is not published in the AUR or Arch's official repositories. GitHub release packages remain available for direct installation and can be removed with `sudo pacman -Rns archforge`.
 
 If you installed an older `arch-forge` package, run the installation command above once and accept pacman's replacement prompt. The package and executable are now named `archforge`; the application-menu name remains Arch Forge.
 
@@ -195,7 +195,7 @@ Diagnostics, cleanup previews and tool results use a shared read-only output vie
 
 Overview presents live CPU, memory and storage readings, GPU identification, system details, failed-service inspection, package update checks, and quick links to the main workspaces. **Capture this system** opens Loadouts' existing capture review; it does not save or apply files automatically. The refresh button reloads hardware and service information.
 
-**Settings**, below App updates and Appearance, provides access to both controls, a startup update-check preference, reduced-motion preference, version information, and links to Zynokss, the source repository, issue tracker and license notices. Preferences are stored locally in `~/.config/archforge/preferences.json`, respecting an absolute `XDG_CONFIG_HOME`. Manual update checks remain available when automatic startup checks are disabled.
+**Settings**, below App updates and Appearance, provides access to both controls, a startup update-check preference, reduced-motion preference, version information, and links to zynoksy, the source repository, issue tracker and license notices. Preferences are stored locally in `~/.config/archforge/preferences.json`, respecting an absolute `XDG_CONFIG_HOME`. Manual update checks remain available when automatic startup checks are disabled.
 
 ## Appearance
 

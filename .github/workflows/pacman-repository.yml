@@ -43,7 +43,7 @@ jobs:
       - name: Refuse stale deployment
         env:
           GH_TOKEN: ${{ github.token }}
-        run: test "$(cat repository-input/release-tag.txt)" = "$(gh api repos/Zynokss/archforge/releases/latest --jq .tag_name)"
+        run: test "$(cat repository-input/release-tag.txt)" = "$(gh api repos/zynoksy/archforge/releases/latest --jq .tag_name)"
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:
           path: _site

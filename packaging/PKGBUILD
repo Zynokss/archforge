@@ -3,7 +3,7 @@ pkgname=archforge
 pkgver=0.12.1
 pkgrel=1
 pkgdesc='Native Arch Linux system and gaming utility'
-url='https://github.com/Zynokss/archforge'
+url='https://github.com/zynoksy/archforge'
 arch=('x86_64' 'aarch64')
 license=('MIT' 'GPL-3.0-only' 'CC0-1.0')
 provides=("arch-forge=$pkgver" "archforge-cli=$pkgver")

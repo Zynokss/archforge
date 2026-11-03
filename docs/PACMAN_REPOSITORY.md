@@ -2,7 +2,7 @@
 
 Arch Forge maintains an independent **Arch Linux x86_64** binary repository alongside GitHub Releases. Both `archforge` (desktop + CLI) and `archforge-cli` (terminal-only alternative) are available. Installing both is unnecessary and the packages conflict over CLI ownership.
 
-Repository and setup page: https://zynokss.github.io/archforge/
+Repository and setup page: https://zynoksy.github.io/archforge/
 
 Primary signing fingerprint, pinned in `packaging/repository/fingerprint.txt`:
 
@@ -15,7 +15,7 @@ F67F87FE838F8D8FCE0B29CFA6B8E7BF2C9A9D85
 Download the **public** key and require its primary fingerprint to match before trusting it:
 
 ```sh
-curl -fsSLo archforge-repo.asc https://zynokss.github.io/archforge/archforge-repo.asc
+curl -fsSLo archforge-repo.asc https://zynoksy.github.io/archforge/archforge-repo.asc
 test "$(gpg --show-keys --with-colons archforge-repo.asc | awk -F: '$1 == "fpr" { print $10; exit }')" = "F67F87FE838F8D8FCE0B29CFA6B8E7BF2C9A9D85" || exit 1
 sudo pacman-key --add archforge-repo.asc
 sudo pacman-key --lsign-key F67F87FE838F8D8FCE0B29CFA6B8E7BF2C9A9D85
@@ -26,7 +26,7 @@ Append this below the official repositories in `/etc/pacman.conf`:
 ```ini
 [archforge]
 SigLevel = Required TrustedOnly
-Server = https://zynokss.github.io/archforge/repo/$arch
+Server = https://zynoksy.github.io/archforge/repo/$arch
 ```
 
 Install the full edition:

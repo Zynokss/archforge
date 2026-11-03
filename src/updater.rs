@@ -19,9 +19,9 @@ use std::{
     time::Duration,
 };
 
-const API: &str = "https://api.github.com/repos/Zynokss/archforge/releases/latest";
-const DOWNLOADS: &str = "https://github.com/Zynokss/archforge/releases/download";
-const RELEASES: &str = "https://github.com/Zynokss/archforge/releases";
+const API: &str = "https://api.github.com/repos/zynoksy/archforge/releases/latest";
+const DOWNLOADS: &str = "https://github.com/zynoksy/archforge/releases/download";
+const RELEASES: &str = "https://github.com/zynoksy/archforge/releases";
 const CURRENT: &str = env!("CARGO_PKG_VERSION");
 const MAX_PACKAGE: u64 = 64 * 1024 * 1024;
 
@@ -614,7 +614,7 @@ fn create_view(parent: &gtk::ApplicationWindow) -> Rc<View> {
     surface.status.set(
         Tone::Ready,
         "Ready to check",
-        "Updates come from Zynokss/archforge on GitHub.",
+        "Updates come from zynoksy/archforge on GitHub.",
         "Stable release channel",
     );
     let [_, version] = surface

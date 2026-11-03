@@ -81,17 +81,17 @@ pub(crate) fn page(
         &format!("Arch Forge {}", env!("CARGO_PKG_VERSION")),
         "row-title",
     ));
-    about.append(&wrapped("Created and maintained by Zynokss. A native Arch Linux system workbench, built with Rust and GTK4.", "muted"));
+    about.append(&wrapped("Created and maintained by zynoksy. A native Arch Linux system workbench, built with Rust and GTK4.", "muted"));
     for (name, url) in [
-        ("Zynokss on GitHub", "https://github.com/Zynokss"),
-        ("Source code", "https://github.com/Zynokss/archforge"),
+        ("zynoksy on GitHub", "https://github.com/zynoksy"),
+        ("Source code", "https://github.com/zynoksy/archforge"),
         (
             "Report an issue",
-            "https://github.com/Zynokss/archforge/issues",
+            "https://github.com/zynoksy/archforge/issues",
         ),
         (
             "License & artwork notices",
-            "https://github.com/Zynokss/archforge#license",
+            "https://github.com/zynoksy/archforge#license",
         ),
     ] {
         let link = gtk::LinkButton::with_label(url, name);

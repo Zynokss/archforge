@@ -20,7 +20,7 @@ jobs:
           test "$RELEASE_TAG" = "v$version"
           test "$(sed -n 's/^pkgver=//p' packaging/PKGBUILD)" = "$version"
           useradd --create-home builder
-          printf "%s\n" "PACKAGER='Zynokss <31770892+Zynokss@users.noreply.github.com>'" > /home/builder/.makepkg.conf
+          printf "%s\n" "PACKAGER='zynoksy <31770892+zynoksy@users.noreply.github.com>'" > /home/builder/.makepkg.conf
           chown builder:builder /home/builder/.makepkg.conf
           chown -R builder:builder "$GITHUB_WORKSPACE"
           su builder -c 'cd "$GITHUB_WORKSPACE" && ./scripts/dist.sh && cd packaging && makepkg --noconfirm --cleanbuild && makepkg --noconfirm --cleanbuild -p PKGBUILD-cli'
