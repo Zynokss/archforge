@@ -3,6 +3,6 @@ set -euo pipefail
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 version=$(sed -n 's/^version = "\([^"]*\)"/\1/p' Cargo.toml | head -n1)
 archive="packaging/archforge-${version}.tar.gz"
-tar --transform="s,^,archforge-${version}/," -czf "$archive" Cargo.toml Cargo.lock src data assets scripts/dist.sh scripts/install.sh scripts/build-pacman-repository.py scripts/fetch-repository-packages.py packaging/repository packaging/PKGBUILD packaging/PKGBUILD-cli run.sh README.md CHANGELOG.md LICENSE docs/PACMAN_REPOSITORY.md
+tar --transform="s,^,archforge-${version}/," -czf "$archive" Cargo.toml Cargo.lock vendor src data assets scripts/dist.sh scripts/install.sh scripts/test-cli-lifecycle.py scripts/build-pacman-repository.py scripts/fetch-repository-packages.py packaging/repository packaging/PKGBUILD packaging/PKGBUILD-cli run.sh README.md CHANGELOG.md LICENSE docs/PACMAN_REPOSITORY.md
 sha256sum "$archive"
 echo "Source archive ready. Build the local Arch package with: cd packaging && makepkg -si"

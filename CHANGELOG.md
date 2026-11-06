@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.12.2
+
+- Fixed excessive CPU usage and unresponsive shutdown when terminal input disconnects or fails, affecting both bundled and standalone terminal editions.
+- Added isolated terminal lifecycle regression checks for disconnected input, terminal closure, SIGTERM, SIGHUP and normal quit.
+
 ## 0.12.1
 
 - Updated both bundled and standalone terminal editions with actual-installed-name/source filtering and identity-preserving loadout exports.
